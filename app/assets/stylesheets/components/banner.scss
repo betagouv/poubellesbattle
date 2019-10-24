@@ -1,0 +1,70 @@
+.banner {
+  background-size: cover;
+  background-position: center;
+  background-image: url("comp.png"), linear-gradient(rgba(240,240,240,0.8),rgba(240,240,240,0.8));
+  padding: 50px 0;
+  position: relative;
+  height: 200px;
+}
+
+.container {
+  text-align: center;
+}
+
+.banner h1 {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.banner p {
+  font-size: 18px;
+  color: white;
+  opacity: .9;
+  width: 400px;
+  position: absolute;
+  left: 474px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
+.card-container {
+    width: 1200px;
+    margin: auto;
+    padding: 3px;
+}
+
+.section {
+  background-color: #D1EECC;
+}
+
+
+.card img {
+  height: 100px;
+}
+
+.card p {
+  opacity: .5;
+}
+
+.card h5 {
+  font-size: 20px;
+}
+
+
+.card {
+  width: 300px;
+  border-radius: 3px;
+  box-shadow: 0 0 2px rgb(230,230,230);
+  text-align: center;
+  padding: 10px;
+  border: 0.5px solid rgb(230,230,230);
+}
+
+.cards {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+

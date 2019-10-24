@@ -1,0 +1,40 @@
+#map {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  margin: 7px 0px 0 30px;
+}
+
+.mapboxgl-popup {
+  max-width: 500px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.meal-pic img {
+  max-width: 200px;
+  overflow: hidden;
+}
+
+.mapboxgl-popup {
+  max-width: 200px;
+}
+
+.mapboxgl-popup-content {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.mapboxgl-popup-content p {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.mapboxgl-popup .button a {
+decoration: none;
+color: white !important;
+}
+

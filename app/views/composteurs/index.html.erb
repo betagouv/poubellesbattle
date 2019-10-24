@@ -1,0 +1,46 @@
+<div class="banner">
+  <div class="container">
+    <h1>Un composteur pour tous !</h1>
+      <p>Que vous habitiez en maison individuelle,
+      en appartement sans jardin,
+      en résidence, il existe une solution pour chacun !</p>
+    <!-- <a class="btn btn-flat" href="#">Book now</a> -->
+  </div>
+</div>
+
+<!-- <div class="section" >
+  <div class="card-container">
+      <h2 class="text-center"></h2>
+      <div class="cards m-5">
+        <div class="card">
+          <img src="app/assets/images/compost.png" alt="">
+          <h5>En maison individuelle</h5>
+          <p>Lorem ipsum dolor sit amet.</p>
+        </div>
+        <div class="card">
+          <img src='logo.png' alt="">
+          <h5>En appartement</h5>
+          <p>Lorem ipsum dolor sit amet.</p>
+        </div>
+        <div class="card">
+          <img src="compost.png" alt="">
+          <h5>Composteurs collectifs</h5>
+          <p>Lorem ipsum dolor sit amet.</p>
+        </div>
+      </div>
+  </div>
+ </div> -->
+
+
+<div class="container mt-3 text-center">
+  <!-- <p> Découvrez les 58 composteurs collectifs mise à disposition à Pau </p> -->
+  <%#= render '/shared/search-bar' %>
+   <div
+    id="map"
+    style="width: 100%;
+    height: 600px;"
+    data-markers="<%= @markers.to_json %>"
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+  ></div>
+</div>
+

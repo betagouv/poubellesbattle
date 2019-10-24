@@ -1,0 +1,16 @@
+<%= simple_form_for(@composteur) do |f| %>
+  <%= f.input :name, label: 'Nom du composteur' %>
+  <%= f.input :address, label: 'adresse'  %>
+  <%= f.input :category, label: 'Quel type de composteur ?' %>
+  <%#= f.input :category, label: 'Choisissez une catégorie', collection: Meal::CATEGORIES %>
+  <%= f.input :public, label: "Est-il public ?" %>
+  <%= f.input :bacs_number, label: 'Nombre de bacs' %>
+  <%= f.input :status, label: 'Son status' %>
+  <%= f.input :installation_date, as: :string, required: false, input_html: {class: "datepicker"} %>
+  <%= f.input :photo %>
+  <%#= f.input :photo_cache, as: :hidden %>
+  <%= f.input :referent_full_name, label: 'Nom et prénom du référent' %>
+  <%= f.input :referent_email, label: 'Email du référent' %>
+
+  <%= f.submit "Ajouter un composteur", class: "button"  %>
+  <% end %>
