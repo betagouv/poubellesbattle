@@ -10,13 +10,24 @@
   </button> -->
 
 
-  <button class="border-none add-meal" type="button" >
-    <%= link_to "Ajouter un composteur", new_composteur_path %>
-  </button>
+<!--   <button class="border-none add-meal" type="button" >
+    <%#= link_to "Ajouter un composteur", new_composteur_path %>
+  </button> -->
 
   <button class="border-none add-meal" type="button" >
-    <%= link_to "Kit assemblée générale", 'https://uncomposteurici.gitbook.io/poubellesbattle/' %>
+    <%= link_to "Composter à Pau", root_path %>
   </button>
+
+  <li class="dropdown align-self-center d-none d-sm-block mr-3">
+        <button class="dropdown-toggle border-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Vos outils
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+          <%= link_to "Kit assemblée générale", 'https://uncomposteurici.gitbook.io/poubellesbattle/', class: "dropdown-item" %>
+          <%= link_to "Guide ADEME du compostage", 'https://www.ademe.fr/sites/default/files/assets/documents/guide-pratique-compostage-et-paillage.pdf', class: "dropdown-item" %>
+        </div>
+      </li>
 
 </div>
 
