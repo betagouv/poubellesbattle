@@ -23,7 +23,7 @@ CSV.foreach(filepath, csv_options) do |row|
     category: row[3],
     publicorprivate: row[10],
     volume: row[8],
-    referent_email: row[9],
+    referent_email: row[7],
     referent_full_name: row[6])
 end
 
