@@ -1,5 +1,7 @@
 import mapboxgl from 'mapbox-gl';
 
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
 
@@ -18,6 +20,7 @@ const fitMapToMarkers = (map, markers) => {
     });
 
     const markers = JSON.parse(mapElement.dataset.markers);
+    map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken }));
     markers.forEach((marker) => {
 
       const popup = new mapboxgl.Popup().setHTML(marker.infoWindow);
