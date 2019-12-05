@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
+  # get 'donvert/new'
+  # get 'donvert/edit'
+  # get 'donvert/create'
+  # get 'donvert/index'
   devise_for :users
 
 
 root to: "composteurs#index"
+
+resources :donverts
 
   resources :composteurs do
     member do

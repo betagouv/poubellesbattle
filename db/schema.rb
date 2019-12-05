@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_15_093323) do
+ActiveRecord::Schema.define(version: 2019_12_05_130919) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,20 @@ ActiveRecord::Schema.define(version: 2019_10_15_093323) do
     t.string "status"
     t.string "volume"
     t.string "publicorprivate"
+  end
+
+  create_table "donverts", force: :cascade do |t|
+    t.string "title"
+    t.string "type_matiere_orga"
+    t.string "description"
+    t.float "volume_litres"
+    t.string "donneur_name"
+    t.string "donneur_address"
+    t.string "donneur_tel"
+    t.string "donneur_email"
+    t.date "date_fin_dispo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
