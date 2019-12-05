@@ -1,2 +1,30 @@
-<h1>Donvert#index</h1>
-<p>Find me in app/views/donvert/index.html.erb</p>
+<div class="product-card-container">
+  <% @dons.each do |don| %>
+
+    <div class="product-card">
+      <div class="product-card-header">
+        <div class="product-title-category">
+        <h2><%= don.title %></h2>
+        <p><%= don.type_matiere_orga %></p>
+        </div>
+        <div class="ecoscore">
+            <p class="cate">Volume (en L)</p>
+            <h3 class="score">don.title</h3>
+        </div>
+      </div>
+
+      <div class="product-card-infos">
+
+        <p class="impact m-3 text-center"><strong>A propos du don</strong></p>
+
+          <div class="metrics-score-infos">
+              <div class="3-metrics">
+                <p class="metric">Nom du donneur : <strong><%=don.donneur_name %></strong></p>
+                <p class="metric">Adresse don : <strong><%=don.donneur_address %></strong></p>
+                <p class="metric">Disponible jusqu'au : <strong><%=don.date_fin_dispo%></strong></p>
+              </div>
+          </div>
+
+    </div>
+  <% end %>
+</div>
