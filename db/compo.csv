@@ -1,9 +1,3 @@
-Quantité;Commune;Code site compostage;Adresse;Résidence ;"Type de composteur 
-(composteur bas d'immeuble 
-ou 
-composteur de quartier)";public ?;Nom du référent;Prénom du référent;Numéro de téléphone;Email du référent;"Référent ok pour afficher ses coordonnées téléphoniques? 
-(oui ou non)";"Référent ok pour afficher ses coordonnées Email ? 
-(oui ou non)";Référent;Volume;Participants;Foyers;Année ;Mois;Commentaires;Livraison broyat;Guide composteur;Panneaux compostage collectif;accompagnement Le Potager du futur;autres contacts;site cloturé?;domaine privé ou public;commentaire;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 1;Pau;CC1-CARLITOS-PAU;5, avenue Kennedy, Pau, France;Carlitos 1 et 3;composteur de quartier;oui;PEYRAS;Sylvaine;0614238404;sylvaine.peyras@laposte.net;;;Mme Peyras Sylvaine 06-14-23-84-04;4x800L et 1x320L ;50;200;2012;;installation de carrés à jardiner le 16/02/2018 avec L'association L'Accorderie, la MDJ et les résidents de Carlitos;livré le 31-07-2018;FT;oui avec CREAPUB novembre 2018;oui;;non;public;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 2;Pau;CC2-CASSOURADE-PAU;2, avenue Charles de Foucauld, Pau, France;La Cassourade;composteur bas d'immeuble;non;DAMEZ;Daniel;0559024544;daniel.damez@sfr.fr;;;Mr Damez tel 05 59 02 45 44. daniel.damez@sfr.fr;4x800L;26;50 foyers;2013;;réunion OPH + CDA fin 2016;Le 25-10-2018 et le 14-02-2019;;;oui;;non;privé;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 3;Pau;CC3-PALISSY-PAU;90, avenue du Loup, Pau, France;Palissy;composteur bas d'immeuble;non;GRACIANETTE;Dominique;0689203808;dgracianette@orange.fr;;;Mme Gracianette 06-89-20-38-08 dgracianette@orange.fr ou Mme Michaud entrée n°3  05 59 84 17 46;3x800L ;15;8 entrées;2014;;1X800L le 15-01-2019;le 17-01-2019;;Prévoir 2018;oui ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -14,13 +8,13 @@ composteur de quartier)";public ?;Nom du référent;Prénom du référent;Numér
 8;Pau;CC8-COULEEVERTE-PAU;Jardin de Lauga, Pau, France;;composteur de quartier;oui;GAILLARDOU;Serge;;serge.gaillardou@sfr.fr;;;Serge Gaillardou jardinier bénévole MJC (mercredis matins) S GAILLARDOU serge.gaillardou@sfr.fr;3X800L;;;2015;;;;autonome;oui avec CREAPUB le 13/02/2019;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 9;Pau;CC9-FERNEY-PAU;56, avenue des Lilas, Pau, France ;Parc Fernay;composteur bas d'immeuble;non;PECOSTE;André;0631688910;andre.pecoste@neuf.fr;;;Mr Pécoste – 06 31 68 89 10 ;2x800L;;;2015;;livraison d'un 320 litres et de 2 bio seaux et des autocollants le 15-02-2018;;;;oui;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 10;Pau;CC10-EDELWEISS-PAU;chemin Labriard, Pau, France ;Edelweiss ;composteur bas d'immeuble;non;SERRAMOUNE;Monique;0660181663;moniqueserramoune@gmail.com;;;Mme Serramoune 06 60 18 16 63;2x320L;3;100;2016;;message laissé à Mme Serramoune le 21-01-2019;;;;oui;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-11;Pau;CC11-HEDAS1-PAU;Allée Emir Abd El-Kader, Pau, France ;Improbable jardin;composteur de quartier;oui;BOISSON;Michel;0781672363;boisson64@gmail.com;;;M Boisson. ;5x800L ;17;quartier;2016;;1ere récolte compost lors de Tous au compost le 24 mars 2018. animation ce jour. ;"Le 20/06/2018 et le 29-11-2018 et le 
+11;Pau;CC11-HEDAS1-PAU;Allée Emir Abd El-Kader, Pau, France ;Improbable jardin;composteur de quartier;oui;BOISSON;Michel;0781672363;boisson64@gmail.com;;;M Boisson. ;5x800L ;17;quartier;2016;;1ere récolte compost lors de Tous au compost le 24 mars 2018. animation ce jour. ;"Le 20/06/2018 et le 29-11-2018 et le
 14-02-2019 et le 14-05-2019";FT;en place 2016;oui;"Mhfleurot@gmail.com  ; thomas.lonite.pau@gmail.com ; aje@apetitspas-pau.fr ; jessicanairac@gmail.com ; eloise.vachon@gmail.com ; agathe.vercoutter@gmail.com ; michelfolliot@wanadoo.fr
-Marie-claire.betbeder@neufr.fr 
+Marie-claire.betbeder@neufr.fr
 Christian.paroissin@gmail.com
 Maï FRADIN tel 06 34 52 42 09";non;public;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 12;Pau;CC12-CHAMPSELYSEE-PAU;1, avenue Rousse, Pau, France;Champs Elysée;composteur bas d'immeuble;non;PERROT;;0668776466;;;;Mme Perot - 05 59 02 42 84 ;3x800L ;15;30;2016;;;site visité le 03-08-2018 feuilles mortes dans le bac structurant. Pas pu voir Mme Perot;FT;;oui ;;oui;privé;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-13;Pau;CC13-ASPIN-PAU;12, avenue du Stade Nautique, Pau, France;Tour Aspin;composteur bas d'immeuble;oui;TRUCHON;Michel;0648890966;cmantik@live.fr;;;"Mr TRUCHON référent 06-48-89-09-66 cmantik@live.fr et concierges Mr HAGET-HILLOU Stéphane Tour  - 06 52 60 71 81 
+13;Pau;CC13-ASPIN-PAU;12, avenue du Stade Nautique, Pau, France;Tour Aspin;composteur bas d'immeuble;oui;TRUCHON;Michel;0648890966;cmantik@live.fr;;;"Mr TRUCHON référent 06-48-89-09-66 cmantik@live.fr et concierges Mr HAGET-HILLOU Stéphane Tour  - 06 52 60 71 81
 ou Mme LAPORTE Tour 2 - Laurence 06 15 53 01 12 ";6X800L;25;100;2016;;1x800 litres en plus ajouté en septembre 2016 + 800 litres en novembre 2016 total 4 composteurs;Le 12-07-2018 et le 14-02-2019 et le 13-11-2019;FT;Prévoir 2018;oui ;;non;public;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 14;Pau;CC14-BIEMOULIE-PAU;17, Avenue Bié Moulié, Pau, France;;composteur bas d'immeuble;non;LECLERCQ;Marion;0662137080;marion.leclercq@gmail.com;;;Mme Leclerc 06-62-13-70-80 marion.leclercq@gmail.com;2x320L et 1x800L;;5;2016;;;;;;oui;;oui;privé;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 15;Billère;CC15-GALAS-BILLERE;"4, Avenue du Tonkin, Billère, France
@@ -40,12 +34,12 @@ et 1x800L";10;50;2016;;Les 2 référentes sont âgées et ne souhaitent plus s'o
 27;Billère;CC27-PHOEBUS-BILLERE;84, avenue Gaston Phoëbus, Billère, France;Rés Escurial;composteur bas d'immeuble;non;QUESNEY;Valérie;0614217899;valerie.quesneyboe@gmail.com;;;Valérie Quesney tél 06 14 21 78 99 et valerie.quesneyboe@gmail.com ou Ingrid EUSTACHE, ingrideustache@gmail.com tél 06 04 19 56 10;3x800L;6;9;2018;avril;1 800l a été livré en mars il est en attente sur place;Le 12-07-2018 et le 11-04-2019 et le 13-11-2019;RMP;;;;oui;privé;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 28;Pau;CC28-CASTETNAU/JEANREVEIL-PAU;69, rue Castetnau, Pau, France;;composteur de quartier;oui;POURSUIBES;Charlotte;0608257457;charlotte.poursuibes@icloud.com;;;Charlotte Poursuibes charlotte.poursuibes@icloud.com et 06 08 25 74 57;4x800L ;15;;2018;mai;;livré le 31-07-2018 et le 14-11-2019;EM;Prévoir 2018 (2eme vague);oui;"
 Mme Danielle BALDAN, 7 rue Pasteur Cadier à Pau, 06 73 37 83 50, danielle@cornaz.fr souhaiterait composter sur ce site.
-Foyers compostant : Bernadette KNOLL, 4 rue jean Réveil, knoll.mb@gmail.com 
-Martin LOGIE, 51 rue Castetnau martin.logie.tourisme@gmail.com tél 06 81 82 95 36, Maxime CHARTON 14, rue Jean Réveil maxime.charton@live.fr tél 06 32 32 62 59, Jean-Claude JURKOW 56, rue Castenau tél 06 60 70 31 94, 
-Christian BOUCHE 85 rue Castetnau bouche.christian@neuf.fr tél 05 59 27 72 10, 
-Mickaël ROYER 4 cours Camou demicab@ntymail.com tél 06 12 49 27 09, 
-Julian PAYEN 41 rue Castetnau pulcotours@gmail.com tél 06 98 30 79 86, 
-Aure SEGUIER 58 rue castetnau aure.seguier@wanadoo.fr , 
+Foyers compostant : Bernadette KNOLL, 4 rue jean Réveil, knoll.mb@gmail.com
+Martin LOGIE, 51 rue Castetnau martin.logie.tourisme@gmail.com tél 06 81 82 95 36, Maxime CHARTON 14, rue Jean Réveil maxime.charton@live.fr tél 06 32 32 62 59, Jean-Claude JURKOW 56, rue Castenau tél 06 60 70 31 94,
+Christian BOUCHE 85 rue Castetnau bouche.christian@neuf.fr tél 05 59 27 72 10,
+Mickaël ROYER 4 cours Camou demicab@ntymail.com tél 06 12 49 27 09,
+Julian PAYEN 41 rue Castetnau pulcotours@gmail.com tél 06 98 30 79 86,
+Aure SEGUIER 58 rue castetnau aure.seguier@wanadoo.fr ,
 Claire Fournier 39 rue Castetnau claire.fournier0@gmail.com tél 06 25 94 79 62";non;public;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 29;Pau;CC29-GLOXIN-PAU;36, rue du Colonel Gloxin, Pau, France;Résidence Dryades;composteur bas d'immeuble;non;trouver nouveau référent;;;;;;;2X800L;10;20;2018;mai;;Le 20-06-2018 et le 29-11-2018;RMP;;;;non;privé;Référent déménagé, trouver un nouveau;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 30;Pau;CC30-BERLIOZ-PAU;55, rue Berlioz, Pau, France;Les Terrasses;composteur bas d'immeuble;non;SARRAZIN;Eliane;0641805482;sarrazin.eliane@orange.fr;;;Mme Sarrazin entrée A – 06 41 80 54 52 -  sarrazin.eliane@orange.fr;3x800L;20;69;2018;juin;;Le 20-06-2018 et le 29-11-2018;RMP;;;;oui;privé;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -72,29 +66,3 @@ Participants qui ont signé la charte : Gilberte CASTANNIER 05 59 32 28 95 et z
 51;PAU;CC52-HENRYRUSSELL-PAU;6, avenue Henry Russell, Pau, France;Square Habitat;composteur bas d'immeuble;non ;BAPTE;Cédric;0642053132;helene.cedric.messagerie@gmail.com;;;cédric bapte 06.42.05.31.32. ;2x600l;6;7;2019;mai;;;ft;;;;oui;privé;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 52;PAU;CC53-HOUNAU-PAU;30 ter, rue Michel Hounau, Pau, France;Habitat Jeunes Pau Pyrénées;composteur de quartier;oui;DUSSAUX;Lucile;0677138328;lucile.dussaux@habitat-jeunes-pau-asso.fr;;;Mme Lucile Dussaux tél 06 77 13 83 28, responsable développement et de l action socio-éducative. Lucile.dussaux@habitat-jeunes-pau-asso.fr;à compléter par Rose et Fabien;;;2019;mai;en lien avec jardin de la Maison du jardinier;le 24/05/2019;FT et RMP ;;;;;;Emilie réunion avec GB + EB + LD + AS + animatrice le 28/02/19 pour projet jardin dans espace vert Ville accessible par la résidence;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 53;PAU;CC54-MONTILLEUL-PAU;23, avenue Montilleul, Pau, France;Vivaldi - Foncia Boussard ;composteur bas d'immeuble;non ;HAMEL;Clémence;0626485969;clemhamel@gmail.com;;;Mme HAMEL Clémence 06 26 48 59 69 ;2x600L;10;20;2019;novembre;;11/14/19;RMP;;;;;privé;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-54;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-55;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-56;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-57;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-58;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-59;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-60;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-61;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-62;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-63;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-32;Pau;CC32-LAHERRERE-PAU;Friche Laherrère Saragosse (FS 365);;;ouvert;;;;;;;Madame Peyras + une dizaine d'habitants  sylvaine.peyras@laposte.net;1x320L et 1X600L;;;2018;août;;;RMP;;oui;;non;public;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;PAU;CC48-PESQUIT-PAU;38 - 40 et 42 rue du Pesquit;Résidence l'Aucéra;;fermé;;;;;;;Mme Bordin entrée 40 - 06 68 57 47 95 julie.bordin@gmail.com et Mme Sanchez entrée 38 - 06 95 06 47 28 marielinesanchez@yahoo.fr;2X800L;12;30;2019;avril;Site abandonné en septembre 2019, car problème de voisinage.;;RMP;;;;oui;privé;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-7;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-8;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-9;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-12;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-13;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-14;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
