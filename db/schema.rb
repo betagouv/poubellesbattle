@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_05_130919) do
+ActiveRecord::Schema.define(version: 2020_01_16_144447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,10 @@ ActiveRecord::Schema.define(version: 2019_12_05_130919) do
     t.string "status"
     t.string "volume"
     t.string "publicorprivate"
+    t.string "residence_name"
+    t.string "commentaire"
+    t.integer "participants"
+    t.string "composteur_type"
   end
 
   create_table "donverts", force: :cascade do |t|
@@ -56,8 +60,15 @@ ActiveRecord::Schema.define(version: 2019_12_05_130919) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone_number"
+    t.boolean "referent"
+    t.bigint "composteur_id"
+    t.index ["composteur_id"], name: "index_users_on_composteur_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "users", "composteurs"
 end

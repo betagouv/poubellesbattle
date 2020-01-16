@@ -7,6 +7,7 @@ require 'csv'
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+User.destroy_all
 Composteur.destroy_all
 Donvert.destroy_all
 # Composteur.create(address: '11 avenue Jean Mermoz, Pau', name: 'CC4-ARCENCIEL-PAU')
@@ -15,48 +16,65 @@ Donvert.destroy_all
 # Composteur.create(address: '5 avenue du président Kennedy, Pau', name: 'CC1-CARLITOS-PAU')
 
 
-csv_options = { col_sep: ',', force_quotes: true, quote_char: '"' }
+csv_options = { col_sep: ';', force_quotes: true, quote_char: '"' }
 filepath    = 'db/compo.csv'
 
 CSV.foreach(filepath, csv_options) do |row|
-  Composteur.create(address: row[4],
+  Composteur.create(
     name: row[2],
-    category: row[3],
-    publicorprivate: row[10],
-    volume: row[8],
-    referent_email: row[7],
-    referent_full_name: row[6])
+    address: row[3],
+    residence_name: row[4],
+    composteur_type: row[5],
+    public: row[6] == 'oui',
+    volume: row[14],
+    participants: row[15],
+    installation_date: row[17],
+    commentaire: row[19]
+  )
+  puts "#{row[2]} created"
+
+  User.create(
+    first_name: row[7],
+    last_name: row[8],
+    phone_number: "+33#{row[9]}",
+    email: row[10],
+    password: "123456",
+    referent: true,
+    composteur_id: Composteur.last.id
+  )
+    puts "#{row[8]} created"
+
 end
 
-Donvert.create(
-  title: "Don de matière sèche chêne",
-  type_matiere_orga: "branchage",
-  description: "branchage de chênes et feuillus",
-  volume_litres: 45,
-  donneur_name: "Jardin collectif Magique",
-  donneur_address: "14, avenue de Tarbes, Pau, France",
-  donneur_tel: "0989098768",
-  donneur_email: "jardin@magique.com",
-  date_fin_dispo: "14/01/2020")
+# Donvert.create(
+#   title: "Don de matière sèche chêne",
+#   type_matiere_orga: "branchage",
+#   description: "branchage de chênes et feuillus",
+#   volume_litres: 45,
+#   donneur_name: "Jardin collectif Magique",
+#   donneur_address: "14, avenue de Tarbes, Pau, France",
+#   donneur_tel: "0989098768",
+#   donneur_email: "jardin@magique.com",
+#   date_fin_dispo: "14/01/2020")
 
-Donvert.create(
-  title: "Don de matière sèche bananier",
-  type_matiere_orga: "branchage",
-  description: "branchage de bananier",
-  volume_litres: 36,
-  donneur_name: "Jardin collectif Magique",
-  donneur_address: "79, avenue de Tarbes, Pau, France",
-  donneur_tel: "0989098768",
-  donneur_email: "jardin@magique.com",
-  date_fin_dispo: "01/01/2020")
+# Donvert.create(
+#   title: "Don de matière sèche bananier",
+#   type_matiere_orga: "branchage",
+#   description: "branchage de bananier",
+#   volume_litres: 36,
+#   donneur_name: "Jardin collectif Magique",
+#   donneur_address: "79, avenue de Tarbes, Pau, France",
+#   donneur_tel: "0989098768",
+#   donneur_email: "jardin@magique.com",
+#   date_fin_dispo: "01/01/2020")
 
-Donvert.create(
-  title: "Don de compost",
-  type_matiere_orga: "compost",
-  description: "compost mûr",
-  volume_litres: 78,
-  donneur_name: "Composteur carlito",
-  donneur_address: "25, avenue de Lons, Pau, France",
-  donneur_tel: "0989098456",
-  donneur_email: "compo@carli.com",
-  date_fin_dispo: "09/12/2019")
+# Donvert.create(
+#   title: "Don de compost",
+#   type_matiere_orga: "compost",
+#   description: "compost mûr",
+#   volume_litres: 78,
+#   donneur_name: "Composteur carlito",
+#   donneur_address: "25, avenue de Lons, Pau, France",
+#   donneur_tel: "0989098456",
+#   donneur_email: "compo@carli.com",
+#   date_fin_dispo: "09/12/2019")
