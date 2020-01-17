@@ -6,7 +6,7 @@ require 'csv'
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+Notification.destroy_all
 User.destroy_all
 Composteur.destroy_all
 Donvert.destroy_all
@@ -14,7 +14,6 @@ Donvert.destroy_all
 # Composteur.create(address: '3 rue du Pin, Pau', name: 'CC7-MIDI-PAU')
 # Composteur.create(address: '73 boulevard Tourasse, Pau', name: 'CC19-TOURASSE-PAU')
 # Composteur.create(address: '5 avenue du président Kennedy, Pau', name: 'CC1-CARLITOS-PAU')
-
 
 csv_options = { col_sep: ';', force_quotes: true, quote_char: '"' }
 filepath    = 'db/compo.csv'
@@ -29,21 +28,28 @@ CSV.foreach(filepath, csv_options) do |row|
     volume: row[14],
     participants: row[15],
     installation_date: "#{row[17]}-01-01",
+    status: "installé",
     commentaire: row[19]
   )
   puts "#{row[2]} created"
 
   User.create(
-    first_name: row[7],
-    last_name: row[8],
+    first_name: row[8],
+    last_name: row[7],
     phone_number: "#{row[9]}",
     email: row[10],
     password: "123456",
-    referent: true,
+    role: "référent",
     composteur_id: Composteur.last.id
   )
-    puts "#{row[8]} created"
+  puts "#{row[8]} created"
 
+  Notification.create(
+    notification_type: "welcome",
+    content: "Bienvenue #{row[8]}! C'est parti pour le compost !",
+    user_id: User.last.id
+    )
+  puts "welcome notification created"
 end
 
 # Donvert.create(
