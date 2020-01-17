@@ -23,6 +23,10 @@ class ComposteursController < ApplicationController
     end
   end
 
+  def show
+    @composteur = Composteur.find(params[:id])
+  end
+
   def new
     @composteur = Composteur.new
   end
@@ -47,8 +51,8 @@ class ComposteursController < ApplicationController
 
 private
 
-# def composteur_params
-#     params.require(:composteur).permit(:name, :address, :category, :bacs_number, :quantity_max, :start_availability_date, :end_availability_date, :photo)
-# end
+ # def composteur_params
+ #     params.require(:composteur).permit(:name, :address, :category, :bacs_number, :quantity_max, :start_availability_date, :end_availability_date, :photo)
+ # end
 
 end

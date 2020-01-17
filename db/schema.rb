@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_16_144447) do
+ActiveRecord::Schema.define(version: 2020_01_17_092910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,18 +24,30 @@ ActiveRecord::Schema.define(version: 2020_01_16_144447) do
     t.string "name"
     t.string "category"
     t.boolean "public"
-    t.integer "bacs_number"
-    t.string "photo"
-    t.string "referent_email"
-    t.string "referent_full_name"
     t.date "installation_date"
     t.string "status"
     t.string "volume"
-    t.string "publicorprivate"
     t.string "residence_name"
     t.string "commentaire"
     t.integer "participants"
     t.string "composteur_type"
+  end
+
+  create_table "demandes", force: :cascade do |t|
+    t.string "status"
+    t.string "logement_type"
+    t.string "inhabitant_type"
+    t.string "address"
+    t.boolean "location_found"
+    t.string "email"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone_number"
+    t.boolean "potential_users"
+    t.boolean "completed_form"
+    t.date "planification_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "donverts", force: :cascade do |t|
@@ -52,6 +64,15 @@ ActiveRecord::Schema.define(version: 2020_01_16_144447) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "notification_type"
+    t.string "content"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -63,12 +84,13 @@ ActiveRecord::Schema.define(version: 2020_01_16_144447) do
     t.string "first_name"
     t.string "last_name"
     t.string "phone_number"
-    t.boolean "referent"
     t.bigint "composteur_id"
+    t.string "role"
     t.index ["composteur_id"], name: "index_users_on_composteur_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "notifications", "users"
   add_foreign_key "users", "composteurs"
 end

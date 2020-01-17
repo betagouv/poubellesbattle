@@ -28,7 +28,7 @@ CSV.foreach(filepath, csv_options) do |row|
     public: row[6] == 'oui',
     volume: row[14],
     participants: row[15],
-    installation_date: row[17],
+    installation_date: "#{row[17]}-01-01",
     commentaire: row[19]
   )
   puts "#{row[2]} created"
@@ -36,7 +36,7 @@ CSV.foreach(filepath, csv_options) do |row|
   User.create(
     first_name: row[7],
     last_name: row[8],
-    phone_number: "+33#{row[9]}",
+    phone_number: "#{row[9]}",
     email: row[10],
     password: "123456",
     referent: true,
