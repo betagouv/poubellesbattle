@@ -1,20 +1,19 @@
 Rails.application.routes.draw do
-  # get 'donvert/new'
-  # get 'donvert/edit'
-  # get 'donvert/create'
-  # get 'donvert/index'
   devise_for :users
 
+  resources :demandes
 
-root to: "composteurs#index"
-
-resources :donverts
+  resources :notifications
 
   resources :composteurs do
     member do
       post :send_email
     end
   end
+
+  root to: "composteurs#index"
+
+  resources :donverts
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
