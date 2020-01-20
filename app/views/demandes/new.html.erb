@@ -1,2 +1,31 @@
-<h1>Demandes#new</h1>
-<p>Find me in app/views/demandes/new.html.erb</p>
+<div class="admin-box mt-3">
+  <h2>Demande de Composteur</h2>
+  <%= simple_form_for(@demande) do |f| %>
+    <div class="formline-between mt-2">
+      <%= f.input :first_name, placeholder: 'Prénom' %>
+      <%= f.input :last_name, placeholder: 'Nom' %>
+    </div>
+    <div class="formline-between">
+      <%= f.input :email, placeholder: 'Email' %>
+      <%= f.input :phone_number, placeholder: 'Téléphone' %>
+    </div>
+    <%= f.input :address, placeholder: 'Adresse' %>
+    <%= f.input :logement_type,
+                label: 'Dans quel type de logement vivez-vous ?',
+                as: :radio_buttons,
+                collection: [["Maison", "Je vis dans une maison."], ["Appartement", "Je vis dans un appartement."]],
+                label_method: :last,
+                value_method: :first%>
+    <%= f.input :inhabitant_type,
+                label: 'Etes vous proprietaire, locataire ou syndic ?',
+                as: :radio_buttons,
+                collection: ['Proprietaire', 'Locataire', 'Syndic'] %>
+    <%= f.input :potential_users,
+                label: "Connaissez-vous d'autres personnes interessées par un composteur dans ce quartier ?",
+                as: :radio_buttons,
+                collection: [[true, "oui ! 🥳"], [false, "non..😕"]],
+                label_method: :last,
+                value_method: :first %>
+    <%= f.submit "Envoyer ma demande !" %>
+  <% end %>
+</div>
