@@ -1,0 +1,19 @@
+.form-control-label {
+  display: none;
+
+}
+
+.formline-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.form-group.radio_buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.demande_address {
+  display: flex;
+  justify-content: center !important;
+}

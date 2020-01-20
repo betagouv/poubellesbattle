@@ -1,2 +1,28 @@
-<h1>Demandes#index</h1>
-<p>Find me in app/views/demandes/index.html.erb</p>
+<% if current_user.role == "admin" || current_user.role == "super_admin" %>
+  <div class="admin-box mt-3">
+    <h5>Demandes en cours</h5>
+    <% @demandes.each do |demande| %>
+      <div class="demande-inline">
+        <% if demande.status == "validée" %>
+          <div class="demande validee"></div>
+        <% else %>
+          <div class="demande non-validee"></div>
+        <% end %>
+        <div class="demande-case"><%= demande.created_at.strftime("Faite le %d/%m/%Y")  %></div>
+        <div class="demande-case">Par <%= demande.last_name %> <%= demande.first_name %></div>
+        <div class="demande-case"><%= demande.phone_number %></div>
+        <div class="demande-case"><%= demande.address %></div>
+        <% if demande.planification_date != nil %>
+          <div class="demande-case"><%= demande.planification_date.strftime("Prévue le %d/%m/%Y")%></div>
+        <% else %>
+          <div class="demande-case">Non planifiée</div>
+        <% end %>
+        <%= mail_to demande.email, "✉️", subject: "Votre demande de composteur.", class: "demande-case" %>
+        <%= link_to "✏️", edit_demande_path(demande), class: "demande-case mr-2" %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <h1>Pas de compost par ici 😕</h1>
+  <%= link_to "retour ?", root_path %>
+<% end %>

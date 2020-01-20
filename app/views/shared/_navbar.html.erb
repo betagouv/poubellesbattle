@@ -19,7 +19,8 @@
   </button>
 
   <button class="border-none add-meal" type="button" >
-    <%= link_to "Demander un composteur collectif", "https://poubellesbattle880535.typeform.com/to/PMA3MN" %>
+    <%= link_to "Demander un composteur collectif", new_demande_path  %>
+    <%#= link_to "Demander un composteur collectif", "https://poubellesbattle880535.typeform.com/to/PMA3MN" %>
   </button>
 
   <button class="border-none add-meal" type="button" >
@@ -40,6 +41,14 @@
           <%= link_to "Guide ADEME du compostage", 'https://www.ademe.fr/sites/default/files/assets/documents/guide-pratique-compostage-et-paillage.pdf', class: "dropdown-item" %>
         </div>
       </li>
-
+<% if user_signed_in? %>
+  <%= link_to destroy_user_session_path, method: :delete do %>
+    log out
+  <% end %>
+<% else %>
+  <%= link_to new_user_session_path do  %>
+    log in
+  <% end %>
+<% end %>
 </div>
 

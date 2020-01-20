@@ -1,2 +1,30 @@
-<h1>Demandes#edit</h1>
-<p>Find me in app/views/demandes/edit.html.erb</p>
+<div class="admin-box mt-3">
+  <h2>Demande de Composteur</h2>
+  <%= simple_form_for(@demande) do |f| %>
+    <div class="formline-between mt-2">
+      <%= f.input :first_name, placeholder: 'Prénom' %>
+      <%= f.input :last_name, placeholder: 'Nom' %>
+    </div>
+    <div class="formline-between">
+      <%= f.input :email, placeholder: 'Email' %>
+      <%= f.input :phone_number, placeholder: 'Téléphone' %>
+    </div>
+    <%= f.input :address, placeholder: 'Adresse' %>
+    <%= f.input :logement_type,
+                label: 'Type de logement',
+                as: :radio_buttons,
+                collection: ["Maison", "Appartement"]%>
+    <%= f.input :inhabitant_type,
+                label: 'Propriétaire, Locataire ou Syndic ?',
+                as: :radio_buttons,
+                collection: ['Proprietaire', 'Locataire', 'Syndic'] %>
+    <%= f.input :potential_users,
+                label: "Connait d'autres personnes interessées par un composteur dans ce quartier ?",
+                as: :radio_buttons,
+                collection: [[true, "oui ! 🥳"], [false, "non..😕"]],
+                label_method: :last,
+                value_method: :first %>
+    <%= f.input :status, label: 'Status', as: :radio_buttons, collection: ["reçue", "refusée", "validée", "planifiée", "installée", "archivée"] %>
+    <%= f.submit "Enregistrer les modifications !" %>
+  <% end %>
+</div>
