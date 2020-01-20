@@ -1,9 +1,8 @@
 <h5>Nom du composteur : <%= compo.name %></h5>
 <p>adresse : <%= compo.address %></p>
 <p>type de composteur : <%= compo.category %></p>
-<!-- <p><%= compo.publicorprivate %></p>
 <p><%= compo.volume %></p> -->
-<p>Référent : <%= compo.referent_email %></p>
+<p>Référent : <%= @user.name %></p>
 <button class="btn-flat">
     <%= link_to 'Contacter le référent', send_email_composteur_path(compo), method: :post, class: 'button button_envoi hidden-link' %>
 </button>
