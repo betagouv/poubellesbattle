@@ -11,7 +11,7 @@ class ComposteursController < ApplicationController
     # #   categories = @query_on_category.select { |k, v| v == '1' }.keys
     # #   @meals = Meal.geocoded.select { |m| categories.include?(m.category) }
     # else
-    @composteurs = Composteur.geocoded
+    @composteurs = Composteur.where(status: "installé").geocoded
   # end
 
     @markers = @composteurs.map do |compo|
@@ -25,6 +25,8 @@ class ComposteursController < ApplicationController
 
   def show
     @composteur = Composteur.find(params[:id])
+    @users = @composteur.users
+    @notifications = @composteur.notifications.order(created_at: :desc)
   end
 
   def new
@@ -32,10 +34,12 @@ class ComposteursController < ApplicationController
   end
 
   def create
-    @composteur = Composteur.new
-    # @meal.user = current_user
-    @composteur.save
-    redirect_to root_path
+    @composteur = Composteur.create(composteur_params)
+    if @composteur.save
+      redirect_to root_path
+    else
+      render :new
+    end
   end
 
   def send_email
@@ -49,10 +53,9 @@ class ComposteursController < ApplicationController
     redirect_to root_path
   end
 
-private
+  private
 
- # def composteur_params
- #     params.require(:composteur).permit(:name, :address, :category, :bacs_number, :quantity_max, :start_availability_date, :end_availability_date, :photo)
- # end
-
+  def composteur_params
+    params.require(:composteur).permit(:name, :address, :category, :public, :installation_date, :status, :volume, :residence_name, :commentaire, :participants, :composteur_type)
+  end
 end
