@@ -11,7 +11,7 @@ class ComposteursController < ApplicationController
     # #   categories = @query_on_category.select { |k, v| v == '1' }.keys
     # #   @meals = Meal.geocoded.select { |m| categories.include?(m.category) }
     # else
-    @composteurs = Composteur.where(status: "installé").geocoded
+    @composteurs = Composteur.geocoded
   # end
 
     @markers = @composteurs.map do |compo|
