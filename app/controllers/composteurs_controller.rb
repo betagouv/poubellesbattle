@@ -16,7 +16,6 @@ class ComposteursController < ApplicationController
 
     @markers = @composteurs.map do |compo|
       {
-        user: compo.user.where(user.composteur_id == compo.id),
         lat: compo.latitude,
         lng: compo.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { compo: compo })
