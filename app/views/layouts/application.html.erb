@@ -17,10 +17,10 @@
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <div class="alert alert-info" role="alert">
-    ⚠️ Cette application est en cours de développement selon une approche incrémentale des startups d'état <%= link_to 'beta.gouv.fr', "https://beta.gouv.fr/apropos/" %>
+    <!-- <div class="alert alert-info" role="alert">
+    ⚠️ Cette application est en cours de développement selon une approche incrémentale des startups d'état <%#= link_to 'beta.gouv.fr', "https://beta.gouv.fr/apropos/" %>
     <p>🕵🏽 Vous avez des suggestions, des propositions d'améliorations, des questions ? N'hésitez pas à nous le faire savoir : poubelles-battle@beta.gouv.fr. </p>
-    </div>
+    </div> -->
     <%= yield %>
     <%#= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>

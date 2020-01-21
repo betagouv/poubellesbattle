@@ -3,10 +3,10 @@
     <h5>Demandes en cours</h5>
     <% @demandes.each do |demande| %>
       <div class="demande-inline">
-        <% if demande.status == "validée" %>
-          <div class="demande validee"></div>
-        <% else %>
+        <% if demande.status == "reçue" || demande.status == "refusée" %>
           <div class="demande non-validee"></div>
+        <% else %>
+          <div class="demande validee"></div>
         <% end %>
         <div class="demande-case"><%= demande.created_at.strftime("Faite le %d/%m/%Y")  %></div>
         <div class="demande-case">Par <%= demande.last_name %> <%= demande.first_name %></div>
@@ -23,6 +23,8 @@
     <% end %>
   </div>
 <% else %>
-  <h1>Pas de compost par ici 😕</h1>
-  <%= link_to "retour ?", root_path %>
+  <div class="container">
+    <h1>Pas de compost par ici 😕</h1>
+    <%= link_to "retour ?", root_path %>
+  </div>
 <% end %>

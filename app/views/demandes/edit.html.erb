@@ -24,7 +24,11 @@
                 collection: [[true, "oui ! 🥳"], [false, "non..😕"]],
                 label_method: :last,
                 value_method: :first %>
+    <%= f.input :completed_form, label: "Formulaire complet ?", as: :boolean, checked_value: true, unchecked_value: false %>
+    <%= f.input :planification_date, as: :date %>
     <%= f.input :status, label: 'Status', as: :radio_buttons, collection: ["reçue", "refusée", "validée", "planifiée", "installée", "archivée"] %>
-    <%= f.submit "Enregistrer les modifications !" %>
+
+    <%= f.submit "Enregistrer les modifications !", class: "bouton-valid" %>
+    <%= link_to "Supprimer la demande", demande_path, method: :delete, class: "bouton-valid rouge" %>
   <% end %>
 </div>

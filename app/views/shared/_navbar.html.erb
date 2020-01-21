@@ -42,13 +42,14 @@
         </div>
       </li>
 <% if user_signed_in? %>
-  <%= link_to destroy_user_session_path, method: :delete do %>
-    log out
+  <%= link_to "log out", destroy_user_session_path, method: :delete, class: "bouton-valid rouge" %>
+  <% if current_user.role == "admin" || current_user.role == "super_admin" %>
+    <%= link_to "demandes en cours", demandes_path, class: "bouton-valid blanc"  %>
+  <% else %>
+    <%= link_to "mon composteur", composteur_path(current_user.composteur_id), class: "bouton-valid compost"  %>
   <% end %>
 <% else %>
-  <%= link_to new_user_session_path do  %>
-    log in
-  <% end %>
+  <%= link_to "log in", new_user_session_path, class: "bouton-valid"  %>
 <% end %>
 </div>
 

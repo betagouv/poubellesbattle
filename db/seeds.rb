@@ -19,7 +19,7 @@ csv_options = { col_sep: ';', force_quotes: true, quote_char: '"' }
 filepath    = 'db/compo.csv'
 
 CSV.foreach(filepath, csv_options) do |row|
-  Composteur.create(
+  compo = Composteur.create(
     name: row[2],
     address: row[3],
     residence_name: row[4],
@@ -33,15 +33,17 @@ CSV.foreach(filepath, csv_options) do |row|
   )
   puts "#{row[2]} created"
 
-  User.create(
+  user = User.new(
     first_name: row[8],
     last_name: row[7],
     phone_number: "#{row[9]}",
     email: row[10],
     password: "123456",
     role: "référent",
-    composteur_id: Composteur.last.id
   )
+  user.composteur_id = compo.id
+  user.save
+
   puts "#{row[8]} created"
 
   Notification.create(
