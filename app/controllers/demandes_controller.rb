@@ -15,6 +15,7 @@ class DemandesController < ApplicationController
 
   def create
     @demande = Demande.new(demande_params)
+    @demande.status = "reçue"
     if @demande.save
       redirect_to root_path
       flash[:notice] = "Demande envoyée"
