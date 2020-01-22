@@ -1,14 +1,17 @@
 .bouton-valid {
-  color: white;
-  padding: 9px 24px;
-  border-radius: 4px;
-  background: #1EDD88;
-  opacity: 0.7;
+  color: #1EDD88;
+  background: white;
+  text-decoration: none;
+  border: solid 1px #1EDD88;
+  margin: 0 20px;
+  padding: 5px 15px;
+  font-size: 15px;
+  border-radius: 15px;
+  height: max-content;
   transition: background 0.3s ease;
-  margin: 5px 15px;
   &:hover {
-    opacity: 1;
     color: white;
+    background: #1EDD88;
     text-decoration: none;
     transition: background 0.3s ease;
   }
@@ -32,3 +35,6 @@ input.bouton-valid {
     background: #ff8f00;
   }
 }
+
+
+

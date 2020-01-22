@@ -1,28 +1,5 @@
-.navbar-lewagon {
-  justify-content: flex-start;
-  background: white;
-}
-
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
 .logo {
-  width: 60px;
-  margin-left: 30px;
-}
-
-.navbar-collapse {
-  margin-right: 30px;
-  margin-left: 5px;
-}
-
-.navbar-brand {
-  margin-right: none !important;
-}
-
-.nav-item {
-  text-align: center;
+  width: 150px;
 }
 
 .dropdown {
@@ -42,32 +19,54 @@
   border: none;
 }
 
-.add-meal {
-  padding-bottom: 5px;
+.navbar-poub-bat {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100vw;
+  height: 120px;
+  padding: 20px;
 }
 
-.add-meal a {
+.all-the-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bouton-navbar {
+  color: #408A4E;
   text-decoration: none;
-  color: #036B70;
-  background-color: white;
-  padding: 5px;
+  border: solid 1px #408A4E;
+  background: white;
+  margin: 0 20px;
+  padding: 5px 15px;
   font-size: 15px;
-  padding-left: 10px;
-  padding-right: 10px;
   border-radius: 15px;
+  height: max-content;
+  transition: all 0.3s ease-in;
+  &:hover {
+    text-decoration: none;
+    color: white;
+    background-color: #408A4E;
+    transition: all 0.3s ease-in;
+  }
 }
 
-.add-meal a:hover {
-
-
-
-  text-decoration: none;
-  color: white;
-  background-color: #036B70;
-  padding: 5px;
-
+.poubelles-title {
+  font-size: 25px;
   padding-left: 10px;
-  padding-right: 10px;
-  border-radius: 10px;
-  border-width: 1px;
+  color: black;
+  text-decoration: none;
+  &:hover {
+    color: black;
+    text-decoration: none;
+  }
 }
+
+.home-link {
+  display: flex;
+  width: 250px;
+  align-items: center;
+}
+
+
