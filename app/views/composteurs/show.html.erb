@@ -2,7 +2,9 @@
   <h1><%= @composteur.name %></h1>
   <p><%= @composteur.address %></p>
   <p><%= @composteur.composteur_type %></p>
-  <%= cl_image_tag @composteur.photo.key, height: 300, width: 400, crop: :fill %>
+  <% if @composteur.photo.attached? %>
+    <%= cl_image_tag @composteur.photo.key, height: 300, width: 400, crop: :fill %>
+  <% end %>
   <% @notifications.each do |notification| %>
     <div class="notification-card" style="background:<%= notification.notification_type == "dépot" ? "#94ffcd" : "" %>"> <%= notification.content %> </div>
   <% end %>
