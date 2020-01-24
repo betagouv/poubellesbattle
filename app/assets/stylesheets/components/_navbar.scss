@@ -1,5 +1,37 @@
+.poubelles-title {
+  font-size: 32px;
+  padding-left: 10px;
+  color: #502703;
+  text-decoration: none;
+  font-family: 'Bangers', cursive;
+  text-shadow: yellow 1px 1px 2px;
+  letter-spacing: 1px;
+  transform: rotate(-3deg);
+  transition: all 0.4s ease-out;
+  &:hover {
+    color: #502703;
+    text-decoration: none;
+    text-shadow: yellow 2px 5px 10px;
+    transition: all 0.3s ease-in;
+  }
+}
+
+
+a:hover {
+  text-decoration:none;
+}
+
+.home-link {
+  display: flex;
+  width: 300px;
+  align-items: center;
+}
+
 .logo {
-  width: 150px;
+  width: 250px;
+  position: relative;
+  bottom: -25px;
+  z-index: 10;
 }
 
 .dropdown {
@@ -52,21 +84,28 @@
   }
 }
 
-.poubelles-title {
-  font-size: 25px;
-  padding-left: 10px;
-  color: black;
-  text-decoration: none;
+.green-nav {
+  color: #408A4E;
+  border: solid 1px #408A4E;
+  padding: 4px 15px;
+  border-radius: 15px;
+  margin: 0 0 0 15px;
+  background: white;
   &:hover {
-    color: black;
-    text-decoration: none;
+    color: white;
+    background: #408A4E;
   }
 }
 
-.home-link {
-  display: flex;
-  width: 250px;
-  align-items: center;
+.dropdown-menu.show {
+  border-radius: 15px;
+  margin-top: 8px;
+  &:hover {
+    color: #408A4E;
+    background: white;
+  }
 }
+
+
 
 

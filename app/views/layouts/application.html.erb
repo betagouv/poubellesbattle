@@ -9,18 +9,18 @@
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Bangers&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <!-- <div class="alert alert-info" role="alert">
-    ⚠️ Cette application est en cours de développement selon une approche incrémentale des startups d'état <%#= link_to 'beta.gouv.fr', "https://beta.gouv.fr/apropos/" %>
-    <p>🕵🏽 Vous avez des suggestions, des propositions d'améliorations, des questions ? N'hésitez pas à nous le faire savoir : poubelles-battle@beta.gouv.fr. </p>
-    </div> -->
+    <div id="beta-gouv-alert" class="alert alert-info" role="alert">
+    ⚠️ Cette application est en cours de développement selon une approche incrémentale des startups d'état <%= link_to 'beta.gouv.fr', "https://beta.gouv.fr/apropos/" %>
+    🕵🏽 Vous avez des suggestions, des propositions d'améliorations, des questions ? N'hésitez pas à nous le faire savoir : poubelles-battle@beta.gouv.fr.
+    </div>
     <%= yield %>
     <%#= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>

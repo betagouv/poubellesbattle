@@ -8,27 +8,28 @@
     <%= link_to "Carte composter à Pau", root_path, class: "bouton-navbar" %>
     <%= link_to "Demander un composteur collectif", new_demande_path, class: "bouton-navbar" %>
     <%= link_to "Bourse verte", donverts_path, class: "bouton-navbar" %>
-    <%= link_to "A propos", "https://beta.gouv.fr/startups/poubelles-battle.html", class: "bouton-navbar" %>
 
     <li class="dropdown align-self-center d-none d-sm-block mr-3">
-      <div class="dropdown-toggle border-none" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Vos outils
+      <div class="dropdown-toggle border-none green-nav" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Mes outils
       </div>
-      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+      <div class="dropdown-menu dropdown-menu-right green-nav" aria-labelledby="dropdownMenuButton">
+        <% if user_signed_in? %>
+          <% if current_user.role == "admin" || current_user.role == "super_admin" %>
+            <%= link_to "Demandes en cours", demandes_path, class: "dropdown-item"  %>
+          <% else %>
+            <%= link_to "Mon Composteur", composteur_path(current_user.composteur_id), class: "dropdown-item"  %>
+          <% end %>
+        <% end %>
         <%= link_to "Kit assemblée générale", 'https://uncomposteurici.gitbook.io/poubellesbattle/', class: "dropdown-item" %>
         <%= link_to "Guide ADEME du compostage", 'https://www.ademe.fr/sites/default/files/assets/documents/guide-pratique-compostage-et-paillage.pdf', class: "dropdown-item" %>
+        <%= link_to "A propos", "https://beta.gouv.fr/startups/poubelles-battle.html", class: "dropdown-item" %>
       </div>
     </li>
-
     <% if user_signed_in? %>
       <%= link_to "log out", destroy_user_session_path, method: :delete, class: "bouton-valid rouge" %>
-      <% if current_user.role == "admin" || current_user.role == "super_admin" %>
-        <%= link_to "demandes en cours", demandes_path, class: "bouton-valid blanc"  %>
-      <% else %>
-        <%= link_to "mon composteur", composteur_path(current_user.composteur_id), class: "bouton-valid compost"  %>
-      <% end %>
     <% else %>
-      <%= link_to "log in", new_user_session_path, class: "bouton-valid"  %>
+      <%= link_to "log in", new_user_session_path, class: "bouton-valid" %>
     <% end %>
   </div>
 </div>

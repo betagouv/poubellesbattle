@@ -23,7 +23,9 @@ input.bouton-valid {
 }
 
 .rouge {
-  background: red;
+  background: #ff6b6b;
+  color: white;
+  border-color: transparent;
   &:hover {
     background: red;
   }
@@ -35,6 +37,3 @@ input.bouton-valid {
     background: #ff8f00;
   }
 }
-
-
-
