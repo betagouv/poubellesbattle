@@ -19,7 +19,7 @@
 
 input.bouton-valid {
   border: none;
-  padding: 8px 24px;
+  padding: 5px 24px;
 }
 
 .rouge {
@@ -28,6 +28,15 @@ input.bouton-valid {
   border-color: transparent;
   &:hover {
     background: red;
+  }
+}
+
+.text-rouge {
+  color: #ff6b6b;
+  background: white;
+  border-color: transparent;
+  &:hover {
+    background: #ff6b6b;
   }
 }
 

@@ -56,6 +56,6 @@ class ComposteursController < ApplicationController
   private
 
   def composteur_params
-    params.require(:composteur).permit(:name, :address, :category, :public, :installation_date, :status, :volume, :residence_name, :commentaire, :participants, :composteur_type)
+    params.require(:composteur).permit(:name, :address, :category, :public, :installation_date, :status, :volume, :residence_name, :commentaire, :participants, :composteur_type, :photo)
   end
 end

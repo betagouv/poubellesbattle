@@ -10,6 +10,7 @@
       <%= f.input :phone_number, placeholder: 'Téléphone' %>
     </div>
     <%= f.input :address, placeholder: 'Adresse' %>
+    <%= f.input :photo, label: "Photo du lieu envisagé", as: :file %>
     <%= f.input :logement_type,
                 label: 'Dans quel type de logement vivez-vous ?',
                 as: :radio_buttons,
