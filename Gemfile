@@ -13,6 +13,7 @@ gem 'geocoder'
 gem 'letter_opener', group: :development
 gem 'bootstrap-datepicker-rails', '~> 1.8', '>= 1.8.0.1'
 gem 'dotenv-rails', groups: [:development, :test]
+gem 'cloudinary', '~> 1.12.0'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'

@@ -19,6 +19,7 @@
             <%= link_to "Demandes en cours", demandes_path, class: "dropdown-item"  %>
           <% else %>
             <%= link_to "Mon Composteur", composteur_path(current_user.composteur_id), class: "dropdown-item"  %>
+            <%= link_to "Mon Profil", edit_user_registration_path(current_user), class: "dropdown-item" %>
           <% end %>
         <% end %>
         <%= link_to "Kit assemblée générale", 'https://uncomposteurici.gitbook.io/poubellesbattle/', class: "dropdown-item" %>
