@@ -1,55 +1,36 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-
-  <%= link_to root_path do %>
+<div class="navbar-poub-bat">
+  <%= link_to root_path, class: "home-link" do %>
     <img class="logo" src="<%= image_path('Poubelles Battle logo (1).png') %>"/>
+    <h1 class="poubelles-title">Poubelles Battle</h1>
   <% end %>
 
-<!--
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button> -->
+  <div class="all-the-buttons">
+    <%= link_to "Carte composter à Pau", root_path, class: "bouton-navbar" %>
+    <%= link_to "Demander un composteur collectif", new_demande_path, class: "bouton-navbar" %>
+    <%= link_to "Bourse verte", donverts_path, class: "bouton-navbar" %>
 
-
-<!--   <button class="border-none add-meal" type="button" >
-    <%#= link_to "Ajouter un composteur", new_composteur_path %>
-  </button> -->
-
-  <button class="border-none add-meal" type="button" >
-    <%= link_to "Carte composter à Pau", root_path %>
-  </button>
-
-  <button class="border-none add-meal" type="button" >
-    <%= link_to "Demander un composteur collectif", new_demande_path  %>
-    <%#= link_to "Demander un composteur collectif", "https://poubellesbattle880535.typeform.com/to/PMA3MN" %>
-  </button>
-
-  <button class="border-none add-meal" type="button" >
-    <%= link_to "Bourse verte", donverts_path %>
-  </button>
-
-  <button class="border-none add-meal" type="button" >
-    <%= link_to "A propos", "https://beta.gouv.fr/startups/poubelles-battle.html" %>
-  </button>
-
-  <li class="dropdown align-self-center d-none d-sm-block mr-3">
-        <button class="dropdown-toggle border-none" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Vos outils
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-
-          <%= link_to "Kit assemblée générale", 'https://uncomposteurici.gitbook.io/poubellesbattle/', class: "dropdown-item" %>
-          <%= link_to "Guide ADEME du compostage", 'https://www.ademe.fr/sites/default/files/assets/documents/guide-pratique-compostage-et-paillage.pdf', class: "dropdown-item" %>
-        </div>
-      </li>
-<% if user_signed_in? %>
-  <%= link_to "log out", destroy_user_session_path, method: :delete, class: "bouton-valid rouge" %>
-  <% if current_user.role == "admin" || current_user.role == "super_admin" %>
-    <%= link_to "demandes en cours", demandes_path, class: "bouton-valid blanc"  %>
-  <% else %>
-    <%= link_to "mon composteur", composteur_path(current_user.composteur_id), class: "bouton-valid compost"  %>
-  <% end %>
-<% else %>
-  <%= link_to "log in", new_user_session_path, class: "bouton-valid"  %>
-<% end %>
+    <li class="dropdown align-self-center d-none d-sm-block mr-3">
+      <div class="dropdown-toggle border-none green-nav" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Mes outils
+      </div>
+      <div class="dropdown-menu dropdown-menu-right green-nav" aria-labelledby="dropdownMenuButton">
+        <% if user_signed_in? %>
+          <% if current_user.role == "admin" || current_user.role == "super_admin" %>
+            <%= link_to "Demandes en cours", demandes_path, class: "dropdown-item"  %>
+          <% else %>
+            <%= link_to "Mon Composteur", composteur_path(current_user.composteur_id), class: "dropdown-item"  %>
+          <% end %>
+        <% end %>
+        <%= link_to "Kit assemblée générale", 'https://uncomposteurici.gitbook.io/poubellesbattle/', class: "dropdown-item" %>
+        <%= link_to "Guide ADEME du compostage", 'https://www.ademe.fr/sites/default/files/assets/documents/guide-pratique-compostage-et-paillage.pdf', class: "dropdown-item" %>
+        <%= link_to "A propos", "https://beta.gouv.fr/startups/poubelles-battle.html", class: "dropdown-item" %>
+      </div>
+    </li>
+    <% if user_signed_in? %>
+      <%= link_to "log out", destroy_user_session_path, method: :delete, class: "bouton-valid rouge" %>
+    <% else %>
+      <%= link_to "log in", new_user_session_path, class: "bouton-valid" %>
+    <% end %>
+  </div>
 </div>
 
