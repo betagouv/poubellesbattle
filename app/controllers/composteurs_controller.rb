@@ -42,6 +42,19 @@ class ComposteursController < ApplicationController
     end
   end
 
+  def edit
+    @composteur = Composteur.find(params[:id])
+  end
+
+  def update
+    @composteur = Composteur.find(params[:id])
+    if @composteur.update(composteur_params)
+      redirect_to composteur_path
+    else
+      render :edit
+    end
+  end
+
   def send_email
     @composteur = Composteur.find(params[:id])
       if !@composteur.referent_email.nil?
