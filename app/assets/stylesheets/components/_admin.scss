@@ -1,19 +1,32 @@
 .admin-box {
+  width: 100vw;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.marg-vert {
+  margin: 25px 0;
+}
+
+.admin-list {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
   text-align: center;
 }
 
 .demande-inline {
-  margin-top: 20px;
   display: flex;
-  width: 90vw;
-  height: 40px;
   align-items: center;
   justify-content: space-between;
   border-bottom: solid 1px grey;
   background: white;
+  margin: 20px;
+  width: 260px;
+  height: 400px;
+  flex-direction: column;
 }
 
 .demande-case {
@@ -25,11 +38,23 @@
   flex-grow: 1;
 }
 
+.buttons-demande {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 260px;
+  padding: 5px 20px;
+}
+
 .demande {
   border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  margin: 20px;
+  width: 30px;
+  height: 30px;
+}
+
+.button-demande {
+  text-align: center;
+  font-size: 30px;
 }
 
 .validee {
