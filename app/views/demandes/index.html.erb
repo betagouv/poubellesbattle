@@ -13,9 +13,13 @@
         <div class="demande-case"><%= demande.phone_number %></div>
         <div class="demande-case"><%= demande.address %></div>
         <% if demande.planification_date != nil %>
-          <div class="demande-case"><%= demande.planification_date.strftime("Prévue le %d/%m/%Y")%></div>
+          <div class="demande-case"><%= demande.planification_date.strftime("Planifiée le %d/%m/%Y") %></div>
+          <%= link_to "❌", cancel_planification_path(demande), method: :post, class: "bouton-valid rouge" %>
         <% else %>
-          <div class="demande-case">Non planifiée</div>
+          <%= simple_form_for(demande) do |f| %>
+          <%= f.input :planification_date, as: :date %>
+          <%= f.submit "Ajouter une date", class: "bouton-valid" %>
+          <% end %>
         <% end %>
         <%= mail_to demande.email, "✉️", subject: "Votre demande de composteur.", class: "demande-case" %>
         <%= link_to "✏️", edit_demande_path(demande), class: "demande-case mr-2" %>
