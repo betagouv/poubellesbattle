@@ -12,6 +12,7 @@
           <% end %>
           <%= link_to "✏️", edit_demande_path(demande), class: "button-demande" %>
           <%= mail_to demande.email, "✉️", subject: "Votre demande de composteur.", class: "button-demande" %>
+          <%= link_to "🗑", demande_path(demande), method: :delete, data: {confirm: "Vous êtes sur le point de suprimer une demande de composteur. Etes-vous certain ?"}, class: "button-demande" %>
         </div>
         <div class="demande-card">
           <% if demande.photo.attached? %>

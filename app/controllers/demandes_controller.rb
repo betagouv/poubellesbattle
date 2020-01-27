@@ -38,12 +38,12 @@ class DemandesController < ApplicationController
     end
   end
 
-  def cancel_planification
-    @demande = Demande.find(params[:id])
-    @demande.planification_date = nil
-    @demande.save
-    redirect_to demandes_path
-  end
+  # def cancel_planification
+  #   @demande = Demande.find(params[:id])
+  #   @demande.planification_date = nil
+  #   @demande.save
+  #   redirect_to demandes_path
+  # end
 
   def destroy
     @demande = Demande.find(params[:id])

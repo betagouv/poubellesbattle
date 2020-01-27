@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
 
+  # delete "demandes/:id", to: "demandes#destroy", as: "destroy_demande"
   resources :demandes
-  post "demandes/:id", to: "demandes#cancel_planification", as: "cancel_planification"
-
+  # post "demandes/:id", to: "demandes#cancel_planification", as: "cancel_planification"
   resources :notifications
 
   resources :composteurs do
