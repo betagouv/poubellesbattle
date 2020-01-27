@@ -12,24 +12,32 @@
           <% end %>
           <%= mail_to demande.email, "✉️", subject: "Votre demande de composteur.", class: "button-demande" %>
           <%= link_to "✏️", edit_demande_path(demande), class: "button-demande" %>
-        </div>
-        <div class="demande-case">Demande de <%= demande.first_name %> <%= demande.last_name %></div>
-        <div class="demande-case"><%= demande.created_at.strftime("Faite le %d/%m/%Y")  %></div>
-        <div class="demande-case"><%= demande.phone_number %></div>
-        <div class="demande-case"><%= demande.address %></div>
-        <% if demande.planification_date != nil %>
-          <div class="demande-case">
-            <%= demande.planification_date.strftime("Planifiée le %d/%m/%Y") %>
-            <%= link_to "❌", cancel_planification_path(demande), method: :post, class: "bouton-valid rouge" %>
           </div>
-        <% else %>
-          <%= simple_form_for(demande) do |f| %>
-          <%= f.input :planification_date, as: :date %>
-          <%= f.submit "Ajouter une date", class: "bouton-valid" %>
+          <div class="demande-case">Demande de <%= demande.first_name %> <%= demande.last_name %></div>
+          <div class="demande-case"><%= demande.created_at.strftime("Faite le %d/%m/%Y")  %></div>
+          <div class="demande-case"><%= demande.phone_number %></div>
+          <div class="demande-case"><%= demande.address %></div>
+          <% if demande.planification_date != nil %>
+            <div class="demande-case">
+              <div class="planification_date">
+                <%= demande.planification_date.strftime("Planifiée le %d/%m/%Y") %>
+                <%= simple_form_for(demande) do |f| %>
+                  <%= f.input :planification_date, as: :string, input_html: { value: "", type:"hidden" }%>
+                  <%= f.submit "❌", class: "bouton-valid" %>
+                <% end %>
+              </div>
+            </div>
+          <% else %>
+            <%= simple_form_for(demande) do |f| %>
+              <%= f.input :planification_date, as: :string, input_html: { class: "datepicker" }, placeholder: "Planifier le ?" %>
+              <%= f.submit "✅", class: "bouton-valid" %>
+            <% end %>
           <% end %>
-        <% end %>
-      </div>
-    <% end %>
+          <% if demande.photo.attached? %>
+            <%= cl_image_tag demande.photo.key, height: 300, width: 400, crop: :fill %>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 <% else %>

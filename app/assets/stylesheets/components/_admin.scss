@@ -64,3 +64,25 @@
 .non-validee {
   background: red;
 }
+
+
+// flatpickr / datepicker
+
+.edit_demande {
+  display: flex;
+  justify-content: space-around;
+}
+
+input.bouton-valid {
+  margin: 0;
+  padding: 5px 10px;
+}
+
+.demande_planification_date {
+  width: 120px;
+  text-align: center;
+}
+
+.planification_date .demande_planification_date {
+  display: none;
+}
