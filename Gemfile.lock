@@ -52,8 +52,6 @@ GEM
     bindex (0.8.1)
     bootsnap (1.4.5)
       msgpack (~> 1.0)
-    bootstrap-datepicker-rails (1.8.0.1)
-      railties (>= 3.0)
     builder (3.2.4)
     byebug (11.1.0)
     cloudinary (1.12.0)
@@ -227,7 +225,6 @@ PLATFORMS
 DEPENDENCIES
   autoprefixer-rails
   bootsnap
-  bootstrap-datepicker-rails (~> 1.8, >= 1.8.0.1)
   cloudinary (~> 1.12.0)
   devise
   dotenv-rails

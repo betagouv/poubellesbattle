@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :demandes
+  post "demandes/:id", to: "demandes#cancel_planification", as: "cancel_planification"
 
   resources :notifications
 

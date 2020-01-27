@@ -5,6 +5,7 @@
     "@mapbox/mapbox-gl-geocoder": "^4.4.2",
     "@rails/webpacker": "3.5",
     "bootstrap": "^4.3.1",
+    "flatpickr": "^4.6.3",
     "jquery": "^3.4.1",
     "mapbox-gl": "^1.4.0",
     "places.js": "^1.16.6",
