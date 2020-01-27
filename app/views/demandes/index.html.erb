@@ -3,22 +3,31 @@
     <h5 class="marg-vert">Demandes en cours</h5>
     <div class="admin-list">
     <% @demandes.each do |demande| %>
-      <div class="demande-inline">
+      <div class="demande-container">
         <div class="buttons-demande">
           <% if demande.status == "reçue" || demande.status == "refusée" %>
-            <div class="demande non-validee"></div>
+            <div class="button-demande">🔴</div>
           <% else %>
-            <div class="demande validee"></div>
+            <div class="button-demande">🟢</div>
           <% end %>
-          <%= mail_to demande.email, "✉️", subject: "Votre demande de composteur.", class: "button-demande" %>
           <%= link_to "✏️", edit_demande_path(demande), class: "button-demande" %>
-          </div>
-          <div class="demande-case">Demande de <%= demande.first_name %> <%= demande.last_name %></div>
-          <div class="demande-case"><%= demande.created_at.strftime("Faite le %d/%m/%Y")  %></div>
-          <div class="demande-case"><%= demande.phone_number %></div>
-          <div class="demande-case"><%= demande.address %></div>
+          <%= mail_to demande.email, "✉️", subject: "Votre demande de composteur.", class: "button-demande" %>
+        </div>
+        <div class="demande-card">
+          <% if demande.photo.attached? %>
+            <%= cl_image_tag demande.photo.key, height: 200, width: 260, crop: :fill %>
+          <% end %>
+          <div class="demande-name"><%= demande.first_name %> <%= demande.last_name %></div>
+          <!-- <div class="demande-details"><%#= demande.created_at.strftime("Date du %d/%m/%Y")  %></div> -->
+          <% if demande.status == "reçue" || demande.status == "refusée" %>
+            <div class="demande-details"><%= demande.status %> le <%= demande.updated_at.strftime("%d/%m/%Y") %></div>
+          <% else %>
+            <div class="demande-details"><%= demande.status %></div>
+          <% end %>
+          <div class="demande-details"><%= demande.phone_number %></div>
+          <div class="demande-details"><%= demande.address %></div>
           <% if demande.planification_date != nil %>
-            <div class="demande-case">
+            <div class="demande-details">
               <div class="planification_date">
                 <%= demande.planification_date.strftime("Planifiée le %d/%m/%Y") %>
                 <%= simple_form_for(demande) do |f| %>
@@ -29,15 +38,13 @@
             </div>
           <% else %>
             <%= simple_form_for(demande) do |f| %>
-              <%= f.input :planification_date, as: :string, input_html: { class: "datepicker" }, placeholder: "Planifier le ?" %>
-              <%= f.submit "✅", class: "bouton-valid" %>
+              <%= f.input :planification_date, as: :string, input_html: { class: "datepicker" }, placeholder: "Installation" %>
+              <div><%= f.submit "🆗", class: "bouton-ok" %></div>
             <% end %>
           <% end %>
-          <% if demande.photo.attached? %>
-            <%= cl_image_tag demande.photo.key, height: 300, width: 400, crop: :fill %>
-          <% end %>
         </div>
-      <% end %>
+      </div>
+    <% end %>
     </div>
   </div>
 <% else %>
