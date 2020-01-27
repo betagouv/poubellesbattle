@@ -19,7 +19,11 @@
           <% end %>
           <div class="demande-name"><%= demande.first_name %> <%= demande.last_name %></div>
           <!-- <div class="demande-details"><%#= demande.created_at.strftime("Date du %d/%m/%Y")  %></div> -->
-          <div class="demande-details"><%= demande.status %> le <%= demande.updated_at.strftime("%d/%m/%Y") %></div>
+          <% if demande.status == "reçue" || demande.status == "refusée" %>
+            <div class="demande-details"><%= demande.status %> le <%= demande.updated_at.strftime("%d/%m/%Y") %></div>
+          <% else %>
+            <div class="demande-details"><%= demande.status %></div>
+          <% end %>
           <div class="demande-details"><%= demande.phone_number %></div>
           <div class="demande-details"><%= demande.address %></div>
           <% if demande.planification_date != nil %>
