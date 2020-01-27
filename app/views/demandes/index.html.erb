@@ -16,7 +16,9 @@
         <div class="demande-card">
           <% if demande.photo.attached? %>
             <%= cl_image_tag demande.photo.key, height: 200, width: 260, crop: :fill %>
-          <% end %>
+          <% else %>
+            <%= image_tag 'Poubelles Battle logo (1).png' %>
+            <% end %>
           <div class="demande-name"><%= demande.first_name %> <%= demande.last_name %></div>
           <!-- <div class="demande-details"><%#= demande.created_at.strftime("Date du %d/%m/%Y")  %></div> -->
           <% if demande.status == "reçue" || demande.status == "refusée" %>
