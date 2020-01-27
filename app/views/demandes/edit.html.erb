@@ -29,6 +29,6 @@
     <%= f.input :status, label: 'Status', as: :radio_buttons, collection: ["reçue", "refusée", "validée", "planifiée", "installée", "archivée"] %>
 
     <%= f.submit "Enregistrer les modifications !", class: "bouton-valid" %>
-    <%= link_to "Supprimer la demande", demande_path, method: :delete, class: "bouton-valid rouge" %>
+    <%= link_to "Retour", :back, class: "bouton-valid rouge" %>
   <% end %>
 </div>
