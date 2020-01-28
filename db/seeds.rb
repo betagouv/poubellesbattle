@@ -18,6 +18,12 @@ Donvert.destroy_all
 csv_options = { col_sep: ';', force_quotes: true, quote_char: '"' }
 filepath    = 'db/compo.csv'
 
+User.create(
+  email: "admin@mail.com",
+  password: "123456",
+  role: "admin"
+  )
+
 CSV.foreach(filepath, csv_options) do |row|
   compo = Composteur.create(
     name: row[2],
@@ -37,21 +43,22 @@ CSV.foreach(filepath, csv_options) do |row|
     first_name: row[8],
     last_name: row[7],
     phone_number: "#{row[9]}",
-    email: row[10],
+    email: row[10] != nil ? row[10] : "random.#{rand(100..500)}@mail.com",
     password: "123456",
     role: "référent",
   )
   user.composteur_id = compo.id
-  user.save
 
-  puts "#{row[8]} created"
+  if user.save
+    puts "#{row[8]} created"
 
-  Notification.create(
-    notification_type: "welcome",
-    content: "Bienvenue #{row[8]}! C'est parti pour le compost !",
-    user_id: User.last.id
-    )
-  puts "welcome notification created"
+    Notification.create(
+      notification_type: "welcome",
+      content: "Bienvenue #{row[8]} ! C'est parti pour le compost !",
+      user_id: user.id
+      )
+    puts "welcome notification created"
+  end
 end
 
 # Donvert.create(

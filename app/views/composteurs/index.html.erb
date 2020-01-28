@@ -4,8 +4,13 @@
       <h5 class="marg-vert">Tous les composteurs</h5>
       <div class="admin-list">
         <% @composteurs.each do |composteur| %>
-          <%= link_to composteur_path(composteur) do  %>
-            <div class="composteur-container">
+          <div class="composteur-container">
+            <div class="buttons-demande">
+              <%= link_to "✏️", edit_composteur_path(composteur), class: "button-demande" %>
+              <%= link_to "👁", composteur_path(composteur), class: "button-demande" %>
+              <%#= mail_to composteur.email, "✉️", subject: "Votre demande de composteur.", class: "button-demande" %>
+              <%= link_to "🗑", composteur_path(composteur), method: :delete, data: {confirm: "Vous êtes sur le point de suprimer un composteur. Etes-vous certain ?"}, class: "button-demande" %>
+            </div>
               <div class="composteur-card">
                 <% if composteur.photo.attached? %>
                   <%= cl_image_tag composteur.photo.key, height: 200, width: 260, crop: :fill %>
@@ -16,7 +21,6 @@
                 <p><%= composteur.address %></p>
               </div>
             </div>
-          <% end %>
         <% end %>
       </div>
     </div>
@@ -32,7 +36,7 @@
     </div>
     <section class="section section-grey">
       <div class="container">
-          <h2 class="section__title text-center">Découvrez les 58 composteurs collectifs mis à disposition à Pau</h2>
+          <h2 class="section__title text-center">Découvrez les <%= @composteurs_all.count %>  composteurs collectifs mis à disposition à Pau</h2>
 
             <div class="row">
               <p class="text-p">3 manières de composter suivant votre style d’habitat : Composteur individuel, composteur collectif en résidence ou lombricomposteur. Choisissez la méthode qui convient le mieux à votre situation.</p>
@@ -66,7 +70,7 @@
   </div>
   <section class="section section-grey">
     <div class="container">
-        <h2 class="section__title text-center">Découvrez les 58 composteurs collectifs mis à disposition à Pau</h2>
+        <h2 class="section__title text-center">Découvrez les <%= @composteurs_all.count %> composteurs collectifs mis à disposition à Pau</h2>
 
           <div class="row">
             <p class="text-p">3 manières de composter suivant votre style d’habitat : Composteur individuel, composteur collectif en résidence ou lombricomposteur. Choisissez la méthode qui convient le mieux à votre situation.</p>

@@ -12,6 +12,7 @@ class ComposteursController < ApplicationController
     # #   @meals = Meal.geocoded.select { |m| categories.include?(m.category) }
     # else
     @composteurs = Composteur.geocoded
+    @composteurs_all = Composteur.all
   # end
 
     @markers = @composteurs.map do |compo|

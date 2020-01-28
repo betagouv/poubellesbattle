@@ -33,13 +33,16 @@
   background: white;
   margin: 0 20px 20px 20px;
   width: 260px;
-  height: 310px;
+  height: 300px;
+  position: relative;
+  top: 10px;
   flex-direction: column;
   z-index: 10;
   img {
     height: 200px;
   }
 }
+
 .demande-form {
 
 }
