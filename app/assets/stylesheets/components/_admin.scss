@@ -15,8 +15,31 @@
   flex-wrap: wrap;
   align-items: center;
   text-align: center;
+  width: 80vw;
+  justify-content: center;
 }
 
+.composteur-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.composteur-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: solid 1px grey;
+  background: white;
+  margin: 0 20px 20px 20px;
+  width: 260px;
+  height: 310px;
+  flex-direction: column;
+  z-index: 10;
+  img {
+    height: 200px;
+  }
+}
 .demande-form {
 
 }

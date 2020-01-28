@@ -1,36 +1,94 @@
-<div class="banner">
-  <div class="container">
-    <h1>Un composteur pour tous !</h1>
-      <p>Que vous habitiez en maison individuelle,
-      en appartement sans jardin,
-      en résidence, il existe une solution pour chacun !</p>
-    <!-- <a class="btn btn-flat" href="#">Book now</a> -->
+<% if user_signed_in? %>
+  <% if current_user.role == "admin" || current_user.role == "super_admin" %>
+    <div class="admin-box">
+      <h5 class="marg-vert">Tous les composteurs</h5>
+      <div class="admin-list">
+        <% @composteurs.each do |composteur| %>
+          <%= link_to composteur_path(composteur) do  %>
+            <div class="composteur-container">
+              <div class="composteur-card">
+                <% if composteur.photo.attached? %>
+                  <%= cl_image_tag composteur.photo.key, height: 200, width: 260, crop: :fill %>
+                <% else %>
+                  <%= image_tag 'Poubelles Battle logo (1).png' %>
+                <% end %>
+                <h5><%= composteur.name %></h5>
+                <p><%= composteur.address %></p>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% else %>
+    <div class="banner">
+      <div class="container">
+        <h1>Un composteur pour tous !</h1>
+          <p>Que vous habitiez en maison individuelle,
+          en appartement sans jardin,
+          en résidence, il existe une solution pour chacun !</p>
+        <!-- <a class="btn btn-flat" href="#">Book now</a> -->
+      </div>
+    </div>
+    <section class="section section-grey">
+      <div class="container">
+          <h2 class="section__title text-center">Découvrez les 58 composteurs collectifs mis à disposition à Pau</h2>
+
+            <div class="row">
+              <p class="text-p">3 manières de composter suivant votre style d’habitat : Composteur individuel, composteur collectif en résidence ou lombricomposteur. Choisissez la méthode qui convient le mieux à votre situation.</p>
+              <p class="text-p">Déchets de cuisine (épluchures de fruits et légumes, marc de café…), de jardin…
+              Avec un peu de soin, d’amour, et une dose de matière solide, votre compost sera prêt à devenir un fertilisant en or !</p>
+              <p class="text-p">La Communauté d'Agglomération Pau Béarn Pyrénées met à disposition gratuitement des composteurs de 320 litres.</p>
+            </div>
+      </div>
+    </section>
+    <div class="container mt-3 text-center">
+    <!-- <p> Découvrez les 58 composteurs collectifs mise à disposition à Pau </p> -->
+    <%#= render '/shared/search-bar' %>
+     <div
+      id="map"
+      style="width: 100%;
+      height: 600px;"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+    ></div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="banner">
+    <div class="container">
+      <h1>Un composteur pour tous !</h1>
+        <p>Que vous habitiez en maison individuelle,
+        en appartement sans jardin,
+        en résidence, il existe une solution pour chacun !</p>
+      <!-- <a class="btn btn-flat" href="#">Book now</a> -->
+    </div>
   </div>
-</div>
+  <section class="section section-grey">
+    <div class="container">
+        <h2 class="section__title text-center">Découvrez les 58 composteurs collectifs mis à disposition à Pau</h2>
 
-<section class="section section-grey">
-  <div class="container">
-      <h2 class="section__title text-center">Découvrez les 58 composteurs collectifs mis à disposition à Pau</h2>
-
-        <div class="row">
-          <p class="text-p">3 manières de composter suivant votre style d’habitat : Composteur individuel, composteur collectif en résidence ou lombricomposteur. Choisissez la méthode qui convient le mieux à votre situation.</p>
-          <p class="text-p">Déchets de cuisine (épluchures de fruits et légumes, marc de café…), de jardin…
-Avec un peu de soin, d’amour, et une dose de matière solide, votre compost sera prêt à devenir un fertilisant en or !</p>
-          <p class="text-p">La Communauté d'Agglomération Pau Béarn Pyrénées met à disposition gratuitement des composteurs de 320 litres.</p>
-        </div>
+          <div class="row">
+            <p class="text-p">3 manières de composter suivant votre style d’habitat : Composteur individuel, composteur collectif en résidence ou lombricomposteur. Choisissez la méthode qui convient le mieux à votre situation.</p>
+            <p class="text-p">Déchets de cuisine (épluchures de fruits et légumes, marc de café…), de jardin…
+            Avec un peu de soin, d’amour, et une dose de matière solide, votre compost sera prêt à devenir un fertilisant en or !</p>
+            <p class="text-p">La Communauté d'Agglomération Pau Béarn Pyrénées met à disposition gratuitement des composteurs de 320 litres.</p>
+          </div>
+    </div>
+  </section>
+  <div class="container mt-3 text-center">
+    <!-- <p> Découvrez les 58 composteurs collectifs mise à disposition à Pau </p> -->
+    <%#= render '/shared/search-bar' %>
+     <div
+      id="map"
+      style="width: 100%;
+      height: 600px;"
+      data-markers="<%= @markers.to_json %>"
+      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+    ></div>
   </div>
-</section>
+<% end %>
 
 
-<div class="container mt-3 text-center">
-  <!-- <p> Découvrez les 58 composteurs collectifs mise à disposition à Pau </p> -->
-  <%#= render '/shared/search-bar' %>
-   <div
-    id="map"
-    style="width: 100%;
-    height: 600px;"
-    data-markers="<%= @markers.to_json %>"
-    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
-  ></div>
-</div>
+
 
