@@ -6,7 +6,15 @@
 
   <div class="all-the-buttons">
     <%= link_to "Carte des Composteurs", root_path, class: "bouton-navbar" %>
-    <%= link_to "Demander un Composteur Collectif", new_demande_path, class: "bouton-navbar" %>
+    <% if user_signed_in? %>
+      <% if current_user.role == "admin" || current_user.role == "super_admin" %>
+        <%= link_to "Ajouter un Composteur", new_composteur_path, class: "bouton-navbar" %>
+      <% else %>
+        <%= link_to "Demander un Composteur", new_demande_path, class: "bouton-navbar" %>
+      <% end %>
+    <% else %>
+        <%= link_to "Demander un Composteur", new_demande_path, class: "bouton-navbar" %>
+    <% end %>
     <%= link_to "Bourse Verte", donverts_path, class: "bouton-navbar" %>
 
     <li class="dropdown align-self-center d-none d-sm-block mr-3">
