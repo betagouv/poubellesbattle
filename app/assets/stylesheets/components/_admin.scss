@@ -33,13 +33,13 @@
   justify-content: space-between;
   border-bottom: solid 1px grey;
   background: white;
-  margin: 20px;
+  margin: 0 20px 20px 20px;
   width: 260px;
-  height: 400px;
+  height: 410px;
   flex-direction: column;
   z-index: 10;
   img {
-    border-radius: 5px 5px 0 0;
+    height: 200px;
   }
 
   // flatpickr / datepicker
@@ -97,7 +97,8 @@
   width: 260px;
   padding: 5px 20px;
   position: relative;
-  top: 40px;
+  top: 30px;
+  margin-top: 20px;
 }
 
 .demande {
@@ -115,12 +116,21 @@
   box-shadow: 0 -5px 5px rgba(10, 10, 10, 0.1);
 }
 
+
+/* Feuille de style intégrée #4 | http://localhost:3000/demandes */
+
+.status {
+  width: 260px;
+  height: 20px;
+  position: relative;
+  top: 10px;
+  border-radius: 5px 5px 0 0;
+}
+
 .validee {
-  background: green;
+  background: #02ff02;
 }
 
 .non-validee {
   background: red;
 }
-
-
