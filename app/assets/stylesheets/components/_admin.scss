@@ -15,6 +15,32 @@
   flex-wrap: wrap;
   align-items: center;
   text-align: center;
+  width: 80vw;
+  justify-content: center;
+}
+
+.composteur-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.composteur-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: solid 1px grey;
+  background: white;
+  margin: 0 20px 20px 20px;
+  width: 260px;
+  height: 300px;
+  position: relative;
+  top: 10px;
+  flex-direction: column;
+  z-index: 10;
+  img {
+    height: 200px;
+  }
 }
 
 .demande-form {
@@ -97,8 +123,7 @@
   width: 260px;
   padding: 5px 20px;
   position: relative;
-  top: 30px;
-  margin-top: 20px;
+  top: 35px;
 }
 
 .demande {
@@ -114,10 +139,14 @@
   padding: 5px 10px 20px 10px;
   border-radius: 10px 10px 0 0;
   box-shadow: 0 -5px 5px rgba(10, 10, 10, 0.1);
+  transition: all 0.2s ease;
+  position: relative;
+  top: 0px;
+  &:hover {
+    top: -10px;
+    transition: all 0.2s ease;
+  }
 }
-
-
-/* Feuille de style intégrée #4 | http://localhost:3000/demandes */
 
 .status {
   width: 260px;
@@ -128,9 +157,9 @@
 }
 
 .validee {
-  background: #02ff02;
+  background: #56c37b;
 }
 
 .non-validee {
-  background: red;
+  background: #f0b7b7;
 }
