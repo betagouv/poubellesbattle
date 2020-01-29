@@ -3,7 +3,7 @@
     <div class="admin-box">
       <h5 class="marg-vert">Tous les composteurs</h5>
       <div class="admin-list">
-        <% @composteurs.each do |composteur| %>
+        <% @composteurs_all.each do |composteur| %>
           <div class="composteur-container">
             <div class="buttons-demande">
               <%= link_to "✏️", edit_composteur_path(composteur), class: "button-demande" %>
