@@ -1,0 +1,99 @@
+.composteur-box {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.composteur-left {
+  width: 60%;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.composteur-right {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px;
+}
+.les-referents {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: center;
+}
+
+.referent-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 200px;
+  width: 100%;
+  .star {
+    position: relative;
+    text-align: center;
+    font-size: 30px;
+    position: relative;
+    // top: 19px;
+  }
+  .referent-profile {
+    width: 100%;
+    height: 150px;
+    padding: 23px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 10px;
+    background: white;
+    text-align: center;
+    a {
+      font-size: 25px;
+    }
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.les-users {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user-card {
+  font-size: 15px;
+  background: antiquewhite;
+  margin: 10px;
+  padding: 1px 5px;
+}
+
+
+.depot-anomalie {
+  display: flex;
+  .signaler {
+    margin: 20px;
+    padding: 5px 15px;
+    color: white;
+    border-radius: 20px;
+    border: none;
+  }
+}
+
+.depot {
+  background: green;
+}
+.anomalie {
+  background: red;
+}
+

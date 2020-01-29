@@ -27,7 +27,10 @@ class ComposteursController < ApplicationController
   def show
     @composteur = Composteur.find(params[:id])
     @users = @composteur.users
-    @notifications = @composteur.notifications.order(created_at: :desc)
+    @referents = @users.where(role: "référent")
+    @not_referents = @users.where(role: "")
+    @notifications = @composteur.notifications.order(created_at: :desc).first(5)
+    @notification = Notification.new
   end
 
   def new
