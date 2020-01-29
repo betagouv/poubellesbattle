@@ -2,12 +2,12 @@
   width: 100vw;
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin: 40px 0;
 }
 
 .composteur-left {
-  width: 50%;
-  margin: 30px;
+  width: 60%;
+  margin: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -19,11 +19,11 @@
 }
 
 .composteur-right {
+  width: 20%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 30%;
-  margin: 30px;
+  margin: 20px;
 }
 .les-referents {
   display: flex;
@@ -38,21 +38,22 @@
   align-items: center;
   flex-direction: column;
   height: 200px;
+  width: 100%;
   .star {
     position: relative;
     text-align: center;
     font-size: 30px;
     position: relative;
-    top: 19px;
+    // top: 19px;
   }
   .referent-profile {
-    width: 150px;
+    width: 100%;
     height: 150px;
     padding: 23px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    border-radius: 50%;
+    border-radius: 10px;
     background: white;
     text-align: center;
     a {
@@ -63,4 +64,35 @@
     }
   }
 }
+
+.les-users {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.user-card {
+  font-size: 15px;
+  background: antiquewhite;
+  margin: 10px;
+  padding: 1px 5px;
+}
+
+
+.depot-anomalie {
+  display: flex;
+  .signaler {
+    margin: 20px;
+    padding: 5px 15px;
+    color: white;
+    border-radius: 20px;
+  }
+  .depot {
+    background: green;
+  }
+  .anomalie {
+    background: red;
+  }
+}
+
 

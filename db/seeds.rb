@@ -33,7 +33,7 @@ CSV.foreach(filepath, csv_options) do |row|
   user = User.new(
     first_name: row[8],
     last_name: row[7],
-    phone_number: "#{row[9]}",
+    phone_number: "0#{row[9]}",
     email: row[10] != nil ? row[10] : "random.#{rand(100..500)}@mail.com",
     password: "123456",
     role: "référent",
@@ -53,3 +53,36 @@ CSV.foreach(filepath, csv_options) do |row|
     puts "welcome notification created"
   end
 end
+
+User.create(
+  email: "random.#{rand(100..500)}@mail.com",
+  password: "123456",
+  role: "",
+  first_name: "Brandon",
+  last_name: "Joe",
+  ok_mail: true,
+  ok_phone: true,
+  composteur_id: Composteur.last.id
+)
+
+User.create(
+  email: "random.#{rand(100..500)}@mail.com",
+  password: "123456",
+  role: "",
+  first_name: "Junior",
+  last_name: "Joe",
+  ok_mail: true,
+  ok_phone: true,
+  composteur_id: Composteur.last.id
+)
+
+User.create(
+  email: "random.#{rand(100..500)}@mail.com",
+  password: "123456",
+  role: "",
+  first_name: "Patrick",
+  last_name: "Joe",
+  ok_mail: true,
+  ok_phone: true,
+  composteur_id: Composteur.last.id
+)

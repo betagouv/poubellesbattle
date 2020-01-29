@@ -1,7 +1,7 @@
 <div class="composteur-box">
   <div class="composteur-left">
     <% if current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
-      <%= link_to "modifier", edit_composteur_path(@composteur) %>
+      <%= link_to "modifier", edit_composteur_path(@composteur), class: "bouton-navbar" %>
     <% end %>
     <h1><%= @composteur.name %></h1>
     <p><%= @composteur.address %></p>
@@ -9,6 +9,22 @@
     <% if @composteur.photo.attached? %>
       <%= cl_image_tag @composteur.photo.key, height: 300, width: 400, crop: :fill %>
     <% end %>
+    <div class="stats">
+      <div class="users-count">
+        Déjà <%= @users.count %> personnes utilisent ce composteur !
+      </div>
+    </div>
+    <div class="les-users">
+      <% @users.each do |user| %>
+        <div class="user-card" style="<% if user.role == "référent"%><%=  'background: darkorange' %><% end %>">
+          <%= user.first_name %>
+        </div>
+      <% end %>
+    </div>
+    <div class="depot-anomalie">
+      <%= link_to "J'ai fais un dépot !", "#", class: "signaler depot" %>
+      <%= link_to "Signaler une anomalie ...", "#", class: "signaler anomalie" %>
+    </div>
     <% @notifications.each do |notification| %>
       <div class="notification-card" style="background:<%= notification.notification_type == "dépot" ? "#94ffcd" : "" %>"> <%= notification.content %> </div>
     <% end %>
@@ -21,26 +37,10 @@
           <div class="referent-profile">
             <h5><%= referent.first_name %></h5>
             <% if referent.ok_phone %>
-              <p>0<%= referent.phone_number %></p>
+              <p><%= referent.phone_number %></p>
             <% end %>
             <% if referent.ok_mail %>
               <%= mail_to referent.email, "✉️", subject: "Votre composteur m'intéresse !", class: "email-button" %>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <div class="les-referents">
-      <% @not_referents.each do |not_ref| %>
-        <div class="referent-card">
-        <div class="star">🌼</div>
-          <div class="referent-profile">
-            <h5><%= not_ref.first_name %></h5>
-            <% if not_ref.ok_phone %>
-              <p>0<%= not_ref.phone_number %></p>
-            <% end %>
-            <% if not_ref.ok_mail %>
-              <%= mail_to not_ref.email, "✉️", subject: "Votre composteur m'intéresse !", class: "email-button" %>
             <% end %>
           </div>
         </div>
