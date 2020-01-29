@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  # delete "demandes/:id", to: "demandes#destroy", as: "destroy_demande"
-  resources :demandes
-  # post "demandes/:id", to: "demandes#cancel_planification", as: "cancel_planification"
-  resources :notifications
-
   resources :composteurs do
     member do
       post :send_email
@@ -14,7 +9,8 @@ Rails.application.routes.draw do
 
   root to: "composteurs#index"
 
-  resources :donverts
+  resources :demandes
+  resources :notifications
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :donverts
 end

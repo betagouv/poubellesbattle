@@ -86,13 +86,14 @@
     padding: 5px 15px;
     color: white;
     border-radius: 20px;
-  }
-  .depot {
-    background: green;
-  }
-  .anomalie {
-    background: red;
+    border: none;
   }
 }
 
+.depot {
+  background: green;
+}
+.anomalie {
+  background: red;
+}
 

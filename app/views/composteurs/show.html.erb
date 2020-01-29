@@ -22,11 +22,27 @@
       <% end %>
     </div>
     <div class="depot-anomalie">
-      <%= link_to "J'ai fais un dépot !", "#", class: "signaler depot" %>
-      <%= link_to "Signaler une anomalie ...", "#", class: "signaler anomalie" %>
+      <%= simple_form_for(@notification) do |f| %>
+        <%= f.input :notification_type, as: :string, input_html: { value: "dépot", type:"hidden" }%>
+        <%= f.input :content, as: :string, input_html: { value: "#{current_user.first_name} vient de faire un dépot !", type:"hidden" }%>
+        <%= f.submit "J'ai fais un dépot !", class: "signaler depot" %>
+      <% end %>
+      <%= simple_form_for(@notification) do |f| %>
+        <%= f.input :notification_type, as: :string, input_html: { value: "anomalie", type:"hidden" }%>
+        <%= f.input :content, as: :string, input_html: { value: "Oh non.. on vient de nous signaler une anomalie..", type:"hidden" }%>
+        <%= f.submit "Signaler une anomalie ...", class: "signaler anomalie" %>
+      <% end %>
     </div>
     <% @notifications.each do |notification| %>
-      <div class="notification-card" style="background:<%= notification.notification_type == "dépot" ? "#94ffcd" : "" %>"> <%= notification.content %> </div>
+      <% if notification.notification_type == "welcome" %>
+        <div class="notification-card welcome"> <%= notification.content %> </div>
+      <% else %>
+        <% if notification.notification_type == "dépot" %>
+          <div class="notification-card depot"> <%= notification.content %> </div>
+        <% else %>
+          <div class="notification-card anomalie"> <%= notification.content %> </div>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
   <div class="composteur-right">
