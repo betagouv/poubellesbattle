@@ -12,7 +12,7 @@ class ComposteursController < ApplicationController
     # #   @meals = Meal.geocoded.select { |m| categories.include?(m.category) }
     # else
     @composteurs = Composteur.geocoded
-    @composteurs_all = Composteur.all
+    @composteurs_all = Composteur.all.order(created_at: :asc)
   # end
 
     @markers = @composteurs.map do |compo|
