@@ -1,0 +1,66 @@
+.composteur-box {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.composteur-left {
+  width: 50%;
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: white;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.composteur-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30%;
+  margin: 30px;
+}
+.les-referents {
+  display: flex;
+  flex-wrap: wrap;
+  height: 100%;
+  justify-content: center;
+}
+
+.referent-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 200px;
+  .star {
+    position: relative;
+    text-align: center;
+    font-size: 30px;
+    position: relative;
+    top: 19px;
+  }
+  .referent-profile {
+    width: 150px;
+    height: 150px;
+    padding: 23px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border-radius: 50%;
+    background: white;
+    text-align: center;
+    a {
+      font-size: 25px;
+    }
+    p {
+      margin: 0;
+    }
+  }
+}
+

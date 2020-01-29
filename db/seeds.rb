@@ -37,8 +37,8 @@ CSV.foreach(filepath, csv_options) do |row|
     email: row[10] != nil ? row[10] : "random.#{rand(100..500)}@mail.com",
     password: "123456",
     role: "référent",
-    ok_phone: row[11] == "oui" ,
-    ok_mail: row[12] == "oui"
+    ok_phone: row[11] = "oui" ,
+    ok_mail: row[12] = "oui"
   )
   user.composteur_id = compo.id
 
