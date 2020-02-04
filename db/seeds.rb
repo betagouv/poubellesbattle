@@ -57,6 +57,12 @@ CSV.foreach(filepath, csv_options) do |row|
       user_id: user.id
     )
     puts "welcome notification created"
+    Notification.create(
+      notification_type: "message-ref",
+      content: "Bonjour ! Je suis #{row[8]} !",
+      user_id: user.id
+    )
+    puts "ref message created"
   end
 end
 
