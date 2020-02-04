@@ -15,6 +15,12 @@ User.create(
   role: "admin"
 )
 
+Notification.create(
+  notification_type: "message-admin",
+  content: "L'agglo de Pau vous informe de la nouvelle orthographe du mot 'composteur'. Il faut maintenant l'écrire 'compausteur'. Merci de votre compréhension.",
+  user_id: User.first
+)
+
 CSV.foreach(filepath, csv_options) do |row|
   compo = Composteur.create(
     name: row[2],
@@ -87,3 +93,4 @@ User.create(
   phone_number: "0123456789",
   composteur_id: Composteur.last.id
 )
+

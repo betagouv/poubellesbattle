@@ -62,7 +62,7 @@
                 <%= f.input :content %>
                 <%= f.submit "Laisser un message à mes co-composteurs !", class: "signaler depot" %>
               <% end %>
-              <% if @messages_notifications != nil %>
+              <% if @messages_notifications != nil && referent.notifications != nil %>
                 <div class="notification-card <%= @messages_notifications.notification_type %>">
                   <p><%= referent.notifications.where(notification_type: "message-ref").last.content %></p>
                 </div>
