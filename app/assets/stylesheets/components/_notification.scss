@@ -1,9 +1,29 @@
 .notification-card {
   width: 100%;
   margin: 10px 5px;
-  padding: 10px;
+  padding: 10px 20px;
   border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
 }
 .welcome {
   background: #aff4336b;
+}
+
+.depot {
+  background: #7ff76e;
+}
+
+.anomalie {
+  background: #fb8080;
+}
+
+.message-ref {
+  background: white;
+  border: solid 2px #fb8080;
+}
+
+.message-admin {
+  background: antiquewhite;
+  border: solid 2px #7ff76e;
 }

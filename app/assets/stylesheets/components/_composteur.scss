@@ -84,16 +84,11 @@
   .signaler {
     margin: 20px;
     padding: 5px 15px;
-    color: white;
+    color: black;
     border-radius: 20px;
     border: none;
   }
 }
 
-.depot {
-  background: green;
-}
-.anomalie {
-  background: red;
-}
+// couleurs des boutons ET des notifications cards dans notification.scss
 
