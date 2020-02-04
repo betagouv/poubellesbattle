@@ -9,7 +9,7 @@ Donvert.destroy_all
 csv_options = { col_sep: ';', force_quotes: true, quote_char: '"' }
 filepath    = 'db/compo.csv'
 
-User.create(
+admin = User.create(
   email: "admin@mail.com",
   password: "123456",
   role: "admin"
@@ -18,7 +18,7 @@ User.create(
 Notification.create(
   notification_type: "message-admin",
   content: "L'agglo de Pau vous informe de la nouvelle orthographe du mot 'composteur'. Il faut maintenant l'écrire 'compausteur'. Merci de votre compréhension.",
-  user_id: User.first
+  user_id: admin.id
 )
 
 CSV.foreach(filepath, csv_options) do |row|
