@@ -37,7 +37,7 @@
       <% if notification.notification_type == "welcome" || notification.notification_type == "depot" || notification.notification_type == "anomalie" %>
         <div class="notification-card <%= notification.notification_type %>">
           <div class="notif-content"><%= notification.content %></div>
-          <div class="notif-since">Il y a <%= ((Time.now - notification.created_at)/60).round %> minutes</div>
+          <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
         </div>
       <% end %>
     <% end %>
@@ -78,6 +78,10 @@
       <% end %>
     </div>
     <div class="les-messages">
+      <% if @messages_admin %>
+        <div class="message-date"><%= l @messages_admin.created_at, format: ("Le %d %B %Y") %></div>
+        <div class="message-content"><%= @messages_admin.content %></div>
+      <% end %>
     </div>
   </div>
 </div>

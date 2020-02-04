@@ -32,14 +32,11 @@ class ComposteursController < ApplicationController
     @not_referents = @users.where(role: "") # les non-referents
 
     @notification = Notification.new
+    # @time_notification = Time.now - @notification.created_at
 
-    # welcomes = @composteur.notifications.where(notification_type: "welcome")
-    # depots = @composteur.notifications.where(notification_type: "depot")
-    # anomalies = @composteur.notifications.where(notification_type: "anomalie")
-    # @notifications = @composteur.notifications.order(created_at: :desc).first(5)
     @notifications = @composteur.notifications.where(notification_type: "welcome").or(@composteur.notifications.where(notification_type: "depot")).or(@composteur.notifications.where(notification_type: "anomalie")).order(created_at: :desc).first(5)
     @messages_notifications = @composteur.notifications.where(notification_type: "message-ref").last
-    @messages_admins = @composteur.notifications.where(notification_type: "message-admin").last
+    @messages_admin = Notification.where(notification_type: "message-admin").last
   end
 
   def new
