@@ -35,7 +35,7 @@ CSV.foreach(filepath, csv_options) do |row|
     last_name: row[7],
     phone_number: "0#{row[9]}",
     email: row[10] != nil ? row[10] : "random.#{rand(100..500)}@mail.com",
-    password: "123456",
+    password: "#{rand(100000..900000)}",
     role: "référent",
     ok_phone: row[11] = "oui" ,
     ok_mail: row[12] = "oui"
@@ -79,10 +79,11 @@ User.create(
 User.create(
   email: "random.#{rand(100..500)}@mail.com",
   password: "123456",
-  role: "",
+  role: "référent",
   first_name: "Patrick",
   last_name: "Joe",
   ok_mail: true,
   ok_phone: true,
+  phone_number: "0123456789",
   composteur_id: Composteur.last.id
 )
