@@ -67,7 +67,7 @@
             <% if current_user.role == "référent" && current_user == referent %>
               <%= simple_form_for(@notification) do |f| %>
                 <%= f.input :notification_type, as: :string, input_html: { value: "message-ref", type:"hidden" }%>
-                <%= f.input :content %>
+                <%= f.input :content, as: :text %>
                 <%= f.submit "Laisser un message à mes co-composteurs !", class: "signaler depot" %>
               <% end %>
               <% if @messages_notifications != nil && referent.notifications != [] %>
