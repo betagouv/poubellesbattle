@@ -26,11 +26,17 @@ class ComposteursController < ApplicationController
 
   def show
     @composteur = Composteur.find(params[:id])
-    @users = @composteur.users
-    @referents = @users.where(role: "référent")
-    @not_referents = @users.where(role: "")
-    @notifications = @composteur.notifications.order(created_at: :desc).first(5)
+    # users du composteur = les referents + les utilisateurs non referents
+    @users = @composteur.users # tous les utilisateurs du site
+    @referents = @users.where(role: "référent") # les referents du composteur
+    @not_referents = @users.where(role: "") # les non-referents
+
     @notification = Notification.new
+    # @time_notification = Time.now - @notification.created_at
+
+    @notifications = @composteur.notifications.where(notification_type: "welcome").or(@composteur.notifications.where(notification_type: "depot")).or(@composteur.notifications.where(notification_type: "anomalie")).order(created_at: :desc).first(5)
+    @messages_notifications = @composteur.notifications.where(notification_type: "message-ref").last
+    @messages_admin = Notification.where(notification_type: "message-admin").last
   end
 
   def new

@@ -23,7 +23,7 @@
     </div>
     <div class="depot-anomalie">
       <%= simple_form_for(@notification) do |f| %>
-        <%= f.input :notification_type, as: :string, input_html: { value: "dépot", type:"hidden" }%>
+        <%= f.input :notification_type, as: :string, input_html: { value: "depot", type:"hidden" }%>
         <%= f.input :content, as: :string, input_html: { value: "#{current_user.first_name} vient de faire un dépot !", type:"hidden" }%>
         <%= f.submit "J'ai fais un dépot !", class: "signaler depot" %>
       <% end %>
@@ -34,14 +34,11 @@
       <% end %>
     </div>
     <% @notifications.each do |notification| %>
-      <% if notification.notification_type == "welcome" %>
-        <div class="notification-card welcome"> <%= notification.content %> </div>
-      <% else %>
-        <% if notification.notification_type == "dépot" %>
-          <div class="notification-card depot"> <%= notification.content %> </div>
-        <% else %>
-          <div class="notification-card anomalie"> <%= notification.content %> </div>
-        <% end %>
+      <% if notification.notification_type == "welcome" || notification.notification_type == "depot" || notification.notification_type == "anomalie" %>
+        <div class="notification-card <%= notification.notification_type %>">
+          <div class="notif-content"><%= notification.content %></div>
+          <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
+        </div>
       <% end %>
     <% end %>
   </div>
@@ -58,8 +55,34 @@
             <% if referent.ok_mail %>
               <%= mail_to referent.email, "✉️", subject: "Votre composteur m'intéresse !", class: "email-button" %>
             <% end %>
+
+            <% if current_user.role == "référent" && current_user == referent %>
+              <%= simple_form_for(@notification) do |f| %>
+                <%= f.input :notification_type, as: :string, input_html: { value: "message-ref", type:"hidden" }%>
+                <%= f.input :content %>
+                <%= f.submit "Laisser un message à mes co-composteurs !", class: "signaler depot" %>
+              <% end %>
+              <% if @messages_notifications != nil %>
+                <div class="notification-card <%= @messages_notifications.notification_type %>">
+                  <p><%= referent.notifications.where(notification_type: "message-ref").last.content %></p>
+                </div>
+              <% end %>
+            <% else %>
+              <% if @messages_notifications != nil %>
+                <div class="notification-card <%= @messages_notifications.notification_type %>">
+                  <p><%= referent.notifications.where(notification_type: "message-ref").last.content %></p>
+                </div>
+              <% end %>
+            <% end %>
+            <%# end %>
           </div>
         </div>
+      <% end %>
+    </div>
+    <div class="les-messages">
+      <% if @messages_admin %>
+        <div class="message-date"><%= l @messages_admin.created_at, format: ("Le %d %B %Y") %></div>
+        <div class="message-content"><%= @messages_admin.content %></div>
       <% end %>
     </div>
   </div>
