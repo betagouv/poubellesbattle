@@ -6,6 +6,19 @@
   display: flex;
   justify-content: space-between;
 }
+
+.notification-card-admin {
+  background: white;
+  border: solid 1px red;
+  flex-direction: column;
+  text-align: center;
+  .notif-since {
+    margin-top: 10px;
+    font-size: 15px;
+    font-style: italic;
+  }
+}
+
 .welcome {
   background: #aff4336b;
 }
@@ -28,4 +41,11 @@
 .message-admin {
   background: antiquewhite;
   border: solid 2px #7ff76e;
+}
+
+#new_notification {
+  width: 100%;
+  #notification_content {
+    height: 150px;
+  }
 }

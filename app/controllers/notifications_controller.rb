@@ -4,7 +4,10 @@ class NotificationsController < ApplicationController
   def index
     # @notifications = Notification.where(composteur == composteur_id).last(5)
     # @notifications = Notification.where(User.find(user_id).id == User.where(Composteur.find())
-    @notifications = Notification.all
+    @notifications = Notification.where(notification_type: "message-admin")
+    @notification_last = @notifications.last
+    @notification = Notification.new
+
   end
 
   def show
@@ -21,7 +24,11 @@ class NotificationsController < ApplicationController
     @notification.user_id = @user.id
 
     if @notification.save
-      redirect_to composteur_path(@user.composteur_id)
+      if @user.role == "admin"
+        redirect_to notifications_path
+      else
+        redirect_to composteur_path(@user.composteur_id)
+      end
     else
       render :new
     end
