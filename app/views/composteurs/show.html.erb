@@ -21,6 +21,14 @@
         </div>
       <% end %>
     </div>
+      <p>Plus que <%= 300 - ((Time.now - @composteur.created_at)/86400).round %> jours avant que le compost soit prêt !</p>
+    <div class="compost-time-to-go">
+      <div class="compost-time-past" style="<% if ((Time.now - @composteur.created_at)/86400)/300*100 > 2 %>
+      <%= "width: #{((Time.now - @composteur.created_at)/86400)/300*100}%" %>
+      <% end %>">
+      </div>
+
+    </div>
     <div class="depot-anomalie">
       <%= simple_form_for(@notification) do |f| %>
         <%= f.input :notification_type, as: :string, input_html: { value: "depot", type:"hidden" }%>
