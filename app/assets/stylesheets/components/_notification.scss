@@ -6,24 +6,46 @@
   display: flex;
   justify-content: space-between;
 }
+
+.notification-card-admin {
+  background: white;
+  border: solid 1px red;
+  flex-direction: column;
+  text-align: center;
+  .notif-since {
+    margin-top: 10px;
+    font-size: 15px;
+    font-style: italic;
+  }
+}
+
 .welcome {
   background: #aff4336b;
 }
 
 .depot {
-  background: #7ff76e;
+  background: #56c37b;
 }
 
 .anomalie {
-  background: #fb8080;
+  background: #f0b7b7;
 }
 
 .message-ref {
   background: white;
   border: solid 2px #fb8080;
+  display: flex;
+  justify-content: center;
 }
 
 .message-admin {
   background: antiquewhite;
   border: solid 2px #7ff76e;
+}
+
+#new_notification {
+  width: 100%;
+  #notification_content {
+    height: 150px;
+  }
 }

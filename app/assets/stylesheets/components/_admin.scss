@@ -163,3 +163,15 @@
 .non-validee {
   background: #f0b7b7;
 }
+
+.messages-box {
+  margin-top: 50px;
+  display: flex;
+  width: 80vw;
+  justify-content: space-between;
+}
+
+.new-message, .current-message {
+  width: 45%;
+
+}

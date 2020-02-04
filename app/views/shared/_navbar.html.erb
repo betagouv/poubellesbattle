@@ -25,6 +25,7 @@
         <% if user_signed_in? %>
           <% if current_user.role == "admin" || current_user.role == "super_admin" %>
             <%= link_to "Demandes en cours", demandes_path, class: "dropdown-item"  %>
+            <%= link_to "Messages aux composteurs", notifications_path, class: "dropdown-item"  %>
           <% else %>
             <% if current_user.composteur_id != nil %>
               <%= link_to "Mon Composteur", composteur_path(current_user.composteur_id), class: "dropdown-item"  %>
