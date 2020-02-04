@@ -8,10 +8,17 @@
     <p><%= @composteur.composteur_type %></p>
     <% if @composteur.photo.attached? %>
       <%= cl_image_tag @composteur.photo.key, height: 300, width: 400, crop: :fill %>
+    <% else %>
+      <%= image_tag 'Poubelles Battle logo (1).png' %>
     <% end %>
     <div class="stats">
       <div class="users-count">
-        Déjà <%= @users.count %> personnes utilisent ce composteur !
+        <% if @users.count >= 1 %>
+          On dirait qu'il n'y a qu'un seul composteur inscrit..
+          <%= link_to "Pour vous inscrire, c'est ici !", "#" %>
+        <% else %>
+          Déjà <%= @users.count %> personnes utilisent ce composteur !
+        <% end %>
       </div>
     </div>
     <div class="les-users">
@@ -21,11 +28,13 @@
         </div>
       <% end %>
     </div>
-      <p>Plus que <%= 300 - ((Time.now - @composteur.created_at)/86400).round %> jours avant que le compost soit prêt !</p>
+      <p>Plus que <%= @time_left %> jours avant que le compost soit prêt !</p>
+      <!-- <p>Plus que <%#= Time.now - @composteur.installation_date.to_time %> jours avant que le compost soit prêt !</p> -->
     <div class="compost-time-to-go">
-      <div class="compost-time-past" style="<% if ((Time.now - @composteur.created_at)/86400)/300*100 > 2 %>
-      <%= "width: #{((Time.now - @composteur.created_at)/86400)/300*100}%" %>
-      <% end %>">
+      <div class="compost-time-past" style="
+        <% if @time_left > 2 %>
+          <%= "width: #{100 - @time_left/3}%" %>
+        <% end %>">
       </div>
 
     </div>

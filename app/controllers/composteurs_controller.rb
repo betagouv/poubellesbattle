@@ -26,6 +26,7 @@ class ComposteursController < ApplicationController
 
   def show
     @composteur = Composteur.find(params[:id])
+    @time_left = 300 - ((Time.now - @composteur.installation_date.to_time)/86400).modulo(300).round
     # users du composteur = les referents + les utilisateurs non referents
     @users = @composteur.users # tous les utilisateurs du site
     @referents = @users.where(role: "référent") # les referents du composteur
