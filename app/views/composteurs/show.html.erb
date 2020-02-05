@@ -64,20 +64,32 @@
             <% if notification.user_id != current_user.id || notification.notification_type == "anomalie" %>
               <div class="notif-block">
                 <div class="notif-filler"></div>
-                <div class="notification-card notification-card-current-user <%= notification.notification_type %>">
-                  <div class="notif-content"><p><%= notification.content %></p></div>
-                  <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
+                <div class="notif-with-name">
+                  <div class="notif-username name-right">
+                    <% if notification.notification_type == "anomalie" %>
+                      🤿
+                    <% else %>
+                      <%= notification.user.first_name %>
+                    <% end %>
+                  </div>
+                  <div class="notification-card notification-card-current-user <%= notification.notification_type %>">
+                    <div class="notif-content"><p><%= notification.content %></p></div>
+                    <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
+                  </div>
                 </div>
               </div>
             <% else %>
               <div class="notif-block">
-                <div class="notification-card <%= notification.notification_type %>">
-                  <% if notification.notification_type == "depot" %>
-                    <div class="notif-content"><p>Je viens de faire un dépot ! 👌 </p></div>
-                  <% else %>
-                    <div class="notif-content"><p><%= notification.content %></p></div>
-                  <% end %>
-                  <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
+                <div class="notif-with-name">
+                  <div class="notif-username name-left">Moi</div>
+                  <div class="notification-card <%= notification.notification_type %>">
+                    <% if notification.notification_type == "depot" %>
+                      <div class="notif-content"><p>Je viens de faire un dépot ! 👌 </p></div>
+                    <% else %>
+                      <div class="notif-content"><p><%= notification.content %></p></div>
+                    <% end %>
+                    <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
+                  </div>
                 </div>
                 <div class="notif-filler"></div>
               </div>

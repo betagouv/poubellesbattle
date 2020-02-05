@@ -1,5 +1,6 @@
+
 .notification-card {
-  width: max-content;
+  width: 100%;
   margin: 10px 5px;
   padding: 10px 20px;
   border-radius: 10px;
@@ -95,8 +96,17 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  .notification-card {
+  .notif-with-name {
     width: 75%;
+    .notif-username {
+      font-size: 10px;
+    }
+    .name-left {
+      text-align: left;
+    }
+    .name-right {
+      text-align: right;
+    }
   }
 }
 
