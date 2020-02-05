@@ -7,15 +7,20 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+  text-align: right;
   .notif-since {
     font-style: italic;
     font-size: 10px;
+  }
+  .notif-content {
+    p {
+      text-align: left;
+    }
   }
 }
 
 .notification-card-current-user {
   align-items: flex-end;
-  text-align: right;
 }
 
 .notification-card-admin {
@@ -42,6 +47,10 @@
   background: #f0b7b7;
 }
 
+.message-form {
+  width: 50%;
+}
+
 .message {
   background: beige;
 }
@@ -52,6 +61,7 @@
   display: flex;
   justify-content: center;
   width: auto;
+  text-align: center;
 }
 
 .message-admin {
@@ -93,4 +103,7 @@
   margin-bottom: 20px;
 }
 
+.message-board {
+  width: 70%;
+}
 
