@@ -35,7 +35,7 @@ class ComposteursController < ApplicationController
     @notification = Notification.new
     # @time_notification = Time.now - @notification.created_at
 
-    @notifications = @composteur.notifications.where(notification_type: "welcome").or(@composteur.notifications.where(notification_type: "depot")).or(@composteur.notifications.where(notification_type: "anomalie")).order(created_at: :desc).first(5)
+    @notifications = @composteur.notifications.where(notification_type: "welcome").or(@composteur.notifications.where(notification_type: "depot")).or(@composteur.notifications.where(notification_type: "anomalie")).or(@composteur.notifications.where(notification_type: "message")).order(created_at: :desc).first(10)
     @messages_notifications = @composteur.notifications.where(notification_type: "message-ref").last
     @messages_admin = Notification.where(notification_type: "message-admin").last
   end
