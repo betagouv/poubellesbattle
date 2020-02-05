@@ -89,7 +89,7 @@ User.create(
 )
 
 User.create(
-  email: "random.#{rand(100..500)}@mail.com",
+  email: "random.224@mail.com",
   password: "123456",
   role: "référent",
   first_name: "Patrick",

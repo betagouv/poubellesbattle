@@ -1,10 +1,21 @@
 .notification-card {
-  width: 100%;
+  width: max-content;
   margin: 10px 5px;
   padding: 10px 20px;
   border-radius: 10px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: flex-start;
+  .notif-since {
+    font-style: italic;
+    font-size: 10px;
+  }
+}
+
+.notification-card-current-user {
+  align-items: flex-end;
+  text-align: right;
 }
 
 .notification-card-admin {
@@ -31,11 +42,16 @@
   background: #f0b7b7;
 }
 
+.message {
+  background: beige;
+}
+
 .message-ref {
   background: white;
   border: solid 2px #fb8080;
   display: flex;
   justify-content: center;
+  width: auto;
 }
 
 .message-admin {
@@ -49,3 +65,32 @@
     height: 150px;
   }
 }
+
+.notif-block {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  .notification-card {
+    width: 75%;
+  }
+}
+
+.notif-filler {
+  flex-grow: 1;
+  height: 50px;
+  width: 50px;
+}
+
+#notification_content {
+  border-radius: 5px;
+}
+
+.signaler.message {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px darkgray;
+  margin-bottom: 20px;
+}
+
+

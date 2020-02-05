@@ -13,7 +13,7 @@
     <% end %>
     <div class="stats">
       <div class="users-count">
-        <% if @users.count >= 1 %>
+        <% if @users.count <= 1 %>
           On dirait qu'il n'y a qu'un seul composteur inscrit..
           <%= link_to "Pour vous inscrire, c'est ici !", "#" %>
         <% else %>
@@ -50,12 +50,32 @@
         <%= f.submit "Signaler une anomalie ...", class: "signaler anomalie" %>
       <% end %>
     </div>
+    <div class="message-form">
+      <%= simple_form_for(@notification) do |f| %>
+        <%= f.input :notification_type, as: :string, input_html: { value: "message", type:"hidden" }%>
+        <%= f.input :content, as: :text, placeholder: "votre message..."%>
+        <%= f.submit "✏️", class: "signaler message" %>
+      <% end %>
+    </div>
     <% @notifications.each do |notification| %>
-      <% if notification.notification_type == "welcome" || notification.notification_type == "depot" || notification.notification_type == "anomalie" %>
-        <div class="notification-card <%= notification.notification_type %>">
-          <div class="notif-content"><%= notification.content %></div>
-          <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
-        </div>
+      <% if notification.notification_type == "welcome" || notification.notification_type == "depot" || notification.notification_type == "anomalie" || notification.notification_type == "message" %>
+        <% if notification.user_id == current_user.id %>
+          <div class="notif-block">
+            <div class="notif-filler"></div>
+            <div class="notification-card notification-card-current-user <%= notification.notification_type %>">
+              <div class="notif-content"><%= notification.content %></div>
+              <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
+            </div>
+          </div>
+        <% else %>
+          <div class="notif-block">
+            <div class="notification-card <%= notification.notification_type %>">
+              <div class="notif-content"><%= notification.content %></div>
+              <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
+            </div>
+            <div class="notif-filler"></div>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>

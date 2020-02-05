@@ -7,6 +7,7 @@ class DemandesController < ApplicationController
 
   def show
     @demande = Demande.find(params[:id])
+    @composteur = Demande.find(params[:id])
   end
 
   def new
