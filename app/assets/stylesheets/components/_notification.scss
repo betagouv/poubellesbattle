@@ -35,6 +35,10 @@
   }
 }
 
+.notif-admin-view {
+  width: auto;
+}
+
 .welcome {
   background: #aff4336b;
 }
@@ -62,6 +66,17 @@
   justify-content: center;
   width: auto;
   text-align: center;
+  p {
+    text-align: center;
+  }
+}
+
+
+.message-form-ref {
+  width: auto;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 20px;
 }
 
 .message-admin {
