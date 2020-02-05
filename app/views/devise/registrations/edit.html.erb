@@ -1,4 +1,4 @@
-<div class="container mb-5">
+<div class="admin-box mb-5">
   <div class="col-6">
     <h2>Editer mon profil</h2>
 
@@ -11,7 +11,8 @@
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
           <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
         <% end %>
-
+        <%= f.input :first_name, required: true, placeholder: "Prénom" %>
+        <%= f.input :last_name, required: true, placeholder: "Nom" %>
         <%= f.input :password,
                     hint: "laisser vide si vous ne voulez pas changer de mot de passe",
                     required: false, placeholder: "nouveau mot de passe ?",
@@ -20,7 +21,7 @@
                     hint: "laisser vide si vous ne voulez pas changer de mot de passe",
                     required: false, placeholder: "confirmer mon nouveau mot de passe",
                     input_html: { autocomplete: "new-password" } %>
-        <%= f.input :photo, label: "Photo de profil", as: :file %>
+        <%#= f.input :photo, label: "Photo de profil", as: :file %>
         <%= f.input :current_password,
                     hint: "nous avons besoin de votre mot de passe pour confirmer les changements",
                     required: true, placeholder: "mot de passe actuel",
