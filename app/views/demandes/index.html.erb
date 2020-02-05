@@ -34,6 +34,7 @@
               <div class="planification_date">
                 <%= demande.planification_date.strftime("Planifiée le %d/%m/%Y") %>
                 <%= simple_form_for(demande) do |f| %>
+                  <%= f.input :status, as: :string, input_html: { value: "validée", type:"hidden" }%>
                   <%= f.input :planification_date, as: :string, input_html: { value: "", type:"hidden" }%>
                   <%= f.submit "❌", class: "bouton-valid" %>
                 <% end %>
@@ -41,6 +42,7 @@
             </div>
           <% else %>
             <%= simple_form_for(demande) do |f| %>
+              <%= f.input :status, as: :string, input_html: { value: "planifiée", type:"hidden" }%>
               <%= f.input :planification_date, as: :string, input_html: { class: "datepicker" }, placeholder: "Installation" %>
               <div><%= f.submit "🆗", class: "bouton-ok" %></div>
             <% end %>

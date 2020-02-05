@@ -13,7 +13,7 @@
       <div class="current-message">
         <h5 class="marg-vert">Message visible en ce moment</h5>
         <div class="message-list">
-          <div class="notification-card notification-card-admin">
+          <div class="notification-card notification-card-admin notif-admin-view">
             <div class="notif-content"><%= @notification_last.content %></div>
             <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, @notification_last.created_at) %></div>
           </div>
@@ -24,7 +24,7 @@
     <h5 class="marg-vert">Archive des messages aux composteurs</h5>
     <div class="admin-list">
       <% @notifications.each do |notification| %>
-        <div class="notification-card notification-card-admin">
+        <div class="notification-card notification-card-admin notif-admin-view">
           <div class="notif-content"><%= notification.content %></div>
           <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
         </div>

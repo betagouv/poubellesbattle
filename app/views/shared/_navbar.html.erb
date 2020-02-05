@@ -5,17 +5,25 @@
   <% end %>
 
   <div class="all-the-buttons">
-    <%= link_to "Carte des Composteurs", root_path, class: "bouton-navbar" %>
     <% if user_signed_in? %>
       <% if current_user.role == "admin" || current_user.role == "super_admin" %>
+        <%= link_to "Composteurs", root_path, class: "bouton-navbar" %>
         <%= link_to "Ajouter un Composteur", new_composteur_path, class: "bouton-navbar" %>
+        <%= link_to "Demandes", demandes_path, class: "bouton-navbar"  %>
+        <%= link_to "Messages", notifications_path, class: "bouton-navbar"  %>
       <% else %>
+        <% if current_user.composteur_id != nil %>
+          <%= link_to "Mon Composteur", composteur_path(current_user.composteur_id), class: "bouton-navbar"  %>
+        <% else %>
+        <%= link_to "Carte des Composteurs", root_path, class: "bouton-navbar" %>
         <%= link_to "Demander un Composteur", new_demande_path, class: "bouton-navbar" %>
+        <% end %>
       <% end %>
     <% else %>
+        <%= link_to "Carte des Composteurs", root_path, class: "bouton-navbar" %>
         <%= link_to "Demander un Composteur", new_demande_path, class: "bouton-navbar" %>
     <% end %>
-    <%= link_to "Bourse Verte", donverts_path, class: "bouton-navbar" %>
+    <%#= link_to "Bourse Verte", donverts_path, class: "bouton-navbar" %>
 
     <li class="dropdown align-self-center d-none d-sm-block mr-3">
       <div class="dropdown-toggle border-none green-nav" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -23,13 +31,7 @@
       </div>
       <div class="dropdown-menu dropdown-menu-right green-nav" aria-labelledby="dropdownMenuButton">
         <% if user_signed_in? %>
-          <% if current_user.role == "admin" || current_user.role == "super_admin" %>
-            <%= link_to "Demandes en cours", demandes_path, class: "dropdown-item"  %>
-            <%= link_to "Messages aux composteurs", notifications_path, class: "dropdown-item"  %>
-          <% else %>
-            <% if current_user.composteur_id != nil %>
-              <%= link_to "Mon Composteur", composteur_path(current_user.composteur_id), class: "dropdown-item"  %>
-            <% end %>
+          <% if current_user.role != "admin" || current_user.role != "super_admin" %>
             <%= link_to "Mon Profil", edit_user_registration_path(current_user), class: "dropdown-item" %>
           <% end %>
         <% end %>
@@ -39,9 +41,10 @@
       </div>
     </li>
     <% if user_signed_in? %>
-      <%= link_to "log out", destroy_user_session_path, method: :delete, class: "bouton-valid rouge" %>
+      <%= link_to "Se deconnecter", destroy_user_session_path, method: :delete, class: "bouton-valid rouge" %>
     <% else %>
-      <%= link_to "log in", new_user_session_path, class: "bouton-valid" %>
+      <%= link_to "Se connecter", new_user_session_path, class: "bouton-valid" %>
+      <%= link_to "S'inscrire", new_user_registration_path, class: "bouton-valid bleu" %>
     <% end %>
   </div>
 </div>
