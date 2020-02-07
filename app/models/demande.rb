@@ -3,11 +3,11 @@ class Demande < ApplicationRecord
   validates_inclusion_of :potential_users, in: [true, false]
   has_one_attached :photo
 
-  before_create :generate_random_id
+  # before_create :generate_random_id
 
-  private
+  # private
 
-  def generate_random_id
-    self.id = SecureRandom.uuid
-  end
+  # def generate_random_id
+  #   self.id = SecureRandom.uuid
+  # end
 end

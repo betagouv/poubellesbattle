@@ -1,5 +1,6 @@
 .admin-box {
   width: 100vw;
+  min-height: calc(100vh - 160px - 120px);
   display: flex;
   flex-direction: column;
   justify-content: center;

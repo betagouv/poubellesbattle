@@ -1,5 +1,5 @@
 class DemandesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:new, :create, :show]
+  skip_before_action :authenticate_user!, only: [:new, :create, :suivre]
 
   def index
     @demandes = Demande.all.order(updated_at: :desc)
@@ -10,6 +10,11 @@ class DemandesController < ApplicationController
     @composteur = Demande.find(params[:id])
   end
 
+  # page de suivi de demande de composteur (comme une show mais pas pareil)
+  def suivre
+    @demande = Demande.find(params[:id])
+  end
+
   def new
     @demande = Demande.new
   end
@@ -18,7 +23,7 @@ class DemandesController < ApplicationController
     @demande = Demande.new(demande_params)
     @demande.status = "reçue"
     if @demande.save
-      redirect_to demande_path(@demande)
+      redirect_to suivre_path(@demande)
       flash[:notice] = "Demande envoyée"
     else
       render :new

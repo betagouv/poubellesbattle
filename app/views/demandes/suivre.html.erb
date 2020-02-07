@@ -1,0 +1,11 @@
+<div class="admin-box">
+  <h5 class="marg-vert">Bonjour <%= @demande.first_name %> !</h5>
+  <% if current_user.email == @demande.email %>
+    La demande que vous avez réalisée avec le mail <%= @demande.email %> est en cours de traitement.
+    Pour l'instant, son statut est <%= @demande.status %>.
+  <% else %>
+    <p>Votre demande est en cours de traitement par nos agents</p>
+    <p>Si vous souhaitez avoir plus d'infos sur son avancée et si vous ne l'avez pas déjà fait, vous pouvez créer un compte sur Poubelles Battle</p>
+    <%= link_to "créer mon compte", new_user_registration_path, class: "bouton-valid bleu"  %>
+  <% end %>
+</div>

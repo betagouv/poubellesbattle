@@ -16,7 +16,12 @@
           <%= link_to "Mon Composteur", composteur_path(current_user.composteur_id), class: "bouton-navbar"  %>
         <% else %>
         <%= link_to "Carte des Composteurs", root_path, class: "bouton-navbar" %>
-        <%= link_to "Demander un Composteur", new_demande_path, class: "bouton-navbar" %>
+          <% if Demande.find_by(email: current_user.email) != nil %>
+            <% demande = Demande.find_by(email: current_user.email) %>
+            <%= link_to "Ma demande", suivre_path(demande), class: "bouton-navbar" %>
+          <% else %>
+            <%= link_to "Demander un Composteur", new_demande_path, class: "bouton-navbar" %>
+          <% end %>
         <% end %>
       <% end %>
     <% else %>
