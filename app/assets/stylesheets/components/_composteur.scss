@@ -126,5 +126,13 @@
 }
 // couleurs des boutons ET des notifications cards dans notification.scss
 
-
+.composteur-new-edit {
+  width: 100vw;
+  margin: 150px 40px 40px 50px;
+  display: flex;
+  justify-content: center;
+  .composteur-form-box {
+    width: 50%;
+  }
+}
 
