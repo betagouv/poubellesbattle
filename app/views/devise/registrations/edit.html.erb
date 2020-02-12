@@ -1,7 +1,16 @@
-<div class="admin-box mb-5">
-  <div class="col-6">
-    <h2>Editer mon profil</h2>
-
+<div class="edit-user-view">
+  <div class="edit-user-left">
+    <% if current_user.photo.attached? %>
+      <%= cl_image_tag current_user.photo.key, height: 300, width: 300, crop: :fill, class: "avatar-large" %>
+    <% else %>
+      <%= image_tag "Poubelles Battle logo (1)", alt: "default avatar", class: "avatar-large" %>
+    <% end %>
+    <% if current_user.first_name && current_user.last_name %>
+      <h2><%= current_user.first_name %> <%= current_user.last_name %></h2>
+    <% end %>
+  </div>
+  <div class="edit-user-form">
+    <h2>Modifier mon profil</h2>
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= f.error_notification %>
 
@@ -13,6 +22,21 @@
         <% end %>
         <%= f.input :first_name, required: true, placeholder: "Prénom" %>
         <%= f.input :last_name, required: true, placeholder: "Nom" %>
+        <% if current_user.role == "référent" %>
+          <%= f.input :phone_number, required: true, placeholder: "Téléphone" %>
+          <%= f.input :ok_phone,
+                  label: "Acceptez-vous de laisser votre téléphone visible aux utilisateurs de Poubelles Battle",
+                  as: :radio_buttons,
+                  collection: [[true, "oui ! 🥳"], [false, "non..😕"]],
+                  label_method: :last,
+                  value_method: :first %>
+          <%= f.input :ok_mail,
+                  label: "Acceptez-vous de laisser votre mail visible aux utilisateurs de Poubelles Battle",
+                  as: :radio_buttons,
+                  collection: [[true, "oui ! 🥳"], [false, "non..😕"]],
+                  label_method: :last,
+                  value_method: :first %>
+        <% end %>
         <%= f.input :password,
                     hint: "laisser vide si vous ne voulez pas changer de mot de passe",
                     required: false, placeholder: "nouveau mot de passe ?",
@@ -21,7 +45,7 @@
                     hint: "laisser vide si vous ne voulez pas changer de mot de passe",
                     required: false, placeholder: "confirmer mon nouveau mot de passe",
                     input_html: { autocomplete: "new-password" } %>
-        <%#= f.input :photo, label: "Photo de profil", as: :file %>
+        <%= f.input :photo, label: "Photo de profil", as: :file %>
         <%= f.input :current_password,
                     hint: "nous avons besoin de votre mot de passe pour confirmer les changements",
                     required: true, placeholder: "mot de passe actuel",
@@ -37,4 +61,7 @@
     <p class="mt-4">Tu es venu•e nous dire que tu t'en vas ?</p>
     <%= link_to "Oui, cloturez mon compte !", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: "bouton-valid rouge", method: :delete %>
   </div>
+  <%# if user.photo.attached? %>
+      <%#= user.photo.key, height: 300, width: 400, crop: :fill %>
+  <%# end %>
 </div>

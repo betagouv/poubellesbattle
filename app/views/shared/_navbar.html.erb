@@ -47,6 +47,15 @@
     </li>
     <% if user_signed_in? %>
       <%= link_to "Se deconnecter", destroy_user_session_path, method: :delete, class: "bouton-valid rouge" %>
+      <% if current_user.photo.attached? %>
+        <%= link_to edit_user_registration_path(current_user) do  %>
+          <%= cl_image_tag current_user.photo.key, height: 100, width: 100, crop: :fill, class: "avatar" %>
+        <% end %>
+      <% else %>
+        <%= link_to edit_user_registration_path(current_user) do  %>
+          <%= image_tag "Poubelles Battle logo (1)", alt: "default avatar", class: "avatar" %>
+        <% end %>
+      <% end %>
     <% else %>
       <%= link_to "Se connecter", new_user_session_path, class: "bouton-valid" %>
       <%= link_to "S'inscrire", new_user_registration_path, class: "bouton-valid bleu" %>

@@ -119,13 +119,13 @@
                 <%= f.input :content, as: :text, placeholder: "modifier mon message de présentation..." %>
                 <%= f.submit "Enregistrer", class: "message-form-ref" %>
               <% end %>
-              <% if @messages_notifications != nil && referent.notifications != [] %>
+              <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
                 <div class="notification-card <%= @messages_notifications.notification_type %>">
                   <p><%= referent.notifications.where(notification_type: "message-ref").last.content %></p>
                 </div>
               <% end %>
             <% else %>
-              <% if @messages_notifications != nil && referent.notifications != [] %>
+              <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
                 <div class="notification-card <%= @messages_notifications.notification_type %>">
                   <p><%= referent.notifications.where(notification_type: "message-ref").last.content %></p>
                 </div>
