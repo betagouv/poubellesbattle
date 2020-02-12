@@ -1,15 +1,18 @@
 <%= simple_form_for(@composteur) do |f| %>
   <%= f.input :name, placeholder: 'Nom du composteur' %>
   <%= f.input :address, placeholder: 'adresse'  %>
-  <%= f.input :category, placeholder: 'Quel type de composteur ?', as: :radio_buttons,
+  <%= f.input :category, label: 'Quel type de composteur ?', as: :radio_buttons,
                 collection: ["composteur bas d'immeuble", "composteur de quartier"]  %>
-  <%= f.input :public, placeholder: "Est-il public ?", as: :radio_buttons,
+  <%= f.input :public, label: "Est-il public ?", as: :radio_buttons,
                 collection: [[true, "oui"], [false, "non"]],
                 label_method: :last,
                 value_method: :first %>
   <%#= f.input :bacs_number, placeholder: 'Nombre de bacs' %>
   <%= f.input :status, placeholder: 'Son status' %>
-  <%= f.input :installation_date, as: :string, required: false, input_html: {class: "datepicker"} %>
+  <%= f.input :volume, placeholder: 'Volume' %>
+  <%= f.input :residence_name, placeholder: 'Nom de la résidence' %>
+  <%= f.input :commentaire, as: :text, placeholder: 'Commentaire' %>
+  <%= f.input :installation_date, placeholder: "date d'installation", as: :string, required: false, input_html: {class: "datepicker"} %>
   <%= f.input :photo, placeholder: "Photo du composteur", as: :file %>
   <%#= f.input :photo_cache, as: :hidden %>
   <%#= f.input :referent_full_name, label: 'Nom et prénom du référent' %>
