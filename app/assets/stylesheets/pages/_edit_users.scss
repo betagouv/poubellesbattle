@@ -1,0 +1,19 @@
+.edit-user-view {
+  display: flex;
+  justify-content: space-around;
+  margin: 150px 0 50px 0;
+  width: 100vw;
+  .edit-user-left {
+    width: 20%;
+    text-align: center;
+  }
+  .edit-user-form {
+    width: 60%;
+  }
+  .edit-user-left, .edit-user-form {
+    background: white;
+    border-radius: 5px 5px 0 0;
+    padding: 20px;
+    height: max-content;
+  }
+}

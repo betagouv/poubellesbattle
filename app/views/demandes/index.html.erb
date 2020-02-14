@@ -18,7 +18,7 @@
           <% if demande.photo.attached? %>
             <%= cl_image_tag demande.photo.key, height: 200, width: 260, crop: :fill %>
           <% else %>
-            <%= image_tag 'Poubelles Battle logo (1).png' %>
+            <%= image_tag 'PB_logo.png' %>
           <% end %>
           <div class="demande-name"><%= demande.first_name %> <%= demande.last_name %></div>
           <!-- <div class="demande-details"><%#= demande.created_at.strftime("Date du %d/%m/%Y")  %></div> -->
