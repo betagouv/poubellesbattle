@@ -25,14 +25,10 @@
       </div>
     </div>
   <% else %>
-    <div class="banner">
-      <div class="container">
+    <div class="home-banner">
         <h1>Un composteur pour tous !</h1>
-          <p>Que vous habitiez en maison individuelle,
-          en appartement sans jardin,
-          en résidence, il existe une solution pour chacun !</p>
-        <!-- <a class="btn btn-flat" href="#">Book now</a> -->
-      </div>
+        <p>Que vous habitiez en maison individuelle, en appartement sans jardin, en résidence, il existe une solution pour chacun !</p>
+        <!-- <iframe width="540" height="305" src="https://6c4cf121.sibforms.com/serve/MUIEAKz3s1j-boA6fFXGoKco_0zOdHm0s1MCqTks_OeuTxy7N52p7iLMipceoflrfyWjkjOa5IzPy-FURvEgLrpO6a2czlq-Vbw8vuNBMMm17BmZi1Twd79NKL_dpzHbscdB523INOJNpgzFZl3H-PwmeoNUuzEPhsgibFHxXclANjcZ-tg-7AYtPBFpQofCkrBs6LTKVNUK8YsP" frameborder="0" scrolling="auto" allowfullscreen style="display: block;margin-left: auto;margin-right: auto;max-width: 100%;"></iframe> -->
     </div>
     <section class="section section-grey">
       <div class="container">
@@ -45,12 +41,12 @@
             </div>
       </div>
     </section>
-    <div class="container mt-3 text-center">
+    <div class="nice-map-box mt-3 text-center">
     <!-- <p> Découvrez les 58 composteurs collectifs mise à disposition à Pau </p> -->
     <%#= render '/shared/search-bar' %>
      <div
       id="map"
-      style="width: 100%;
+      style="
       height: 600px;"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
@@ -78,7 +74,7 @@
           </div>
     </div>
   </section>
-  <div class="container mt-3 text-center">
+  <div class="nice-map-box mt-3 text-center">
     <!-- <p> Découvrez les 58 composteurs collectifs mise à disposition à Pau </p> -->
     <%#= render '/shared/search-bar' %>
      <div
