@@ -15,7 +15,7 @@
                 <% if composteur.photo.attached? %>
                   <%= cl_image_tag composteur.photo.key, height: 200, width: 260, crop: :fill %>
                 <% else %>
-                  <%= image_tag 'Poubelles Battle logo (1).png' %>
+                  <%= image_tag 'PB_logo.png' %>
                 <% end %>
                 <h5><%= composteur.name %></h5>
                 <p><%= composteur.address %></p>
