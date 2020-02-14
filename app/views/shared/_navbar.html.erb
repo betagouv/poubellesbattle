@@ -16,7 +16,12 @@
           <%= link_to "Mon Composteur", composteur_path(current_user.composteur_id), class: "bouton-navbar"  %>
         <% else %>
         <%= link_to "Carte des Composteurs", root_path, class: "bouton-navbar" %>
-        <%= link_to "Demander un Composteur", new_demande_path, class: "bouton-navbar" %>
+          <% if Demande.find_by(email: current_user.email) != nil %>
+            <% demande = Demande.find_by(email: current_user.email) %>
+            <%= link_to "Ma demande", suivre_path(demande), class: "bouton-navbar" %>
+          <% else %>
+            <%= link_to "Demander un Composteur", new_demande_path, class: "bouton-navbar" %>
+          <% end %>
         <% end %>
       <% end %>
     <% else %>
@@ -42,6 +47,15 @@
     </li>
     <% if user_signed_in? %>
       <%= link_to "Se deconnecter", destroy_user_session_path, method: :delete, class: "bouton-valid rouge" %>
+      <% if current_user.photo.attached? %>
+        <%= link_to edit_user_registration_path(current_user) do  %>
+          <%= cl_image_tag current_user.photo.key, height: 100, width: 100, crop: :fill, class: "avatar" %>
+        <% end %>
+      <% else %>
+        <%= link_to edit_user_registration_path(current_user) do  %>
+          <%= image_tag "Poubelles Battle logo (1)", alt: "default avatar", class: "avatar" %>
+        <% end %>
+      <% end %>
     <% else %>
       <%= link_to "Se connecter", new_user_session_path, class: "bouton-valid" %>
       <%= link_to "S'inscrire", new_user_registration_path, class: "bouton-valid bleu" %>

@@ -9,7 +9,9 @@ Rails.application.routes.draw do
 
   root to: "composteurs#index"
 
-  resources :demandes
+  resources :demandes, param: :slug
+  get "/demandes/suivre/:slug", to: "demandes#suivre", as: 'suivre'
+
   resources :notifications
 
   resources :donverts

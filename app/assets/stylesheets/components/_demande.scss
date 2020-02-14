@@ -1,0 +1,25 @@
+.demande-box {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  min-height: calc(100vh - 400px);
+}
+.demande-left {
+  padding: 0 50px;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  h5 {
+    margin-bottom: 20px;
+  }
+}
+
+.demande-registration-form {
+  width: 30%;
+  padding: 0 50px;
+  .admin-box {
+    width: auto;
+  }
+}

@@ -1,0 +1,27 @@
+<% if user_signed_in? %>
+  <div class="demande-box">
+    <% if current_user.email == @demande.email %>
+      <div class="demande-left">
+        <h5 class="marg-vert">Bonjour <%= @demande.first_name %> !</h5>
+          La demande que vous avez réalisée avec le mail <%= @demande.email %> est en cours de traitement.
+          Pour l'instant, son statut est <%= @demande.status %>.
+      </div>
+    <% else %>
+      <div class="demande-left">
+        Etes-vous connecté avec le bon compte ?
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <div class="demande-box">
+    <div class="demande-left">
+      <h5>Bonjour !</h5>
+      <p>Votre demande est en cours de traitement par nos agents</p>
+      <p>Si vous souhaitez avoir plus d'infos sur son avancée et si vous ne l'avez pas déjà fait, vous pouvez créer un compte sur Poubelles Battle</p>
+      <%#= link_to "créer mon compte", new_user_registration_path, class: "bouton-valid bleu"  %>
+    </div>
+    <div class="demande-registration-form">
+      <%= render "devise/registrations/new" %>
+    </div>
+  </div>
+<% end %>
