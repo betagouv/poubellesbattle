@@ -25,32 +25,14 @@
       </div>
     </div>
   <% else %>
-    <div class="banner">
-      <div class="container">
-        <h1>Un composteur pour tous !</h1>
-          <p>Que vous habitiez en maison individuelle,
-          en appartement sans jardin,
-          en résidence, il existe une solution pour chacun !</p>
-        <!-- <a class="btn btn-flat" href="#">Book now</a> -->
-      </div>
-    </div>
-    <section class="section section-grey">
-      <div class="container">
-          <h2 class="section__title text-center">Découvrez les <%= @composteurs_all.count %>  composteurs collectifs mis à disposition à Pau</h2>
+    <%= render 'home-banner' %>
 
-            <div class="row">
-              <p class="text-p">3 manières de composter suivant votre style d’habitat : Composteur individuel, composteur collectif en résidence ou lombricomposteur. Choisissez la méthode qui convient le mieux à votre situation.</p>
-              <p class="text-p">Déchets de cuisine (épluchures de fruits et légumes, marc de café…), de jardin…
-              Avec un peu de soin, d’amour, et une dose de matière solide, votre compost sera prêt à devenir un fertilisant en or !</p>
-            </div>
-      </div>
-    </section>
-    <div class="container mt-3 text-center">
+    <div class="nice-map-box mt-3 text-center">
     <!-- <p> Découvrez les 58 composteurs collectifs mise à disposition à Pau </p> -->
     <%#= render '/shared/search-bar' %>
      <div
       id="map"
-      style="width: 100%;
+      style="
       height: 600px;"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
@@ -58,32 +40,14 @@
     </div>
   <% end %>
 <% else %>
-  <div class="banner">
-    <div class="container">
-      <h1>Un composteur pour tous !</h1>
-        <p>Que vous habitiez en maison individuelle,
-        en appartement sans jardin,
-        en résidence, il existe une solution pour chacun !</p>
-      <!-- <a class="btn btn-flat" href="#">Book now</a> -->
-    </div>
-  </div>
-  <section class="section section-grey">
-    <div class="container">
-        <h2 class="section__title text-center">Découvrez les <%= @composteurs_all.count %> composteurs collectifs mis à disposition à Pau</h2>
+  <%= render 'home-banner' %>
 
-          <div class="row">
-            <p class="text-p">3 manières de composter suivant votre style d’habitat : Composteur individuel, composteur collectif en résidence ou lombricomposteur. Choisissez la méthode qui convient le mieux à votre situation.</p>
-            <p class="text-p">Déchets de cuisine (épluchures de fruits et légumes, marc de café…), de jardin…
-            Avec un peu de soin, d’amour, et une dose de matière solide, votre compost sera prêt à devenir un fertilisant en or !</p>
-          </div>
-    </div>
-  </section>
-  <div class="container mt-3 text-center">
+  <div class="nice-map-box mt-3 text-center">
     <!-- <p> Découvrez les 58 composteurs collectifs mise à disposition à Pau </p> -->
     <%#= render '/shared/search-bar' %>
      <div
       id="map"
-      style="width: 100%;
+      style="width: 1000px;
       height: 600px;"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"

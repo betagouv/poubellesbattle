@@ -1,35 +1,36 @@
-.banner {
-  background-size: cover;
-  background-position: center;
-  // background-image: url("comp.png"), linear-gradient(rgba(240,240,240,0.8),rgba(240,240,240,0.8));
+
+
+.home-banner {
   background-color: #408A4E;
   padding: 50px 0;
   position: relative;
-  height: 200px;
+  height: max-content;
   margin-top: 120px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1 {
+    // font-size: 32px;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    font-weight: bold;
+  }
+  p {
+    font-size: 18px;
+    color: white;
+    width: 400px;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+    padding-top: 18px;
+    margin: 0;
+  }
 }
+
 
 .container {
   text-align: center;
 }
 
-.banner h1 {
-  margin: 0;
-  color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 32px;
-  font-weight: bold;
-}
-
-.banner p {
-  font-size: 18px;
-  color: white;
-  opacity: .9;
-  width: 400px;
-  position: absolute;
-  left: 474px;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-}
 
 .card-container {
     width: 1200px;
