@@ -10,10 +10,58 @@
 
 .form-group.radio_buttons {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 .demande_address {
   display: flex;
   justify-content: center !important;
 }
+
+
+.demande-compo-form {
+  background: white;
+  padding: 40px;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -10px 10px rgba(20, 20, 20, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  .formline-between {
+    margin: 20px 0;
+    .form-group {
+      width: 49%;
+      margin: 0;
+    }
+  }
+  .form-group {
+    margin: 15px 0;
+  }
+  .demande_photo {
+    display: flex;
+    label {
+      width: 90%;
+    }
+  }
+  .bouton-valid {
+    border: solid 1px #1EDD88;
+  }
+  .submit-formline-center {
+    text-align: center;
+    margin: 20px 0 0 0;
+  }
+}
+
+.demande-form-line {
+  position: relative;
+  width: 115%;
+  height: 2px;
+  top: 46px;
+  box-shadow: 0 -6px 7px rgba(20, 20, 20, 0.4);
+}
+
+

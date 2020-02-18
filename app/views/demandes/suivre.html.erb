@@ -2,9 +2,11 @@
   <div class="demande-box">
     <% if current_user.email == @demande.email %>
       <div class="demande-left">
-        <h5 class="marg-vert">Bonjour <%= @demande.first_name %> !</h5>
-          La demande que vous avez réalisée avec le mail <%= @demande.email %> est en cours de traitement.
-          Pour l'instant, son statut est <%= @demande.status %>.
+        <div class="suivi-card">
+          <h5 class="marg-vert">Bonjour <%= @demande.first_name %> !</h5>
+          <p>La demande que vous avez réalisée avec le mail <%= @demande.email %> est en cours de traitement.</p>
+          <p>Pour l'instant, son statut est <%= @demande.status %>. Nos équipes vous contacterons bientôt par mail pour la suite.</p>
+        </div>
       </div>
     <% else %>
       <div class="demande-left">
@@ -15,10 +17,12 @@
 <% else %>
   <div class="demande-box">
     <div class="demande-left">
-      <h5>Bonjour !</h5>
-      <p>Votre demande est en cours de traitement par nos agents</p>
-      <p>Si vous souhaitez avoir plus d'infos sur son avancée et si vous ne l'avez pas déjà fait, vous pouvez créer un compte sur Poubelles Battle</p>
-      <%#= link_to "créer mon compte", new_user_registration_path, class: "bouton-valid bleu"  %>
+      <div class="suivi-card">
+        <h5>Bonjour et merci !</h5>
+        <p>Nous avons bien reçue votre demande ! 🥳 </p> <p>Elle est en cours de traitement par nos agents.</p>
+        <p>Si vous souhaitez avoir plus d'infos sur son avancée et si vous ne l'avez pas déjà fait, vous pouvez créer un compte sur Poubelles Battle en remplissant le formulaire sur cette page.</p>
+        <%#= link_to "créer mon compte", new_user_registration_path, class: "bouton-valid bleu"  %>
+      </div>
     </div>
     <div class="demande-registration-form">
       <%= render "devise/registrations/new" %>

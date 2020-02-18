@@ -6,13 +6,19 @@
 }
 .demande-left {
   padding: 0 50px;
-  width: 40%;
+  width: 45%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  h5 {
-    margin-bottom: 20px;
+  .suivi-card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(20, 20, 20, 0.2);
+    h5 {
+      margin-bottom: 25px;
+    }
   }
 }
 
@@ -21,5 +27,23 @@
   padding: 0 50px;
   .admin-box {
     width: auto;
+    .new-user-form {
+      background: white;
+      padding: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-radius: 20px 20px 0 0;
+      box-shadow: 0 -20px 20px rgba(20, 20, 20, 0.2);
+    }
   }
 }
+.user-form-line {
+  position: relative;
+  height: 2px;
+  width: 135%;
+  top: 35px;
+  box-shadow: 0 -5px 5px rgba(20, 20, 20, 0.4);
+}
+
+
