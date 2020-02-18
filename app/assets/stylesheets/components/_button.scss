@@ -1,6 +1,6 @@
 .bouton-valid {
-  color: #1EDD88;
-  background: white;
+  color: white;
+  background: #f7d037;
   text-decoration: none;
   border: solid 1px !important;
   margin: 0 20px;
@@ -10,8 +10,8 @@
   height: max-content;
   transition: background 0.3s ease;
   &:hover {
-    color: white;
-    background: #1EDD88;
+    color: #f7d037;
+    background: white;
     text-decoration: none;
     transition: background 0.3s ease;
   }
@@ -23,19 +23,19 @@ input.bouton-valid {
 }
 
 .rouge {
-  background: white;
-  color: #ff6b6b;
+  background: #ff6b6b;
+  color: white;
   border-color: #ff6b6b !important;
   &:hover {
-    background: #ff6b6b;
+    color: #ff6b6b;
   }
 }
 .bleu {
-  background: white;
-  color: blue;
-  border-color: blue !important;
+  background: #4545ea;
+  color: white;
+  border-color: #4545ea !important;
   &:hover {
-    background: blue;
+    color: #4545ea;
   }
 }
 

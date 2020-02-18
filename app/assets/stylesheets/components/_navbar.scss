@@ -66,10 +66,10 @@ a:hover {
 }
 
 .bouton-navbar {
-  color: #408A4E;
+  color: white;
   text-decoration: none;
-  border: solid 1px #408A4E;
-  background: white;
+  border: solid 1px #56C37B;
+  background: #56C37B;
   margin: 0 20px;
   padding: 5px 15px;
   font-size: 15px;
@@ -78,30 +78,32 @@ a:hover {
   transition: all 0.3s ease-in;
   &:hover {
     text-decoration: none;
-    color: white;
-    background-color: #408A4E;
+    color: #56C37B;
+    background-color: white;
     transition: all 0.3s ease-in;
   }
 }
 
 .green-nav {
-  color: #408A4E;
-  border: solid 1px #408A4E;
+  color: white;
+  border: solid 1px #56C37B;
   padding: 4px 15px;
   border-radius: 15px;
   margin: 0 0 0 15px;
-  background: white;
+  background: #56C37B;
   &:hover {
-    color: white;
-    background: #408A4E;
+    color: #56C37B;
+    background: white;
   }
 }
 
 .dropdown-menu.show {
   border-radius: 15px;
   margin-top: 8px;
+  background: white;
   &:hover {
-    color: #408A4E;
+    color: #56C37B;
     background: white;
   }
 }
+
