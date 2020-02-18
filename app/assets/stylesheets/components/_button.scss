@@ -2,7 +2,7 @@
   color: #1EDD88;
   background: white;
   text-decoration: none;
-  border: solid 1px #1EDD88;
+  border: solid 1px !important;
   margin: 0 20px;
   padding: 5px 15px;
   font-size: 15px;
@@ -33,7 +33,7 @@ input.bouton-valid {
 .bleu {
   background: white;
   color: blue;
-  border-color: blue;
+  border-color: blue !important;
   &:hover {
     background: blue;
   }
