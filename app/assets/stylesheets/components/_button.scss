@@ -25,7 +25,7 @@ input.bouton-valid {
 .rouge {
   background: white;
   color: #ff6b6b;
-  border-color: #ff6b6b;
+  border-color: #ff6b6b !important;
   &:hover {
     background: #ff6b6b;
   }

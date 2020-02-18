@@ -1,34 +1,39 @@
 <div class="admin-box">
-  <h2>Demande de Composteur</h2>
-  <%= simple_form_for(@demande) do |f| %>
-    <div class="formline-between mt-2">
-      <%= f.input :first_name, placeholder: 'Prénom' %>
-      <%= f.input :last_name, placeholder: 'Nom' %>
-    </div>
-    <div class="formline-between">
-      <%= f.input :email, placeholder: 'Email' %>
-      <%= f.input :phone_number, placeholder: 'Téléphone' %>
-    </div>
-    <%= f.input :address, placeholder: 'Adresse' %>
-    <%= f.input :photo, label: "Photo du lieu envisagé", as: :file %>
-    <%= f.input :logement_type,
-                label: 'Type de logement',
-                as: :radio_buttons,
-                collection: ["Maison", "Appartement"]%>
-    <%= f.input :inhabitant_type,
-                label: 'Propriétaire, Locataire ou Syndic ?',
-                as: :radio_buttons,
-                collection: ['Proprietaire', 'Locataire', 'Syndic'] %>
-    <%= f.input :potential_users,
-                label: "Connait d'autres personnes interessées par un composteur dans ce quartier ?",
-                as: :radio_buttons,
-                collection: [[true, "oui ! 🥳"], [false, "non..😕"]],
-                label_method: :last,
-                value_method: :first %>
-    <%= f.input :completed_form, label: "Formulaire complet ?", as: :boolean, checked_value: true, unchecked_value: false %>
-    <%= f.input :status, label: 'Status', as: :radio_buttons, collection: ["reçue", "refusée", "validée", "planifiée", "installée", "archivée"] %>
+  <div class="demande-compo-form">
+    <h2>Demande de Composteur</h2>
+    <%= simple_form_for(@demande) do |f| %>
+      <div class="formline-between mt-2">
+        <%= f.input :first_name, placeholder: 'Prénom' %>
+        <%= f.input :last_name, placeholder: 'Nom' %>
+      </div>
+      <div class="formline-between">
+        <%= f.input :email, placeholder: 'Email' %>
+        <%= f.input :phone_number, placeholder: 'Téléphone' %>
+      </div>
+      <%= f.input :address, placeholder: 'Adresse' %>
+      <%= f.input :photo, label: "Photo du lieu envisagé", as: :file %>
+      <%= f.input :logement_type,
+                  label: 'Type de logement',
+                  as: :radio_buttons,
+                  collection: ["Maison", "Appartement"]%>
+      <%= f.input :inhabitant_type,
+                  label: 'Propriétaire, Locataire ou Syndic ?',
+                  as: :radio_buttons,
+                  collection: ['Proprietaire', 'Locataire', 'Syndic'] %>
+      <%= f.input :potential_users,
+                  label: "Connait d'autres personnes interessées par un composteur dans ce quartier ?",
+                  as: :radio_buttons,
+                  collection: [[true, "oui ! 🥳"], [false, "non..😕"]],
+                  label_method: :last,
+                  value_method: :first %>
+      <%= f.input :completed_form, label: "Formulaire complet ?", as: :boolean, checked_value: true, unchecked_value: false %>
+      <%= f.input :status, label: 'Status', as: :radio_buttons, collection: ["reçue", "refusée", "validée", "planifiée", "installée", "archivée"] %>
 
-    <%= f.submit "Enregistrer les modifications !", class: "bouton-valid" %>
-    <%= link_to "Retour", :back, class: "bouton-valid rouge" %>
-  <% end %>
+      <div class="submit-formline-center">
+        <%= f.submit "Enregistrer les modifications !", class: "bouton-valid" %>
+        <%= link_to "Retour", :back, class: "bouton-valid rouge" %>
+      </div>
+    <% end %>
+    <div class="demande-form-line"></div>
+  </div>
 </div>
