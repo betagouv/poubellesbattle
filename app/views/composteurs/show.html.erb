@@ -43,7 +43,7 @@
         <%= simple_form_for(@notification) do |f| %>
           <%= f.input :notification_type, as: :string, input_html: { value: "depot", type:"hidden" }%>
           <%= f.input :content, as: :string, input_html: { value: "#{current_user.first_name} vient de faire un dépot !", type:"hidden" }%>
-          <%= f.submit "J'ai fais un dépot !", class: "signaler depot" %>
+          <%= f.submit "J'ai fait un dépot !", class: "signaler depot" %>
         <% end %>
         <%= simple_form_for(@notification) do |f| %>
           <%= f.input :notification_type, as: :string, input_html: { value: "anomalie", type:"hidden" }%>
