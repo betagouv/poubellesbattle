@@ -27,12 +27,12 @@
   <% else %>
     <%= render 'home-banner' %>
 
-    <div class="nice-map-box mt-3 text-center">
+    <div class="container mt-3 text-center">
     <!-- <p> Découvrez les 58 composteurs collectifs mise à disposition à Pau </p> -->
     <%#= render '/shared/search-bar' %>
      <div
       id="map"
-      style="
+      style="width: 1000px;
       height: 600px;"
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
@@ -42,7 +42,7 @@
 <% else %>
   <%= render 'home-banner' %>
 
-  <div class="nice-map-box mt-3 text-center">
+  <div class="container mt-3 text-center">
     <!-- <p> Découvrez les 58 composteurs collectifs mise à disposition à Pau </p> -->
     <%#= render '/shared/search-bar' %>
      <div
