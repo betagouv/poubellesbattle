@@ -15,7 +15,9 @@
     <% end %>
     <div class="stats">
       <div class="users-count">
-        <% if @users.count <= 1 %>
+        <% if @users.count == 0 %>
+          Personne n'est inscrit sur ce composteur pour l'instant..
+        <% elsif @users.count == 1 %>
           On dirait qu'il n'y a qu'un seul composteur inscrit..
         <% else %>
           Déjà <%= @users.count %> personnes utilisent ce composteur !
@@ -116,42 +118,47 @@
   </div>
   <div class="composteur-right">
     <div class="les-referents">
-      <% @referents.each do |referent| %>
-        <div class="referent-card">
-        <div class="star">⭐️</div>
-          <div class="referent-profile">
-            <h5><%= referent.first_name %></h5>
-            <% if referent.ok_phone %>
-              <p><%= referent.phone_number %></p>
-            <% end %>
-            <% if referent.ok_mail %>
-              <%= mail_to referent.email, "✉️", subject: "Votre composteur m'intéresse !", class: "email-button" %>
-            <% end %>
-            <% if user_signed_in? %>
-              <% if current_user.role == "référent" && current_user == referent %>
-                <%= simple_form_for(@notification) do |f| %>
-                  <%= f.input :notification_type, as: :string, input_html: { value: "message-ref", type:"hidden" }%>
-                  <%= f.input :content, as: :text, placeholder: "modifier mon message de présentation..." %>
-                  <%= f.submit "Enregistrer", class: "message-form-ref" %>
-                <% end %>
-                <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
-                  <div class="notification-card <%= @messages_notifications.notification_type %>">
-                    <p><%= referent.notifications.where(notification_type: "message-ref").last.content %></p>
-                  </div>
-                <% end %>
-              <% else %>
-                <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
-                  <div class="notification-card <%= @messages_notifications.notification_type %>">
-                    <p><%= referent.notifications.where(notification_type: "message-ref").last.content %></p>
-                  </div>
+      <% if @referents.count != 0 %>
+        <% @referents.each do |referent| %>
+          <div class="referent-card">
+          <div class="star">⭐️</div>
+            <div class="referent-profile">
+              <h5><%= referent.first_name %></h5>
+              <% if referent.ok_phone %>
+                <p><%= referent.phone_number %></p>
+              <% end %>
+              <% if referent.ok_mail %>
+                <%= mail_to referent.email, "✉️", subject: "Votre composteur m'intéresse !", class: "email-button" %>
+              <% end %>
+              <% if user_signed_in? %>
+                <% if current_user.role == "référent" && current_user == referent %>
+                  <%= simple_form_for(@notification) do |f| %>
+                    <%= f.input :notification_type, as: :string, input_html: { value: "message-ref", type:"hidden" }%>
+                    <%= f.input :content, as: :text, placeholder: "modifier mon message de présentation..." %>
+                    <%= f.submit "Enregistrer", class: "message-form-ref" %>
+                  <% end %>
+                  <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
+                    <div class="notification-card <%= @messages_notifications.notification_type %>">
+                      <p><%= referent.notifications.where(notification_type: "message-ref").last.content %></p>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
+                    <div class="notification-card <%= @messages_notifications.notification_type %>">
+                      <p><%= referent.notifications.where(notification_type: "message-ref").last.content %></p>
+                    </div>
+                  <% end %>
                 <% end %>
               <% end %>
-            <% end %>
-            <%# end %>
+              <%# end %>
+            </div>
           </div>
-        </div>
+        <% end %>
+      <% else %>
+        <div class="referent-card">Pas de référent sur ce composteur pour l'instant ..</div>
       <% end %>
     </div>
+
     <div class="les-messages">
       <% if @messages_admin %>
         <div class="message-date"><%= l @messages_admin.created_at, format: ("Le %d %B %Y") %></div>
