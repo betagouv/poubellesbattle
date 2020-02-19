@@ -54,3 +54,22 @@ input.bouton-valid {
     background: #ff8f00;
   }
 }
+
+
+// becoming a referent in compostage
+
+.becoming-or-not-referent {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  .user-action {
+    padding: 5px 15px;
+    margin: 5px;
+    background: red;
+    border-radius: 20px;
+    a {
+      color: white;
+    }
+  }
+}
+

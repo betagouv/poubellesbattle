@@ -57,6 +57,58 @@ class ComposteursController < ApplicationController
     @composteur = Composteur.find(params[:id])
   end
 
+  def inscription_composteur
+    @user = current_user
+    @composteur = Composteur.find(params[:id])
+    @user.composteur_id = @composteur.id
+    if @user.save
+      redirect_to composteur_path
+      flash[:notice] = "Bienvenue dans le composteur #{@composteur.name} !"
+    else
+      render :show
+      flash[:notice] = "Oups, une erreur s'est produite.."
+    end
+  end
+
+  def desinscription_composteur
+    @user = current_user
+    @composteur = Composteur.find(params[:id])
+    @user.composteur_id = nil
+    if @user.save
+      redirect_to composteur_path
+      flash[:notice] = "Vous n'êtes plus inscrit à ce composteur, vous pouvez maintenant vous inscrire à un autre !"
+    else
+      render :show
+      flash[:notice] = "Oups, une erreur s'est produite.."
+    end
+  end
+
+  def referent_composteur
+    @user = current_user
+    @composteur = Composteur.find(params[:id])
+    @user.role = "référent"
+    if @user.save
+      redirect_to composteur_path
+      flash[:notice] = "Bravo ! Vous êtes maintenant référent du composteur #{@composteur.name} !"
+    else
+      render :show
+      flash[:notice] = "Oups, une erreur s'est produite.."
+    end
+  end
+
+  def non_referent_composteur
+    @user = current_user
+    @composteur = Composteur.find(params[:id])
+    @user.role = nil
+    if @user.save
+      redirect_to composteur_path
+      flash[:notice] = "Vous n'êtes plus référent !"
+    else
+      render :show
+      flash[:notice] = "Oups, une erreur s'est produite.."
+    end
+  end
+
   def update
     @composteur = Composteur.find(params[:id])
     if @composteur.update(composteur_params)
