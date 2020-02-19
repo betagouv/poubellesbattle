@@ -1,7 +1,9 @@
 <div class="composteur-box">
   <div class="composteur-left">
-    <% if current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
-      <%= link_to "modifier", edit_composteur_path(@composteur), class: "bouton-navbar" %>
+    <% if user_signed_in? %>
+      <% if current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
+        <%= link_to "modifier", edit_composteur_path(@composteur), class: "bouton-navbar" %>
+      <% end %>
     <% end %>
     <h1><%= @composteur.name %></h1>
     <p><%= @composteur.address %></p>
@@ -49,65 +51,67 @@
       </div>
 
     </div>
-    <% if current_user.composteur_id == @composteur.id %>
-      <div class="depot-anomalie">
-        <%= simple_form_for(@notification) do |f| %>
-          <%= f.input :notification_type, as: :string, input_html: { value: "depot", type:"hidden" }%>
-          <%= f.input :content, as: :string, input_html: { value: "#{current_user.first_name} vient de faire un dépot !", type:"hidden" }%>
-          <%= f.submit "J'ai fait un dépot !", class: "signaler depot" %>
-        <% end %>
-        <%= simple_form_for(@notification) do |f| %>
-          <%= f.input :notification_type, as: :string, input_html: { value: "anomalie", type:"hidden" }%>
-          <%= f.input :content, as: :string, input_html: { value: "Oh non.. on vient de nous signaler une anomalie.. 😱", type:"hidden" }%>
-          <%= f.submit "Signaler une anomalie ...", class: "signaler anomalie" %>
-        <% end %>
-      </div>
-      <div class="message-form">
-        <%= simple_form_for(@notification) do |f| %>
-          <%= f.input :notification_type, as: :string, input_html: { value: "message", type:"hidden" }%>
-          <%= f.input :content, as: :text, placeholder: "votre message..."%>
-          <%= f.submit "✏️", class: "signaler message" %>
-        <% end %>
-      </div>
-      <div class="message-board">
-        <% @notifications.each do |notification| %>
-          <% if notification.notification_type == "welcome" || notification.notification_type == "depot" || notification.notification_type == "anomalie" || notification.notification_type == "message" %>
-            <% if notification.user_id != current_user.id || notification.notification_type == "anomalie" %>
-              <div class="notif-block">
-                <div class="notif-filler"></div>
-                <div class="notif-with-name">
-                  <div class="notif-username name-right">
-                    <% if notification.notification_type == "anomalie" %>
-                      🤿
-                    <% else %>
-                      <%= notification.user.first_name %>
-                    <% end %>
-                  </div>
-                  <div class="notification-card notification-card-current-user <%= notification.notification_type %>">
-                    <div class="notif-content"><p><%= notification.content %></p></div>
-                    <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
-                  </div>
-                </div>
-              </div>
-            <% else %>
-              <div class="notif-block">
-                <div class="notif-with-name">
-                  <div class="notif-username name-left">Moi</div>
-                  <div class="notification-card <%= notification.notification_type %>">
-                    <% if notification.notification_type == "depot" %>
-                      <div class="notif-content"><p>Je viens de faire un dépot ! 👌 </p></div>
-                    <% else %>
+    <% if user_signed_in? %>
+      <% if current_user.composteur_id == @composteur.id %>
+        <div class="depot-anomalie">
+          <%= simple_form_for(@notification) do |f| %>
+            <%= f.input :notification_type, as: :string, input_html: { value: "depot", type:"hidden" }%>
+            <%= f.input :content, as: :string, input_html: { value: "#{current_user.first_name} vient de faire un dépot !", type:"hidden" }%>
+            <%= f.submit "J'ai fait un dépot !", class: "signaler depot" %>
+          <% end %>
+          <%= simple_form_for(@notification) do |f| %>
+            <%= f.input :notification_type, as: :string, input_html: { value: "anomalie", type:"hidden" }%>
+            <%= f.input :content, as: :string, input_html: { value: "Oh non.. on vient de nous signaler une anomalie.. 😱", type:"hidden" }%>
+            <%= f.submit "Signaler une anomalie ...", class: "signaler anomalie" %>
+          <% end %>
+        </div>
+        <div class="message-form">
+          <%= simple_form_for(@notification) do |f| %>
+            <%= f.input :notification_type, as: :string, input_html: { value: "message", type:"hidden" }%>
+            <%= f.input :content, as: :text, placeholder: "votre message..."%>
+            <%= f.submit "✏️", class: "signaler message" %>
+          <% end %>
+        </div>
+        <div class="message-board">
+          <% @notifications.each do |notification| %>
+            <% if notification.notification_type == "welcome" || notification.notification_type == "depot" || notification.notification_type == "anomalie" || notification.notification_type == "message" %>
+              <% if notification.user_id != current_user.id || notification.notification_type == "anomalie" %>
+                <div class="notif-block">
+                  <div class="notif-filler"></div>
+                  <div class="notif-with-name">
+                    <div class="notif-username name-right">
+                      <% if notification.notification_type == "anomalie" %>
+                        🤿
+                      <% else %>
+                        <%= notification.user.first_name %>
+                      <% end %>
+                    </div>
+                    <div class="notification-card notification-card-current-user <%= notification.notification_type %>">
                       <div class="notif-content"><p><%= notification.content %></p></div>
-                    <% end %>
-                    <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
+                      <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
+                    </div>
                   </div>
                 </div>
-                <div class="notif-filler"></div>
-              </div>
+              <% else %>
+                <div class="notif-block">
+                  <div class="notif-with-name">
+                    <div class="notif-username name-left">Moi</div>
+                    <div class="notification-card <%= notification.notification_type %>">
+                      <% if notification.notification_type == "depot" %>
+                        <div class="notif-content"><p>Je viens de faire un dépot ! 👌 </p></div>
+                      <% else %>
+                        <div class="notif-content"><p><%= notification.content %></p></div>
+                      <% end %>
+                      <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
+                    </div>
+                  </div>
+                  <div class="notif-filler"></div>
+                </div>
+              <% end %>
             <% end %>
           <% end %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     <% end %>
   </div>
   <div class="composteur-right">
@@ -123,23 +127,24 @@
             <% if referent.ok_mail %>
               <%= mail_to referent.email, "✉️", subject: "Votre composteur m'intéresse !", class: "email-button" %>
             <% end %>
-
-            <% if current_user.role == "référent" && current_user == referent %>
-              <%= simple_form_for(@notification) do |f| %>
-                <%= f.input :notification_type, as: :string, input_html: { value: "message-ref", type:"hidden" }%>
-                <%= f.input :content, as: :text, placeholder: "modifier mon message de présentation..." %>
-                <%= f.submit "Enregistrer", class: "message-form-ref" %>
-              <% end %>
-              <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
-                <div class="notification-card <%= @messages_notifications.notification_type %>">
-                  <p><%= referent.notifications.where(notification_type: "message-ref").last.content %></p>
-                </div>
-              <% end %>
-            <% else %>
-              <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
-                <div class="notification-card <%= @messages_notifications.notification_type %>">
-                  <p><%= referent.notifications.where(notification_type: "message-ref").last.content %></p>
-                </div>
+            <% if user_signed_in? %>
+              <% if current_user.role == "référent" && current_user == referent %>
+                <%= simple_form_for(@notification) do |f| %>
+                  <%= f.input :notification_type, as: :string, input_html: { value: "message-ref", type:"hidden" }%>
+                  <%= f.input :content, as: :text, placeholder: "modifier mon message de présentation..." %>
+                  <%= f.submit "Enregistrer", class: "message-form-ref" %>
+                <% end %>
+                <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
+                  <div class="notification-card <%= @messages_notifications.notification_type %>">
+                    <p><%= referent.notifications.where(notification_type: "message-ref").last.content %></p>
+                  </div>
+                <% end %>
+              <% else %>
+                <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
+                  <div class="notification-card <%= @messages_notifications.notification_type %>">
+                    <p><%= referent.notifications.where(notification_type: "message-ref").last.content %></p>
+                  </div>
+                <% end %>
               <% end %>
             <% end %>
             <%# end %>
