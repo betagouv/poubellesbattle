@@ -20,6 +20,7 @@ class ComposteursController < ApplicationController
         lat: compo.latitude,
         lng: compo.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { compo: compo })
+        # image_url: helpers.asset_url('favicon-32x32.png')
       }
     end
   end
