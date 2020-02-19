@@ -74,6 +74,8 @@ class ComposteursController < ApplicationController
   def desinscription_composteur
     @user = current_user
     @composteur = Composteur.find(params[:id])
+    # supprimer les messages quand on quitte un composteur ? Mieux, non ?
+    # @user.notifications = nil
     @user.composteur_id = nil
     if @user.save
       redirect_to composteur_path
