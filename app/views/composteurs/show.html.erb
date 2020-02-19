@@ -24,13 +24,15 @@
         <% end %>
         <div class="becoming-or-not-referent">
           <% if user_signed_in? %>
-            <% if current_user.composteur_id == nil %>
-              <div class="user-action"><%= link_to("m'inscrire", inscription_path(@composteur), method: :post) %></div>
-            <% elsif current_user.composteur_id == @composteur.id && current_user.role == nil %>
-              <div class="user-action"><%= link_to("devenir référent de ce composteur", referent_path(@composteur), method: :post) %></div>
-              <div class="user-action"><%= link_to("je veux me désinscrire de ce composteur", desinscription_path(@composteur), method: :post) %></div>
-            <% elsif current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
-              <div class="user-action"><%= link_to("je ne veux plus être référent de ce composteur", non_referent_path(@composteur), method: :post) %></div>
+            <% if current_user.role != "admin" %>
+              <% if current_user.composteur_id == nil %>
+                <div class="user-action"><%= link_to("m'inscrire", inscription_path(@composteur), method: :post) %></div>
+              <% elsif current_user.composteur_id == @composteur.id && current_user.role == nil %>
+                <div class="user-action"><%= link_to("devenir référent de ce composteur", referent_path(@composteur), method: :post) %></div>
+                <div class="user-action"><%= link_to("je veux me désinscrire de ce composteur", desinscription_path(@composteur), method: :post) %></div>
+              <% elsif current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
+                <div class="user-action"><%= link_to("je ne veux plus être référent de ce composteur", non_referent_path(@composteur), method: :post) %></div>
+              <% end %>
             <% end %>
           <% end %>
         </div>
