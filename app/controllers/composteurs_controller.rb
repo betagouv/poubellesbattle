@@ -121,6 +121,12 @@ class ComposteursController < ApplicationController
     end
   end
 
+  def destroy
+    @composteur = Composteur.find(params[:id])
+    @composteur.destroy
+    redirect_to composteurs_path
+  end
+
   def send_email
     @composteur = Composteur.find(params[:id])
       if !@composteur.referent_email.nil?

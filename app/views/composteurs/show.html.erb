@@ -41,7 +41,7 @@
     <div class="les-users">
       <% @users.each do |user| %>
         <div class="user-card" style="<% if user.role == "référent"%><%=  'background: darkorange' %><% end %>">
-          <%= user.first_name %>
+          <%= ["🧅","🍌","🥦","🍎","🥨","🥖","🍁","🌼"].sample %><%= user.first_name %>
         </div>
       <% end %>
     </div>
