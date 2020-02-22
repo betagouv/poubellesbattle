@@ -1,55 +1,67 @@
 <% if current_user.role == "admin" || current_user.role == "super_admin" %>
-  <div class="admin-box">
-    <h5 class="marg-vert">Demandes en cours</h5>
-    <div class="admin-list">
-    <% @demandes.each do |demande| %>
-      <div class="demande-container">
-        <div class="buttons-demande">
-          <%= link_to "✏️", edit_demande_path(demande), class: "button-demande" %>
-          <%= mail_to demande.email, "✉️", subject: "Votre demande de composteur.", class: "button-demande" %>
-          <%= link_to "🗑", demande_path(demande), method: :delete, data: {confirm: "Vous êtes sur le point de suprimer une demande de composteur. Etes-vous certain ?"}, class: "button-demande" %>
-        </div>
-        <% if demande.status == "reçue" || demande.status == "refusée" %>
-          <div class="status non-validee"></div>
-        <% else %>
-          <div class="status validee"></div>
-        <% end %>
-        <div class="demande-card">
-          <% if demande.photo.attached? %>
-            <%= cl_image_tag demande.photo.key, height: 200, width: 260, crop: :fill %>
-          <% else %>
-            <%= image_tag 'PB_logo.png' %>
-          <% end %>
-          <div class="demande-name"><%= demande.first_name %> <%= demande.last_name %></div>
-          <!-- <div class="demande-details"><%#= demande.created_at.strftime("Date du %d/%m/%Y")  %></div> -->
-          <% if demande.status == "reçue" || demande.status == "refusée" %>
-            <div class="demande-details"><%= demande.status %> le <%= demande.updated_at.strftime("%d/%m/%Y") %></div>
-          <% else %>
-            <div class="demande-details"><%= demande.status %></div>
-          <% end %>
-          <div class="demande-details"><%= demande.phone_number %></div>
-          <div class="demande-details"><%= demande.address %></div>
-          <% if demande.planification_date != nil %>
-            <div class="demande-details">
-              <div class="planification_date">
-                <%= demande.planification_date.strftime("Planifiée le %d/%m/%Y") %>
-                <%= simple_form_for(demande) do |f| %>
-                  <%= f.input :status, as: :string, input_html: { value: "validée", type:"hidden" }%>
-                  <%= f.input :planification_date, as: :string, input_html: { value: "", type:"hidden" }%>
-                  <%= f.submit "❌", class: "bouton-valid" %>
-                <% end %>
-              </div>
+  <div class="demandes-box">
+    <div class="demandes-compostage">
+      <h5 class="marg-vert">Demandes de site de compostages</h5>
+      <div class="admin-list">
+        <% @demandes.each do |demande| %>
+          <div class="demande-container">
+            <div class="buttons-demande">
+              <%= link_to "✏️", edit_demande_path(demande), class: "button-demande" %>
+              <%= mail_to demande.email, "✉️", subject: "Votre demande de composteur.", class: "button-demande" %>
+              <%= link_to "🗑", demande_path(demande), method: :delete, data: {confirm: "Vous êtes sur le point de suprimer une demande de composteur. Etes-vous certain ?"}, class: "button-demande" %>
             </div>
-          <% else %>
-            <%= simple_form_for(demande) do |f| %>
-              <%= f.input :status, as: :string, input_html: { value: "planifiée", type:"hidden" }%>
-              <%= f.input :planification_date, as: :string, input_html: { class: "datepicker" }, placeholder: "Installation" %>
-              <div><%= f.submit "🆗", class: "bouton-ok" %></div>
+            <% if demande.status == "reçue" || demande.status == "refusée" %>
+              <div class="status non-validee"></div>
+            <% else %>
+              <div class="status validee"></div>
             <% end %>
-          <% end %>
-        </div>
+            <div class="demande-card">
+              <% if demande.photo.attached? %>
+                <%= cl_image_tag demande.photo.key, height: 200, width: 260, crop: :fill %>
+              <% else %>
+                <%= image_tag 'PB_logo.png' %>
+              <% end %>
+              <div class="demande-name"><%= demande.first_name %> <%= demande.last_name %></div>
+              <!-- <div class="demande-details"><%#= demande.created_at.strftime("Date du %d/%m/%Y")  %></div> -->
+              <% if demande.status == "reçue" || demande.status == "refusée" %>
+                <div class="demande-details"><%= demande.status %> le <%= demande.updated_at.strftime("%d/%m/%Y") %></div>
+              <% else %>
+                <div class="demande-details"><%= demande.status %></div>
+              <% end %>
+              <div class="demande-details"><%= demande.phone_number %></div>
+              <div class="demande-details"><%= demande.address %></div>
+              <% if demande.planification_date != nil %>
+                <div class="demande-details">
+                  <div class="planification_date">
+                    <%= demande.planification_date.strftime("Planifiée le %d/%m/%Y") %>
+                    <%= simple_form_for(demande) do |f| %>
+                      <%= f.input :status, as: :string, input_html: { value: "validée", type:"hidden" }%>
+                      <%= f.input :planification_date, as: :string, input_html: { value: "", type:"hidden" }%>
+                      <%= f.submit "❌", class: "bouton-valid" %>
+                    <% end %>
+                  </div>
+                </div>
+              <% else %>
+                <%= simple_form_for(demande) do |f| %>
+                  <%= f.input :status, as: :string, input_html: { value: "planifiée", type:"hidden" }%>
+                  <%= f.input :planification_date, as: :string, input_html: { class: "datepicker" }, placeholder: "Installation" %>
+                  <div><%= f.submit "🆗", class: "bouton-ok" %></div>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
       </div>
-    <% end %>
+    </div>
+    <div class="demandes-referents">
+      <h5 class="marg-vert">Demandes référents</h5>
+      <% @notifications.each do |notification| %>
+        <div class="demande-referent">
+          <%= notification.content %>
+          <%= link_to "valider", validation_referent_path(notification), params: notification.user_id, method: :post %>
+          <%= link_to "refuser", notification_path(notification), method: :delete %>
+        </div>
+      <% end %>
     </div>
   </div>
 <% else %>

@@ -73,3 +73,20 @@ input.bouton-valid {
   }
 }
 
+
+/* */
+
+.devenir-ref-btn {
+  background: aquamarine;
+  padding: 5px 12px;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(30, 30, 30, 0.5);
+  margin: 20px 0 0 0;
+  a {
+    text-decoration: none;
+    &:hover {
+      color: black;
+    }
+  }
+}
+

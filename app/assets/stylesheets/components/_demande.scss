@@ -1,3 +1,21 @@
+.demandes-box {
+  display: flex;
+  width: 90vw;
+  margin-top: 200px;
+  justify-content: space-evenly;
+  .demandes-compostage {
+    width: 60%;
+    text-align: center;
+    .admin-list {
+      width: 100%;
+    }
+  }
+  .demandes-referents {
+    width: 30%;
+    text-align: center;
+  }
+}
+
 .demande-box {
   display: flex;
   justify-content: center;

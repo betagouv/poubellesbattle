@@ -20,7 +20,12 @@ class DemandesController < ApplicationController
   end
 
   def index
-    @demandes = Demande.all.order(updated_at: :desc)
+    if current_user.role == "admin" || current_user.role == "super_admin"
+      @notifications = Notification.where(notification_type: "demande-référent")
+      @demandes = Demande.all.order(updated_at: :desc)
+    else
+      redirect_to composteurs_path
+    end
   end
 
   def show
