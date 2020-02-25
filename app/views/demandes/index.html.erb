@@ -1,7 +1,7 @@
 <% if current_user.role == "admin" || current_user.role == "super_admin" %>
   <div class="demandes-box">
-    <div class="demandes-compostage">
-      <h5 class="marg-vert">Demandes de site de compostages</h5>
+    <div class="demandes-compostage white-bg">
+      <h5 class="marg-vert">Demandes d'installation de site de compostage</h5>
       <div class="admin-list">
         <% @demandes.each do |demande| %>
           <div class="demande-container">
@@ -53,13 +53,15 @@
         <% end %>
       </div>
     </div>
-    <div class="demandes-referents">
-      <h5 class="marg-vert">Demandes référents</h5>
+    <div class="demandes-referents white-bg">
+      <h5 class="marg-vert marg-vert-bottom">Ces utilisateurs aimeraient devenir référents</h5>
       <% @notifications.each do |notification| %>
         <div class="demande-referent">
-          <%= notification.content %>
-          <%= link_to "valider", validation_referent_path(notification), params: notification.user_id, method: :post %>
-          <%= link_to "refuser", notification_path(notification), method: :delete %>
+          <p><%= @users.find(notification.user_id.to_i).first_name %> <%= @users.find(notification.user_id.to_i).last_name %> sur le site <%= link_to "#{@composteurs.find(notification.content.to_i).name}", composteur_path(@composteurs.find(notification.content.to_i)) %></p>
+          <div class="valid-refus">
+            <%= link_to "valider", validation_referent_path(notification), params: notification.user_id, method: :post, class: "validee" %>
+            <%= link_to "refuser", notification_path(notification), method: :delete, class: "non-validee" %>
+          </div>
         </div>
       <% end %>
     </div>

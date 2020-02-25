@@ -90,7 +90,7 @@ class ComposteursController < ApplicationController
     @user = current_user
     @composteur = Composteur.find(params[:id])
     if @composteur.users.where(role: "référent").count >= 0
-      demande_ref = Notification.new(notification_type: "demande-référent", content: "#{@user.first_name} #{@user.last_name} aimerait devenir référent•e du site #{@composteur.name}", user_id: @user.id)
+      demande_ref = Notification.new(notification_type: "demande-référent", content: "#{@composteur.id}", user_id: @user.id)
       if demande_ref.save!
         redirect_to composteur_path
         flash[:notice] = "Votre demande a été envoyée"

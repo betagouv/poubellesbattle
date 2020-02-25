@@ -23,6 +23,8 @@ class DemandesController < ApplicationController
     if current_user.role == "admin" || current_user.role == "super_admin"
       @notifications = Notification.where(notification_type: "demande-référent")
       @demandes = Demande.all.order(updated_at: :desc)
+      @composteurs = Composteur.all
+      @users = User.all
     else
       redirect_to composteurs_path
     end
