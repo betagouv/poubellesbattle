@@ -122,6 +122,11 @@
     <% end %>
   </div>
   <div class="composteur-right">
+    <% if user_signed_in? == false %>
+      <div class="composteur-registration-form">
+        <%= render "devise/registrations/new" %>
+      </div>
+    <% end %>
     <div class="les-referents white-bg">
       <h3>référent•e•s</h3>
       <button id="ref-popover" type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Etre référent•e implique de grandes responsabilités.">

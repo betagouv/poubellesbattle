@@ -62,6 +62,9 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  height: calc(100vh - 160px);
+  align-items: center;
+  margin: 120px 0 0 0;
   .suivi-card {
     background: white;
     padding: 20px;
@@ -75,11 +78,14 @@
 
 .demande-registration-form {
   width: 30%;
-  padding: 0 50px;
-  .admin-box {
-    width: auto;
-  }
+  height: calc(100vh - 160px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 120px 0 0 0;
 }
+
+
 .new-user-form {
   background: white;
   padding: 30px;
