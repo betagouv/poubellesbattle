@@ -29,8 +29,8 @@ class ComposteursController < ApplicationController
     @composteur = Composteur.find(params[:id])
     @composteur.installation_date ? @time_left = 300 - ((Time.now - @composteur.installation_date.to_time)/86400).modulo(300).round : @time_left = 300
     # users du composteur = les referents + les utilisateurs non referents
-    @users = @composteur.users # tous les utilisateurs du site
-    @referents = @users.where(role: "référent") # les referents du composteur
+    @users = @composteur.users.order(role: :asc) # tous les utilisateurs du site
+    @referents = @users.where(role: "référent").order(ok_mail: :asc).order(ok_phone: :asc) # les referents du composteur
     @not_referents = @users.where(role: "") # les non-referents
 
     @notification = Notification.new
@@ -75,7 +75,7 @@ class ComposteursController < ApplicationController
     @user = current_user
     @composteur = Composteur.find(params[:id])
     # supprimer les messages quand on quitte un composteur ? Mieux, non ?
-    @user.notifications = nil
+    @user.notifications.destroy_all
     @user.composteur_id = nil
     if @user.save
       redirect_to composteur_path
