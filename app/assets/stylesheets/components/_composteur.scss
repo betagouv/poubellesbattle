@@ -67,6 +67,17 @@
   }
 }
 
+.no-ref {
+  width: 100%;
+  height: max-content;
+  padding: 23px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border-radius: 10px;
+  background: white;
+  text-align: center;
+}
 
 .les-users {
   width: 100%;

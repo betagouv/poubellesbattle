@@ -8,7 +8,7 @@
                 label_method: :last,
                 value_method: :first %>
   <%#= f.input :bacs_number, placeholder: 'Nombre de bacs' %>
-  <%= f.input :status, placeholder: 'Son status' %>
+  <%= f.input :status, placeholder: 'Son statut', as: :radio_buttons, collection: ["installation prévue", "ouvert", "fermé"] %>
   <%= f.input :volume, placeholder: 'Volume' %>
   <%= f.input :residence_name, placeholder: 'Nom de la résidence' %>
   <%= f.input :commentaire, as: :text, placeholder: 'Commentaire' %>

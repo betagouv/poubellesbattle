@@ -34,6 +34,13 @@ class NotificationsController < ApplicationController
     end
   end
 
+  def destroy
+    @notification = Notification.find(params[:id])
+    @notification.destroy
+    redirect_back(fallback_location: demandes_path)
+    flash[:notice] = "Notification supprimée"
+  end
+
   private
 
   def notification_params

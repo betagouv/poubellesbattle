@@ -1,3 +1,54 @@
+.demandes-box {
+  display: flex;
+  width: 100vw;
+  margin-top: 200px;
+  justify-content: space-evenly;
+  .demandes-compostage {
+    width: 60%;
+    text-align: center;
+    .admin-list {
+      width: 100%;
+    }
+  }
+  .demandes-referents {
+    width: 25%;
+    text-align: center;
+    .demande-referent {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: max-content;
+      background: white;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 5px 15px;
+      box-shadow: 0 0px 5px rgba(40, 40, 40, 0.2);
+      box-shadow: 0 0 5px rgba(40, 40, 40, 0.2);
+      .valid-refus {
+        font-size: 12px;
+        display:flex;
+        flex-direction: column;
+        width: min-content;
+        height: max-content;
+        a {
+          padding: 3px 12px;
+          margin: 5px 0;
+          border-radius: 5px;
+        }
+      }
+      p {
+        margin: 0;
+        a {
+          font-weight: bold;
+          &:hover {
+            color: #56c37b;
+          }
+        }
+      }
+    }
+  }
+}
+
 .demande-box {
   display: flex;
   justify-content: center;
@@ -29,15 +80,15 @@
     width: auto;
   }
 }
-    .new-user-form {
-      background: white;
-      padding: 30px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border-radius: 20px 20px 0 0;
-      box-shadow: 0 -20px 20px rgba(20, 20, 20, 0.2);
-    }
+.new-user-form {
+  background: white;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -20px 20px rgba(20, 20, 20, 0.2);
+}
 .user-form-line {
   position: relative;
   height: 2px;

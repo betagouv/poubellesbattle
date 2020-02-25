@@ -75,7 +75,7 @@ class ComposteursController < ApplicationController
     @user = current_user
     @composteur = Composteur.find(params[:id])
     # supprimer les messages quand on quitte un composteur ? Mieux, non ?
-    # @user.notifications = nil
+    @user.notifications = nil
     @user.composteur_id = nil
     if @user.save
       redirect_to composteur_path
@@ -89,14 +89,34 @@ class ComposteursController < ApplicationController
   def referent_composteur
     @user = current_user
     @composteur = Composteur.find(params[:id])
-    @user.role = "référent"
-    if @user.save
-      redirect_to composteur_path
-      flash[:notice] = "Bravo ! Vous êtes maintenant référent du composteur #{@composteur.name} !"
-    else
-      render :show
-      flash[:notice] = "Oups, une erreur s'est produite.."
+    if @composteur.users.where(role: "référent").count >= 0
+      demande_ref = Notification.new(notification_type: "demande-référent", content: "#{@composteur.id}", user_id: @user.id)
+      if demande_ref.save!
+        redirect_to composteur_path
+        flash[:notice] = "Votre demande a été envoyée"
+      else
+        redirect_to composteur_path
+        flash[:notice] = "Votre demande n'a pas été envoyée.."
+
+      end
     end
+    # @user.role = "référent"
+    # if @user.save
+    #   redirect_to composteur_path
+    #   flash[:notice] = "Bravo ! Vous êtes maintenant référent du composteur #{@composteur.name} !"
+    # else
+    #   render :show
+    #   flash[:notice] = "Oups, une erreur s'est produite.."
+    # end
+  end
+
+  def validation_referent_composteur
+    notification = Notification.find(params[:id])
+    @user = User.find(notification.user_id)
+    @user.role = "référent"
+    @user.save
+    notification.destroy
+    redirect_to demandes_path
   end
 
   def non_referent_composteur

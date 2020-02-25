@@ -16,11 +16,11 @@
     <div class="stats">
       <div class="users-count">
         <% if @users.count == 0 %>
-          Personne n'est inscrit sur ce composteur pour l'instant..
+          Personne n'est inscrit sur ce site de compostostage pour l'instant..
         <% elsif @users.count == 1 %>
-          On dirait qu'il n'y a qu'un seul composteur inscrit..
+          On dirait qu'il n'y a qu'un seul adepte du compostage inscrit..
         <% else %>
-          Déjà <%= @users.count %> personnes utilisent ce composteur !
+          Déjà <%= @users.count %> personnes sont inscrites sur ce site de compostage !
         <% end %>
         <div class="becoming-or-not-referent">
           <% if user_signed_in? %>
@@ -28,7 +28,9 @@
               <% if current_user.composteur_id == nil %>
                 <div class="user-action"><%= link_to("m'inscrire", inscription_path(@composteur), method: :post) %></div>
               <% elsif current_user.composteur_id == @composteur.id && current_user.role == nil %>
-                <div class="user-action"><%= link_to("devenir référent de ce composteur", referent_path(@composteur), method: :post) %></div>
+                <% if current_user.notifications.where(notification_type: "demande-référent").count > 1 %>
+                  <div class="user-action"><%= link_to("devenir référent de ce composteur", referent_path(@composteur), method: :post) %></div>
+                <% end %>
                 <div class="user-action"><%= link_to("je veux me désinscrire de ce composteur", desinscription_path(@composteur), method: :post) %></div>
               <% elsif current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
                 <div class="user-action"><%= link_to("je ne veux plus être référent de ce composteur", non_referent_path(@composteur), method: :post) %></div>
@@ -73,7 +75,7 @@
           <%= simple_form_for(@notification) do |f| %>
             <%= f.input :notification_type, as: :string, input_html: { value: "message", type:"hidden" }%>
             <%= f.input :content, as: :text, placeholder: "votre message..."%>
-            <%= f.submit "✏️", class: "signaler message" %>
+            <%= f.submit "Envoyer", class: "signaler message" %>
           <% end %>
         </div>
         <div class="message-board">
@@ -157,7 +159,15 @@
           </div>
         <% end %>
       <% else %>
-        <div class="referent-card">Pas de référent sur ce composteur pour l'instant ..</div>
+        <div class="referent-card no-ref">Pas de référent sur ce composteur pour l'instant ..
+        <% if user_signed_in? %>
+          <%if current_user.composteur_id == @composteur.id && current_user.role == nil %>
+            <% if current_user.notifications.where(notification_type: "demande-référent").count < 1 %>
+              <div class="devenir-ref-btn"><%= link_to("devenir référent", referent_path(@composteur), method: :post) %></div>
+            <% end %>
+          <% end %>
+        <% end %>
+        </div>
       <% end %>
     </div>
 
