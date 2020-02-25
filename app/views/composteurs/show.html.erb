@@ -137,6 +137,7 @@
           <div class="referent-card">
           <!-- <div class="star">⭐️</div> -->
             <!-- <div class="referent-profile"> -->
+              <div class="user-action"><%= link_to("retirer role 'référent'", non_referent_path(@composteur, referent_id: referent), method: :post) %></div>
               <h5><%= referent.first_name %></h5>
               <% if referent.ok_phone %>
                 <p><%= referent.phone_number %></p>

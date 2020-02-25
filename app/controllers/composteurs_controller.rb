@@ -137,7 +137,11 @@ class ComposteursController < ApplicationController
   end
 
   def non_referent_composteur
-    @user = current_user
+    if current_user.role == "admin"
+      @user = User.find(params[:referent_id])
+    else
+      @user = current_user
+    end
     @composteur = Composteur.find(params[:id])
     @user.role = nil
     if @user.save
