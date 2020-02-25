@@ -14,6 +14,10 @@ import { initMapbox } from '../plugins/init_mapbox';
 
 initMapbox();
 
+$(function () {
+  $('[data-toggle="popover"]').popover()
+})
+
 // if (document.querySelector('#meal_address')) {
 //   initAutocomplete();
 // }

@@ -20,7 +20,7 @@
         <% elsif @users.count == 1 %>
           On dirait qu'il n'y a qu'un seul adepte du compostage inscrit..
         <% else %>
-          Déjà <%= @users.count %> personnes sont inscrites sur ce site de compostage !
+          Déjà <%= @users.count %> adeptes du compostages inscrit•e•s sur ce site !
         <% end %>
         <div class="becoming-or-not-referent">
           <% if user_signed_in? %>
@@ -28,7 +28,7 @@
               <% if current_user.composteur_id == nil %>
                 <div class="user-action"><%= link_to("m'inscrire", inscription_path(@composteur), method: :post) %></div>
               <% elsif current_user.composteur_id == @composteur.id && current_user.role == nil %>
-                <% if current_user.notifications.where(notification_type: "demande-référent").count > 1 %>
+                <% if current_user.notifications.where(notification_type: "demande-référent").count < 1 %>
                   <div class="user-action"><%= link_to("devenir référent de ce composteur", referent_path(@composteur), method: :post) %></div>
                 <% end %>
                 <div class="user-action"><%= link_to("je veux me désinscrire de ce composteur", desinscription_path(@composteur), method: :post) %></div>
@@ -45,6 +45,7 @@
         <div class="user-card" style="<% if user.role == "référent"%><%=  'background: darkorange' %><% end %>">
           <%= ["🧅","🍌","🥦","🍎","🥨","🥖","🍁","🌼"].sample %><%= user.first_name %>
         </div>
+          <p class="round-counter"><%= user.notifications.count %></p>
       <% end %>
     </div>
       <p>Plus que <%= @time_left %> jours avant que le compost soit prêt !</p>
@@ -121,12 +122,16 @@
     <% end %>
   </div>
   <div class="composteur-right">
-    <div class="les-referents">
+    <div class="les-referents white-bg">
+      <h3>référent•e•s</h3>
+      <button id="ref-popover" type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Etre référent•e implique de grandes responsabilités.">
+        C'est quoi être référent•e ?
+      </button>
       <% if @referents.count != 0 %>
         <% @referents.each do |referent| %>
           <div class="referent-card">
-          <div class="star">⭐️</div>
-            <div class="referent-profile">
+          <!-- <div class="star">⭐️</div> -->
+            <!-- <div class="referent-profile"> -->
               <h5><%= referent.first_name %></h5>
               <% if referent.ok_phone %>
                 <p><%= referent.phone_number %></p>
@@ -155,7 +160,7 @@
                 <% end %>
               <% end %>
               <%# end %>
-            </div>
+            <!-- </div> -->
           </div>
         <% end %>
       <% else %>
@@ -172,6 +177,7 @@
     </div>
 
     <div class="les-messages">
+      <h3 class="marg-vert-bottom">message de l'agglo</h3>
       <% if @messages_admin %>
         <div class="message-date"><%= l @messages_admin.created_at, format: ("Le %d %B %Y") %></div>
         <div class="message-content"><%= @messages_admin.content %></div>
