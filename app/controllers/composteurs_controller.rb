@@ -146,7 +146,7 @@ class ComposteursController < ApplicationController
     @user.role = nil
     if @user.save
       redirect_to composteur_path
-      flash[:notice] = "Vous n'êtes plus référent !"
+      flash[:notice] = "Vous n'êtes plus référent•e•s !"
     else
       render :show
       flash[:notice] = "Oups, une erreur s'est produite.."
