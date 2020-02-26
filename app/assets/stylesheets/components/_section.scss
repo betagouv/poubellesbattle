@@ -26,7 +26,24 @@
 }
 
 
-
+@media (max-width: 600px) {
+  .section-grey {
+    .section-title {
+      width: 80%;
+      font-size: 23px;
+    }
+    .how-to-paragraphs {
+      justify-content: center;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      font-size: 15px;
+      p {
+        width: 80%;
+      }
+    }
+  }
+}
 
 
 
