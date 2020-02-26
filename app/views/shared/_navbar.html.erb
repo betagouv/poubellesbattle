@@ -5,48 +5,56 @@
   <% end %>
 
   <div class="all-the-buttons">
-    <% if user_signed_in? %>
-      <% if current_user.role == "admin" || current_user.role == "super_admin" %>
-        <%= link_to "Composteurs", root_path, class: "bouton-navbar" %>
-        <%= link_to "Ajouter un Composteur", new_composteur_path, class: "bouton-navbar" %>
-        <%= link_to "Demandes", demandes_path, class: "bouton-navbar"  %>
-        <%= link_to "Messages", notifications_path, class: "bouton-navbar"  %>
-      <% else %>
-        <% if current_user.composteur_id != nil %>
-          <%= link_to "Mon Composteur", composteur_path(current_user.composteur_id), class: "bouton-navbar"  %>
-        <% else %>
-        <%= link_to "Carte des Composteurs", root_path, class: "bouton-navbar" %>
-          <% if Demande.find_by(email: current_user.email) != nil %>
-            <% demande = Demande.find_by(email: current_user.email) %>
-            <%= link_to "Ma demande", suivre_path(demande), class: "bouton-navbar" %>
-          <% else %>
-            <%= link_to "Demander un Composteur", new_demande_path, class: "bouton-navbar" %>
-          <% end %>
-        <% end %>
-      <% end %>
-    <% else %>
-        <%= link_to "Carte des Composteurs", root_path, class: "bouton-navbar" %>
-        <%= link_to "Demander un Composteur", new_demande_path, class: "bouton-navbar" %>
-    <% end %>
     <%#= link_to "Bourse Verte", donverts_path, class: "bouton-navbar" %>
 
     <li class="dropdown align-self-center d-none d-sm-block mr-3">
-      <div class="dropdown-toggle border-none green-nav" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Mes outils
-      </div>
-      <div class="dropdown-menu dropdown-menu-right green-nav" aria-labelledby="dropdownMenuButton">
-        <% if user_signed_in? %>
-          <% if current_user.role != "admin" || current_user.role != "super_admin" %>
-            <%= link_to "Mon Profil", edit_user_registration_path(current_user), class: "dropdown-item" %>
-          <% end %>
+      <% if user_signed_in? %>
+        <% if current_user.role == "admin" || current_user.role == "super_admin" %>
+          <div class="dropdown-toggle border-none green-nav" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Les sites de compostage
+          </div>
+          <div class="dropdown-menu dropdown-menu-right green-nav" aria-labelledby="dropdownMenuButton">
+            <%= link_to "Cartographie des composteurs", root_path(anchor: "carto"), class: "dropdown-item" %>
+            <%= link_to "Contacter tous les sites de compostages", notifications_path, class: "dropdown-item" %>
+            <%= link_to "Ajouter un nouveau composteur", new_composteur_path, class: "dropdown-item" %>
+            <%= link_to "Suivre les demandes d'installation", demandes_path, class: "dropdown-item"  %>
+          </div>
         <% end %>
-        <%= link_to "Kit assemblée générale", 'https://uncomposteurici.gitbook.io/poubellesbattle/', class: "dropdown-item" %>
-        <%= link_to "Guide ADEME du compostage", 'https://www.ademe.fr/sites/default/files/assets/documents/guide-pratique-compostage-et-paillage.pdf', class: "dropdown-item" %>
-        <%= link_to "A propos", "https://beta.gouv.fr/startups/poubelles-battle.html", class: "dropdown-item" %>
+      <% else %>
+        <div class="dropdown-toggle border-none green-nav" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Je veux composter
+        </div>
+        <div class="dropdown-menu dropdown-menu-right green-nav" aria-labelledby="dropdownMenuButton">
+          <%= link_to "Trouver un composteur près de chez moi", root_path(anchor: "carto"), class: "dropdown-item" %>
+          <%= link_to "Demander l'installation d'un composteur collectif", new_demande_path, class: "dropdown-item" %>
+          <%= link_to "Conseils et astuces pour composter en co-propriété", 'https://uncomposteurici.gitbook.io/poubellesbattle/', target: "_blank", class: "dropdown-item" %>
+          <%= link_to "S'auto-former au compostage", 'https://www.ademe.fr/sites/default/files/assets/documents/guide-pratique-compostage-et-paillage.pdf', target: "_blank", class: "dropdown-item" %>
+          <%= link_to "A propos de Poubelles Battle", "https://beta.gouv.fr/startups/poubelles-battle.html", target: "_blank", class: "dropdown-item" %>
+        </div>
+      <% end %>
+    </li>
+    <li class="dropdown align-self-center d-none d-sm-block mr-3">
+      <div class="dropdown-toggle border-none green-nav" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Mon espace
+      </div>
+      <div class="dropdown-menu dropdown-menu-right green-nav" aria-labelledby="dropdownMenuButton2">
+        <% if user_signed_in? %>
+          <% if current_user.composteur_id != nil %>
+            <%= link_to "Mon Composteur", composteur_path(current_user.composteur_id), class: "dropdown-item"  %>
+          <% end %>
+          <% if Demande.find_by(email: current_user.email) != nil %>
+            <% demande = Demande.find_by(email: current_user.email) %>
+            <%= link_to "Ma demande", suivre_path(demande), class: "dropdown-item" %>
+          <% end %>
+          <%= link_to "Modifier mon profil", edit_user_registration_path(current_user), class: "dropdown-item"  %>
+          <%= link_to "Me deconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+        <% else %>
+          <%= link_to "Se connecter", new_user_session_path, class: "dropdown-item" %>
+          <%= link_to "S'inscrire", new_user_registration_path, class: "dropdown-item" %>
+        <% end %>
       </div>
     </li>
     <% if user_signed_in? %>
-      <%= link_to "Se deconnecter", destroy_user_session_path, method: :delete, class: "bouton-valid rouge" %>
       <% if current_user.photo.attached? %>
         <%= link_to edit_user_registration_path(current_user) do  %>
           <%= cl_image_tag current_user.photo.key, height: 100, width: 100, crop: :fill, class: "avatar" %>
@@ -56,9 +64,6 @@
           <%= image_tag "PB_logo.png", alt: "default avatar", class: "avatar" %>
         <% end %>
       <% end %>
-    <% else %>
-      <%= link_to "Se connecter", new_user_session_path, class: "bouton-valid" %>
-      <%= link_to "S'inscrire", new_user_registration_path, class: "bouton-valid bleu" %>
     <% end %>
   </div>
 </div>
