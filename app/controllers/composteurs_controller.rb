@@ -28,7 +28,7 @@ class ComposteursController < ApplicationController
     # #   categories = @query_on_category.select { |k, v| v == '1' }.keys
     # #   @meals = Meal.geocoded.select { |m| categories.include?(m.category) }
     # else
-    @composteurs = Composteur.geocoded
+    @composteurs = Composteur.where(public: true).geocoded
     @composteurs_all = Composteur.all.order(created_at: :asc)
   # end
 
