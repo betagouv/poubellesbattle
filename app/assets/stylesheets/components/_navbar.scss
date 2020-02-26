@@ -1,18 +1,24 @@
 .poubelles-title {
-  font-size: 32px;
-  padding-left: 10px;
-  color: #502703;
-  text-decoration: none;
-  font-family: 'Bangers', cursive;
-  text-shadow: yellow 1px 1px 2px;
-  letter-spacing: 1px;
-  transform: rotate(-3deg);
-  transition: all 0.4s ease-out;
-  &:hover {
+  display: flex;
+  h1 {
+    font-size: 30px;
+    padding-left: 6px;
     color: #502703;
     text-decoration: none;
-    text-shadow: yellow 2px 5px 10px;
-    transition: all 0.3s ease-in;
+    font-family: 'Bangers', cursive;
+    text-shadow: yellow 1px 1px 2px;
+    letter-spacing: 1px;
+    transform: rotate(-5deg);
+    margin: 0;
+    transition: all 0.4s ease-out;
+  }
+  &:hover {
+    h1 {
+      color: #502703;
+      text-decoration: none;
+      text-shadow: yellow 2px 5px 10px;
+      transition: all 0.3s ease-in;
+    }
   }
 }
 
@@ -23,20 +29,16 @@ a:hover {
 
 .home-link {
   display: flex;
-  width: 300px;
   align-items: center;
 }
 
 .logo {
-  width: 250px;
+  width: 80px;
   position: relative;
-  bottom: -25px;
+  bottom: -5px;
   z-index: 10;
 }
 
-.dropdown {
-  margin-bottom: 8px;
-}
 
 .dropdown-toggle {
   margin-top: 5px;
@@ -52,12 +54,13 @@ a:hover {
   justify-content: space-between;
   align-items: center;
   width: 100vw;
-  height: 120px;
+  height: 65px;
   padding: 20px;
   position: fixed;
   z-index: 10;
   top: 0px;
   background: white;
+  box-shadow: 0 0 10px gray;
 }
 
 .all-the-buttons {
@@ -84,18 +87,25 @@ a:hover {
   }
 }
 
+
 .green-nav {
-  color: #408A4E;
-  border: solid 1px #408A4E;
-  padding: 4px 15px;
+  // color: #408A4E;
+  // border: solid 1px #408A4E;
+  // padding: 4px 15px;
   border-radius: 15px;
-  margin: 0 0 0 15px;
+  margin: 0 0 0 20px;
   background: white;
   &:hover {
     color: white;
     background: #408A4E;
+    transition: all 0.3s ease-in;
   }
 }
+
+.dropdown {
+  list-style: none;
+}
+
 
 .dropdown-menu.show {
   border-radius: 15px;
@@ -105,3 +115,18 @@ a:hover {
     background: white;
   }
 }
+
+// MEDIA QUERIES
+@media (max-width: 400px) {
+  .navbar-poub-bat {
+    height: 120px;
+    padding: 0 20px 20px 20px;
+    flex-direction: column;
+  }
+  .dropdown-item {
+    font-size: 12px;
+  }
+}
+
+
+
