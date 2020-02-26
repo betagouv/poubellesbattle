@@ -1,4 +1,6 @@
 #carto {
+  display: flex;
+  justify-content: center;
   padding: 65px 0 0 0;
 }
 #map {
@@ -6,7 +8,6 @@
   height: 600px;
   position: sticky;
   top: 0;
-  margin: 7px 0px 0 30px;
 }
 
 .mapboxgl-popup {
