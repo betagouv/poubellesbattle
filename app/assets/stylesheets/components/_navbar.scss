@@ -102,6 +102,9 @@ a:hover {
   }
 }
 
+.dropdown {
+  list-style: none;
+}
 
 
 .dropdown-menu.show {
@@ -113,10 +116,17 @@ a:hover {
   }
 }
 
-/* application-9d49c3d376178b61cf3a29d50a12b13b47f0e17fc57d431a8a595d14918365a7.css | http://localhost:3000/assets/application-9d49c3d376178b61cf3a29d50a12b13b47f0e17fc57d431a8a595d14918365a7.css */
-
-.poubelles-title {
-  /* transform: rotate(-3deg); */
+// MEDIA QUERIES
+@media (max-width: 400px) {
+  .navbar-poub-bat {
+    height: 120px;
+    padding: 0 20px 20px 20px;
+    flex-direction: column;
+  }
+  .dropdown-item {
+    font-size: 12px;
+  }
 }
+
 
 
