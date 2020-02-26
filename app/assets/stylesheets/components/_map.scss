@@ -1,5 +1,6 @@
 #map {
-  height: 100vh;
+  width: 1000px;
+  height: 600px;
   position: sticky;
   top: 0;
   margin: 7px 0px 0 30px;
@@ -47,3 +48,12 @@ color: white !important;
   cursor: pointer;
 }
 
+@media (max-width: 600px) {
+  #map {
+    width: 300px;
+    .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
+      margin: 0;
+      position: relative;
+    }
+  }
+}
