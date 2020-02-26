@@ -77,3 +77,14 @@
   margin-bottom: 30px;
 }
 
+// MEDIA QUERIES
+@media (max-width: 600px) {
+  .home-banner {
+    margin-top: 120px;
+    p {
+      width: 90vw;
+    }
+  }
+}
+
+
