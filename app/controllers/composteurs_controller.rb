@@ -75,6 +75,15 @@ class ComposteursController < ApplicationController
     @composteur = Composteur.find(params[:id])
   end
 
+  def annuaire_ref
+    if current_user.role == "admin"
+      @referents = User.where(role: "référent")
+      @composteurs = Composteur.all
+    else
+      redirect_to root_path
+    end
+  end
+
   def inscription_composteur
     @user = current_user
     @composteur = Composteur.find(params[:id])

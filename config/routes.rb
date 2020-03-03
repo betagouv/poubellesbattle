@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       post :send_email
     end
   end
+  get "referents", to: "composteurs#annuaire_ref", as: 'referents'
   post "composteurs/:id/inscription_composteur", to: "composteurs#inscription_composteur", as: 'inscription'
   post "composteurs/:id/referent_composteur", to: "composteurs#referent_composteur", as: 'referent'
   post "composteurs/:id/validation_referent_composteur", to: "composteurs#validation_referent_composteur", as: 'validation_referent'

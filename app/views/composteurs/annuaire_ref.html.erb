@@ -1,0 +1,76 @@
+<% if user_signed_in? %>
+  <% if current_user.role == "admin" || current_user.role == "super_admin" %>
+    <div class="admin-box">
+      <h5 class="marg-vert">Annuaire des référents</h5>
+      <div class="annuaire-list">
+        <div class="referent-line info-name">
+          <div class="referent-info-box">
+            Prénom
+          </div>
+          <div class="referent-info-box">
+            Nom
+          </div>
+          <div class="referent-info-box">
+            Site de Compostage
+          </div>
+          <div class="referent-info-box">
+            Contact Mail
+          </div>
+          <div class="referent-info-box">
+            Téléphone
+          </div>
+          <div class="referent-info-box">
+            Retirer le référent
+          </div>
+        </div>
+        <% @referents.each do |referent| %>
+          <div class="referent-line">
+            <div class="referent-info-box">
+              <% if referent.first_name %>
+                <%= referent.first_name %>
+              <% else %>
+                info non renseignée
+              <% end %>
+            </div>
+            <div class="referent-info-box">
+              <% if referent.last_name %>
+                <%= referent.last_name %>
+              <% else %>
+                info non renseignée
+              <% end %>
+            </div>
+            <div class="referent-info-box">
+              <% if referent.composteur_id %>
+                <%= link_to @composteurs.find(referent.composteur_id).name, composteur_path(referent.composteur_id) %>
+              <% else %>
+                info non renseignée
+              <% end %>
+            </div>
+            <div class="referent-info-box">
+              <% if referent.email %>
+                <%= mail_to referent.email, "écrire un mail" %>
+              <% else %>
+                info non renseignée
+              <% end %>
+            </div>
+            <div class="referent-info-box">
+              <% if referent.phone_number %>
+                <%= referent.phone_number %>
+              <% else %>
+                info non renseignée
+              <% end %>
+            </div>
+            <div class="referent-info-box">
+              <div class="mini-btn"><%= link_to("retirer ce référent", non_referent_path(@composteurs.find(referent.composteur_id), referent_id: referent), method: :post) %></div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+
+
+
+
