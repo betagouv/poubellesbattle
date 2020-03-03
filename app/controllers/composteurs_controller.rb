@@ -73,6 +73,8 @@ class ComposteursController < ApplicationController
 
   def edit
     @composteur = Composteur.find(params[:id])
+    @users = User.where(composteur_id: @composteur)
+    @referents = @users.where(role: "référent")
   end
 
   def annuaire_ref

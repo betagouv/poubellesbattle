@@ -175,11 +175,29 @@
 
 .composteur-new-edit {
   width: 100vw;
-  margin: 150px 40px 40px 50px;
+  margin: 150px 0 40px 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   .composteur-form-box {
     width: 50%;
+    background: white;
+    // margin: 0 30px 0 0;
+    padding: 30px;
+  }
+}
+
+.referents-edit-list {
+  background: white;
+  width: 30%;
+  padding: 30px;
+  .add-ref {
+    background: #56c37b;
+  }
+  .referent-edit-card {
+    border-bottom: solid 1px black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 }
 
