@@ -74,13 +74,22 @@ class ComposteursController < ApplicationController
   def edit
     @composteur = Composteur.find(params[:id])
     @users = User.where(composteur_id: @composteur)
-    @referents = @users.where(role: "référent")
+    if params[:query].present?
+      @referents = User.search_by_first_name_and_last_name(params[:query])
+    else
+      @referents = @users.where(role: "référent")
+    end
   end
 
   def annuaire_ref
     if current_user.role == "admin"
-      @referents = User.where(role: "référent")
       @composteurs = Composteur.all
+      @users_referents = User.where(role: "référent")
+      if params[:query].present?
+        @referents = @users_referents.search_by_first_name_and_last_name(params[:query])
+      else
+        @referents = @users_referents
+      end
     else
       redirect_to root_path
     end
@@ -136,6 +145,17 @@ class ComposteursController < ApplicationController
     #   render :show
     #   flash[:notice] = "Oups, une erreur s'est produite.."
     # end
+  end
+
+  def ajout_referent_composteur
+    @composteur = Composteur.find(params[:id])
+    @user = User.find(params[:referent_id])
+    @user.role = "référent"
+    if @user.save
+      redirect_to composteur_path(@composteur)
+    else
+      render :edit
+    end
   end
 
   def validation_referent_composteur
