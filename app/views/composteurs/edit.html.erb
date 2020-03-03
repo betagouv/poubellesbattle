@@ -7,24 +7,26 @@
       <%= link_to "Revenir à la carte", root_path, class: "little-button-yellow" %>
     </div>
   </div>
-  <div class="referents-edit-list">
-    <h2>liste des référents de ce site</h2>
-      <div class="referent-edit-card">
-        bientôt, ici, une barre de recherche
-        <div class="mini-btn add-ref"><%= link_to("ajouter un référent", "#") %></div>
-      </div>
-    <% @referents.each do |referent| %>
-      <div class="referent-edit-card">
-        <% if referent.first_name %>
-          <%= referent.first_name %>
-        <% end %>
-        <% if referent.last_name %>
-          <%= referent.last_name %>
-        <% end %>
-        <div class="mini-btn"><%= link_to("retirer ce référent", non_referent_path(@composteur, referent_id: referent), method: :post) %></div>
-      </div>
-    <% end %>
-  </div>
+  <% if current_user.role == "admin" %>
+    <div class="referents-edit-list">
+      <h2>liste des référents de ce site</h2>
+        <div class="referent-edit-card">
+          bientôt, ici, une barre de recherche
+          <div class="mini-btn add-ref"><%= link_to("ajouter un référent", "#") %></div>
+        </div>
+      <% @referents.each do |referent| %>
+        <div class="referent-edit-card">
+          <% if referent.first_name %>
+            <%= referent.first_name %>
+          <% end %>
+          <% if referent.last_name %>
+            <%= referent.last_name %>
+          <% end %>
+          <div class="mini-btn"><%= link_to("retirer ce référent", non_referent_path(@composteur, referent_id: referent), method: :post) %></div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
 
