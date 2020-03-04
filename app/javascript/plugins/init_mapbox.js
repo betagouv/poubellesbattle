@@ -22,7 +22,7 @@ if (mapElement) { // only build a map if there's a div#map to inject into
 
   const markers = JSON.parse(mapElement.dataset.markers);
 
-  map.addControl(new MapboxGeocoder({ accessToken: mapboxgl.accessToken, mapboxgl: mapboxgl }));
+  const geocoder = new MapboxGeocoder({ accessToken: mapboxgl.accessToken, mapboxgl: mapboxgl });
 
   markers.forEach((marker) => {
 
@@ -43,6 +43,7 @@ if (mapElement) { // only build a map if there's a div#map to inject into
   });
 
   fitMapToMarkers(map, markers);
+  document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
   }
 };
 
