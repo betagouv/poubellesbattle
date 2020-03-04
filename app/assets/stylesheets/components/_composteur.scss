@@ -179,10 +179,17 @@
   display: flex;
   justify-content: space-around;
   .composteur-form-box {
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(20, 20, 20, 0.2);
     width: 50%;
     background: white;
     // margin: 0 30px 0 0;
     padding: 30px;
+    h2 {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 0 20px 0;
+    }
   }
 }
 
@@ -190,6 +197,8 @@
   background: white;
   width: 30%;
   padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(20, 20, 20, 0.2);
   .add-ref {
     background: #56c37b;
   }
