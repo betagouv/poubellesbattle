@@ -2,13 +2,13 @@
   "name": "PoubellesBattle",
   "private": true,
   "dependencies": {
-    "@mapbox/mapbox-gl-geocoder": "^4.4.2",
+    "@mapbox/mapbox-gl-geocoder": "^4.5.1",
     "@rails/webpacker": "3.5",
     "bootstrap": "^4.3.1",
     "flatpickr": "^4.6.3",
     "jquery": "^3.4.1",
-    "mapbox-gl": "^1.4.0",
-    "places.js": "^1.16.6",
+    "mapbox-gl": "^1.8.1",
+    "places.js": "^1.18.1",
     "popper.js": "^1.15.0"
   },
   "devDependencies": {
