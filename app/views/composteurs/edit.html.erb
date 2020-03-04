@@ -28,9 +28,11 @@
             <%= referent.last_name %>
           <% end %>
           <% if referent.composteur_id == @composteur.id && referent.role == "référent" %>
-            <div class="mini-btn"><%= link_to("retirer", non_referent_path(@composteur, referent_id: referent), method: :post) %></div>
+            <div class="mini-btn"><%= link_to("retirer statut référent", non_referent_path(@composteur, referent_id: referent), method: :post) %></div>
+          <% elsif referent.composteur_id == @composteur.id && referent.role != "référent" %>
+            <div class="mini-btn mini-green-btn"><%= link_to "ajouter status référent", ajout_referent_path(@composteur, referent_id: referent), method: :post %></div>
           <% else %>
-            <div class="mini-btn mini-green-btn"><%= link_to "ajouter", ajout_referent_path(@composteur, referent_id: referent), method: :post %></div>
+            <div class="mini-btn mini-yellow-btn"><%= link_to "changer pour ce site", ajout_referent_path(@composteur, referent_id: referent), method: :post %></div>
           <% end %>
         </div>
       <% end %>

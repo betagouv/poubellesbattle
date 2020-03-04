@@ -137,22 +137,15 @@ class ComposteursController < ApplicationController
 
       end
     end
-    # @user.role = "référent"
-    # if @user.save
-    #   redirect_to composteur_path
-    #   flash[:notice] = "Bravo ! Vous êtes maintenant référent du composteur #{@composteur.name} !"
-    # else
-    #   render :show
-    #   flash[:notice] = "Oups, une erreur s'est produite.."
-    # end
   end
 
   def ajout_referent_composteur
     @composteur = Composteur.find(params[:id])
     @user = User.find(params[:referent_id])
+    @user.composteur_id = @composteur.id
     @user.role = "référent"
     if @user.save
-      redirect_to composteur_path(@composteur)
+      redirect_to edit_composteur_path(@composteur)
     else
       render :edit
     end
