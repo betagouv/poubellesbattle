@@ -31,13 +31,15 @@
     <%= render 'home-banner' %>
 
     <div class="container mt-3 text-center" id="carto">
-     <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" ></div>
+      <div id="geocoder" class="geocoder"></div>
+      <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" ></div>
     </div>
   <% end %>
 <% else %>
   <%= render 'home-banner' %>
 
   <div class="container mt-3 text-center" id="carto">
+      <div id="geocoder" class="geocoder"></div>
      <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" ></div>
   </div>
 <% end %>
