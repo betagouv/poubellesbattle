@@ -1,11 +1,10 @@
 <div class="composteur-new-edit">
   <div class="composteur-form-box">
-    <h2> Modifier les détails du composteur </h2>
+    <h2> Modifier les détails du composteur <%= link_to "voir ce site de compostage", composteur_path(@composteur), class: "mini-btn mini-yellow-btn" %></h2>
     <%= render 'form', compo: @composteur %>
 
-    <div class="back-button-container d-flex">
-      <%= link_to "Revenir à la carte", root_path, class: "little-button-yellow" %>
-    </div>
+    <!-- <div class="back-button-container d-flex">
+    </div> -->
   </div>
   <% if current_user.role == "admin" %>
     <div class="referents-edit-list">
@@ -19,6 +18,9 @@
         <%= submit_tag "Rechercher", class: "btn btn-primary" %>
       <% end %>
         </div>
+        <% if @referents.count < 1 %>
+          <div class="referent-edit-card">Pas de résultat..</div>
+        <% end %>
       <% @referents.each do |referent| %>
         <div class="referent-edit-card">
           <% if referent.first_name %>
@@ -28,11 +30,11 @@
             <%= referent.last_name %>
           <% end %>
           <% if referent.composteur_id == @composteur.id && referent.role == "référent" %>
-            <div class="mini-btn"><%= link_to("retirer statut référent", non_referent_path(@composteur, referent_id: referent), method: :post) %></div>
+            <div class="mini-btn"><%= link_to "retirer statut référent", non_referent_path(@composteur, referent_id: referent), method: :post, :data => {:confirm => "Vous allez retirer le status 'référent' de cet utilisateur, êtes-vous certain ? Cet utilisateur restera inscrit au site."} %></div>
           <% elsif referent.composteur_id == @composteur.id && referent.role != "référent" %>
             <div class="mini-btn mini-green-btn"><%= link_to "ajouter status référent", ajout_referent_path(@composteur, referent_id: referent), method: :post %></div>
           <% else %>
-            <div class="mini-btn mini-yellow-btn"><%= link_to "changer pour ce site", ajout_referent_path(@composteur, referent_id: referent), method: :post %></div>
+            <div class="mini-btn mini-yellow-btn"><%= link_to "changer pour ce site", ajout_referent_path(@composteur, referent_id: referent), method: :post, :data => {:confirm => "Vous êtes sur le point de désinscrire cet utilisateur d'un autre site pour l'inscrire sur celui-ci, êtes-vous certain ?"} %></div>
           <% end %>
         </div>
       <% end %>

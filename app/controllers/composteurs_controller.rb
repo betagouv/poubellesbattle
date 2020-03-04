@@ -177,8 +177,13 @@ class ComposteursController < ApplicationController
     @composteur = Composteur.find(params[:id])
     @user.role = nil
     if @user.save
-      redirect_to composteur_path
-      flash[:notice] = "Vous n'êtes plus référent•e•s !"
+      if current_user.role == "admin"
+        redirect_to edit_composteur_path(@composteur)
+        flash[:notice] = "Cet utilisteur n'est plus référent."
+      else
+        redirect_to composteur_path
+        flash[:notice] = "Vous n'êtes plus référent•e•s !"
+      end
     else
       render :show
       flash[:notice] = "Oups, une erreur s'est produite.."
