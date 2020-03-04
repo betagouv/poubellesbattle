@@ -37,7 +37,11 @@ class ComposteursController < ApplicationController
         lat: compo.latitude,
         lng: compo.longitude,
         infoWindow: render_to_string(partial: "info_window", locals: { compo: compo }),
-        image_url: helpers.asset_url('PB_logo.png')
+        image_url: if compo.public == true
+          helpers.asset_url('markerpb-public.png')
+        else
+          helpers.asset_url('markerpb-prive.png')
+        end
       }
     end
   end
