@@ -1,6 +1,9 @@
 <div class="composteur-new-edit">
   <div class="composteur-form-box">
-    <h2> Modifier les détails du composteur <%= link_to "voir ce site de compostage", composteur_path(@composteur), class: "mini-btn mini-yellow-btn" %></h2>
+    <div class="composteur-form-top">
+      <h2> Modifier les détails du composteur</h2>
+      <%= link_to "voir ce site", composteur_path(@composteur), class: "mini-btn mini-yellow-btn" %>
+    </div>
     <%= render 'form', compo: @composteur %>
 
     <!-- <div class="back-button-container d-flex">
