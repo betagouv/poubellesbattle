@@ -28,7 +28,7 @@ class ComposteursController < ApplicationController
     # #   categories = @query_on_category.select { |k, v| v == '1' }.keys
     # #   @meals = Meal.geocoded.select { |m| categories.include?(m.category) }
     # else
-    @composteurs = Composteur.where(public: true).geocoded
+    @composteurs = Composteur.geocoded
     @composteurs_all = Composteur.all.order(created_at: :asc)
   # end
 
@@ -36,8 +36,8 @@ class ComposteursController < ApplicationController
       {
         lat: compo.latitude,
         lng: compo.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { compo: compo })
-        # image_url: helpers.asset_url('favicon-32x32.png')
+        infoWindow: render_to_string(partial: "info_window", locals: { compo: compo }),
+        image_url: helpers.asset_url('PB_logo.png')
       }
     end
   end

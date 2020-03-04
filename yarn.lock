@@ -37,10 +37,10 @@
   resolved "https://registry.yarnpkg.com/@mapbox/jsonlint-lines-primitives/-/jsonlint-lines-primitives-2.0.2.tgz#ce56e539f83552b58d10d672ea4d6fc9adc7b234"
   integrity sha1-zlblOfg1UrWNENZy6k1vya3HsjQ=
 
-"@mapbox/mapbox-gl-geocoder@^4.4.2":
-  version "4.4.2"
-  resolved "https://registry.yarnpkg.com/@mapbox/mapbox-gl-geocoder/-/mapbox-gl-geocoder-4.4.2.tgz#a1e202eb7ff959da14ac7e2f9408e7dfdbff7f10"
-  integrity sha512-LwcI/plmaWcfs3HD2vmUJaZyUYinjwuRBAnMTkcKL9aw8tQZAKBnJfscSPhiWta6O3a8rT4WqC0vVgLeGTkdsQ==
+"@mapbox/mapbox-gl-geocoder@^4.5.1":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@mapbox/mapbox-gl-geocoder/-/mapbox-gl-geocoder-4.5.1.tgz#bc79bc64b34a35060a71c5a63869c5594d18ac35"
+  integrity sha512-ydn8CuMAayqIRdSHng4U5HtGaId1MM+boaGVh6C4vp+fBsPlMDNSvzhh9QBtmTEdO6+iEW4oKblBkJ8Krc8cXA==
   dependencies:
     "@mapbox/mapbox-sdk" "^0.5.0"
     lodash.debounce "^4.0.6"
@@ -209,12 +209,7 @@ ajv@^6.1.0, ajv@^6.5.5:
     json-schema-traverse "^0.4.1"
     uri-js "^4.2.2"
 
-algolia-aerial@^1.5.3:
-  version "1.5.3"
-  resolved "https://registry.yarnpkg.com/algolia-aerial/-/algolia-aerial-1.5.3.tgz#c8b8ca6bc484164ffc7b36717689a424ea6bfe6c"
-  integrity sha512-LZTpVlYnhqNFd+ru/Spm73omhsagiRQLmjrosa5bJ6/I9OMRp4Sb9pYZkAxcx3RSr+ZNXZqthL7rpXqMFdrnPA==
-
-algoliasearch@^3.31.0:
+algoliasearch@^3.35.1:
   version "3.35.1"
   resolved "https://registry.yarnpkg.com/algoliasearch/-/algoliasearch-3.35.1.tgz#297d15f534a3507cab2f5dfb996019cac7568f0c"
   integrity sha512-K4yKVhaHkXfJ/xcUnil04xiSrB8B8yHZoFEhWNpXg23eiCnqvTZw1tn/SqvdsANlYHLJlKl0qi3I/Q2Sqo7LwQ==
@@ -2446,10 +2441,10 @@ duplexify@^3.4.2, duplexify@^3.6.0:
     readable-stream "^2.0.0"
     stream-shift "^1.0.0"
 
-earcut@^2.2.0:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/earcut/-/earcut-2.2.1.tgz#3bae0b1b6fec41853b56b126f03a42a34b28f1d5"
-  integrity sha512-5jIMi2RB3HtGPHcYd9Yyl0cczo84y+48lgKPxMijliNQaKAHEZJbdzLmKmdxG/mCdS/YD9DQ1gihL8mxzR0F9w==
+earcut@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/earcut/-/earcut-2.2.2.tgz#41b0bc35f63e0fe80da7cddff28511e7e2e80d11"
+  integrity sha512-eZoZPPJcUHnfRZ0PjLvx2qBordSiO8ofC3vt+qACLM95u+4DovnbYNpQtJh0DNsWj8RnxrQytD4WA8gj5cRIaQ==
 
 ecc-jsbn@~0.1.1:
   version "0.1.2"
@@ -4444,10 +4439,10 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
-mapbox-gl@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/mapbox-gl/-/mapbox-gl-1.4.0.tgz#6ec3c3a8f07b7ca632e99e2ea6458cef89fa776c"
-  integrity sha512-4nXRXanISou8oWLU7DH1ZetKvCJR9XtnMlQQ4Ia80wjghIHc5ljmAV/loNCI2UAGyuKINc7QcTiwUXrjE+Kv4w==
+mapbox-gl@^1.8.1:
+  version "1.8.1"
+  resolved "https://registry.yarnpkg.com/mapbox-gl/-/mapbox-gl-1.8.1.tgz#83fd2e99274a226adbf1c01012c37d17fccdd4bc"
+  integrity sha512-Q6c8XAFxHxMPnZIfiRsExk5dNN+dCgvbRNHPfX7hHV5LDcX5Ptc1MEVpOJEDyojuriZssAeWMTJob0hir9mpUw==
   dependencies:
     "@mapbox/geojson-rewind" "^0.4.0"
     "@mapbox/geojson-types" "^1.0.2"
@@ -4459,17 +4454,17 @@ mapbox-gl@^1.4.0:
     "@mapbox/vector-tile" "^1.3.1"
     "@mapbox/whoots-js" "^3.1.0"
     csscolorparser "~1.0.2"
-    earcut "^2.2.0"
+    earcut "^2.2.2"
     geojson-vt "^3.2.1"
     gl-matrix "^3.0.0"
     grid-index "^1.1.0"
     minimist "0.0.8"
     murmurhash-js "^1.0.0"
-    pbf "^3.0.5"
+    pbf "^3.2.1"
     potpack "^1.0.1"
     quickselect "^2.0.0"
     rw "^1.3.3"
-    supercluster "^6.0.1"
+    supercluster "^7.0.0"
     tinyqueue "^2.0.0"
     vt-pbf "^3.1.1"
 
@@ -5403,6 +5398,14 @@ pbf@^3.0.5:
     ieee754 "^1.1.12"
     resolve-protobuf-schema "^2.1.0"
 
+pbf@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/pbf/-/pbf-3.2.1.tgz#b4c1b9e72af966cd82c6531691115cc0409ffe2a"
+  integrity sha512-ClrV7pNOn7rtmoQVF4TS1vyU0WhYRnP92fzbfF75jAIwpnzdJXf8iTd4CMEqO4yUenH6NDqLiwjqlh6QgZzgLQ==
+  dependencies:
+    ieee754 "^1.1.12"
+    resolve-protobuf-schema "^2.1.0"
+
 pbkdf2@^3.0.3:
   version "3.0.17"
   resolved "https://registry.yarnpkg.com/pbkdf2/-/pbkdf2-3.0.17.tgz#976c206530617b14ebb32114239f7b09336e93a6"
@@ -5457,13 +5460,12 @@ pkg-dir@^2.0.0:
   dependencies:
     find-up "^2.1.0"
 
-places.js@^1.16.6:
-  version "1.16.6"
-  resolved "https://registry.yarnpkg.com/places.js/-/places.js-1.16.6.tgz#bce243f7d1a1072f9d1a60c9dccdf1c739c82ae2"
-  integrity sha512-SGDYijNL8oPBr52avj81+HL/u//Igvv6V4KmL9umkbLufgh/hbT+tl0RyaCIxt4tKtnxoFInKFiewVq4xygqrQ==
+places.js@^1.18.1:
+  version "1.18.1"
+  resolved "https://registry.yarnpkg.com/places.js/-/places.js-1.18.1.tgz#524fd43952e3b83268f828141a1325cdcdde7f58"
+  integrity sha512-73ie7F+6TJRtRnxZoLtIRLh+mon7O5ZEdAknYPOL396w/x+u5M9Om05HcTLDnl0/64poH+LmgDmQey2mNH7/lw==
   dependencies:
-    algolia-aerial "^1.5.3"
-    algoliasearch "^3.31.0"
+    algoliasearch "^3.35.1"
     autocomplete.js "^0.37.0"
     events "^3.0.0"
     insert-css "^2.0.0"
@@ -7539,10 +7541,10 @@ suggestions@^1.6.0:
     fuzzy "^0.1.1"
     xtend "^4.0.0"
 
-supercluster@^6.0.1:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/supercluster/-/supercluster-6.0.2.tgz#aa2eaae185ef97872f388c683ec29f6991721ee3"
-  integrity sha512-aa0v2HURjBTOpbcknilcfxGDuArM8khklKSmZ/T8ZXL0BuRwb5aRw95lz+2bmWpFvCXDX/+FzqHxmg0TIaJErw==
+supercluster@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/supercluster/-/supercluster-7.0.0.tgz#75d474fafb0a055db552ed7bd7bbda583f6ab321"
+  integrity sha512-8VuHI8ynylYQj7Qf6PBMWy1PdgsnBiIxujOgc9Z83QvJ8ualIYWNx2iMKyKeC4DZI5ntD9tz/CIwwZvIelixsA==
   dependencies:
     kdbush "^3.0.0"
 
