@@ -17,10 +17,13 @@
   }
 }
 
-.mapboxgl-ctrl-geocoder {
-  width: 100%;
-  max-width: 100%;
+
+
+.mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
+  width: 100% !important;
+  max-width: 100% !important;
 }
+
 
 .mapboxgl-popup {
   max-width: 500px;
