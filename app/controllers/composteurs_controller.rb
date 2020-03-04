@@ -59,7 +59,11 @@ class ComposteursController < ApplicationController
   end
 
   def new
-    @composteur = Composteur.new
+    if current_user.role == "admin"
+      @composteur = Composteur.new
+    else
+      redirect_to root_path
+    end
   end
 
   def create
@@ -73,11 +77,15 @@ class ComposteursController < ApplicationController
 
   def edit
     @composteur = Composteur.find(params[:id])
-    @users = User.where(composteur_id: @composteur)
-    if params[:query].present?
-      @referents = User.search_by_first_name_and_last_name(params[:query])
+    if (current_user.composteur_id == @composteur && current_user.role == "référent") || current_user.role == "admin"
+      @users = User.where(composteur_id: @composteur)
+      if params[:query].present?
+        @referents = User.search_by_first_name_and_last_name(params[:query])
+      else
+        @referents = @users.where(role: "référent")
+      end
     else
-      @referents = @users.where(role: "référent")
+      redirect_to composteur_path(@composteur)
     end
   end
 
