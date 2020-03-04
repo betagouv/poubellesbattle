@@ -1,13 +1,25 @@
+
 #carto {
   display: flex;
   justify-content: center;
   padding: 65px 0 0 0;
+  flex-direction: column;
+  align-items: center;
+  #geocoder {
+    margin: 0 0 20px 0;
+    width: 50%;
+  }
+  #map {
+    width: 1000px;
+    height: 600px;
+    position: sticky;
+    top: 0;
+  }
 }
-#map {
-  width: 1000px;
-  height: 600px;
-  position: sticky;
-  top: 0;
+
+.mapboxgl-ctrl-geocoder {
+  width: 100%;
+  max-width: 100%;
 }
 
 .mapboxgl-popup {
