@@ -59,21 +59,18 @@
         <p>Si vous ne l'avez pas déjà fait, vous pouvez maintenant ajouter le site de compostage sur Poubelles Battle !</p>
         <%= link_to "Ajouter", new_composteur_path, class: "bouton-valid" %>
       <% elsif @demande.status == "planifiée" %>
+        <p>On dirait que tout est bon !</p>
         <p>Installation prévue le <%= @demande.planification_date.strftime("%d/%m/%Y") %></p>
         <p>Vous pouvez à présent ajouter le composteur sur Poubelles Battle !</p>
         <%= link_to "Ajouter", new_composteur_path, class: "bouton-valid" %>
-      <% elsif @demande.status == "validée" && @demande.location_found && (@demande.potential_address == nil || @demande.potential_address == "") %>
+      <% elsif @demande.status == "validée" && @demande.location_found %>
         <%= simple_form_for(@demande) do |f| %>
           <p>Adresse pour l'installation</p>
           <%= f.input :potential_address, label: "Adresse possible", as: :string, required: true %>
-          <%= f.submit "Enregistrer l'adresse", class: "bouton-valid" %>
-        <% end %>
-      <% elsif @demande.status == "validée" && @demande.location_found && (@demande.potential_address != nil || @demande.potential_address != "") %>
-        <%= simple_form_for(@demande) do |f| %>
           <p>Date d'installation </p>
           <%= f.input :status, as: :string, input_html: { value: "planifiée", type:"hidden" }%>
           <%= f.input :planification_date, as: :string, input_html: { class: "datepicker" }, label: "Installation", required: true %>
-          <%= f.submit "Enregistrer la date", class: "bouton-valid"%>
+          <%= f.submit "Enregistrer la date", class: "bouton-valid", data: {confirm: "Avez-vous bien ajouté une date et une adresse ?"} %>
         <% end %>
       <% elsif @demande.status == "validée" %>
         <%= simple_form_for(@demande) do |f| %>
