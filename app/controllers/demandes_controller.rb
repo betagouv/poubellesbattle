@@ -1,6 +1,6 @@
 class DemandesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:new, :create, :suivre]
-  before_action :set_demande, only: [:show, :suivre, :edit, :update, :destroy]
+  before_action :set_demande, only: [:show, :suivre, :edit, :update, :formulaire_toggle, :destroy]
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
 
   def resource_name
@@ -32,7 +32,6 @@ class DemandesController < ApplicationController
 
   def show
     # @demande = Demande.find(params[:id])
-    @composteur = Demande.find(params[:id])
   end
 
   # page de suivi de demande de composteur (comme une show mais pas pareil)
@@ -66,14 +65,30 @@ class DemandesController < ApplicationController
 
   def edit
     # @demande = Demande.find(params[:id])
+    # if @demande.status == "planifiée" && @demande.planification_date.past?
+    #   @demande.status == "installée"
+    #   @demande.save
+    # end
   end
 
   def update
-    # @demande = Demande.find(params[:id])
     if @demande.update(demande_params_admin)
-      redirect_to demandes_path
+      redirect_to edit_demande_path(@demande)
+      flash[:notice] = "La demande de #{@demande.first_name} a bien été prise en compte."
     else
       render :edit
+    end
+  end
+
+  def formulaire_toggle
+    @demande.completed_form ? @demande.completed_form = false : @demande.completed_form = true
+
+    if @demande.save
+      redirect_to edit_demande_path(@demande)
+      flash[:notice] = @demande.completed_form ? "formulaire complet !" : "vous pouvez modifier la demande"
+    else
+      render :edit
+      flash[:notice] = "une erreur s'est produite.."
     end
   end
 
@@ -101,6 +116,6 @@ class DemandesController < ApplicationController
   end
 
   def demande_params_admin
-    params.require(:demande).permit(:first_name, :last_name, :logement_type, :inhabitant_type, :potential_users, :address, :phone_number, :email, :status, :location_found, :planification_date, :photo)
+    params.require(:demande).permit(:first_name, :last_name, :logement_type, :inhabitant_type, :potential_users, :address, :phone_number, :email, :status, :location_found, :planification_date, :completed_form, :photo, :potential_address, :notes_to_collegues)
   end
 end

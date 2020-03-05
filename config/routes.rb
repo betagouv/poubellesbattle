@@ -19,6 +19,7 @@ Rails.application.routes.draw do
 
   resources :demandes, param: :slug
   get "/demandes/suivre/:slug", to: "demandes#suivre", as: 'suivre'
+  post "demandes/:slug/formulaire_toggle", to: "demandes#formulaire_toggle", as: 'formulaire_toggle'
 
   resources :notifications
 

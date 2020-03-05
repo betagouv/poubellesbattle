@@ -1,3 +1,39 @@
+.demande-flex {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin: 140px 0 0 0;
+}
+.demande-compo-vue {
+  width: 50%;
+  align-items: center;
+  .legende {
+    margin: 0;
+    font-size: 12px;
+  }
+  .demande-info {
+    margin: 10px 0;
+  }
+}
+
+.demande-compo-modif {
+  width: 25%;
+  p {
+    margin: 10px 0;
+  }
+}
+
+.demande-compo-vue, .demande-compo-modif {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+  height: max-content;
+}
+
+
+
 .demandes-box {
   display: flex;
   width: 100vw;

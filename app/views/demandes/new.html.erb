@@ -15,13 +15,13 @@
       <%= f.input :logement_type,
                   label: 'Dans quel type de logement vivez-vous ?',
                   as: :radio_buttons,
-                  collection: [["Maison", "Je vis dans une maison."], ["Appartement", "Je vis dans un appartement."]],
+                  collection: [["maison", "Je vis dans une maison."], ["appartement", "Je vis dans un appartement."]],
                   label_method: :last,
                   value_method: :first%>
       <%= f.input :inhabitant_type,
                   label: 'Etes vous proprietaire, locataire ou syndic ?',
                   as: :radio_buttons,
-                  collection: ['Proprietaire', 'Locataire', 'Syndic'] %>
+                  collection: ['proprietaire', 'locataire', 'syndic'] %>
       <%= f.input :potential_users,
                   label: "Connaissez-vous d'autres personnes interessées par un composteur dans ce quartier ?",
                   as: :radio_buttons,
