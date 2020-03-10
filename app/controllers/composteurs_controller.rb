@@ -51,8 +51,9 @@ class ComposteursController < ApplicationController
     @composteur.date_retournement ? @time_left = (@composteur.date_retournement - Date.today).round : @time_left = 300
     # users du composteur = les referents + les utilisateurs non referents
     @users = @composteur.users.order(role: :asc) # tous les utilisateurs du site
-    @referents = @users.where(role: "référent").order(ok_mail: :asc).order(ok_phone: :asc) # les referents du composteur
-    @not_referents = @users.where(role: "") # les non-referents
+
+    @referents = @users.where(role: "référent").order(ok_mail: :asc).order(ok_phone: :asc).sort_by { |user| user.notifications.count } # les referents du composteur
+    @not_referents = @users.where(role: nil) # les non-referents
 
     if user_signed_in?
       @notification = Notification.new
