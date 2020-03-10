@@ -48,7 +48,7 @@ class ComposteursController < ApplicationController
 
   def show
     @composteur = Composteur.find(params[:id])
-    @composteur.installation_date ? @time_left = 300 - ((Time.now - @composteur.installation_date.to_time)/86400).modulo(300).round : @time_left = 300
+    @composteur.date_retournement ? @time_left = (@composteur.date_retournement - Date.today).round : @time_left = 300
     # users du composteur = les referents + les utilisateurs non referents
     @users = @composteur.users.order(role: :asc) # tous les utilisateurs du site
     @referents = @users.where(role: "référent").order(ok_mail: :asc).order(ok_phone: :asc) # les referents du composteur
@@ -223,6 +223,6 @@ class ComposteursController < ApplicationController
   private
 
   def composteur_params
-    params.require(:composteur).permit(:name, :address, :category, :public, :installation_date, :status, :volume, :residence_name, :commentaire, :participants, :composteur_type, :photo)
+    params.require(:composteur).permit(:name, :address, :category, :public, :installation_date, :status, :volume, :residence_name, :commentaire, :participants, :composteur_type, :photo, :date_retournement)
   end
 end

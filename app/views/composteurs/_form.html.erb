@@ -14,6 +14,7 @@
   <%= f.input :commentaire, as: :text, placeholder: 'Commentaire' %>
   <%= f.input :installation_date, placeholder: "date d'installation", as: :string, required: false, input_html: {class: "datepicker"} %>
   <%= f.input :photo, placeholder: "Photo du composteur", as: :file %>
+  <%= f.input :date_retournement, placeholder: "date de retournement prévue le :", as: :string, required: false, input_html: {class: "datepicker"} %>
   <%#= f.input :photo_cache, as: :hidden %>
   <%#= f.input :referent_full_name, label: 'Nom et prénom du référent' %>
   <%#= f.input :referent_email, label: 'Email du référent' %>
