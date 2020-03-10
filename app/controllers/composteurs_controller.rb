@@ -96,7 +96,7 @@ class ComposteursController < ApplicationController
   def annuaire_ref
     if current_user.role == "admin"
       @composteurs = Composteur.all
-      @users_referents = User.where(role: "référent")
+      @users_referents = User.where(role: "référent").order(last_name: :asc)
       if params[:query].present?
         @referents = @users_referents.search_by_first_name_and_last_name(params[:query])
       else
