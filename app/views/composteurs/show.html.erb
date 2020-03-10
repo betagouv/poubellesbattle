@@ -127,7 +127,11 @@
         <% if current_user.role != "admin" %>
           <% if current_user.composteur_id == @composteur.id && current_user.role == nil %>
             <% if current_user.notifications.where(notification_type: "demande-référent").count < 1 %>
-              <div class="mini-btn mini-blue-btn"><%= link_to("devenir référent", referent_path(@composteur), method: :post) %></div>
+              <% if  @referents %>
+                <div class="mini-btn mini-blue-btn"><%= mail_to @referents.first.email, "devenir référent", subject: "Devenir référent•e avec vous sur ce site ?" %></div>
+              <% else %>
+                <div class="mini-btn mini-blue-btn"><%= link_to("devenir référent", referent_path(@composteur), method: :post) %></div>
+              <% end %>
             <% end %>
             <div class="mini-btn mini-yellow-btn"><%= link_to("me désinscrire", desinscription_path(@composteur), method: :post) %></div>
           <% elsif current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
