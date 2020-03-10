@@ -41,7 +41,7 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    padding:20px 0;
+    padding:20px 5px;
     margin: 0;
     #ref-popover {
       font-size: 12px;
@@ -131,14 +131,44 @@
 
 .depot-anomalie {
   display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 34px 0;
   .signaler {
-    margin: 20px;
     padding: 5px 15px;
     color: black;
     border-radius: 20px;
     border: none;
   }
+  .anomalie-form {
+    display: flex;
+    align-items: center;
+  }
+
+  .form-group {
+    margin: 0;
+  }
+
+  .anomalie-form {
+    background: #f0b7b7;
+    padding: 5px 10px;
+    border-radius: 20px;
+    justify-content: space-between;
+  }
+  .depot-form {
+    padding: 5px 10px;
+    border-radius: 20px;
+    background: #56c37b;
+    width: min-content;
+  }
 }
+
+.depot-anomalie .anomalie-form {
+  width: 50%;
+}
+
+
+
 
 // messages de l'agglo, généré coté admin affichés sur tous les composteurs-show !
 

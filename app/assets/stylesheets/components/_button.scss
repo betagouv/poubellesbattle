@@ -61,11 +61,10 @@ input.bouton-valid {
 .becoming-or-not-referent {
   display: flex;
   justify-content: center;
-  width: 100%;
+  align-items: center;
   .user-action {
     padding: 5px 15px;
     margin: 5px;
-    background: red;
     border-radius: 20px;
     a {
       color: white;
@@ -91,6 +90,9 @@ input.bouton-valid {
 }
 
 // bouton : retirer le role référent à un user
+input.mini-btn {
+  border: none;
+}
 
 .mini-btn {
   padding: 5px 10px;
@@ -107,4 +109,13 @@ input.bouton-valid {
 }
 .mini-yellow-btn {
   background: yellow;
+}
+.mini-red-btn {
+  background: red;
+}
+.mini-blue-btn {
+  background: #74f0ea;
+}
+.mini-banana-btn {
+  background: #fbbe26;
 }

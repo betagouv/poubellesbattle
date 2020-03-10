@@ -30,7 +30,12 @@ class NotificationsController < ApplicationController
         redirect_to composteur_path(@user.composteur_id)
       end
     else
-      render :new
+      if @user.role == "admin"
+        redirect_to notifications_path
+      else
+        redirect_to composteur_path(@user.composteur_id)
+        flash[:notice] = "L'anomalie ne peut pas être vide."
+      end
     end
   end
 

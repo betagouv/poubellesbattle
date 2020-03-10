@@ -7,13 +7,14 @@
 .demande-compo-vue {
   width: 50%;
   align-items: center;
-  .legende {
-    margin: 0;
-    font-size: 12px;
-  }
   .demande-info {
     margin: 10px 0;
   }
+}
+
+.legende {
+  margin: 0;
+  font-size: 12px;
 }
 
 .demande-compo-modif {
