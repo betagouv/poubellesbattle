@@ -1,4 +1,8 @@
 Rails.application.configure do
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.rails_logger = true
+  end
   # Verifies that versions and hashed value of the package contents in the project's package.json
   config.webpacker.check_yarn_integrity = true
   config.action_mailer.default_url_options = { host: "http://localhost:3000" }

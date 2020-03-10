@@ -28,11 +28,20 @@ class ComposteursController < ApplicationController
     # #   categories = @query_on_category.select { |k, v| v == '1' }.keys
     # #   @meals = Meal.geocoded.select { |m| categories.include?(m.category) }
     # else
-    @composteurs = Composteur.geocoded
-    @composteurs_all = Composteur.all.order(created_at: :asc)
+    if user_signed_in?
+      if current_user.role == "admin"
+        @composteurs = Composteur.includes(:photo_attachment).geocoded
+      else
+        @composteurs = Composteur.geocoded
+      end
+    else
+      @composteurs = Composteur.geocoded
+    end
+
+    @composteurs_all = Composteur.includes([:photo_attachment]).all.order(created_at: :asc)
   # end
 
-    @markers = @composteurs.map do |compo|
+    @markers = @composteurs.includes(:photo_attachment).map do |compo|
       {
         lat: compo.latitude,
         lng: compo.longitude,
@@ -57,7 +66,7 @@ class ComposteursController < ApplicationController
 
     if user_signed_in?
       @notification = Notification.new
-      @notifications = @composteur.notifications.where(notification_type: "welcome").or(@composteur.notifications.where(notification_type: "depot")).or(@composteur.notifications.where(notification_type: "anomalie")).or(@composteur.notifications.where(notification_type: "message")).order(created_at: :desc).first(10)
+      @notifications = @composteur.notifications.where(notification_type: "welcome").or(@composteur.notifications.where(notification_type: "depot")).or(@composteur.notifications.where(notification_type: "anomalie")).or(@composteur.notifications.where(notification_type: "message")).includes(:user).order(created_at: :desc).first(10)
       @messages_notifications = @composteur.notifications.where(notification_type: "message-ref").last
       @messages_admin = Notification.where(notification_type: "message-admin").last
     end
