@@ -30,8 +30,12 @@
             Retirer le référent
           </div>
         </div>
-        <% if @referents == nil %>
-          <div class="referent-line">pas de resultats..</div>
+        <% if @referents.empty? %>
+          <div class="referent-line">
+            <div class="referent-info-box empty-box">
+              <p>pas de resultats..</p>
+            </div>
+          </div>
         <% else %>
           <% @referents.each do |referent| %>
             <div class="referent-line">
