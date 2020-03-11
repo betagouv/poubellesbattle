@@ -17,13 +17,14 @@
 }
 
 .referent-info-box {
-  width: 17%;
+  min-width: 14%;
+  max-width: 14%;
   padding: 0 10px;
   margin: 0 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
+  justify-content: left;
+  text-align: left;
 }
 
 .info-name {
