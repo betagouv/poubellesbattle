@@ -53,28 +53,30 @@
 
     </div>
     <% if user_signed_in? %>
-      <% if current_user.composteur_id == @composteur.id %>
+      <% if current_user.composteur_id == @composteur.id || current_user.role == "admin" %>
         <h2 class="mt-5">Messagerie</h2>
         <p class="legende">cet espace privé vous permet d'échanger avec les autres membres du site de compostage.</p>
-        <div class="depot-anomalie">
-          <%= simple_form_for @notification, html: { class: "depot-form"} do |f| %>
-            <%= f.input :notification_type, as: :string, input_html: { value: "depot", type:"hidden" }%>
-            <%= f.input :content, as: :string, input_html: { value: "#{current_user.first_name} vient de faire un dépot !", type:"hidden" }%>
-            <%= f.submit "J'ai fait un dépot !", class: "signaler depot" %>
-          <% end %>
-          <%= simple_form_for @notification, html: { class: "anomalie-form"} do |f| %>
-            <%= f.input :notification_type, as: :string, input_html: { value: "anomalie", type:"hidden" }%>
-            <%= f.input :content, collection: ["couvercle absent/ouvert", "outil manquant", "matière non compostable dans le bac", "bac trop plein", "bac trop sec", "bac trop humide", "composteur cassé", "manque de structurant"] %>
-            <%= f.submit "Signaler une anomalie ...", class: "signaler anomalie" %>
-          <% end %>
-        </div>
-        <div class="message-form">
-          <%= simple_form_for @notification, html: { class: "message-form-flex"} do |f| %>
-            <%= f.input :notification_type, as: :string, input_html: { value: "message", type:"hidden" }%>
-            <%= f.input :content, as: :text, placeholder: "votre message...",  class: "message-form-content-input"%>
-            <%= f.submit "Envoyer", class: "mini-btn mini-banana-btn signaler" %>
-          <% end %>
-        </div>
+        <% if current_user.role != "admin" %>
+          <div class="depot-anomalie">
+            <%= simple_form_for @notification, html: { class: "depot-form"} do |f| %>
+              <%= f.input :notification_type, as: :string, input_html: { value: "depot", type:"hidden" }%>
+              <%= f.input :content, as: :string, input_html: { value: "#{current_user.first_name} vient de faire un dépot !", type:"hidden" }%>
+              <%= f.submit "J'ai fait un dépot !", class: "signaler depot" %>
+            <% end %>
+            <%= simple_form_for @notification, html: { class: "anomalie-form"} do |f| %>
+              <%= f.input :notification_type, as: :string, input_html: { value: "anomalie", type:"hidden" }%>
+              <%= f.input :content, collection: ["couvercle absent/ouvert", "outil manquant", "matière non compostable dans le bac", "bac trop plein", "bac trop sec", "bac trop humide", "composteur cassé", "manque de structurant"] %>
+              <%= f.submit "Signaler une anomalie ...", class: "signaler anomalie" %>
+            <% end %>
+          </div>
+          <div class="message-form">
+            <%= simple_form_for @notification, html: { class: "message-form-flex"} do |f| %>
+              <%= f.input :notification_type, as: :string, input_html: { value: "message", type:"hidden" }%>
+              <%= f.input :content, as: :text, placeholder: "votre message...",  class: "message-form-content-input"%>
+              <%= f.submit "Envoyer", class: "mini-btn mini-banana-btn signaler" %>
+            <% end %>
+          </div>
+        <% end %>
         <div class="message-board">
           <% @notifications.each do |notification| %>
             <% if notification.notification_type == "welcome" || notification.notification_type == "depot" || notification.notification_type == "anomalie" || notification.notification_type == "message" %>
