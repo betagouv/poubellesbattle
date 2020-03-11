@@ -34,7 +34,13 @@
       </div>
     </div>
     <div class="les-users">
-      <% @users.each do |user| %>
+      <% @reversed_referents.each do |user| %>
+        <div class="user-card" style="<% if user.role == "référent"%><%=  'background: darkorange' %><% end %>">
+          <%= ["🧅","🍌","🥦","🍎","🥨","🥖","🍁","🌼"].sample %><%= user.first_name %>
+        </div>
+          <p class="round-counter"><%= user.notifications.count %></p>
+      <% end %>
+      <% @not_referents.each do |user| %>
         <div class="user-card" style="<% if user.role == "référent"%><%=  'background: darkorange' %><% end %>">
           <%= ["🧅","🍌","🥦","🍎","🥨","🥖","🍁","🌼"].sample %><%= user.first_name %>
         </div>
@@ -42,12 +48,18 @@
       <% end %>
 
     </div>
-      <p>Plus que <%= @time_left %> jours avant que le compost soit prêt !</p>
       <!-- <p>Plus que <%#= Time.now - @composteur.installation_date.to_time %> jours avant que le compost soit prêt !</p> -->
+      <% if @time_left > 0 %>
+        <p>Plus que <%= @time_left %> jours avant que le compost soit prêt !</p>
+      <% elsif @time_left == 0 %>
+        <p>On dirait que la date du retournement du compost est arrivée !</p>
+      <% else %>
+        <p>Est-ce que la date de retournement est passée ?</p>
+      <% end %>
     <div class="compost-time-to-go">
       <div class="compost-time-past" style="
         <% if @time_left %>
-          <%= "width: #{100 - @time_left/2}%" %>
+            <%= "width: #{100 - @time_left/2}%" %>
         <% end %>">
       </div>
 
