@@ -1,4 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'uncomposteurici@gmail.com'
+  default from: 'contact@poubellesbattle.fr'
+
   layout 'mailer'
 end
