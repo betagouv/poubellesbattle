@@ -1,6 +1,16 @@
 class DemandeMailer < ApplicationMailer
-  def suivi_demande
+  def new_demande
     @demande = params[:demande]
-    mail(to: @demande.email, subject: "Suivi de votre demande d'installation de site de compostage")
+    mail(to: @demande.email, subject: "Votre demande de site de compostage")
+  end
+
+  def refus_demande
+    @demande = params[:demande]
+    mail(to: @demande.email, subject: "Refus de votre demande de site de compostage")
+  end
+
+  def planification_demande
+    @demande = params[:demande]
+    mail(to: @demande.email, subject: "Planification de l'installation du nouveau site de compostage")
   end
 end

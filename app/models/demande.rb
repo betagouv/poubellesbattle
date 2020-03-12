@@ -4,7 +4,9 @@ class Demande < ApplicationRecord
   has_one_attached :photo
 
   before_create :set_slug
-  after_create :send_suivi_demande_email
+  after_create :send_new_demande_email
+  after_update :send_refus_demande_email, if: :demande_refusee?
+  after_update :send_planification_demande_email, if: :demande_planifiee?
 
   def to_param
     slug
@@ -19,7 +21,23 @@ class Demande < ApplicationRecord
     end
   end
 
-  def send_suivi_demande_email
-    DemandeMailer.with(demande: self).suivi_demande.deliver_now
+  def send_new_demande_email
+    DemandeMailer.with(demande: self).new_demande.deliver_now
+  end
+
+  def demande_refusee?
+    self.status == "refusée"
+  end
+
+  def send_refus_demande_email
+    DemandeMailer.with(demande: self).refus_demande.deliver_now
+  end
+
+  def demande_planifiee?
+    self.status == "planifiée" && self.planification_date != nil
+  end
+
+  def send_planification_demande_email
+    DemandeMailer.with(demande: self).planification_demande.deliver_now
   end
 end
