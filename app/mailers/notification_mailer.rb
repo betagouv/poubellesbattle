@@ -7,4 +7,13 @@ class NotificationMailer < ApplicationMailer
 
     mail(to: @referent.email, subject: "Une nouvelle personne aimerait devenir référent•e avec vous !")
   end
+
+  def demande_referent_state
+    @notification = params[:notification]
+    @state = params[:state]
+    @composteur = Composteur.find(@notification.content.to_i)
+    @user = User.find(@notification.user_id)
+
+    mail(to: @user.email, subject: "Votre demande de référent sur #{@composteur.name}")
+  end
 end

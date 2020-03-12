@@ -184,6 +184,7 @@ class ComposteursController < ApplicationController
     @user = User.find(notification.user_id)
     @user.role = "référent"
     @user.save
+    NotificationMailer.with(notification: notification, state: "validée").demande_referent_state.deliver_now
     notification.destroy
     redirect_to demandes_path
   end
