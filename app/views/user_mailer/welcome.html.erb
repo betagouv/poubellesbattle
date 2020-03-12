@@ -1,27 +1,23 @@
-<div class="mail_content">
-  <h5>
-    <%= @user.first_name.capitalize %>, bienvenue sur la plateforme Poubelles Battle !
-  </h5>
-  <p>
-    Votre inscription en tant qu’adepte du compostage a bien été enregistrée.
-    Vous pouvez dès à présent vous inscrire à un site de compostage <%= link_to "proche de chez vous", 'https://www.poubellesbattle.fr/#carto', target: "_blank" %>.
-  </p>
-  <p>
-    Et maintenant, à vous de jouer ! Déposez vos déchets compostables* dans le bac prévu à cet effet, déclarez vos dépôts en un clic et signalez d’éventuelles anomalies et échanger avec les autres utilisateurs du site tout aussi facilement.
-    Il est important de jouer le jeu afin de rendre la démarche compostage efficace et utile à l’ensemble des habitants.
-  </p>
-  <p>
-    Vous allez recevoir de temps en temps quelques messages relatifs à la vie du composteur : distribution du compost mûr, arrivée d’un nouveau bac, retournement...
-  </p>
-  <p>
-    Merci pour votre implication <%= @user.first_name %>,
-  </p>
-  <p>
-    L’équipe Poubelles Battle.
-  </p>
+<h5><%= @user.first_name.capitalize %>, bienvenue sur la plateforme Poubelles Battle !</h5>
+<p>
+  Votre inscription en tant qu’adepte du compostage a bien été enregistrée.
+  Vous pouvez dès à présent vous inscrire à un site de compostage <%= link_to "proche de chez vous", root_url(anchor: "carto"), target: "_blank" %>.
+</p>
+<p>
+  Et maintenant, à vous de jouer ! Déposez vos déchets compostables* dans le bac prévu à cet effet, déclarez vos dépôts en un clic et signalez d’éventuelles anomalies et échanger avec les autres utilisateurs du site tout aussi facilement.
+  Il est important de jouer le jeu afin de rendre la démarche compostage efficace et utile à l’ensemble des habitants.
+</p>
+<p>
+  Vous allez recevoir de temps en temps quelques messages relatifs à la vie du composteur : distribution du compost mûr, arrivée d’un nouveau bac, retournement...
+</p>
+<p>
+  Merci pour votre implication <%= @user.first_name %>,
+</p>
+<p>
+  L’équipe Poubelles Battle.
+</p>
 
-  <%= link_to "* La liste des déchets compostables est consultable ici ", 'https://www.ademe.fr/sites/default/files/assets/documents/guide-pratique-compostage-et-paillage.pdf', target: "_blank" %>
-  <p>
-    ----------------------------------------------
-  </p>
-</div>
+<%= link_to "* La liste des déchets compostables est consultable ici ", 'https://www.ademe.fr/sites/default/files/assets/documents/guide-pratique-compostage-et-paillage.pdf', target: "_blank" %>
+<p>
+  ----------------------------------------------
+</p>

@@ -1,0 +1,7 @@
+<h5>Bonjour <%= @demande.first_name %>,</h5>
+<p>Nous avons bien reçu votre demande, elle est en cours de traitement.</p>
+<p>Si vous ne l'avez pas encore fait vous pouvez dès à présent créer <%= link_to "un compte", new_user_registration_url, target: "_blank" %> sur le site de Poubelles Battle.</p>
+<p>Vous aurez ensuite la possibilité de suivre l'avancée des démarches sur la page : <%= link_to "suivre ma demande", suivre_url(@demande.slug), target: "_blank" %></p>
+<p>A très vite sur Poubelles Battle,</p>
+<p>Compostement votre,</p>
+<p>L'Equipe Poubelles Battle.</p>
