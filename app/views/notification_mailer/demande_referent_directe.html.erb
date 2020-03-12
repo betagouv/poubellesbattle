@@ -1,0 +1,6 @@
+<h5>Bonjour <%= @referent.first_name.capitalize %>,</h5>
+<p>Vous avez reçu une nouvelle demande de référent de la part de <%= @user.first_name.capitalize %>!</p>
+<p>Voilà son mail : <%= @user.email %></p>
+<p>Si vous connaissez déjà <%= @user.first_name.capitalize %>, vous avez la possibilité de valider ou refuser sa demande en vous rendant sur cette <%= link_to "page", notification_url(@notification) %>..</p>
+<p>Compostement votre,</p>
+<p>L'Equipe de Poubelles Battle</p>

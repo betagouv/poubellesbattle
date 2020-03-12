@@ -1,2 +1,11 @@
-<h1>Notifications#show</h1>
-<p>Find me in app/views/notifications/show.html.erb</p>
+<div class="demandes-box">
+  <div class="demande-view white-bg">
+    <h2>Demande de référent sur votre site de compostage</h2>
+    <p><%= @demandeur.first_name %> <%= @demandeur.last_name %> aimerait devenir référent•e sur le site <%= @composteur.name %> avec vous.</p>
+    <p><%= @demandeur.first_name %> a créé son compte il y a <%=  distance_of_time_in_words(Time.now, @demandeur.created_at) %></p>
+    <div class="demande-btns">
+      <%= link_to "accepter", validation_referent_path(@notification), params: @notification.user_id, method: :post, class: "validee", data: {confirm: "Vous allez accepter la demande, êtes vous sûr•e ?"} %>
+      <%= link_to "refuser", notification_path(@notification), method: :delete, class: "non-validee", data: {confirm: "Vous allez refuser la demande, êtes vous sûr•e ?"}  %>
+    </div>
+  </div>
+</div>

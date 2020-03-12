@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
-  # skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user!, only: [:index, :new, :create]
 
   def index
     # @notifications = Notification.where(composteur == composteur_id).last(5)
@@ -11,7 +11,17 @@ class NotificationsController < ApplicationController
   end
 
   def show
-
+    if (current_user.role == "référent" && current_user.composteur_id == Notification.find(params[:id]).content.to_i) || current_user.role == "admin"
+      @notification = Notification.find(params[:id])
+      if @notification.notification_type == "demande-référent-directe"
+        @composteur = Composteur.find(@notification.content.to_i)
+        @demandeur = User.find(@notification.user_id)
+      else
+        redirect_to root_path
+      end
+    else
+      redirect_to root_path
+    end
   end
 
   def new
