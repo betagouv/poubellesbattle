@@ -1,2 +1,23 @@
-<h1>Donvert#new</h1>
-<p>Find me in app/views/donvert/new.html.erb</p>
+<div class="new-edit-don">
+  <h2>Créer mon annonce pour un don vert</h2>
+  <%= simple_form_for(@don) do |f| %>
+    <div class="type-don">
+      <h5>Infos sur mon don</h5>
+      <%= f.input :title, placeholder: 'Titre de mon annonce' %>
+      <%= f.input :type_matiere_orga, as: :radio_buttons, collection: ["compost", "structurant", "outils"],placeholder: 'Type de matière' %>
+      <%= f.input :description, placeholder: 'Courte description' %>
+      <%= f.input :volume_litres, placeholder: 'Quantité en litres' %>
+      <%= f.input :donneur_address, placeholder: 'Localisation du don' %>
+      <%= f.input :photo, label: "Avez-vous une photo du don ?", as: :file %>
+    </div>
+    <div class="contact-don">
+      <h5>Mes contacts</h5>
+      <%= f.input :donneur_name, placeholder: 'Nom' %>
+      <%= f.input :type_donateur, collection: ["site de compostage", "entreprise du paysage", "association", "établissement scolaire"], placeholder: 'Type de donateur' %>
+      <%= f.input :donneur_email, placeholder: 'Email' %>
+      <%= f.input :donneur_tel, placeholder: 'Téléphone' %>
+      <%= f.input :date_fin_dispo, as: :string, input_html: { class: "datepicker" }, placeholder: 'Date limite' %>
+      <%= f.submit "Poster mon annonce !" %>
+    </div>
+  <% end %>
+</div>

@@ -23,5 +23,5 @@ Rails.application.routes.draw do
 
   resources :notifications
 
-  resources :donverts
+  resources :donverts, param: :slug
 end
