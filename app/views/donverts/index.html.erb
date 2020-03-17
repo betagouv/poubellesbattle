@@ -1,30 +1,32 @@
-<div class="product-card-container">
-  <% @dons.each do |don| %>
-
-    <div class="product-card">
-      <div class="product-card-header">
-        <div class="product-title-category">
-        <h2><%= don.title %></h2>
-        <p><%= don.type_matiere_orga %></p>
-        </div>
-        <div class="ecoscore">
-            <p class="cate">Volume (en L)</p>
-            <h3 class="score">don.title</h3>
+<div class="all-dons-view">
+  <div class="don-cards">
+    <div class="dons-title">
+      <h2>Bourse Verte</h2>
+      <p>La Bourse Verte rassemble tous les dons verts de la communauté Poubelles Battle.</p>
+      <p>Vous voulez proposer du compost, du structurant ou même des outils ?</p>
+      <%= link_to "Je veux donner !", new_donvert_path, class: "new-don-btn" %>
+    </div>
+    <% @dons.each do |don| %>
+      <div class="don-card <%= don.date_fin_dispo.past? ? "don-past" : '' %>">
+        <% if don.photo.attached? %>
+          <%= cl_image_tag don.photo.key, height: 143, width: 190, crop: :fill %>
+        <% else %>
+          <%= image_tag 'PB_logo.png' %>
+        <% end %>
+        <h5><%= don.title %></h5>
+        <div class="don-infos">
+          <p class="don-details"><span class="nom-donneur"><%= don.donneur_name %></span>, <%= don.type_donateur %>, donne : <span class="don-matiere"><%= don.type_matiere_orga %></span>.</p>
+          <p class="description-don">"<%= don.description %>"</p>
+          <% if don.pourvu %>
+            <p class="don-pourvu">Ce don est déjà pourvu..</p>
+          <% elsif don.date_fin_dispo.past? %>
+            <p class="don-depasse">Date limite dépassée..</p>
+          <% else %>
+            <p>Il reste <span class="don-non-pourvu"><%= distance_of_time_in_words(Time.now, don.date_fin_dispo) %></span> pour récupérer le don !</p>
+            <%= mail_to don.donneur_email, "Lui écrire !", subject: "Je suis interessé•e par votre don !" %>
+          <% end %>
         </div>
       </div>
-
-      <div class="product-card-infos">
-
-        <p class="impact m-3 text-center"><strong>A propos du don</strong></p>
-
-          <div class="metrics-score-infos">
-              <div class="3-metrics">
-                <p class="metric">Nom du donneur : <strong><%=don.donneur_name %></strong></p>
-                <p class="metric">Adresse don : <strong><%=don.donneur_address %></strong></p>
-                <p class="metric">Disponible jusqu'au : <strong><%=don.date_fin_dispo%></strong></p>
-              </div>
-          </div>
-
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>
