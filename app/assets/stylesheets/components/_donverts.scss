@@ -40,6 +40,9 @@
       width: 100%;
       text-align: center;
       margin: 0 0 20px 0;
+      a {
+        margin: 10px;
+      }
       p {
         margin: 0;
       }
@@ -57,9 +60,9 @@
       margin: 10px;
       text-align: center;
       width: 30%;
-      min-width: 215px;
+      min-width: 230px;
       max-width: 290px;
-      height: 390px;
+      height: 420px;
       border-bottom: solid 1px rgba(20, 20, 20, 0.3);
       box-shadow: 0 0 5px rgba(50, 50, 50, 0.2);
       img {
@@ -84,6 +87,10 @@
           padding: 2px 4px;
           background:#6ff46f85;
         }
+        .don-adresse {
+          padding: 2px 4px;
+          background: #f98f6685;
+        }
         .nom-donneur {
           padding: 2px 4px;
           background: #f9e96685;
@@ -91,7 +98,8 @@
         }
         .don-non-pourvu {
           padding: 2px 4px;
-          background: #f98f6685;
+          background: #fb652c;
+          color: white;
         }
         .description-don {
           font-style: italic;
@@ -106,9 +114,9 @@
         a , .don-depasse {
           text-align: center;
           padding: 0 10px;
-          background: #f98f6685;
+          background: #66f2f985;
           border-radius: 15px;
-          margin: 10px auto;
+          margin: 0 auto;
           width: max-content;
         }
       }
