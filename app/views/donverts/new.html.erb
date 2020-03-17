@@ -4,7 +4,7 @@
     <div class="type-don">
       <h5>Infos sur mon don</h5>
       <%= f.input :title, placeholder: 'Titre de mon annonce' %>
-      <%= f.input :type_matiere_orga, as: :radio_buttons, collection: ["compost", "structurant", "outils"],placeholder: 'Type de matière' %>
+      <%= f.input :type_matiere_orga, as: :radio_buttons, collection: ["compost", "structurant", "outils"], placeholder: 'Type de matière' %>
       <%= f.input :description, placeholder: 'Courte description', input_html: { maxlength: 56 } %>
       <%= f.input :volume_litres, placeholder: 'Quantité en litres' %>
       <%= f.input :donneur_address, placeholder: 'Localisation du don' %>
@@ -13,7 +13,7 @@
     <div class="contact-don">
       <h5>Mes contacts</h5>
       <%= f.input :donneur_name, placeholder: 'Nom' %>
-      <%= f.input :type_donateur, collection: ["site de compostage", "entreprise du paysage", "association", "établissement scolaire", "particulier"], placeholder: 'Type de donateur' %>
+      <%= f.input :donateur_type, collection: ["site de compostage", "entreprise du paysage", "association", "établissement scolaire", "particulier"], placeholder: 'Type de donateur' %>
       <%= f.input :donneur_email, placeholder: 'Email' %>
       <%= f.input :donneur_tel, placeholder: 'Téléphone' %>
       <%= f.input :date_fin_dispo, as: :string, input_html: { class: "datepicker" }, placeholder: 'Date limite' %>

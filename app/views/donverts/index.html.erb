@@ -15,7 +15,7 @@
         <% end %>
         <h5><%= don.title %></h5>
         <div class="don-infos">
-          <p class="don-details"><span class="nom-donneur"><%= don.donneur_name %></span>, <%= don.type_donateur %>, donne : <span class="don-matiere"><%= don.type_matiere_orga %></span>.</p>
+          <p class="don-details"><span class="nom-donneur"><%= don.donneur_name %></span>, <%= don.donateur_type %>, donne : <span class="don-matiere"><%= don.type_matiere_orga %></span>.</p>
           <p class="description-don">"<%= don.description %>"</p>
           <% if don.pourvu %>
             <p class="don-pourvu">Ce don est déjà pourvu..</p>

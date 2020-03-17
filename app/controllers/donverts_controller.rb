@@ -37,7 +37,7 @@ class DonvertsController < ApplicationController
   end
 
   def don_params
-    params.require(:donvert).permit(:type_donateur, :title, :type_matiere_orga, :volume_litres, :donneur_name, :donneur_address, :donneur_tel, :donneur_email, :date_fin_dispo, :description, :photo)
+    params.require(:donvert).permit(:donateur_type, :title, :type_matiere_orga, :volume_litres, :donneur_name, :donneur_address, :donneur_tel, :donneur_email, :date_fin_dispo, :description, :photo)
   end
 
 end
