@@ -110,11 +110,13 @@
         }
         .don-depasse {
           background: rgba(20, 20, 20, 0.2) !important;
+          color: black !important;
         }
         a , .don-depasse {
           text-align: center;
           padding: 0 10px;
-          background: #66f2f985;
+          border: solid 1px #56c37b;
+          color: #56c37b;
           border-radius: 15px;
           margin: 0 auto;
           width: max-content;
