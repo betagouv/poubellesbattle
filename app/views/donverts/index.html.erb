@@ -21,7 +21,7 @@
             <% if  don.date_fin_dispo.future? %>
               <span>à l'adresse </span><span class="don-adresse"><%= don.donneur_address %></span>
             <% end %>
-          .</p>
+          <span>.</span></p>
           <p class="description-don">"<%= don.description %>"</p>
           <% if don.pourvu %>
             <p class="don-pourvu">Ce don est déjà pourvu..</p>

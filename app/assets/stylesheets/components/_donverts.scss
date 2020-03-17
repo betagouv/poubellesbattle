@@ -75,12 +75,12 @@
       width: 30%;
       min-width: 255px;
       max-width: 290px;
-      height: 450px;
+      height: 430px;
       border-bottom: solid 1px rgba(20, 20, 20, 0.3);
       box-shadow: 0 0 5px rgba(50, 50, 50, 0.2);
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
+      justify-content: space-between;
       align-items: center;
       img {
         max-width: 190px;
@@ -94,7 +94,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        height: 200px;
+        height: max-content;
         overflow-wrap: anywhere;
         .don-details {
           line-height: 190%;
