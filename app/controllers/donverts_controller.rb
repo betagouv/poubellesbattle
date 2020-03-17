@@ -3,7 +3,7 @@ class DonvertsController < ApplicationController
   before_action :set_don, only: [:edit, :update, :destroy]
 
   def index
-    @dons = Donvert.all
+    @dons = Donvert.all.order(date_fin_dispo: :desc)
   end
 
   def new

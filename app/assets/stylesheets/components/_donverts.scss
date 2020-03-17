@@ -23,23 +23,102 @@
 
 
 .all-dons-view {
-  display: flex;
-  flex-wrap: wrap;
   width: 80%;
   justify-content: center;
   align-items: center;
   margin: auto;
   .don-cards {
+    display: flex;
+    flex-wrap: wrap;
     margin: 140px 0;
     background: white;
     border-radius: 5px;
     padding: 20px;
     width: 100%;
-    .don-card {
+    justify-content: space-around;
+    .dons-title {
+      width: 100%;
       text-align: center;
-      width: 216px;
-      height: 350px;
+      margin: 0 0 20px 0;
+      p {
+        margin: 0;
+      }
+      .new-don-btn {
+        padding: 0 12px;
+        background: #0000ff38;
+        border-radius: 15px;
+      }
+    }
+    .don-past {
+      opacity: 0.6;
+    }
+    .don-card {
+      padding: 10px;
+      margin: 10px;
+      text-align: center;
+      width: 30%;
+      min-width: 215px;
+      max-width: 290px;
+      height: 390px;
       border-bottom: solid 1px rgba(20, 20, 20, 0.3);
+      box-shadow: 0 0 5px rgba(50, 50, 50, 0.2);
+      img {
+        max-width: 190px;
+        max-height: 143px;
+      }
+      .don-infos {
+        text-align: left;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 200px;
+        overflow-wrap: anywhere;
+        .don-details {
+        }
+        p {
+          overflow-wrap: anywhere;
+          margin: 0;
+          font-size: 13px;
+        }
+        .don-matiere {
+          padding: 2px 4px;
+          background:#6ff46f85;
+        }
+        .nom-donneur {
+          padding: 2px 4px;
+          background: #f9e96685;
+          text-transform: uppercase;
+        }
+        .don-non-pourvu {
+          padding: 2px 4px;
+          background: #f98f6685;
+        }
+        .description-don {
+          font-style: italic;
+          text-align: center;
+          padding: 5px 0;
+          font-size: 14px;
+          overflow-wrap: anywhere;
+        }
+        .don-depasse {
+          background: rgba(20, 20, 20, 0.2) !important;
+        }
+        a , .don-depasse {
+          text-align: center;
+          padding: 0 10px;
+          background: #f98f6685;
+          border-radius: 15px;
+          margin: 10px auto;
+          width: max-content;
+        }
+      }
     }
   }
+}
+
+@media (max-width: 800px) {
+  .all-dons-view .don-cards .dons-title p, .all-dons-view .don-cards .dons-title a {
+    font-size: 12px;
+  }
+
 }
