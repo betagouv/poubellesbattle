@@ -38,36 +38,56 @@
     justify-content: space-around;
     .dons-title {
       width: 100%;
+      min-height: 190px;
       text-align: center;
       margin: 0 0 20px 0;
-      a {
-        margin: 10px;
-      }
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
       p {
         margin: 0;
       }
       .new-don-btn {
-        padding: 0 12px;
-        background: #0000ff38;
-        border-radius: 15px;
+        padding: 5px 12px;
+        background: #0000ff69;
+        border-radius: 20px;
+        width: max-content;
+        transition: all 0.5s ease;
+        color: white;
+        border: solid 1px white;
+        &:hover {
+          transition: all 0.5s ease;
+          border: solid 1px #0000ff69;
+          color: #0000ff69;
+          background: white;
+          text-decoration: none;
+        }
       }
     }
     .don-past {
       opacity: 0.6;
     }
     .don-card {
-      padding: 10px;
-      margin: 10px;
+      padding: 15px 10px;
+      margin: 20px 10px;
       text-align: center;
       width: 30%;
-      min-width: 230px;
+      min-width: 255px;
       max-width: 290px;
-      height: 420px;
+      height: 450px;
       border-bottom: solid 1px rgba(20, 20, 20, 0.3);
       box-shadow: 0 0 5px rgba(50, 50, 50, 0.2);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
       img {
         max-width: 190px;
         max-height: 143px;
+      }
+      h5, .don-infos {
+        max-width: 270px;
       }
       .don-infos {
         text-align: left;
@@ -77,10 +97,10 @@
         height: 200px;
         overflow-wrap: anywhere;
         .don-details {
+          line-height: 190%;
         }
         p {
           overflow-wrap: anywhere;
-          margin: 0;
           font-size: 13px;
         }
         .don-matiere {
@@ -115,11 +135,19 @@
         a , .don-depasse {
           text-align: center;
           padding: 0 10px;
-          border: solid 1px #56c37b;
-          color: #56c37b;
+          border: solid 1px #f79e9e;
+          color: white;
+          background: #f79e9e;
           border-radius: 15px;
           margin: 0 auto;
           width: max-content;
+          transition: all 0.5s ease;
+          &:hover {
+            background: white;
+            color: #f79e9e;
+            transition: all 0.5s ease;
+            text-decoration: none;
+          }
         }
       }
     }

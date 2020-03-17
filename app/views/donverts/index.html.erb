@@ -2,8 +2,10 @@
   <div class="don-cards">
     <div class="dons-title">
       <h2>Bourse Verte</h2>
-      <p>La Bourse Verte rassemble tous les dons verts de la communauté Poubelles Battle.</p>
-      <p>Vous voulez proposer du compost, du structurant ou même des outils ?</p>
+      <div class="dons-explaination">
+        <p>La Bourse Verte rassemble tous les dons verts de la communauté Poubelles Battle.</p>
+        <p>Vous voulez proposer du compost, du structurant ou même des outils ?</p>
+      </div>
       <%= link_to "Je veux donner !", new_donvert_path, class: "new-don-btn" %>
     </div>
     <% @dons.each do |don| %>
@@ -17,7 +19,7 @@
         <div class="don-infos">
           <p class="don-details"><span class="nom-donneur"><%= don.donneur_name %></span>, <%= don.donateur_type %>, donne : <span class="don-matiere"><%= don.type_matiere_orga %></span>
             <% if  don.date_fin_dispo.future? %>
-              <span>à l'adresse </span><span class="don-adresse"> <%= don.donneur_address %></span>
+              <span>à l'adresse </span><span class="don-adresse"><%= don.donneur_address %></span>
             <% end %>
           .</p>
           <p class="description-don">"<%= don.description %>"</p>
