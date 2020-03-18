@@ -224,7 +224,7 @@ class ComposteursController < ApplicationController
   def send_email
     @composteur = Composteur.find(params[:id])
       if !@composteur.referent_email.nil?
-        ContactReferentMailer.send_request(@composteur).deliver_now
+        # ContactReferentMailer.send_request(@composteur).deliver_now
         flash[:notice] = "Demande envoyée"
       else
         flash[:notice] = "Votre demande n'a pu aboutir, le référent n'a pas renseigné d'adresse mail"
