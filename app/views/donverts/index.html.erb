@@ -11,7 +11,7 @@
     <% @dons.each do |don| %>
       <div class="don-card <%= don.date_fin_dispo.past? ? "don-past" : '' %>">
         <% if don.photo.attached? %>
-          <%= cl_image_tag don.photo.key, height: 143, width: 190, crop: :fill %>
+          <%= cl_image_tag don.photo.key, height: 143, width: 235, crop: :fill %>
         <% else %>
           <%= image_tag 'PB_logo.png' %>
         <% end %>
