@@ -17,7 +17,13 @@
   align-items: center;
   background: white;
   border-radius: 5px;
+  .marg-vert {
+    position: relative;
+    top: 40px;
+  }
 }
+
+/* Feuille de style intégrée #6 | http://www.poubellesbattle.fr/#carto */
 
 .marg-vert {
   margin: 25px 0;
