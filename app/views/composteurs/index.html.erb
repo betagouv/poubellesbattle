@@ -1,32 +1,35 @@
 <% if user_signed_in? %>
   <% if current_user.role == "admin" || current_user.role == "super_admin" %>
     <div class="admin-box">
-      <h5 class="marg-vert">Tous les composteurs</h5>
-      <div class="admin-list">
-        <div class="container mt-3 text-center" id="carto">
-          <div id="geocoder" class="geocoder"></div>
-          <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" ></div>
-        </div>
-        <% @composteurs_all.each do |composteur| %>
-          <div class="composteur-container">
-            <div class="buttons-demande">
-              <%= link_to "✏️", edit_composteur_path(composteur), class: "button-demande" %>
-              <%= link_to "👁", composteur_path(composteur), class: "button-demande" %>
-              <%#= mail_to composteur.email, "✉️", subject: "Votre demande de composteur.", class: "button-demande" %>
-              <%= link_to "🗑", composteur_path(composteur), method: :delete, data: {confirm: "Vous êtes sur le point de suprimer un composteur. Etes-vous certain ?"}, class: "button-demande" %>
-            </div>
-              <div class="composteur-card">
-                <% if composteur.photo.attached? %>
-                  <%= cl_image_tag composteur.photo.key, height: 200, width: 260, crop: :fill %>
-                <% else %>
-                  <%= image_tag 'PB_logo.png' %>
-                <% end %>
-                <h5><%= composteur.name %></h5>
-                <p><%= composteur.address %></p>
+      <div class="whitebg-admin">
+        <h5 class="marg-vert">Tous les composteurs</h5>
+        <div class="admin-list">
+          <div class="container mt-3 text-center" id="carto">
+            <div id="geocoder" class="geocoder"></div>
+            <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" ></div>
+          </div>
+          <% @composteurs_all.each do |composteur| %>
+            <div class="composteur-container">
+              <div class="buttons-demande">
+                <%= link_to "✏️", edit_composteur_path(composteur), class: "button-demande" %>
+                <%= link_to "👁", composteur_path(composteur), class: "button-demande" %>
+                <%#= mail_to composteur.email, "✉️", subject: "Votre demande de composteur.", class: "button-demande" %>
+                <%= link_to "🗑", composteur_path(composteur), method: :delete, data: {confirm: "Vous êtes sur le point de suprimer un composteur. Etes-vous certain ?"}, class: "button-demande" %>
               </div>
-            </div>
-        <% end %>
+                <div class="composteur-card">
+                  <% if composteur.photo.attached? %>
+                    <%= cl_image_tag composteur.photo.key, height: 200, width: 260, crop: :fill %>
+                  <% else %>
+                    <%= image_tag 'PB_logo.png' %>
+                  <% end %>
+                  <h5><%= composteur.name %></h5>
+                  <p><%= composteur.address %></p>
+                </div>
+              </div>
+          <% end %>
+        </div>
       </div>
+
     </div>
   <% else %>
     <%= render 'home-banner' %>
