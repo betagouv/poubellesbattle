@@ -189,6 +189,9 @@
     font-size: 14px;
     margin-bottom: 14px;
   }
+  .message-content {
+    overflow-wrap: anywhere;
+  }
 }
 
 .compost-time-to-go {
