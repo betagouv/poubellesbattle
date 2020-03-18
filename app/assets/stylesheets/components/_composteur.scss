@@ -43,10 +43,12 @@
     align-items: center;
     padding:20px 5px;
     margin: 0;
-    #ref-popover {
+    .ref-quoi {
       font-size: 12px;
       background: #986535;
       border: none;
+      color: white;
+      padding: 5px 10px;
     }
   }
 }

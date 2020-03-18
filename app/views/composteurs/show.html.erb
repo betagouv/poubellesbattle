@@ -157,9 +157,7 @@
     </div>
     <div class="les-referents white-bg">
       <h3>référent•e•s</h3>
-      <button id="ref-popover" type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-content="Etre référent•e implique de grandes responsabilités.">
-        C'est quoi être référent•e ?
-      </button>
+      <%= link_to "C'est quoi être référent•e ?", "https://uncomposteurici.gitbook.io/poubellesbattle/convaincre-son-assemblee-generale-de-copropriete-dinstaller-un-composteur-en-pied-dimmeuble/le-role-de-referent-e-composteur", class: "ref-quoi" %>
       <% if @referents.count != 0 %>
         <% @referents.each do |referent| %>
           <div class="referent-card">
