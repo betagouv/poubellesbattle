@@ -69,13 +69,13 @@
       opacity: 0.6;
     }
     .don-card {
-      padding: 15px 10px;
-      margin: 20px 10px;
+      padding: 30px 10px;
+      margin: 5px 10px 20px 10px;
       text-align: center;
       width: 30%;
       min-width: 255px;
       max-width: 290px;
-      height: 430px;
+      height: 510px;
       border-bottom: solid 1px rgba(20, 20, 20, 0.3);
       box-shadow: 0 0 5px rgba(50, 50, 50, 0.2);
       display: flex;
@@ -88,6 +88,7 @@
       }
       h5, .don-infos {
         max-width: 270px;
+        margin-top: 10px;
       }
       .don-infos {
         text-align: left;
@@ -159,4 +160,13 @@
     font-size: 12px;
   }
 
+}
+
+@media (max-width: 400px) {
+  .all-dons-view {
+    width: 100%;
+    .don-cards .don-card {
+      min-width: 275px;
+    }
+  }
 }
