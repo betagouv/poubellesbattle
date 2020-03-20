@@ -1,9 +1,10 @@
 class DonvertsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :new, :create]
-  before_action :set_don, only: [:show, :link, :edit, :pourvu, :update, :destroy]
+  before_action :set_don, only: [:show, :link, :edit, :pourvu, :archive, :update, :destroy]
 
   def index
-    @dons = Donvert.all.where(pourvu: false).order(date_fin_dispo: :desc)
+    @dons_count = Donvert.all.count
+    @dons = Donvert.all.where(archived: false).order(pourvu: :asc).order(date_fin_dispo: :desc)
   end
 
   def show
@@ -45,7 +46,13 @@ class DonvertsController < ApplicationController
   def pourvu
     @don.pourvu = true
     @don.save
-    redirect_to donverts_path
+    redirect_to donvert_path(@don)
+  end
+
+  def archive
+    @don.archived = true
+    @don.save
+    redirect_to donvert_path(@don)
   end
 
   def update

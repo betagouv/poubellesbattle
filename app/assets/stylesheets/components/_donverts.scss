@@ -64,6 +64,12 @@
           text-decoration: none;
         }
       }
+      .dons-explaination {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
     }
     .don-past {
       opacity: 0.6;
