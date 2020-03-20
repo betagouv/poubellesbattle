@@ -2,14 +2,22 @@
   <div class="don-cards">
     <div class="dons-title">
       <% if @don.user_id == current_user.id %>
-        <h2>Aperçu de mon don</h2>
-        <% if @don.pourvu %>
+        <% if @don.archived %>
+          <h2>Don archivé</h2>
+          <p>Ce don a été archivé le <%= @don.updated_at.strftime("%d/%m/%Y") %></p>
+        <% elsif @don.pourvu %>
+          <h2>Aperçu de mon don</h2>
           <div class="dons-explaination">
             <p>Ce don est pourvu, vous ne pouvez plus le modifier.</p>
+            <p>Vous avez la possibilité d'archiver ce don afin qu'il ne soit plus visible des autres utlisateurs.</p>
+            <div class="new-don-btn mini-blue-btn">
+              <%= link_to "Archiver mon don !", archive_path(@don), method: :post, data: { confirm: "Une fois le don archivé, votre don ne sera plus visible dans la liste et vous ne pourrez plus revenir en arrière."} %>
+            </div>
           </div>
         <% else %>
+          <h2>Aperçu de mon don</h2>
           <div class="new-don-btn mini-blue-btn">
-            <%= link_to "Mon don est pourvu !", pourvu_path(@don), method: :post, data: { confirm: "Une fois le don pourvu, celui-ci ne sera plus visible sur la Bourse Verte"} %>
+            <%= link_to "Mon don est pourvu !", pourvu_path(@don), method: :post, data: { confirm: "Une fois le don pourvu, vous ne pourrez plus revenir en arrière."} %>
           </div>
         <% end %>
       <% elsif @don.user_id == nil %>

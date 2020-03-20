@@ -25,5 +25,6 @@ Rails.application.routes.draw do
 
   resources :donverts, param: :slug
   post "donverts/:slug/pourvu", to: "donverts#pourvu", as: "pourvu"
+  post "donverts/:slug/archive", to: "donverts#archive", as: "archive"
   get "donverts/:slug/link", to: "donverts#link", as: "link"
 end

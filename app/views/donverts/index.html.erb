@@ -9,7 +9,7 @@
       <%= link_to "Je veux donner !", new_donvert_path, class: "new-don-btn" %>
     </div>
     <% @dons.each do |don| %>
-      <div class="don-card <%= don.date_fin_dispo.past? ? "don-past" : '' %>">
+      <div class="don-card <%= don.date_fin_dispo.past? || don.pourvu ? "don-past" : '' %>">
         <% if don.photo.attached? %>
           <%= cl_image_tag don.photo.key, height: 143, width: 235, crop: :fill %>
         <% else %>
