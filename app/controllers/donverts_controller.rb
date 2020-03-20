@@ -4,7 +4,7 @@ class DonvertsController < ApplicationController
 
   def index
     @dons_count = Donvert.all.count
-    @dons = Donvert.all.where(archived: false).order(date_fin_dispo: :desc)
+    @dons = Donvert.all.where(archived: false).order(pourvu: :asc).order(date_fin_dispo: :desc)
   end
 
   def show
