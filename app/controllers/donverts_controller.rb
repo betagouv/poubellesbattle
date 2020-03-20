@@ -3,7 +3,7 @@ class DonvertsController < ApplicationController
   before_action :set_don, only: [:show, :link, :edit, :pourvu, :update, :destroy]
 
   def index
-    @dons = Donvert.all.order(date_fin_dispo: :desc)
+    @dons = Donvert.all.where(pourvu: false).order(date_fin_dispo: :desc)
   end
 
   def show
