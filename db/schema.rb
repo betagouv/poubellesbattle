@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_17_154656) do
+ActiveRecord::Schema.define(version: 2020_03_20_103054) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -91,7 +91,10 @@ ActiveRecord::Schema.define(version: 2020_03_17_154656) do
     t.string "slug", null: false
     t.boolean "pourvu", default: false
     t.string "donateur_type"
+    t.bigint "user_id"
+    t.string "codeword"
     t.index ["slug"], name: "index_donverts_on_slug", unique: true
+    t.index ["user_id"], name: "index_donverts_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -124,6 +127,7 @@ ActiveRecord::Schema.define(version: 2020_03_17_154656) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "donverts", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "users", "composteurs"
 end
