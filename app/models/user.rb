@@ -17,11 +17,11 @@ class User < ApplicationRecord
       tsearch: { prefix: true }
     }
 
-  # after_create :send_welcome_email
+  after_create :send_welcome_email
 
-  # private
+  private
 
-  # def send_welcome_email
-  #   UserMailer.with(user: self).welcome.deliver_now
-  # end
+  def send_welcome_email
+    UserMailer.with(user: self).welcome.deliver_now
+  end
 end
