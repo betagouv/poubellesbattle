@@ -1,0 +1,10 @@
+<h5>Bonjour <%= @user.first_name.capitalize %>,</h5>
+<% if @state == "validée" %>
+  <p>Votre demande a été acceptée ! Vous êtes maintenant référent du site <%= link_to "#{@composteur.name}", composteur_url(@composteur) %> !</p>
+  <p>N'oubliez pas qu'être référent implique de grandes responsabilités !</p>
+<% elsif @state == "refusée" %>
+  <p>Malheureusement, il semble qu'il y ai déjà suffisament de référents sur le site <%= @composteur.name %>.. </p>
+  <p>N'hésitez pas à contacter les référent•e•s de ce site pour plus d'information.</p>
+<% end %>
+<p>Compostement votre,</p>
+<p>L'Equipe de Poubelles Battle</p>

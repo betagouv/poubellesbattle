@@ -150,16 +150,20 @@ class ComposteursController < ApplicationController
   def referent_composteur
     @user = current_user
     @composteur = Composteur.find(params[:id])
-    if @composteur.users.where(role: "référent").count >= 0
-      demande_ref = Notification.new(notification_type: "demande-référent", content: "#{@composteur.id}", user_id: @user.id)
-      if demande_ref.save!
-        redirect_to composteur_path
-        flash[:notice] = "Votre demande a été envoyée"
-      else
-        redirect_to composteur_path
-        flash[:notice] = "Votre demande n'a pas été envoyée.."
+    demande_ref = Notification.new( content: "#{@composteur.id}", user_id: @user.id)
+    if @composteur.users.where(role: "référent").count > 0
+      demande_ref.notification_type = "demande-référent-directe" # send directly by email to référent
+    else
+      demande_ref.notification_type = "demande-référent"
+    end
 
-      end
+    if demande_ref.save!
+      # a mail gets send to referents.first if referents exist && if demande-référent-directe
+      redirect_to composteur_path
+      flash[:notice] = "Votre demande a été envoyée"
+    else
+      redirect_to composteur_path
+      flash[:notice] = "Votre demande n'a pas été envoyée.."
     end
   end
 
@@ -180,6 +184,7 @@ class ComposteursController < ApplicationController
     @user = User.find(notification.user_id)
     @user.role = "référent"
     @user.save
+    NotificationMailer.with(notification: notification, state: "validée").demande_referent_state.deliver_now
     notification.destroy
     redirect_to demandes_path
   end
