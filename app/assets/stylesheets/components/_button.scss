@@ -119,3 +119,29 @@ input.mini-btn {
 .mini-banana-btn {
   background: #fbbe26;
 }
+
+
+.edit-don-btn {
+  padding: 2px 7px;
+  border-radius: 20px;
+  font-size: 15px;
+  a {
+   color: white;
+    &:hover {
+      color: white;
+    }
+  }
+}
+.pourvu-don {
+  background: #fb652c;
+  color: white;
+}
+.archive-don {
+  background: #6ff46f;
+  a {
+    color: black;
+    &:hover {
+      color: black;
+    }
+  }
+}

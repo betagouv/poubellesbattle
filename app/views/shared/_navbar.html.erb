@@ -64,6 +64,9 @@
             <% demande = Demande.find_by(email: current_user.email) %>
             <%= link_to "Ma demande", suivre_path(demande), class: "dropdown-item" %>
           <% end %>
+          <% if current_user.donverts != nil %>
+            <%= link_to "Historiques de mes dons", mes_dons_path, class: "dropdown-item"  %>
+          <% end %>
           <%= link_to "Modifier mon profil", edit_user_registration_path(current_user), class: "dropdown-item"  %>
           <%= link_to "Me deconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
         <% else %>
