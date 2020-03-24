@@ -1,8 +1,8 @@
 <div class="all-dons-view">
   <div class="don-cards">
     <div class="dons-title">
-      <h2>Bourse Verte</h2>
-      <h3>Dons en cours</h3>
+      <h2>Historique de mes dons</h2>
+      <h4>Dons visibles</h4>
 
       <%= link_to "Je veux faire un nouveau don !", new_donvert_path, class: "new-don-btn" %>
     </div>
@@ -45,7 +45,7 @@
     <% end %>
     <% if @dons_archive != nil %>
       <div class="dons-title">
-        <h3>Dons archivés</h3>
+        <h4>Dons archivés</h4>
       </div>
       <% @dons_archive.each do |don| %>
         <div class="don-card <%= don.date_fin_dispo.past? || don.pourvu ? "don-past" : '' %>">
