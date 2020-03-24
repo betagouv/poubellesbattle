@@ -4,7 +4,7 @@ class DonvertsController < ApplicationController
 
   def index
     @dons_count = Donvert.all.count
-    @dons = Donvert.all.where(archived: false).order(pourvu: :asc).order(date_fin_dispo: :desc)
+    @dons = Donvert.all.where(archived: false).order(pourvu: :asc).order(date_fin_dispo: :desc).includes([:photo_attachment])
   end
 
   def show
@@ -33,6 +33,9 @@ class DonvertsController < ApplicationController
 
   def create
     @don = Donvert.new(don_params)
+    if user_signed_in?
+      @don.user_id = current_user.id
+    end
     if @don.save
       redirect_to donverts_path
     else

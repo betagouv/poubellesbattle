@@ -5,6 +5,8 @@ class Donvert < ApplicationRecord
   before_create :set_slug
   before_create :set_codeword
 
+  after_create :send_confirmation_don_email
+
   def to_param
     slug
   end
@@ -20,5 +22,9 @@ class Donvert < ApplicationRecord
 
   def set_codeword
     self.codeword = SecureRandom.alphanumeric
+  end
+
+  def send_confirmation_don_email
+    DonvertMailer.with(donvert: self).confirmation_don.deliver_now
   end
 end
