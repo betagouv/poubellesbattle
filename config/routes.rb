@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :notifications
 
   resources :donverts, param: :slug
+  get "mes_dons", to: "donverts#mes_dons", as: "mes_dons"
   post "donverts/:slug/pourvu", to: "donverts#pourvu", as: "pourvu"
   post "donverts/:slug/archive", to: "donverts#archive", as: "archive"
   get "donverts/:slug/link", to: "donverts#link", as: "link"

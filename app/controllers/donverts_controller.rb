@@ -7,6 +7,11 @@ class DonvertsController < ApplicationController
     @dons = Donvert.all.where(archived: false).order(pourvu: :asc).order(date_fin_dispo: :desc).includes([:photo_attachment])
   end
 
+  def mes_dons
+    @dons = current_user.donverts.where(archived: false)
+    @dons_archive = current_user.donverts.where(archived: true)
+  end
+
   def show
     if @don.user_id != nil && @don.user_id != current_user.id
       redirect_to donverts_path
@@ -49,13 +54,15 @@ class DonvertsController < ApplicationController
   def pourvu
     @don.pourvu = true
     @don.save
-    redirect_to donvert_path(@don)
+    redirect_to donverts_path
+    flash[:notice] = "Votre don est pourvu. L'annonce reste visible mais votre mail n'est plus accessible."
   end
 
   def archive
     @don.archived = true
     @don.save
-    redirect_to donvert_path(@don)
+    redirect_to donverts_path
+    flash[:notice] = "Votre don est archivé. Il n'apparaîtra plus dans la Bourse Verte."
   end
 
   def update

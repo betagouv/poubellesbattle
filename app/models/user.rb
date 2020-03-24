@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   belongs_to :composteur, optional: true
   has_many :notifications
+  has_many :donverts
   has_one_attached :photo
 
   include PgSearch::Model
