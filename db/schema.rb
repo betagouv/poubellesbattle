@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_26_095917) do
+ActiveRecord::Schema.define(version: 2020_03_26_134645) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,7 +99,6 @@ ActiveRecord::Schema.define(version: 2020_03_26_095917) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.string "subject"
     t.string "content"
     t.string "sender_email"
     t.string "sender_full_name"

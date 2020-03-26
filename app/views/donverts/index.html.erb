@@ -54,7 +54,6 @@
                 <%= simple_form_for @message do |f| %>
                   <%= f.input :sender_email %>
                   <%= f.input :sender_full_name %>
-                  <%= f.input :subject, input_html: { value: "Votre don m'intéresse !", type: "hidden"} %>
                   <%= f.input :donvert_id, input_html: { value: "#{don.id}", type: "hidden"} %>
                   <%= f.input :content, as: :text, placeholder: "Votre message..." %>
                   <%= f.submit "envoyer" %>
