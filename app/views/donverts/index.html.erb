@@ -44,26 +44,21 @@
           <% else %>
             <p>Il reste <span class="don-non-pourvu"><%= distance_of_time_in_words(Time.now, don.date_fin_dispo) %></span> pour récupérer le don !</p>
 
-            <p>
-              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample-<%= don.id%>" aria-expanded="false" aria-controls="collapseExample">
-                Ecrire à <%= don.donneur_name %>
+            <div class="dropdown dropdown-form">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownForm-<%= don.id%>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Lui écrire
               </button>
-            </p>
-            <div class="collapse" id="collapseExample-<%= don.id%>">
-              <div class="card card-body">
+              <div class="dropdown-menu don-form-size-padd" aria-labelledby="dropdownForm-<%= don.id%>">
+                <h5>Message pour <%= don.donneur_name %></h5>
                 <%= simple_form_for @message do |f| %>
-                  <%= f.input :sender_email %>
-                  <%= f.input :sender_full_name %>
+                  <%= f.input :sender_email, placeholder: "Votre mail" %>
+                  <%= f.input :sender_full_name, placeholder: "Votre nom" %>
                   <%= f.input :donvert_id, input_html: { value: "#{don.id}", type: "hidden"} %>
                   <%= f.input :content, as: :text, placeholder: "Votre message..." %>
-                  <%= f.submit "envoyer" %>
+                  <div class="center-form-submit"><%= f.submit "envoyer", class: "don-form-btn" %></div>
                 <% end %>
               </div>
             </div>
-
-
-
-
 
           <% end %>
         </div>
