@@ -3,6 +3,7 @@ class DonvertsController < ApplicationController
   before_action :set_don, only: [:show, :link, :edit, :pourvu, :archive, :update, :destroy]
 
   def index
+    @message = Message.new
     @dons_count = Donvert.all.count
     @dons = Donvert.all.where(archived: false).order(pourvu: :asc).order(date_fin_dispo: :desc).includes([:photo_attachment])
     @dons.each do |don|

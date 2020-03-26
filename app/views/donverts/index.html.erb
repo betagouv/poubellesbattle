@@ -43,7 +43,29 @@
             <p class="don-depasse">Date limite dépassée..</p>
           <% else %>
             <p>Il reste <span class="don-non-pourvu"><%= distance_of_time_in_words(Time.now, don.date_fin_dispo) %></span> pour récupérer le don !</p>
-            <%= mail_to don.donneur_email, "Lui écrire !", subject: "Je suis interessé•e par votre don !" %>
+
+            <p>
+              <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample-<%= don.id%>" aria-expanded="false" aria-controls="collapseExample">
+                Ecrire à <%= don.donneur_name %>
+              </button>
+            </p>
+            <div class="collapse" id="collapseExample-<%= don.id%>">
+              <div class="card card-body">
+                <%= simple_form_for @message do |f| %>
+                  <%= f.input :sender_email %>
+                  <%= f.input :sender_full_name %>
+                  <%= f.input :subject, input_html: { value: "Votre don m'intéresse !", type: "hidden"} %>
+                  <%= f.input :donvert_id, input_html: { value: "#{don.id}", type: "hidden"} %>
+                  <%= f.input :content, as: :text, placeholder: "Votre message..." %>
+                  <%= f.submit "envoyer" %>
+                <% end %>
+              </div>
+            </div>
+
+
+
+
+
           <% end %>
         </div>
       </div>

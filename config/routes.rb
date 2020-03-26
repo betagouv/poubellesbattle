@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'messages/new'
+  get 'messages/create'
   devise_for :users
 
   resources :composteurs do
@@ -28,4 +30,6 @@ Rails.application.routes.draw do
   post "bourse_verte/:slug/pourvu", to: "donverts#pourvu", as: "pourvu"
   post "bourse_verte/:slug/archive", to: "donverts#archive", as: "archive"
   get "bourse_verte/:slug/link", to: "donverts#link", as: "link"
+
+  resources :messages, only: [:new, :create]
 end
