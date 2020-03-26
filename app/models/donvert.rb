@@ -2,6 +2,7 @@ class Donvert < ApplicationRecord
   validates :donateur_type, :title, :type_matiere_orga, :description, :date_fin_dispo, :donneur_email, :donneur_tel, :donneur_name, :donneur_address, presence: true
   has_one_attached :photo
   belongs_to :user, optional: true
+  has_many :messages
 
   before_create :set_slug
   before_create :set_codeword

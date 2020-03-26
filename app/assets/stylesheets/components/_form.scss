@@ -1,3 +1,35 @@
+// scss for don contact form
+.dropdown-form {
+  margin: auto;
+  .don-form-size-padd {
+    padding: 15px;
+    width: 260px;
+    left: -75px !important;
+    transition: all 1.5s ease;
+    h5 {
+      margin: 20px 0;
+    }
+    .center-form-submit {
+      width: 100%;
+      text-align: center;
+      .don-form-btn {
+        border: none;
+        background: #21a9fab0;
+        color: white;
+        padding: 5px 10px;
+        margin: auto;
+        box-shadow: 0 0 10px rgba(20, 20, 20, 0.2);
+      }
+    }
+    &:hover {
+      color: black;
+      background: white;
+    }
+  }
+}
+
+
+
 .form-control-label {
   display: none;
 
