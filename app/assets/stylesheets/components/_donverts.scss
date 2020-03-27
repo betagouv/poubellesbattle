@@ -17,10 +17,62 @@
       h5 {
         padding: 20px 0;
       }
+      p {
+        padding-bottom: calc(0.375rem + 1px);
+        margin: 0;
+      }
+      .new-don-btn {
+        padding: 5px 12px;
+        background: #0000ff69;
+        border-radius: 20px;
+        width: max-content;
+        transition: all 0.5s ease;
+        color: white;
+        border: solid 1px white;
+        float: right;
+        margin: 15px 0;
+        &:hover {
+          transition: all 0.5s ease;
+          border: solid 1px #0000ff69;
+          color: #0000ff69;
+          background: white;
+          text-decoration: none;
+        }
+      }
     }
   }
 }
 
+@media (max-width: 800px) {
+  .new-edit-don {
+    #new_donvert {
+      .type-don, .contact-don {
+        width: 90%;
+      }
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .new-edit-don {
+    margin: 140px 12px;
+    padding: 30px 15px;
+    h2 {
+      font-size: 25px;
+    }
+    #new_donvert {
+      .type-don, .contact-don {
+        margin: 10px 0;
+        .form-group.radio_buttons {
+          flex-wrap: wrap;
+          .col-form-label {
+           width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
 
 .all-dons-view {
   width: 80%;
@@ -168,11 +220,14 @@
 
 }
 
-@media (max-width: 400px) {
+@media (max-width: 500px) {
   .all-dons-view {
-    width: 100%;
+    width: 90%;
     .don-cards .don-card {
       min-width: 275px;
+      margin: 5px 0 20px 0;
+      width: 100%;
+      max-width: 300px;
     }
   }
 }

@@ -25,8 +25,8 @@ Rails.application.routes.draw do
 
   resources :notifications
 
-  resources :donverts, path: 'bourse_verte', param: :slug
   get "bourse_verte/mes_dons", to: "donverts#mes_dons", as: "mes_dons"
+  resources :donverts, path: 'bourse_verte', param: :slug
   post "bourse_verte/:slug/pourvu", to: "donverts#pourvu", as: "pourvu"
   post "bourse_verte/:slug/archive", to: "donverts#archive", as: "archive"
   get "bourse_verte/:slug/link", to: "donverts#link", as: "link"
