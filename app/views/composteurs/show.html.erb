@@ -1,7 +1,7 @@
 <div class="composteur-box">
   <div class="composteur-left">
     <% if user_signed_in? %>
-      <% if current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
+      <% if (current_user.composteur_id == @composteur.id && current_user.role == "référent") || current_user.role == "admin" %>
         <%= link_to "modifier", edit_composteur_path(@composteur), class: "bouton-navbar" %>
       <% end %>
     <% end %>
