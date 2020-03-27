@@ -133,11 +133,12 @@ input.mini-btn {
   }
 }
 .pourvu-don {
-  background: #fb652c;
+  background: #6ff46f;
   color: white;
 }
 .archive-don {
-  background: #6ff46f;
+  background: white;
+  border: solid 1px #fb652c;
   a {
     color: black;
     &:hover {
