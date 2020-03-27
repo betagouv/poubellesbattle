@@ -22,16 +22,18 @@
         <% end %>
         <%= f.input :first_name, required: true, placeholder: "Prénom" %>
         <%= f.input :last_name, required: true, placeholder: "Nom" %>
+        <%= f.input :phone_number, required: true, placeholder: "Téléphone" %>
         <% if current_user.role == "référent" %>
-          <%= f.input :phone_number, required: true, placeholder: "Téléphone" %>
+          <h5>En tant que référent•e, vous pouvez être contacté•e par les utilisateur•ice•s inscrit•e•s à votre site de compostage.</h5>
+          <p>Vous avez la possibilité de modifier les conditions de contact. </p>
           <%= f.input :ok_phone,
-                  label: "Acceptez-vous de laisser votre téléphone visible aux utilisateurs de Poubelles Battle",
+                  label: "Acceptez-vous de laisser votre téléphone visible aux utilisateur•ice•s de Poubelles Battle",
                   as: :radio_buttons,
                   collection: [[true, "oui ! 🥳"], [false, "non..😕"]],
                   label_method: :last,
                   value_method: :first %>
           <%= f.input :ok_mail,
-                  label: "Acceptez-vous de laisser votre mail visible aux utilisateurs de Poubelles Battle",
+                  label: "Acceptez-vous de laisser votre mail visible aux utilisateur•ice•s de Poubelles Battle",
                   as: :radio_buttons,
                   collection: [[true, "oui ! 🥳"], [false, "non..😕"]],
                   label_method: :last,

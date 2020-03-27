@@ -44,7 +44,9 @@
   display: flex;
   justify-content: space-between;
 }
-
+.user_ok_phone, .user_ok_mail {
+  justify-content: space-around !important;
+}
 .demande_address {
   display: flex;
   justify-content: center !important;
