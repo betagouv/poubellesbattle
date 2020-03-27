@@ -21,6 +21,12 @@
         padding-bottom: calc(0.375rem + 1px);
         margin: 0;
       }
+      .form-group.radio_buttons {
+          flex-wrap: wrap;
+          .col-form-label {
+           width: 100%;
+          }
+        }
       .new-don-btn {
         padding: 5px 12px;
         background: #0000ff69;
@@ -127,7 +133,7 @@
       opacity: 0.6;
     }
     .don-card {
-      padding: 30px 10px;
+      padding: 0 10px 10px 10px;
       margin: 5px 10px 20px 10px;
       text-align: center;
       width: 30%;
@@ -140,9 +146,26 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
+      .dropdown-options {
+        .dropdown-toggle {
+          background: #b4f9b4;
+          color: black;
+          border: none;
+        }
+        .don-options-size-padd.show {
+          position: absolute;
+          will-change: transform;
+          text-align: center;
+          width: 200px;
+          top: 0px;
+          left: 0px;
+          transform: translate3d(-24px, 40px, 0px) !important;
+        }
+      }
       img {
         max-width: 190px;
-        max-height: 143px;
+        max-height: 160px;
+        padding: 25px 0 0 0;
       }
       h5, .don-infos {
         max-width: 270px;
