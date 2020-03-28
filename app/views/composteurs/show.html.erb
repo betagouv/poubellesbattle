@@ -3,12 +3,12 @@
     <% if user_signed_in? %>
       <div class="referent-composteur-actions">
         <% if current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
-          <div class="dropdown dropdown-form">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownContact-members" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <div class="dropdown dropdown-form-referent">
+            <button class="btn referent-action-toggle" type="button" id="dropdownContact-members" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Ecrire à mes Co-Composteur•euse•s
             </button>
             <div class="dropdown-menu referent-composteur-action" aria-labelledby="dropdownContact-members">
-              <h5>Message aux membres de <%= @composteur.name %></h5>
+              <p>En tant que référent•e vous pouvez écrire des messages à tou•te•s les membres de <%= @composteur.name %>! Les membres recevront votre message par mail.</p>
               <%= simple_form_for @message do |f| %>
                 <%= f.input :sender_email, input_html: { value: "#{current_user.email}", type: "hidden"} %>
                 <%= f.input :sender_full_name, input_html: { value: "#{current_user.first_name.capitalize} #{current_user.last_name.capitalize}", type: "hidden"} %>
@@ -18,12 +18,12 @@
               <% end %>
             </div>
           </div>
-          <div class="dropdown dropdown-form">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownContact-agglo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <div class="dropdown dropdown-form-referent">
+            <button class="btn referent-action-toggle" type="button" id="dropdownContact-agglo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Ecrire à l'Equipe Poubelles Battle
             </button>
             <div class="dropdown-menu referent-composteur-action" aria-labelledby="dropdownContact-agglo">
-              <h5>Message pour l'Equipe Poubelles Battle.</h5>
+              <p>En tant que référent•e vous pouvez écrire directement à l'Equipe Poubelles Battle. Votre message arrivera dans notre directement dans notre boîte mail.</p>
               <%= simple_form_for @message do |f| %>
                 <%= f.input :sender_email, input_html: { value: "#{current_user.email}", type: "hidden"} %>
                 <%= f.input :sender_full_name, input_html: { value: "#{current_user.first_name.capitalize} #{current_user.last_name.capitalize}", type: "hidden"} %>
@@ -35,8 +35,11 @@
           </div>
         <% end %>
         <% if (current_user.composteur_id == @composteur.id && current_user.role == "référent") || current_user.role == "admin" %>
-          <div class="referent-composteur-action">
-            <%= link_to "modifier", edit_composteur_path(@composteur) %>
+          <div class="dropdown-form-referent">
+            <div class="referent-action-toggle">
+              <%= link_to "modifier", edit_composteur_path(@composteur) %>
+            </div>
+
           </div>
         <% end %>
       </div>

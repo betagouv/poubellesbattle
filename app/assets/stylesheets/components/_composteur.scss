@@ -25,8 +25,20 @@
 .referent-composteur-actions {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
+  position: relative;
+  top: -50px;
+  .dropdown-form-referent {
+    margin: 0 15px 0 0;
+    .referent-action-toggle {
+      background: white;
+      padding: 10px 20px;
+      border-radius: 10px 10px 0 0;
+      box-shadow: 0 -11px 10px rgba(20, 30, 40, 0.15);
+      font-size: 14px;
+    }
+  }
 }
 
 .composteur-right {

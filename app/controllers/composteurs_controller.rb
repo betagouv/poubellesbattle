@@ -94,7 +94,7 @@ class ComposteursController < ApplicationController
 
   def edit
     @composteur = Composteur.find(params[:id])
-    if (current_user.composteur_id == @composteur && current_user.role == "référent") || current_user.role == "admin"
+    if (current_user.composteur_id == @composteur.id && current_user.role == "référent") || current_user.role == "admin"
       @users = User.where(composteur_id: @composteur)
       if params[:query].present?
         @referents = User.search_by_first_name_and_last_name(params[:query])
