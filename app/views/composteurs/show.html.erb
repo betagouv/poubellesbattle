@@ -271,13 +271,7 @@
         <% end %>
       <% else %>
         <div class="referent-card no-ref">Pas de référent sur ce composteur pour l'instant ..
-        <% if user_signed_in? %>
-          <%if current_user.composteur_id == @composteur.id && current_user.role == nil %>
-            <% if current_user.notifications.where(notification_type: "demande-référent").count < 1 %>
-              <div class="devenir-ref-btn"><%= link_to("devenir référent", referent_path(@composteur), method: :post) %></div>
-            <% end %>
-          <% end %>
-        <% end %>
+        <!-- put here contact form -->
         </div>
       <% end %>
     </div>
