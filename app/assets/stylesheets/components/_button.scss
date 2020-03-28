@@ -60,8 +60,17 @@ input.bouton-valid {
 
 .becoming-or-not-referent {
   display: flex;
-  justify-content: center;
-  align-items: center;
+
+width: 100%;
+
+
+justify-content: center;
+
+flex-wrap: wrap;
+
+position: relative;
+
+top: -50px;
   .user-action {
     padding: 5px 15px;
     margin: 5px;
