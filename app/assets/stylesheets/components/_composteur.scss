@@ -22,16 +22,6 @@
 
 /* Feuille de style intégrée #5 | http://localhost:3000/composteurs/112 */
 
-.referent-composteur-actions {
-  display: flex;
-  width: 100%;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  position: relative;
-  top: -50px;
-
-  .show {
-  }
   .dropdown-form-referent {
     margin: 0 10px 0 0;
     .referent-action-toggle {
@@ -46,6 +36,16 @@
       font-size: 13px;
       box-shadow: 0 0 20px rgba(10, 10, 10, 0.6);
     }
+  }
+.referent-composteur-actions {
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  position: relative;
+  top: -50px;
+
+  .show {
   }
 }
 
@@ -73,6 +73,9 @@
     align-items: center;
     padding:20px 5px;
     margin: 0;
+    h3 {
+      position: absolute;
+    }
     .ref-quoi {
       font-size: 12px;
       background: #986535;

@@ -63,7 +63,16 @@
             <div class="referent-action-toggle">
               <%= link_to "modifier", edit_composteur_path(@composteur) %>
             </div>
-
+          </div>
+        <% elsif current_user.role != "admin" %>
+          <div class="dropdown-form-referent">
+            <div class="referent-action-toggle">
+              <% if current_user.composteur_id == nil %>
+                <%= link_to("m'inscrire sur ce site !", inscription_path(@composteur), method: :post) %>
+              <% elsif current_user.composteur_id == @composteur.id %>
+                <%= link_to("me désinscrire", desinscription_path(@composteur), method: :post) %>
+              <% end %>
+            </div>
           </div>
         <% end %>
       </div>
@@ -86,15 +95,9 @@
           Déjà <%= @users.count %> adeptes du compostages inscrit•e•s sur ce site !
         <% end %>
       </div>
-      <div class="becoming-or-not-referent">
-        <% if user_signed_in? %>
-          <% if current_user.role != "admin" %>
-            <% if current_user.composteur_id == nil %>
-              <div class="mini-btn mini-green-btn"><%= link_to("m'inscrire", inscription_path(@composteur), method: :post) %></div>
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
+      <!-- <div class="becoming-or-not-referent">
+
+      </div> -->
     </div>
     <div class="les-users">
       <% @reversed_referents.each do |user| %>
@@ -200,22 +203,29 @@
         <%= render "devise/registrations/new" %>
       </div>
     <% end %>
-    <div class="becoming-or-not-referent">
-      <% if user_signed_in? %>
-        <% if current_user.role != "admin" %>
-          <% if current_user.composteur_id == @composteur.id && current_user.role == nil %>
-            <% if current_user.notifications.where(notification_type: "demande-référent").count < 1 %>
-
-                <div class="mini-btn mini-blue-btn"><%= link_to("devenir référent", referent_path(@composteur), method: :post) %></div>
+    <div class="les-referents white-bg">
+      <div class="becoming-or-not-referent">
+        <% if user_signed_in? %>
+          <% if current_user.role != "admin" %>
+            <% if current_user.composteur_id == @composteur.id && current_user.role == nil %>
+              <div class="dropdown-form-referent">
+                <div class="referent-action-toggle">
+                  <% if current_user.notifications.where(notification_type: "demande-référent").count < 1 %>
+                    <%= link_to("devenir référent", referent_path(@composteur), method: :post) %>
+                  <% end %>
+                </div>
+              </div>
+              <!-- link to me désinscrire --->
+            <% elsif current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
+              <div class="dropdown-form-referent">
+                <div class="referent-action-toggle">
+                  <%= link_to("ne plus être référent", non_referent_path(@composteur), method: :post) %>
+                </div>
+              </div>
             <% end %>
-            <div class="mini-btn mini-yellow-btn"><%= link_to("me désinscrire", desinscription_path(@composteur), method: :post) %></div>
-          <% elsif current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
-            <div class="mini-btn"><%= link_to("ne plus être référent", non_referent_path(@composteur), method: :post) %></div>
           <% end %>
         <% end %>
-      <% end %>
-    </div>
-    <div class="les-referents white-bg">
+      </div>
       <h3>référent•e•s</h3>
       <%= link_to "C'est quoi être référent•e ?", "https://uncomposteurici.gitbook.io/poubellesbattle/convaincre-son-assemblee-generale-de-copropriete-dinstaller-un-composteur-en-pied-dimmeuble/le-role-de-referent-e-composteur", class: "ref-quoi" %>
       <% if @referents.count != 0 %>
