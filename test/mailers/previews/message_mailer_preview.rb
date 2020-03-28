@@ -4,4 +4,16 @@ class MessageMailerPreview < ActionMailer::Preview
 
     MessageMailer.with(message: message).interest_don
   end
+
+  def message_to_members
+    message = Message.last
+
+    MessageMailer.with(message: message).message_to_members
+  end
+
+  def message_to_agglo
+    message = Message.last
+
+    MessageMailer.with(message: message).message_to_agglo
+  end
 end
