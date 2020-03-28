@@ -67,6 +67,7 @@ class ComposteursController < ApplicationController
     @not_referents = @users.where(role: nil).sort_by { |user| user.notifications.count }.reverse! # les non-referents
 
     if user_signed_in?
+      @message = Message.new
       @notification = Notification.new
       @notifications = @composteur.notifications.where(notification_type: "welcome").or(@composteur.notifications.where(notification_type: "depot")).or(@composteur.notifications.where(notification_type: "anomalie")).or(@composteur.notifications.where(notification_type: "message")).includes(:user).order(created_at: :desc).first(100)
       @messages_notifications = @composteur.notifications.where(notification_type: "message-ref").last

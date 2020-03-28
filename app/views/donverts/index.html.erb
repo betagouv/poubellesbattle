@@ -64,6 +64,7 @@
                   <%= f.input :sender_email, placeholder: "Votre mail" %>
                   <%= f.input :sender_full_name, placeholder: "Votre nom" %>
                   <%= f.input :donvert_id, input_html: { value: "#{don.id}", type: "hidden"} %>
+                  <%= f.input :message_type, input_html: { value: "interet-donvert", type: "hidden"} %>
                   <%= f.input :content, as: :text, placeholder: "Votre message..." %>
                   <div class="center-form-submit"><%= f.submit "envoyer", class: "don-form-btn" %></div>
                 <% end %>
