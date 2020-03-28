@@ -13,6 +13,12 @@ class MessageMailer < ApplicationMailer
       mailing_list << user.email
     end
     mailing_string = mailing_list.join(',')
-    mail(to: "contact@poubellesbattle.fr", bcc: mailing_string, subject: "Message de #{@sender.first_name} pour les membres de #{@sender.composteur.name}")
+    mail(to: "contact@poubellesbattle.fr", bcc: mailing_string, subject: "Message de #{@sender.first_name.capitalize} pour les membres de #{@sender.composteur.name}")
+  end
+
+  def message_to_agglo
+    @message = params[:message]
+    @sender = User.where(email: @message.sender_email).first
+    mail(to: 'contact@poubellesbattle.fr', subject: "Message de #{@sender.first_name.capitalize} - référent•e du site #{@sender.composteur.name}")
   end
 end

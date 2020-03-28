@@ -19,6 +19,16 @@
   padding: 10px;
 }
 
+
+/* Feuille de style intégrée #5 | http://localhost:3000/composteurs/112 */
+
+.referent-composteur-actions {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
 .composteur-right {
   width: 20%;
   display: flex;

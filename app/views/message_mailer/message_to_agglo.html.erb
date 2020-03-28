@@ -1,0 +1,6 @@
+<h5>Message de <%= @sender.first_name.capitalize %> - référent•e du site <%= @sender.composteur.name %></h5>
+<p>_______________________</p>
+<p>Envoyé <%= @message.created_at.strftime("le %d/%m/%Y") %> avec l'adresse : <%= @message.sender_email %></p>
+<p></p>
+<p>"<i><%= @message.content %></i>"</p>
+<p>_______________________</p>
