@@ -215,7 +215,7 @@ class ComposteursController < ApplicationController
   def update
     @composteur = Composteur.find(params[:id])
     if @composteur.update(composteur_params)
-      redirect_to composteur_path
+      redirect_to composteur_path(@composteur)
     else
       render :edit
     end

@@ -33,8 +33,32 @@
               <% end %>
             </div>
           </div>
+          <div class="dropdown dropdown-form-referent">
+            <button class="btn referent-action-toggle" type="button" id="dropdownActions-retournement" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Date de retournement
+            </button>
+            <div class="dropdown-menu referent-composteur-action" aria-labelledby="dropdownActions-retournement">
+              <p>En tant que référent•e vous pouvez modifier la date de retournement estimée du compost. Cette date sert à calculer le remplissage de la jauge en dessous.</p>
+              <%= simple_form_for @composteur do |f| %>
+                <%= f.input :date_retournement, placeholder: "date de retournement :", as: :string, required: false, input_html: {class: "datepicker"} %>
+                <div class="center-form-submit"><%= f.submit "mettre à jour", class: "don-form-btn" %></div>
+              <% end %>
+            </div>
+          </div>
+          <div class="dropdown dropdown-form-referent">
+            <button class="btn referent-action-toggle" type="button" id="dropdownActions-photo" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Modifier la photo
+            </button>
+            <div class="dropdown-menu referent-composteur-action" aria-labelledby="dropdownActions-photo">
+              <p>En tant que référent•e vous pouvez modifier la modifier la photo de votre site de compostage.</p>
+              <%= simple_form_for @composteur do |f| %>
+                <%= f.input :photo, as: :file %>
+                <div class="center-form-submit"><%= f.submit "mettre à jour", class: "don-form-btn" %></div>
+              <% end %>
+            </div>
+          </div>
         <% end %>
-        <% if (current_user.composteur_id == @composteur.id && current_user.role == "référent") || current_user.role == "admin" %>
+        <% if current_user.role == "admin" %>
           <div class="dropdown-form-referent">
             <div class="referent-action-toggle">
               <%= link_to "modifier", edit_composteur_path(@composteur) %>
@@ -98,8 +122,8 @@
     <div class="compost-time-to-go">
       <div class="compost-time-past" style="
         <% if @time_left %>
-            <%= "width: #{100 - @time_left/2}%" %>
-        <% end %>">
+            <%= "width: #{100 - @time_left/2}%;" %>
+        <% end %> ">
       </div>
 
     </div>
