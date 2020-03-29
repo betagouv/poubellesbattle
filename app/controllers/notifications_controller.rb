@@ -53,10 +53,14 @@ class NotificationsController < ApplicationController
     notification = Notification.find(params[:id])
     if notification.notification_type == "anomalie"
       notification.resolved = true
-      notification.save
+      if  notification.save
+        redirect_to composteur_path(notification.user.composteur)
+        flash[:notice] = "Anomalie résolue !"
+      else
+        redirect_to composteur_path(notification.user.composteur)
+        flash[:alert] = "Erreur !"
+      end
     end
-    redirect_to composteur_path(notification.user.composteur)
-    flash[:notice] = "Anomalie résolue !"
   end
 
   def destroy
