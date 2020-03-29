@@ -151,6 +151,7 @@ class ComposteursController < ApplicationController
     # supprimer les messages quand on quitte un composteur ? Mieux, non ?
     @user.notifications.destroy_all
     @user.composteur_id = nil
+    @user.role = nil
     if @user.save
       redirect_to composteur_path
       flash[:notice] = "Vous n'êtes plus inscrit à ce composteur, vous pouvez maintenant vous inscrire à un autre !"

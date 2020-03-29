@@ -1,8 +1,9 @@
 <div class="composteur-box">
   <div class="composteur-left">
+    <div class="actions-list">
     <% if user_signed_in? %>
-      <% if current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
-        <div class="referent-composteur-actions">
+      <div class="referent-composteur-actions">
+        <% if current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
           <div class="dropdown dropdown-form-referent">
             <button class="btn referent-action-toggle" type="button" id="dropdownContact-members" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Ecrire à mes Co-Composteur•euse•s
@@ -57,18 +58,18 @@
               <% end %>
             </div>
           </div>
-        </div>
+        <!-- </div> -->
       <% end %>
       <% if current_user.role == "admin" %>
-        <div class="referent-composteur-actions">
+        <!-- <div class="referent-composteur-actions"> -->
           <div class="dropdown-form-referent">
             <div class="referent-action-toggle">
               <%= link_to "modifier", edit_composteur_path(@composteur) %>
             </div>
           </div>
-        </div>
-      <% elsif current_user.role != "admin" && current_user.composteur_id == nil %>
-        <div class="referent-composteur-actions">
+        <!-- </div> -->
+      <% elsif (current_user.role == nil || current_user.role == "référent") && (current_user.composteur_id == nil || current_user.composteur_id == @composteur.id) %>
+        <!-- <div class="referent-composteur-actions"> -->
           <div class="dropdown-form-referent">
             <div class="referent-action-toggle">
               <% if current_user.composteur_id == nil %>
@@ -78,35 +79,40 @@
               <% end %>
             </div>
           </div>
-        </div>
-      <% end %>
-    <% end %>
-    <h1><%= @composteur.name %></h1>
-    <p><%= @composteur.address %></p>
-    <p><%= @composteur.composteur_type %></p>
-    <p>Niveau : <%= @score %></p>
-    <p>Nombre de dépots : <%= @depots_count %></p>
-    <% if @last_anomalie %>
-      <p>Déjà <%= distance_of_time_in_words(Time.now, @last_anomalie.created_at) %> depuis la dernière anomalie !</p>
-    <% end %>
-    <% if @composteur.photo.attached? %>
-      <%= cl_image_tag @composteur.photo.key, height: 300, width: 400, crop: :fill %>
-    <% else %>
-      <%= image_tag 'PB_logo.png' %>
-    <% end %>
-    <div class="stats">
-      <div class="users-count">
-        <% if @users.count == 0 %>
-          Personne n'est inscrit sur ce site de compostostage pour l'instant..
-        <% elsif @users.count == 1 %>
-          On dirait qu'il n'y a qu'un seul adepte du compostage inscrit..
-        <% else %>
-          Déjà <%= @users.count %> adeptes du compostages inscrit•e•s sur ce site !
         <% end %>
       </div>
-      <!-- <div class="becoming-or-not-referent">
-
-      </div> -->
+    <% end %>
+  </div>
+    <h1 class="composteur-name"><%= @composteur.name %></h1>
+    <p class="composteur-adress"><%= @composteur.composteur_type %> : <%= @composteur.address %></p>
+   <!--  <p class="composteur-type"></p> -->
+    <%# if @last_anomalie %>
+      <!-- <p>Déjà <%#= distance_of_time_in_words(Time.now, @last_anomalie.created_at) %> depuis la dernière anomalie !</p> -->
+    <%# end %>
+    <div class="banner-composteur-img-stats">
+      <% if @composteur.photo.attached? %>
+        <%= cl_image_tag @composteur.photo.key, height: 500, width: 900, crop: :fill, class: "composteur-photo" %>
+      <% else %>
+        <%= image_tag 'PB_logo.png', class: "composteur-photo" %>
+      <% end %>
+      <div class="stats">
+        <div class="users-count">
+          <% if @users.count == 0 %>
+            Personne n'est inscrit sur ce site de compostostage pour l'instant..
+          <% elsif @users.count > 0 %>
+          <div class="users-stat-number"><%= @users.count %></div>
+          <p class="users-stat-info">adeptes du compostages !</p>
+          <% end %>
+        </div>
+        <div class="composteur-score">
+          <div class="users-stat-number"><%= @score %></div>
+          <p class="users-stat-info">points PB !</p>
+        </div>
+        <div class="composteur-depot-count">
+          <div class="users-stat-number"><%= @depots_count %></div>
+          <p class="users-stat-info">dépots !</p>
+        </div>
+      </div>
     </div>
     <div class="les-users">
       <% @reversed_referents.each do |user| %>

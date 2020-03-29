@@ -17,7 +17,60 @@
   background: white;
   border-radius: 10px;
   padding: 10px;
+  .composteur-name {
+    letter-spacing: 1px;
+    font-size: 55px;
+    font-family:'Bangers', cursive;
+    text-shadow: yellow 1px 1px 2px;
+    color: #502703;
+  }
+  .composteur-adress {
+    margin: 10px 0 25px 0;
+  }
+  .actions-list {
+    display:flex;
+    flex-wrap: wrap;
+  }
+  .banner-composteur-img-stats {
+    display: flex;
+    justify-content: space-around;
+    .composteur-photo {
+      max-width: 75%;
+    }
+    .stats {
+      display: flex;
+      max-width: 20%;
+      flex-direction: column;
+      justify-content: space-between;
+      .users-count, .composteur-score, .composteur-depot-count {
+        height: 25%;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        padding: 10px;
+        border: solid 2px #502703;
+        margin: 0 0 0 10px;
+        border-radius: 10px;
+        flex-direction: column;
+        .users-stat-number {
+          font-size: 50px;
+          font-family:'Bangers', cursive;
+          letter-spacing: 1px;
+          transform: rotate(-2deg);
+          text-shadow: yellow 1px 1px 2px;
+          color: #502703;
+        }
+        .users-stat-info {
+          font-size: 12px;
+        }
+      }
+
+
+    }
+  }
 }
+
 
 
 /* Feuille de style intégrée #5 | http://localhost:3000/composteurs/112 */
