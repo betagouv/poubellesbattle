@@ -1,5 +1,6 @@
 <div class="composteur-box">
   <div class="composteur-left">
+    <div class="actions-list">
     <% if user_signed_in? %>
       <div class="referent-composteur-actions">
         <% if current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
@@ -57,14 +58,18 @@
               <% end %>
             </div>
           </div>
-        <% end %>
-        <% if current_user.role == "admin" %>
+        <!-- </div> -->
+      <% end %>
+      <% if current_user.role == "admin" %>
+        <!-- <div class="referent-composteur-actions"> -->
           <div class="dropdown-form-referent">
             <div class="referent-action-toggle">
               <%= link_to "modifier", edit_composteur_path(@composteur) %>
             </div>
           </div>
-        <% elsif current_user.role != "admin" %>
+        <!-- </div> -->
+      <% elsif (current_user.role == nil || current_user.role == "référent") && (current_user.composteur_id == nil || current_user.composteur_id == @composteur.id) %>
+        <!-- <div class="referent-composteur-actions"> -->
           <div class="dropdown-form-referent">
             <div class="referent-action-toggle">
               <% if current_user.composteur_id == nil %>
@@ -77,27 +82,37 @@
         <% end %>
       </div>
     <% end %>
-    <h1><%= @composteur.name %></h1>
-    <p><%= @composteur.address %></p>
-    <p><%= @composteur.composteur_type %></p>
-    <% if @composteur.photo.attached? %>
-      <%= cl_image_tag @composteur.photo.key, height: 300, width: 400, crop: :fill %>
-    <% else %>
-      <%= image_tag 'PB_logo.png' %>
-    <% end %>
-    <div class="stats">
-      <div class="users-count">
-        <% if @users.count == 0 %>
-          Personne n'est inscrit sur ce site de compostostage pour l'instant..
-        <% elsif @users.count == 1 %>
-          On dirait qu'il n'y a qu'un seul adepte du compostage inscrit..
-        <% else %>
-          Déjà <%= @users.count %> adeptes du compostages inscrit•e•s sur ce site !
-        <% end %>
+  </div>
+    <h1 class="composteur-name"><%= @composteur.name %></h1>
+    <p class="composteur-adress"><%= @composteur.composteur_type %> : <%= @composteur.address %></p>
+   <!--  <p class="composteur-type"></p> -->
+    <%# if @last_anomalie %>
+      <!-- <p>Déjà <%#= distance_of_time_in_words(Time.now, @last_anomalie.created_at) %> depuis la dernière anomalie !</p> -->
+    <%# end %>
+    <div class="banner-composteur-img-stats">
+      <% if @composteur.photo.attached? %>
+        <%= cl_image_tag @composteur.photo.key, height: 500, width: 900, crop: :fill, class: "composteur-photo" %>
+      <% else %>
+        <%= image_tag 'PB_logo.png', class: "composteur-photo" %>
+      <% end %>
+      <div class="stats">
+        <div class="users-count">
+          <% if @users.count == 0 %>
+            Personne n'est inscrit sur ce site de compostostage pour l'instant..
+          <% elsif @users.count > 0 %>
+          <div class="users-stat-number"><%= @users.count %></div>
+          <p class="users-stat-info">adeptes du compostages !</p>
+          <% end %>
+        </div>
+        <div class="composteur-score">
+          <div class="users-stat-number"><%= @score %></div>
+          <p class="users-stat-info">points PB !</p>
+        </div>
+        <div class="composteur-depot-count">
+          <div class="users-stat-number"><%= @depots_count %></div>
+          <p class="users-stat-info">dépots !</p>
+        </div>
       </div>
-      <!-- <div class="becoming-or-not-referent">
-
-      </div> -->
     </div>
     <div class="les-users">
       <% @reversed_referents.each do |user| %>
@@ -246,12 +261,14 @@
                   <div class="mini-btn"><%= link_to("retirer ce référent", non_referent_path(@composteur, referent_id: referent), method: :post) %></div>
                 <% end %>
               <% end %>
-              <h5><%= referent.first_name %></h5>
-              <% if referent.ok_phone %>
-                <p><%= referent.phone_number %></p>
-              <% end %>
-              <% if referent.ok_mail %>
-                <%= mail_to referent.email, "✉️", subject: "Votre composteur m'intéresse !", class: "email-button" %>
+              <h5 class="first-name"><%= referent.first_name %></h5>
+              <% if user_signed_in? %>
+                <% if referent.ok_phone %>
+                  <p class="phone-number"><%= referent.phone_number %></p>
+                <% end %>
+                <% if referent.ok_mail %>
+                  <%= mail_to referent.email, "✉️", subject: "Votre composteur m'intéresse !", class: "email-button" %>
+                <% end %>
               <% end %>
               <% if user_signed_in? %>
                 <% if current_user.role == "référent" && current_user == referent %>
@@ -262,13 +279,13 @@
                   <% end %>
                   <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
                     <div class="notification-card <%= @messages_notifications.notification_type %>">
-                      <p><%= referent.notifications.where(notification_type: "message-ref").last.content %></p>
+                      <p>"<%= referent.notifications.where(notification_type: "message-ref").last.content %>"</p>
                     </div>
                   <% end %>
                 <% else %>
                   <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
                     <div class="notification-card <%= @messages_notifications.notification_type %>">
-                      <p><%= referent.notifications.where(notification_type: "message-ref").last.content %></p>
+                      <p>"<%= referent.notifications.where(notification_type: "message-ref").last.content %>"</p>
                     </div>
                   <% end %>
                 <% end %>

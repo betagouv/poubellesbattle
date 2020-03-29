@@ -63,13 +63,14 @@
 
 .message-ref {
   background: white;
-  border: solid 2px #fb8080;
   display: flex;
   justify-content: center;
   width: auto;
   text-align: center;
   p {
     text-align: center;
+    font-size: 14px;
+    font-style: italic;
   }
 }
 

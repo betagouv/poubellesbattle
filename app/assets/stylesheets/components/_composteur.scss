@@ -17,7 +17,60 @@
   background: white;
   border-radius: 10px;
   padding: 10px;
+  .composteur-name {
+    letter-spacing: 1px;
+    font-size: 55px;
+    font-family:'Bangers', cursive;
+    text-shadow: yellow 1px 1px 2px;
+    color: #502703;
+  }
+  .composteur-adress {
+    margin: 10px 0 25px 0;
+  }
+  .actions-list {
+    display:flex;
+    flex-wrap: wrap;
+  }
+  .banner-composteur-img-stats {
+    display: flex;
+    justify-content: space-around;
+    .composteur-photo {
+      max-width: 75%;
+    }
+    .stats {
+      display: flex;
+      max-width: 20%;
+      flex-direction: column;
+      justify-content: space-between;
+      .users-count, .composteur-score, .composteur-depot-count {
+        height: 25%;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+        padding: 10px;
+        border: solid 2px #502703;
+        margin: 0 0 0 10px;
+        border-radius: 10px;
+        flex-direction: column;
+        .users-stat-number {
+          font-size: 50px;
+          font-family:'Bangers', cursive;
+          letter-spacing: 1px;
+          transform: rotate(-2deg);
+          text-shadow: yellow 1px 1px 2px;
+          color: #502703;
+        }
+        .users-stat-info {
+          font-size: 12px;
+        }
+      }
+
+
+    }
+  }
 }
+
 
 
 /* Feuille de style intégrée #5 | http://localhost:3000/composteurs/112 */
@@ -49,12 +102,18 @@
   }
 }
 
+
+
+
+
 .composteur-right {
   width: 20%;
   display: flex;
   flex-direction: column;
   justify-content: start;
   margin: 20px;
+  // background: white;
+  background: transparent;
   .composteur-registration-form {
     text-align: center;
     .new-user-form {
@@ -71,10 +130,13 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    padding:20px 5px;
     margin: 0;
+    padding: 20px 0;
+    border: solid 1px teal;
+    border-radius: 10px;
+    background: white;
     h3 {
-      position: absolute;
+      position: relative;
     }
     .ref-quoi {
       font-size: 12px;
@@ -108,9 +170,17 @@
   align-items: center;
   flex-direction: column;
   height: max-content;
-  width: 90%;
   margin: 25px 0 0 0;
-  box-shadow: 0 0 5px rgba(40, 40, 40, 0.2);
+  width: 85%;
+  border-top: solid 1px teal;
+  padding: 10px 0;
+  .first-name {
+    font-size: 22px;
+  }
+  .phone-number {
+    margin: 0;
+    font-size: 14px;
+  }
   .star {
     position: relative;
     text-align: center;
