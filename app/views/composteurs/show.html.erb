@@ -164,6 +164,15 @@
                   <div class="notif-with-name">
                     <div class="notif-username name-right">
                       <% if notification.notification_type == "anomalie" %>
+                        <% if notification.resolved %>
+                          anomalie résolue par votre référent•e préféré•e !
+                        <% else %>
+                          <% if current_user.role == "référent" %>
+                            <div class="resolving-btn">
+                              <%= link_to("#{current_user.first_name.capitalize}, cliquez ici si l'anomalie est résolue ! 🙂", resolved_path(notification), method: :post) %>
+                            </div>
+                          <% end %>
+                        <% end %>
                         🤿
                       <% else %>
                         <%= notification.user.first_name %>

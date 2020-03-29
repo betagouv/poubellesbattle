@@ -114,7 +114,19 @@ textarea#notification_content {
       text-align: left;
     }
     .name-right {
-      text-align: right;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      .resolving-btn {
+        border-radius: 10px;
+        padding: 2px 5px;
+        margin: 0 5px;
+        background: black;
+        color: white;
+        a {
+          color: #f0b7b7;
+        }
+      }
     }
   }
 }
