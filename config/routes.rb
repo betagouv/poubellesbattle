@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   post "demandes/:slug/formulaire_toggle", to: "demandes#formulaire_toggle", as: 'formulaire_toggle'
 
   resources :notifications
+  post "notifications/:id/resolved", to: "notifications#resolved", as: "resolved"
 
   get "bourse_verte/mes_dons", to: "donverts#mes_dons", as: "mes_dons"
   resources :donverts, path: 'bourse_verte', param: :slug
