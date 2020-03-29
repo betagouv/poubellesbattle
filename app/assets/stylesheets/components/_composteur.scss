@@ -49,12 +49,18 @@
   }
 }
 
+
+
+
+
 .composteur-right {
   width: 20%;
   display: flex;
   flex-direction: column;
   justify-content: start;
   margin: 20px;
+  // background: white;
+  background: transparent;
   .composteur-registration-form {
     text-align: center;
     .new-user-form {
@@ -71,10 +77,13 @@
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    padding:20px 5px;
     margin: 0;
+    padding: 20px 0;
+    border: solid 1px teal;
+    border-radius: 10px;
+    background: white;
     h3 {
-      position: absolute;
+      position: relative;
     }
     .ref-quoi {
       font-size: 12px;
@@ -108,9 +117,17 @@
   align-items: center;
   flex-direction: column;
   height: max-content;
-  width: 90%;
   margin: 25px 0 0 0;
-  box-shadow: 0 0 5px rgba(40, 40, 40, 0.2);
+  width: 85%;
+  border-top: solid 1px teal;
+  padding: 10px 0;
+  .first-name {
+    font-size: 22px;
+  }
+  .phone-number {
+    margin: 0;
+    font-size: 14px;
+  }
   .star {
     position: relative;
     text-align: center;

@@ -69,7 +69,19 @@ class ComposteursController < ApplicationController
     if user_signed_in?
       @message = Message.new
       @notification = Notification.new
+      @last_anomalie = @composteur.notifications.where(notification_type: "anomalie").last
+      @depots_count = @composteur.notifications.where(notification_type: "depot").count
       @notifications = @composteur.notifications.where(notification_type: "welcome").or(@composteur.notifications.where(notification_type: "depot")).or(@composteur.notifications.where(notification_type: "anomalie")).or(@composteur.notifications.where(notification_type: "message")).includes(:user).order(created_at: :desc).first(100)
+      @score = 0
+      @notifications.each do |notif|
+        if notif.notification_type == "depot" || (notif.notification_type == "anomalie" && !notif.resolved )
+          @score += 10
+        elsif notif.notification_type == "anomalie" && notif.resolved
+          @score -= 5
+        elsif notif.notification_type == "message"
+          @score += 2
+        end
+      end
       @messages_notifications = @composteur.notifications.where(notification_type: "message-ref").last
       @messages_admin = Notification.where(notification_type: "message-admin").last
     end

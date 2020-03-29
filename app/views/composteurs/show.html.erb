@@ -1,8 +1,8 @@
 <div class="composteur-box">
   <div class="composteur-left">
     <% if user_signed_in? %>
-      <div class="referent-composteur-actions">
-        <% if current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
+      <% if current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
+        <div class="referent-composteur-actions">
           <div class="dropdown dropdown-form-referent">
             <button class="btn referent-action-toggle" type="button" id="dropdownContact-members" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Ecrire à mes Co-Composteur•euse•s
@@ -57,14 +57,18 @@
               <% end %>
             </div>
           </div>
-        <% end %>
-        <% if current_user.role == "admin" %>
+        </div>
+      <% end %>
+      <% if current_user.role == "admin" %>
+        <div class="referent-composteur-actions">
           <div class="dropdown-form-referent">
             <div class="referent-action-toggle">
               <%= link_to "modifier", edit_composteur_path(@composteur) %>
             </div>
           </div>
-        <% elsif current_user.role != "admin" %>
+        </div>
+      <% elsif current_user.role != "admin" && current_user.composteur_id == nil %>
+        <div class="referent-composteur-actions">
           <div class="dropdown-form-referent">
             <div class="referent-action-toggle">
               <% if current_user.composteur_id == nil %>
@@ -74,12 +78,17 @@
               <% end %>
             </div>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
     <% end %>
     <h1><%= @composteur.name %></h1>
     <p><%= @composteur.address %></p>
     <p><%= @composteur.composteur_type %></p>
+    <p>Niveau : <%= @score %></p>
+    <p>Nombre de dépots : <%= @depots_count %></p>
+    <% if @last_anomalie %>
+      <p>Déjà <%= distance_of_time_in_words(Time.now, @last_anomalie.created_at) %> depuis la dernière anomalie !</p>
+    <% end %>
     <% if @composteur.photo.attached? %>
       <%= cl_image_tag @composteur.photo.key, height: 300, width: 400, crop: :fill %>
     <% else %>
@@ -246,12 +255,14 @@
                   <div class="mini-btn"><%= link_to("retirer ce référent", non_referent_path(@composteur, referent_id: referent), method: :post) %></div>
                 <% end %>
               <% end %>
-              <h5><%= referent.first_name %></h5>
-              <% if referent.ok_phone %>
-                <p><%= referent.phone_number %></p>
-              <% end %>
-              <% if referent.ok_mail %>
-                <%= mail_to referent.email, "✉️", subject: "Votre composteur m'intéresse !", class: "email-button" %>
+              <h5 class="first-name"><%= referent.first_name %></h5>
+              <% if user_signed_in? %>
+                <% if referent.ok_phone %>
+                  <p class="phone-number"><%= referent.phone_number %></p>
+                <% end %>
+                <% if referent.ok_mail %>
+                  <%= mail_to referent.email, "✉️", subject: "Votre composteur m'intéresse !", class: "email-button" %>
+                <% end %>
               <% end %>
               <% if user_signed_in? %>
                 <% if current_user.role == "référent" && current_user == referent %>
@@ -262,13 +273,13 @@
                   <% end %>
                   <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
                     <div class="notification-card <%= @messages_notifications.notification_type %>">
-                      <p><%= referent.notifications.where(notification_type: "message-ref").last.content %></p>
+                      <p>"<%= referent.notifications.where(notification_type: "message-ref").last.content %>"</p>
                     </div>
                   <% end %>
                 <% else %>
                   <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
                     <div class="notification-card <%= @messages_notifications.notification_type %>">
-                      <p><%= referent.notifications.where(notification_type: "message-ref").last.content %></p>
+                      <p>"<%= referent.notifications.where(notification_type: "message-ref").last.content %>"</p>
                     </div>
                   <% end %>
                 <% end %>
