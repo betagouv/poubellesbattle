@@ -91,7 +91,7 @@
     <%# end %>
     <div class="banner-composteur-img-stats">
       <% if @composteur.photo.attached? %>
-        <%= cl_image_tag @composteur.photo.key, height: 500, width: 900, crop: :fill, class: "composteur-photo" %>
+        <%= cl_image_tag @composteur.photo.key, width: 600, crop: :fill, class: "composteur-photo" %>
       <% else %>
         <%= image_tag 'PB_logo.png', class: "composteur-photo" %>
       <% end %>
