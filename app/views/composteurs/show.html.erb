@@ -165,7 +165,7 @@
                     <div class="notif-username name-right">
                       <% if notification.notification_type == "anomalie" %>
                         <% if notification.resolved %>
-                          anomalie résolue par votre référent•e préféré•e !
+                          anomalie résolue par votre référent•e préféré•e ! 🤿
                         <% else %>
                           <% if current_user.role == "référent" %>
                             <div class="resolving-btn">
@@ -173,7 +173,6 @@
                             </div>
                           <% end %>
                         <% end %>
-                        🤿
                       <% else %>
                         <%= notification.user.first_name %>
                       <% end %>
