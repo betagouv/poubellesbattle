@@ -50,24 +50,34 @@
         text-align: center;
         justify-content: center;
         padding: 10px;
-        border: solid 2px #502703;
+        // border: solid 2px #502703;
         margin: 0 0 0 10px;
-        border-radius: 10px;
+        border-radius: 30px;
         flex-direction: column;
+        background: #56c37b;
         .users-stat-number {
           font-size: 50px;
           font-family:'Bangers', cursive;
           letter-spacing: 1px;
           transform: rotate(-2deg);
-          text-shadow: yellow 1px 1px 2px;
-          color: #502703;
+          // text-shadow: yellow 1px 1px 2px;
+          color: yellow;
+          }
+          .users-stat-info {
+            font-size: 12px;
+            color: yellow;
+            font-weight: bold;
+          }
         }
-        .users-stat-info {
-          font-size: 12px;
+        .users-count {
+          .users-stat-number {
+            margin: 10px 0 0 0;
+          }
+          .users-stat-info {
+          position: relative;
+          top: -8px;
         }
       }
-
-
     }
   }
 }
@@ -99,7 +109,8 @@
   position: relative;
   top: -50px;
 
-  .show {
+  .show:hover {
+    color: black;
   }
 }
 
@@ -149,21 +160,6 @@
   }
 }
 
-.round-counter {
-  background: #56c37b;
-  padding: 6px 12px;
-  font-size: 10px;
-  border-radius: 50%;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: bold;
-  position: relative;
-  left: -25px;
-  top: -12px;
-}
-
 
 .referent-card {
   display: flex;
@@ -177,6 +173,7 @@
   padding: 10px 0;
   .first-name {
     font-size: 22px;
+    padding: 1px 10px;
   }
   .phone-number {
     margin: 0;
@@ -220,20 +217,44 @@
   background: white;
   text-align: center;
 }
+    .is-referent-bg {
+      background: #fbab55 !important;
+      color: white !important;
+    }
 
 .les-users {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   margin: 30px 0;
+  .user-card {
+    font-size: 15px;
+    margin: 10px 0;
+    display: flex;
+    .user-first-name {
+      margin: auto;
+      background: antiquewhite;
+      padding: 1px 6px;
+    }
+    .round-counter {
+      background: #56c37b;
+      color: white;
+      padding: 6px 12px;
+      font-size: 10px;
+      border-radius: 50%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+      position: relative;
+      left: -10px;
+      top: -10px;
+      width: max-content;
+    }
+  }
 }
 
-.user-card {
-  font-size: 15px;
-  background: antiquewhite;
-  margin: 10px;
-  padding: 1px 5px;
-}
 
 
 .depot-anomalie {
