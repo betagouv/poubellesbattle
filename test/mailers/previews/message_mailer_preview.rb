@@ -16,4 +16,10 @@ class MessageMailerPreview < ActionMailer::Preview
 
     MessageMailer.with(message: message).message_to_agglo
   end
+
+  def message_to_referent
+    message = Message.last
+
+    MessageMailer.with(message: message).message_to_referent
+  end
 end

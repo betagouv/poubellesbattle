@@ -1,0 +1,9 @@
+<h5>Bonjour <%= @recipient.first_name.capitalize %>,</h5>
+<p>Vous trouverez ci-dessous, le message que <%= @message.sender_full_name %> vient de vous écrire.</p>
+<p>N'hésitez pas à lui répondre directement par mail à l'adresse : <%= @message.sender_email %>.</p>
+<p>_______________________</p>
+<p>Envoyé <%= @message.created_at.strftime("le %d/%m/%Y") %></p>
+<p></p>
+<p>"<i><%= @message.content %></i>"</p>
+<p>_______________________</p>
+

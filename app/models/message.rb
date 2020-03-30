@@ -6,6 +6,7 @@ class Message < ApplicationRecord
   after_create :send_interest_don_email, if: :message_type_is_interet_donvert?
   after_create :send_message_to_members_email, if: :message_type_is_message_membres?
   after_create :send_message_to_agglo_email, if: :message_type_is_message_agglo?
+  after_create :send_message_to_referent_email, if: :message_type_is_message_to_referent?
 
   private
 
@@ -31,5 +32,13 @@ class Message < ApplicationRecord
 
   def message_type_is_message_agglo?
     self.message_type == 'message-agglo'
+  end
+
+  def send_message_to_referent_email
+    MessageMailer.with(message: self).message_to_referent.deliver_now
+  end
+
+  def message_type_is_message_to_referent?
+    self.message_type == 'message-to-referent'
   end
 end

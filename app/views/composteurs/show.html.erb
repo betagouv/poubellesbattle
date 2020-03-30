@@ -269,8 +269,24 @@
                 <% if referent.ok_phone %>
                   <p class="phone-number"><%= referent.phone_number %></p>
                 <% end %>
+
                 <% if referent.ok_mail %>
-                  <%= mail_to referent.email, "✉️", subject: "Votre composteur m'intéresse !", class: "email-button" %>
+                  <div class="dropdown dropdown-form-referent dropdown-mail-to">
+                    <button class="btn referent-mail-to-toggle" type="button" id="dropdownContact-<%= referent.id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Me contacter
+                    </button>
+                    <div class="dropdown-menu referent-composteur-action" aria-labelledby="dropdownContact-<%= referent.id %>">
+                      <p><%= referent.first_name.capitalize %> recevra votre message par mail.</p>
+                      <%= simple_form_for @message do |f| %>
+                        <%= f.input :recipient_id, input_html: { value: "#{referent.id}", type: "hidden"} %>
+                        <%= f.input :sender_email, input_html: { value: "#{current_user.email}", type: "hidden"} %>
+                        <%= f.input :sender_full_name, input_html: { value: "#{current_user.first_name.capitalize} #{current_user.last_name.capitalize}", type: "hidden"} %>
+                        <%= f.input :message_type, input_html: { value: "message-to-referent", type: "hidden"} %>
+                        <%= f.input :content, as: :text, placeholder: "Votre message..." %>
+                        <div class="center-form-submit"><%= f.submit "envoyer", class: "don-form-btn" %></div>
+                      <% end %>
+                    </div>
+                  </div>
                 <% end %>
               <% end %>
               <% if user_signed_in? %>

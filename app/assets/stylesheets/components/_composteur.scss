@@ -84,7 +84,9 @@
 
 
 /* Feuille de style intégrée #5 | http://localhost:3000/composteurs/112 */
-
+  .dropdown-mail-to {
+    margin: 0 !important;
+  }
   .dropdown-form-referent {
     margin: 0 10px 0 0;
     .referent-action-toggle {
@@ -94,10 +96,27 @@
       box-shadow: 0 -11px 10px rgba(20, 30, 40, 0.15);
       font-size: 13px;
     }
+    .referent-mail-to-toggle {
+      background: white;
+      padding: 5px 12px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(20, 30, 40, 0.15);
+      font-size: 13px;
+      margin: 10px 0 0 0;
+    }
     .referent-composteur-action {
       padding: 15px;
       font-size: 13px;
       box-shadow: 0 0 20px rgba(10, 10, 10, 0.6);
+    }
+
+    .dropdown-menu.show {
+      border-radius: 15px;
+      margin-top: 8px;
+      min-width: 200px;
+      &:hover {
+        color: black;
+      }
     }
   }
 .referent-composteur-actions {
