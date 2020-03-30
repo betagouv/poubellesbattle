@@ -116,16 +116,19 @@
     </div>
     <div class="les-users">
       <% @reversed_referents.each do |user| %>
-        <div class="user-card" style="<% if user.role == "référent"%><%=  'background: darkorange' %><% end %>">
-          <%= ["🧅","🍌","🥦","🍎","🥨","🥖","🍁","🌼"].sample %><%= user.first_name %>
-        </div>
+        <div class="user-card">
+          <%#= ["🧅","🍌","🥦","🍎","🥨","🥖","🍁","🌼"].sample <%>
+          <p class="user-first-name is-referent-bg"><%= user.first_name.capitalize %></p>
           <p class="round-counter"><%= user.notifications.count %></p>
+        </div>
+
       <% end %>
       <% @not_referents.each do |user| %>
-        <div class="user-card" style="<% if user.role == "référent"%><%=  'background: darkorange' %><% end %>">
-          <%= ["🧅","🍌","🥦","🍎","🥨","🥖","🍁","🌼"].sample %><%= user.first_name %>
-        </div>
+        <div class="user-card">
+          <%#= ["🧅","🍌","🥦","🍎","🥨","🥖","🍁","🌼"].sample %>
+          <p class="user-first-name"><%= user.first_name.capitalize %></p>
           <p class="round-counter"><%= user.notifications.count %></p>
+        </div>
       <% end %>
 
     </div>
@@ -153,7 +156,7 @@
           <div class="depot-anomalie">
             <%= simple_form_for @notification, html: { class: "depot-form"} do |f| %>
               <%= f.input :notification_type, as: :string, input_html: { value: "depot", type:"hidden" }%>
-              <%= f.input :content, as: :string, input_html: { value: "#{current_user.first_name} vient de faire un dépot !", type:"hidden" }%>
+              <%= f.input :content, as: :string, input_html: { value: "#{current_user.first_name.capitalize} vient de faire un dépot !", type:"hidden" }%>
               <%= f.submit "J'ai fait un dépot !", class: "signaler depot" %>
             <% end %>
             <%= simple_form_for @notification, html: { class: "anomalie-form"} do |f| %>
@@ -189,11 +192,11 @@
                           <% end %>
                         <% end %>
                       <% else %>
-                        <%= notification.user.first_name %>
+                        <%= notification.user.first_name.capitalize %>
                       <% end %>
                     </div>
                     <div class="notification-card notification-card-current-user <%= notification.notification_type %>">
-                      <div class="notif-content"><p><%= notification.content %></p></div>
+                      <div class="notif-content"><p><%= notification.content.capitalize %></p></div>
                       <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
                     </div>
                   </div>
@@ -206,7 +209,7 @@
                       <% if notification.notification_type == "depot" %>
                         <div class="notif-content"><p>Je viens de faire un dépot ! 👌 </p></div>
                       <% else %>
-                        <div class="notif-content"><p><%= notification.content %></p></div>
+                        <div class="notif-content"><p><%= notification.content.capitalize %></p></div>
                       <% end %>
                       <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
                     </div>
@@ -261,7 +264,7 @@
                   <div class="mini-btn"><%= link_to("retirer ce référent", non_referent_path(@composteur, referent_id: referent), method: :post) %></div>
                 <% end %>
               <% end %>
-              <h5 class="first-name"><%= referent.first_name %></h5>
+              <h5 class="first-name is-referent-bg"><%= referent.first_name.capitalize %></h5>
               <% if user_signed_in? %>
                 <% if referent.ok_phone %>
                   <p class="phone-number"><%= referent.phone_number %></p>
