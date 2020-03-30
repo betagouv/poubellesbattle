@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_29_082612) do
+ActiveRecord::Schema.define(version: 2020_03_30_124131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(version: 2020_03_29_082612) do
     t.datetime "updated_at", null: false
     t.bigint "donvert_id"
     t.string "message_type"
+    t.bigint "recipient_id"
     t.index ["donvert_id"], name: "index_messages_on_donvert_id"
   end
 

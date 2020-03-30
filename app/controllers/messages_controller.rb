@@ -18,6 +18,9 @@ class MessagesController < ApplicationController
       redirect_to donverts_path
     elsif @message.message_type == "message-membres" || @message.message_type == "message-agglo"
       redirect_to composteur_path(current_user.composteur)
+    elsif @message.message_type == 'message-to-referent'
+      @referent_composteur = User.find(@message.recipient_id)
+      redirect_to composteur_path(@referent_composteur.composteur)
     end
   end
 
@@ -28,6 +31,6 @@ class MessagesController < ApplicationController
   # end
 
   def message_params
-    params.require(:message).permit(:content, :sender_email, :sender_full_name, :message_type, :donvert_id)
+    params.require(:message).permit(:recipient_id, :content, :sender_email, :sender_full_name, :message_type, :donvert_id)
   end
 end

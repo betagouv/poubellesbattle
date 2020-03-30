@@ -21,4 +21,10 @@ class MessageMailer < ApplicationMailer
     @sender = User.where(email: @message.sender_email).first
     mail(to: 'contact@poubellesbattle.fr', subject: "Message de #{@sender.first_name.capitalize} - référent•e du site #{@sender.composteur.name}")
   end
+
+  def message_to_referent
+    @message = params[:message]
+    @recipient = User.find(@message.recipient_id)
+    mail(to: "#{@recipient.email}", subject: "#{@recipient.first_name} : #{@message.sender_full_name} vient de vous écrire.")
+  end
 end
