@@ -98,7 +98,7 @@
       <div class="stats">
         <div class="users-count">
           <% if @users.count == 0 %>
-            Personne n'est inscrit sur ce site de compostostage pour l'instant..
+            <p class="users_stat_info">Personne n'est inscrit sur ce site de compostage pour l'instant...</p>
           <% elsif @users.count > 0 %>
           <div class="users-stat-number"><%= @users.count %></div>
           <p class="users-stat-info"><%= "adepte".pluralize(@users.count) %> du compostage !</p>
