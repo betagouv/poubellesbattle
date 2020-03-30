@@ -84,7 +84,7 @@
     <% end %>
   </div>
     <h1 class="composteur-name"><%= @composteur.name %></h1>
-    <p class="composteur-adress"><%= @composteur.composteur_type %> : <%= @composteur.address %></p>
+    <p class="composteur-adress"><%= @composteur.composteur_type.capitalize %> : <%= @composteur.address %></p>
    <!--  <p class="composteur-type"></p> -->
     <%# if @last_anomalie %>
       <!-- <p>Déjà <%#= distance_of_time_in_words(Time.now, @last_anomalie.created_at) %> depuis la dernière anomalie !</p> -->
@@ -101,16 +101,16 @@
             Personne n'est inscrit sur ce site de compostostage pour l'instant..
           <% elsif @users.count > 0 %>
           <div class="users-stat-number"><%= @users.count %></div>
-          <p class="users-stat-info">adeptes du compostages !</p>
+          <p class="users-stat-info"><%= "adepte".pluralize(@users.count) %> du compostage !</p>
           <% end %>
         </div>
         <div class="composteur-score">
           <div class="users-stat-number"><%= @score %></div>
-          <p class="users-stat-info">points PB !</p>
+          <p class="users-stat-info"><%= "point".pluralize(@score) %> PB !</p>
         </div>
         <div class="composteur-depot-count">
           <div class="users-stat-number"><%= @depots_count %></div>
-          <p class="users-stat-info">dépots !</p>
+          <p class="users-stat-info"><%= "dépot".pluralize(@depots_count) %> !</p>
         </div>
       </div>
     </div>
@@ -249,7 +249,7 @@
           <% end %>
         <% end %>
       </div>
-      <h3>référent•e•s</h3>
+      <h3><%= inclusive_pluralize(@referents.count, 'Référent•e', '•s') %></h3>
       <%= link_to "C'est quoi être référent•e ?", "https://uncomposteurici.gitbook.io/poubellesbattle/convaincre-son-assemblee-generale-de-copropriete-dinstaller-un-composteur-en-pied-dimmeuble/le-role-de-referent-e-composteur", class: "ref-quoi" %>
       <% if @referents.count != 0 %>
         <% @referents.each do |referent| %>
@@ -295,14 +295,14 @@
           </div>
         <% end %>
       <% else %>
-        <div class="referent-card no-ref">Pas de référent sur ce composteur pour l'instant ..
+        <div class="referent-card no-ref">Pas de référent•e•s sur ce site de compostostage pour l'instant ..
         <!-- put here contact form -->
         </div>
       <% end %>
     </div>
 
     <div class="les-messages">
-      <h3 class="marg-vert-bottom">message de l'agglo</h3>
+      <h3 class="marg-vert-bottom">Message de l'Agglo</h3>
       <% if @messages_admin %>
         <div class="message-date"><%= l @messages_admin.created_at, format: ("Le %d %B %Y") %></div>
         <div class="message-content"><%= @messages_admin.content %></div>
