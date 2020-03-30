@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
     elsif @message.message_type == "message-membres" || @message.message_type == "message-agglo"
       redirect_to composteur_path(current_user.composteur)
     elsif @message.message_type == 'message-to-referent'
-      @referent_composteur = User.find(@message.recipient_id)
+      @referent_composteur = User.find(@message.recipient_id.to_i)
       redirect_to composteur_path(@referent_composteur.composteur)
     end
   end
