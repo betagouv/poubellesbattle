@@ -389,4 +389,86 @@
     align-items: center;
   }
 }
+#topReferentAggloCollapse {
+  display: none;
+}
+@media (max-width: 600px) {
+  .composteur-box {
+    flex-wrap: wrap;
+    .composteur-right {
+      display:none;
+    }
+    .composteur-left {
+      width: 90%;
+      margin: 20px 0;
+      .dropdown-form-referent {
+        margin: 0;
+      }
 
+
+
+.composteur-adress {
+  font-size: 13px;
+}
+
+
+.banner-composteur-img-stats {
+  flex-wrap: wrap;
+  flex-direction: column-reverse;
+  .composteur-photo {
+    max-width: 90%;
+  }
+  .stats {
+    max-width: 100%;
+    flex-direction: row;
+    .users-count .users-stat-number, .composteur-score .users-stat-number, .composteur-depot-count .users-stat-number {
+      font-size: 20px;
+    }
+    .users-count, .composteur-score, .composteur-depot-count {
+      padding: 0;
+      width: 30%;
+      margin: auto;
+      height: 100px;
+    }
+    .users-count .users-stat-info {
+      top: 0px;
+    }
+
+    .users-count .users-stat-number {
+      margin: 18px 0 0 0;
+    }
+  }
+}
+
+
+
+
+
+
+
+    }
+  }
+  #topReferentAggloCollapse {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    .btn-to-referent-collapse {
+      background: white;
+      box-shadow: 0 0 10px rgba(20, 20, 20, 0.2);
+      margin: 0 0 45px 0;
+      font-size: 13px;
+    }
+    #collapseReferentAgglo.show {
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      width: 100%;
+    }
+    .les-referents {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+}

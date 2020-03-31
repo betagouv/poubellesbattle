@@ -142,3 +142,36 @@
 }
 
 
+@media (max-width: 500px) {
+  #new_demande {
+    font-size: 14px;
+    .formline-between .form-group {
+      /* width: 49%; */
+      width: 45%;
+    }
+  }
+
+  .demande-box {
+    height: max-content;
+    flex-wrap: wrap;
+    .demande-registration-form {
+      width: 90%;
+      margin: 90px 0 0 0;
+      .new-user-form {
+        font-size: 14px;
+      }
+      h3 {
+        margin: 0 0 25px 0;
+      }
+    }
+  }
+  .demande-left {
+    padding: 0;
+    width: 90%;
+    margin: 130px 0 0 0;
+    .marg-vert {
+      margin: 12px 0;
+    }
+  }
+
+}
