@@ -122,7 +122,7 @@
               <p>En tant que référent•e vous pouvez écrire des messages à tou•te•s les membres de <%= @composteur.name %>! Les membres recevront votre message par mail.</p>
               <%= simple_form_for @message do |f| %>
                 <%= f.input :sender_email, input_html: { value: "#{current_user.email}", type: "hidden"} %>
-                <%= f.input :sender_full_name, input_html: { value: "#{current_user.first_name.capitalize} #{current_user.last_name.capitalize}", type: "hidden"} %>
+                <%= f.input :sender_full_name, input_html: { value: "#{current_user.first_name} #{current_user.last_name}", type: "hidden"} %>
                 <%= f.input :message_type, input_html: { value: "message-membres", type: "hidden"} %>
                 <%= f.input :content, as: :text, placeholder: "Votre message..." %>
                 <div class="center-form-submit"><%= f.submit "envoyer", class: "don-form-btn" %></div>
@@ -137,7 +137,7 @@
               <p>En tant que référent•e vous pouvez écrire directement à l'Equipe Poubelles Battle. Votre message arrivera dans notre directement dans notre boîte mail.</p>
               <%= simple_form_for @message do |f| %>
                 <%= f.input :sender_email, input_html: { value: "#{current_user.email}", type: "hidden"} %>
-                <%= f.input :sender_full_name, input_html: { value: "#{current_user.first_name.capitalize} #{current_user.last_name.capitalize}", type: "hidden"} %>
+                <%= f.input :sender_full_name, input_html: { value: "#{current_user.first_name} #{current_user.last_name}", type: "hidden"} %>
                 <%= f.input :message_type, input_html: { value: "message-agglo", type: "hidden"} %>
                 <%= f.input :content, as: :text, placeholder: "Votre message..." %>
                 <div class="center-form-submit"><%= f.submit "envoyer", class: "don-form-btn" %></div>
@@ -194,7 +194,7 @@
     <% end %>
   </div>
     <h1 class="composteur-name"><%= @composteur.name %></h1>
-    <p class="composteur-adress"><%= @composteur.composteur_type.capitalize %> : <%= @composteur.address %></p>
+    <p class="composteur-adress"><%= @composteur.composteur_type %> : <%= @composteur.address %></p>
    <!--  <p class="composteur-type"></p> -->
     <%# if @last_anomalie %>
       <!-- <p>Déjà <%#= distance_of_time_in_words(Time.now, @last_anomalie.created_at) %> depuis la dernière anomalie !</p> -->
@@ -236,7 +236,7 @@
       <% @not_referents.each do |user| %>
         <div class="user-card">
           <%#= ["🧅","🍌","🥦","🍎","🥨","🥖","🍁","🌼"].sample %>
-          <p class="user-first-name"><%= user.first_name.capitalize %></p>
+          <p class="user-first-name"><%= user.first_name %></p>
           <p class="round-counter"><%= user.notifications.count %></p>
         </div>
       <% end %>
@@ -266,7 +266,7 @@
           <div class="depot-anomalie">
             <%= simple_form_for @notification, html: { class: "depot-form"} do |f| %>
               <%= f.input :notification_type, as: :string, input_html: { value: "depot", type:"hidden" }%>
-              <%= f.input :content, as: :string, input_html: { value: "#{current_user.first_name.capitalize} vient de faire un dépot !", type:"hidden" }%>
+              <%= f.input :content, as: :string, input_html: { value: "#{current_user.first_name} vient de faire un dépot !", type:"hidden" }%>
               <%= f.submit "J'ai fait un dépot !", class: "signaler depot" %>
             <% end %>
             <%= simple_form_for @notification, html: { class: "anomalie-form"} do |f| %>
@@ -278,7 +278,7 @@
           <div class="message-form">
             <%= simple_form_for @notification, html: { class: "message-form-flex"} do |f| %>
               <%= f.input :notification_type, as: :string, input_html: { value: "message", type:"hidden" }%>
-              <%= f.input :content, as: :text, placeholder: "votre message...",  class: "message-form-content-input"%>
+              <%= f.input :content, as: :text, placeholder: "Ecrivez ici pour discuter avec les membres de #{@composteur.name}..",  class: "message-form-content-input"%>
               <%= f.submit "Envoyer", class: "mini-btn mini-banana-btn signaler" %>
             <% end %>
           </div>
@@ -297,16 +297,16 @@
                         <% else %>
                           <% if current_user.role == "référent" %>
                             <div class="resolving-btn">
-                              <%= link_to("#{current_user.first_name.capitalize}, cliquez ici si l'anomalie est résolue ! 🙂", resolved_path(notification), method: :post) %>
+                              <%= link_to("#{current_user.first_name}, cliquez ici si l'anomalie est résolue ! 🙂", resolved_path(notification), method: :post) %>
                             </div>
                           <% end %>
                         <% end %>
                       <% else %>
-                        <%= notification.user.first_name.capitalize %>
+                        <%= notification.user.first_name %>
                       <% end %>
                     </div>
                     <div class="notification-card notification-card-current-user <%= notification.notification_type %>">
-                      <div class="notif-content"><p><%= notification.content.capitalize %></p></div>
+                      <div class="notif-content"><p><%= notification.content %></p></div>
                       <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
                     </div>
                   </div>
@@ -319,7 +319,7 @@
                       <% if notification.notification_type == "depot" %>
                         <div class="notif-content"><p>Je viens de faire un dépot ! 👌 </p></div>
                       <% else %>
-                        <div class="notif-content"><p><%= notification.content.capitalize %></p></div>
+                        <div class="notif-content"><p><%= notification.content %></p></div>
                       <% end %>
                       <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
                     </div>
