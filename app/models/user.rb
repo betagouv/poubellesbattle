@@ -27,6 +27,6 @@ class User < ApplicationRecord
   end
 
   def email_is_ascii?
-    self.ascii_only?
+    self.email.ascii_only?
   end
 end
