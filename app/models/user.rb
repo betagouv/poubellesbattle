@@ -18,7 +18,7 @@ class User < ApplicationRecord
       tsearch: { prefix: true }
     }
 
-  after_create :send_welcome_email, if: :email_is_ascii?
+  after_create :send_welcome_email, if: :email_is_ascii!
 
   private
 
@@ -26,7 +26,7 @@ class User < ApplicationRecord
     UserMailer.with(user: self).welcome.deliver_now
   end
 
-  def email_is_ascii?
-    self.email.ascii_only?
+  def email_is_ascii!
+    !self.email.ascii_only? ? self.email.force_encoding('ASCII') : self.email
   end
 end
