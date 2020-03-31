@@ -18,11 +18,15 @@ class User < ApplicationRecord
       tsearch: { prefix: true }
     }
 
-  after_create :send_welcome_email
+  after_create :send_welcome_email, if: :email_is_ascii?
 
   private
 
   def send_welcome_email
     UserMailer.with(user: self).welcome.deliver_now
+  end
+
+  def email_is_ascii?
+    self.ascii_only?
   end
 end
