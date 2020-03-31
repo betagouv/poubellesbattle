@@ -457,6 +457,7 @@
   .stats {
     max-width: 100%;
     flex-direction: row;
+    margin: 10px 0;
     .users-count .users-stat-number, .composteur-score .users-stat-number, .composteur-depot-count .users-stat-number {
       font-size: 20px;
     }
