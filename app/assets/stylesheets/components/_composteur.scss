@@ -396,6 +396,33 @@
 @media (max-width: 600px) {
   .composteur-box {
     margin: 150px 0 50px 0 !important;
+    .depot-anomalie {
+      justify-content: center;
+      flex-wrap: wrap;
+      .depot-form {
+        font-size: 14px;
+        margin: 5px;
+      }
+
+      .anomalie-form {
+        font-size: 14px;
+        margin: 5px;
+        width: 90%;
+      }
+    }
+
+/* application-0b158dc183dd2e904f79d1f8ee736e25e856300020eb3994d22393360abe6fa1.css | http://localhost:3000/assets/application-0b158dc183dd2e904f79d1f8ee736e25e856300020eb3994d22393360abe6fa1.css */
+
+.message-form-flex {
+  /* display: flex; */
+  display: block;
+}
+
+.message-form {
+  /* padding: 0 45px; */
+  padding: 0;
+}
+
   }
 }
 
@@ -450,6 +477,15 @@
 }
 
 
+
+
+
+
+
+
+.message-board {
+  width: 90%;
+}
 
 
 
