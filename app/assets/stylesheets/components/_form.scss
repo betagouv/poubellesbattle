@@ -7,7 +7,7 @@
     padding: 15px;
     width: 260px;
     left: -75px !important;
-    transition: all 1.5s ease;
+    transition: all 1s ease;
     h5 {
       margin: 20px 0;
     }
@@ -103,4 +103,23 @@
 
 .form-actions {
   text-align: center;
+}
+
+@media (max-width: 600px) {
+  .edit-user-left {
+    display: none;
+  }
+  .edit-user-form {
+    width: 90% !important;
+    h2 {
+      font-size: 28px;
+      padding: 0 0 15px 0;
+    }
+    .text-rouge {
+      margin: auto;
+    }
+  }
+  .dropdown-form .don-form-size-padd {
+    left: -25px !important;
+  }
 }

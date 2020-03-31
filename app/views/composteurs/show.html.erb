@@ -1,4 +1,114 @@
 <div class="composteur-box">
+  <div id="topReferentAggloCollapse">
+    <button class="btn btn-to-referent-collapse" type="button" data-toggle="collapse" data-target="#collapseReferentAgglo" aria-expanded="false" aria-controls="collapseExample">
+      Plus d'infos
+    </button>
+
+    <div class="collapse" id="collapseReferentAgglo">
+      <div class="card card-body">
+        <% if user_signed_in? == false %>
+          <div class="composteur-registration-form">
+            <%= render "devise/registrations/new" %>
+          </div>
+        <% end %>
+        <div class="les-referents white-bg">
+          <div class="becoming-or-not-referent">
+            <% if user_signed_in? %>
+              <% if current_user.role != "admin" %>
+                <% if current_user.composteur_id == @composteur.id && current_user.role == nil %>
+                  <div class="dropdown-form-referent">
+                    <div class="referent-action-toggle">
+                      <% if current_user.notifications.where(notification_type: "demande-référent").count < 1 %>
+                        <%= link_to("devenir référent", referent_path(@composteur), method: :post) %>
+                      <% end %>
+                    </div>
+                  </div>
+                  <!-- link to me désinscrire --->
+                <% elsif current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
+                  <div class="dropdown-form-referent">
+                    <div class="referent-action-toggle">
+                      <%= link_to("ne plus être référent", non_referent_path(@composteur), method: :post) %>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+          <h3><%= inclusive_pluralize(@referents.count, 'Référent•e', '•s') %></h3>
+          <%= link_to "C'est quoi être référent•e ?", "https://uncomposteurici.gitbook.io/poubellesbattle/convaincre-son-assemblee-generale-de-copropriete-dinstaller-un-composteur-en-pied-dimmeuble/le-role-de-referent-e-composteur", class: "ref-quoi" %>
+          <% if @referents.count != 0 %>
+            <% @referents.each do |referent| %>
+              <div class="referent-card">
+              <!-- <div class="star">⭐️</div> -->
+                <!-- <div class="referent-profile"> -->
+              <% if user_signed_in? %>
+                <% if current_user.role == "admin" %>
+                  <div class="mini-btn"><%= link_to("retirer ce référent", non_referent_path(@composteur, referent_id: referent), method: :post) %></div>
+                <% end %>
+              <% end %>
+              <h5 class="first-name is-referent-bg"><%= referent.first_name %></h5>
+              <% if user_signed_in? %>
+                <% if referent.ok_phone %>
+                  <p class="phone-number"><%= referent.phone_number %></p>
+                <% end %>
+
+                <% if referent.ok_mail %>
+                  <div class="dropdown dropdown-form-referent dropdown-mail-to">
+                    <button class="btn referent-mail-to-toggle" type="button" id="dropdownContact-<%= referent.id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Me contacter
+                    </button>
+                    <div class="dropdown-menu referent-composteur-action" aria-labelledby="dropdownContact-<%= referent.id %>">
+                      <p><%= referent.first_name %> recevra votre message par mail.</p>
+                      <%= simple_form_for @message do |f| %>
+                        <%= f.input :recipient_id, input_html: { value: "#{referent.id}", type: "hidden"} %>
+                        <%= f.input :sender_email, input_html: { value: "#{current_user.email}", type: "hidden"} %>
+                        <%= f.input :sender_full_name, input_html: { value: "#{current_user.first_name} #{current_user.last_name}", type: "hidden"} %>
+                        <%= f.input :message_type, input_html: { value: "message-to-referent", type: "hidden"} %>
+                        <%= f.input :content, as: :text, placeholder: "Votre message..." %>
+                        <div class="center-form-submit"><%= f.submit "envoyer", class: "don-form-btn" %></div>
+                      <% end %>
+                    </div>
+                  </div>
+                <% end %>
+              <% end %>
+              <% if user_signed_in? %>
+                <% if current_user.role == "référent" && current_user == referent %>
+                  <%= simple_form_for(@notification) do |f| %>
+                    <%= f.input :notification_type, as: :string, input_html: { value: "message-ref", type:"hidden" }%>
+                    <%= f.input :content, as: :text, placeholder: "modifier mon message de présentation..." %>
+                    <%= f.submit "Enregistrer", class: "message-form-ref" %>
+                  <% end %>
+                  <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
+                    <div class="notification-card <%= @messages_notifications.notification_type %>">
+                      <p>"<%= referent.notifications.where(notification_type: "message-ref").last.content %>"</p>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
+                    <div class="notification-card <%= @messages_notifications.notification_type %>">
+                      <p>"<%= referent.notifications.where(notification_type: "message-ref").last.content %>"</p>
+                    </div>
+                  <% end %>
+                <% end %>
+              <% end %>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="referent-card no-ref">Pas de référent•e•s sur ce site de compostostage pour l'instant ..
+            </div>
+          <% end %>
+        </div>
+
+        <div class="les-messages">
+          <h3 class="marg-vert-bottom">Message de l'Agglo</h3>
+          <% if @messages_admin %>
+            <div class="message-date"><%= l @messages_admin.created_at, format: ("Le %d %B %Y") %></div>
+            <div class="message-content"><%= @messages_admin.content %></div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="composteur-left">
     <div class="actions-list">
     <% if user_signed_in? %>
@@ -118,7 +228,7 @@
       <% @reversed_referents.each do |user| %>
         <div class="user-card">
           <%#= ["🧅","🍌","🥦","🍎","🥨","🥖","🍁","🌼"].sample <%>
-          <p class="user-first-name is-referent-bg"><%= user.first_name.capitalize %></p>
+          <p class="user-first-name is-referent-bg"><%= user.first_name %></p>
           <p class="round-counter"><%= user.notifications.count %></p>
         </div>
 
@@ -223,6 +333,9 @@
       <% end %>
     <% end %>
   </div>
+
+
+
   <div class="composteur-right">
     <% if user_signed_in? == false %>
       <div class="composteur-registration-form">
@@ -264,7 +377,7 @@
                   <div class="mini-btn"><%= link_to("retirer ce référent", non_referent_path(@composteur, referent_id: referent), method: :post) %></div>
                 <% end %>
               <% end %>
-              <h5 class="first-name is-referent-bg"><%= referent.first_name.capitalize %></h5>
+              <h5 class="first-name is-referent-bg"><%= referent.first_name %></h5>
               <% if user_signed_in? %>
                 <% if referent.ok_phone %>
                   <p class="phone-number"><%= referent.phone_number %></p>
@@ -276,11 +389,11 @@
                       Me contacter
                     </button>
                     <div class="dropdown-menu referent-composteur-action" aria-labelledby="dropdownContact-<%= referent.id %>">
-                      <p><%= referent.first_name.capitalize %> recevra votre message par mail.</p>
+                      <p><%= referent.first_name %> recevra votre message par mail.</p>
                       <%= simple_form_for @message do |f| %>
                         <%= f.input :recipient_id, input_html: { value: "#{referent.id}", type: "hidden"} %>
                         <%= f.input :sender_email, input_html: { value: "#{current_user.email}", type: "hidden"} %>
-                        <%= f.input :sender_full_name, input_html: { value: "#{current_user.first_name.capitalize} #{current_user.last_name.capitalize}", type: "hidden"} %>
+                        <%= f.input :sender_full_name, input_html: { value: "#{current_user.first_name} #{current_user.last_name}", type: "hidden"} %>
                         <%= f.input :message_type, input_html: { value: "message-to-referent", type: "hidden"} %>
                         <%= f.input :content, as: :text, placeholder: "Votre message..." %>
                         <div class="center-form-submit"><%= f.submit "envoyer", class: "don-form-btn" %></div>
