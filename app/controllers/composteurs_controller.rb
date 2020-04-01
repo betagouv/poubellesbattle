@@ -214,7 +214,7 @@ class ComposteursController < ApplicationController
     if @user.save
       if current_user.role == "admin"
         redirect_to edit_composteur_path(@composteur)
-        flash[:notice] = "Cet utilisateur•ice n'est plus référent•e."
+        flash[:notice] = "Cet•te utilisateur•ice n'est plus référent•e."
       else
         redirect_to composteur_path
         flash[:notice] = "Vous n'êtes plus référent•e•s !"

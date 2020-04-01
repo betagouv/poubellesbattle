@@ -48,11 +48,11 @@
               <% end %>
               <h5 class="first-name is-referent-bg"><%= referent.first_name %></h5>
               <% if user_signed_in? %>
-                <% if referent.ok_phone %>
+                <% if referent.ok_phone == true %>
                   <p class="phone-number"><%= referent.phone_number %></p>
                 <% end %>
 
-                <% if referent.ok_mail %>
+                <% if referent.ok_mail == true %>
                   <div class="dropdown dropdown-form-referent dropdown-mail-to">
                     <button class="btn referent-mail-to-toggle" type="button" id="dropdownContact-<%= referent.id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Me contacter
@@ -379,11 +379,11 @@
               <% end %>
               <h5 class="first-name is-referent-bg"><%= referent.first_name %></h5>
               <% if user_signed_in? %>
-                <% if referent.ok_phone %>
+                <% if referent.ok_phone == true %>
                   <p class="phone-number"><%= referent.phone_number %></p>
                 <% end %>
 
-                <% if referent.ok_mail %>
+                <% if referent.ok_mail == true %>
                   <div class="dropdown dropdown-form-referent dropdown-mail-to">
                     <button class="btn referent-mail-to-toggle" type="button" id="dropdownContact-<%= referent.id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       Me contacter
