@@ -194,7 +194,7 @@
     <% end %>
   </div>
     <h1 class="composteur-name"><%= @composteur.name %></h1>
-    <p class="composteur-adress"><%= @composteur.composteur_type %> : <%= @composteur.address %></p>
+    <p class="composteur-adress"><%= @composteur.category %> : <%= @composteur.address %></p>
    <!--  <p class="composteur-type"></p> -->
     <%# if @last_anomalie %>
       <!-- <p>Déjà <%#= distance_of_time_in_words(Time.now, @last_anomalie.created_at) %> depuis la dernière anomalie !</p> -->

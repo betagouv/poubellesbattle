@@ -106,7 +106,7 @@ class ComposteursController < ApplicationController
 
   def edit
     @composteur = Composteur.find(params[:id])
-    if (current_user.composteur_id == @composteur.id && current_user.role == "référent") || current_user.role == "admin"
+    if current_user.role == "admin"
       @users = User.where(composteur_id: @composteur)
       if params[:query].present?
         @referents = User.search_by_first_name_and_last_name(params[:query])
@@ -214,7 +214,7 @@ class ComposteursController < ApplicationController
     if @user.save
       if current_user.role == "admin"
         redirect_to edit_composteur_path(@composteur)
-        flash[:notice] = "Cet utilisteur n'est plus référent."
+        flash[:notice] = "Cet utilisateur•ice n'est plus référent•e."
       else
         redirect_to composteur_path
         flash[:notice] = "Vous n'êtes plus référent•e•s !"
