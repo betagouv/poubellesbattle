@@ -220,4 +220,4 @@ fr:
     sessions:
       user:
         signed_out: "Déconnexion réussie ! À bientôt !"
-        signed_in: "Bonjour ! Connexion réussi !"
+        signed_in: "Bonjour ! Connexion réussie !"
