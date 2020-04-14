@@ -148,10 +148,11 @@ class ComposteursController < ApplicationController
 
   def new_manual_latlng
     return unless current_user.role == "admin"
-
+    man_lng = params[:manual_lng].to_f
+    man_lat = params[:manual_lat].to_f
     @composteur = Composteur.find(params[:id])
-    @composteur.manual_lng = params[:manual_lng]
-    @composteur.manual_lat = params[:manual_lat]
+    @composteur.manual_lng = man_lng
+    @composteur.manual_lat = man_lat
     if @composteur.save
       redirect_to edit_composteur_path(@composteur)
     else
