@@ -42,16 +42,29 @@ class ComposteursController < ApplicationController
   # end
 
     @markers = @composteurs.includes(:photo_attachment).map do |compo|
-      {
-        lat: compo.latitude,
-        lng: compo.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { compo: compo }),
-        image_url: if compo.public == true
-                     helpers.asset_url('markerpb-public.png')
-                   else
-                     helpers.asset_url('markerpb-prive.png')
-                   end
-      }
+      if compo.manual_lng.nil? || compo.manual_lat.nil?
+        {
+          lat: compo.latitude,
+          lng: compo.longitude,
+          infoWindow: render_to_string(partial: "info_window", locals: { compo: compo }),
+          image_url: if compo.public == true
+                       helpers.asset_url('markerpb-public.png')
+                     else
+                       helpers.asset_url('markerpb-prive.png')
+                     end
+        }
+      else
+        {
+          lat: compo.manual_lat,
+          lng: compo.manual_lng,
+          infoWindow: render_to_string(partial: "info_window", locals: { compo: compo }),
+          image_url: if compo.public == true
+                       helpers.asset_url('markerpb-public.png')
+                     else
+                       helpers.asset_url('markerpb-prive.png')
+                     end
+        }
+      end
     end
   end
 
@@ -134,6 +147,8 @@ class ComposteursController < ApplicationController
   end
 
   def new_manual_latlng
+    return unless current_user.role == "admin"
+
     @composteur = Composteur.find(params[:id])
     @composteur.manual_lng = params[:manual_lng]
     @composteur.manual_lat = params[:manual_lat]
