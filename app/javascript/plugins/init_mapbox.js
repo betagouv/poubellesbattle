@@ -50,11 +50,11 @@ const initMapbox = () => {
         document.getElementById('info').innerHTML =
         // e.lngLat is the longitude, latitude geographical position of the event
 
-        `<div>longitude ${JSON.stringify(e.lngLat["lng"])}</div>`
+        `<div>longitude : ${JSON.stringify(e.lngLat["lng"])}</div>`
         +
-        `<div>latitude ${JSON.stringify(e.lngLat["lat"])}</div>`
+        `<div>latitude : ${JSON.stringify(e.lngLat["lat"])}</div>`
         +
-        `<a rel="nofollow" data-method="post" href="/composteurs/${markers[0]["id"]}/new_manual_latlng?manual_lng=${JSON.stringify(e.lngLat["lng"])}&manual_lat=${JSON.stringify(e.lngLat["lat"])}">Utiliser ces coordonnées</a>`;
+        `<a class= "add-coord-btn" rel="nofollow" data-method="post" href="/composteurs/${markers[0]["id"]}/new_manual_latlng?manual_lng=${JSON.stringify(e.lngLat["lng"])}&manual_lat=${JSON.stringify(e.lngLat["lat"])}">Utiliser ces coordonnées</a>`;
 
         });
     };

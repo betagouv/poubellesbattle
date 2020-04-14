@@ -160,7 +160,19 @@ class ComposteursController < ApplicationController
       redirect_to edit_composteur_path(@composteur)
     else
       render :edit
-      flash[:notice] = "erreur"
+      flash[:notice] = "Erreur : les coordonnées n'ont pas pu être enregistrées."
+    end
+  end
+
+  def suppr_manual_latlng
+    @composteur = Composteur.find(params[:id])
+    @composteur.manual_lat = nil
+    @composteur.manual_lng = nil
+    if @composteur.save
+      redirect_to edit_composteur_path(@composteur)
+    else
+      render :edit
+      flash[:notice] = "Erreur : les coordonnées n'ont pas pu être effacées."
     end
   end
 
