@@ -370,6 +370,7 @@
   margin: 150px 0 40px 0;
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
   .composteur-form-box {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(20, 20, 20, 0.2);

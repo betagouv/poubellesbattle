@@ -42,16 +42,29 @@ class ComposteursController < ApplicationController
   # end
 
     @markers = @composteurs.includes(:photo_attachment).map do |compo|
-      {
-        lat: compo.latitude,
-        lng: compo.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { compo: compo }),
-        image_url: if compo.public == true
-          helpers.asset_url('markerpb-public.png')
-        else
-          helpers.asset_url('markerpb-prive.png')
-        end
-      }
+      if compo.manual_lng.nil? || compo.manual_lat.nil?
+        {
+          lat: compo.latitude,
+          lng: compo.longitude,
+          infoWindow: render_to_string(partial: "info_window", locals: { compo: compo }),
+          image_url: if compo.public == true
+                       helpers.asset_url('markerpb-public.png')
+                     else
+                       helpers.asset_url('markerpb-prive.png')
+                     end
+        }
+      else
+        {
+          lat: compo.manual_lat,
+          lng: compo.manual_lng,
+          infoWindow: render_to_string(partial: "info_window", locals: { compo: compo }),
+          image_url: if compo.public == true
+                       helpers.asset_url('markerpb-public.png')
+                     else
+                       helpers.asset_url('markerpb-prive.png')
+                     end
+        }
+      end
     end
   end
 
@@ -106,7 +119,22 @@ class ComposteursController < ApplicationController
 
   def edit
     @composteur = Composteur.find(params[:id])
+
     if current_user.role == "admin"
+      @markers =
+        [{
+          id: @composteur.id,
+          lat: @composteur.latitude,
+          lng: @composteur.longitude,
+          infoWindow: render_to_string(partial: "info_window", locals: { compo: @composteur }),
+          image_url: helpers.asset_url('markerpb-public.png')
+        }, {
+          lat: @composteur.manual_lat,
+          lng: @composteur.manual_lng,
+          infoWindow: render_to_string(partial: "info_window", locals: { compo: @composteur }),
+          image_url: helpers.asset_url('markerpb-prive.png')
+
+        }]
       @users = User.where(composteur_id: @composteur)
       if params[:query].present?
         @referents = User.search_by_first_name_and_last_name(params[:query])
@@ -115,6 +143,20 @@ class ComposteursController < ApplicationController
       end
     else
       redirect_to composteur_path(@composteur)
+    end
+  end
+
+  def new_manual_latlng
+    return unless current_user.role == "admin"
+
+    @composteur = Composteur.find(params[:id])
+    @composteur.manual_lng = params[:manual_lng]
+    @composteur.manual_lat = params[:manual_lat]
+    if @composteur.save
+      redirect_to edit_composteur_path(@composteur)
+    else
+      render :edit
+      flash[:notice] = "erreur"
     end
   end
 
