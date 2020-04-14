@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   post "composteurs/:id/desincription_composteur", to: "composteurs#desinscription_composteur", as: 'desinscription'
   post "composteurs/:id/non_referent_composteur", to: "composteurs#non_referent_composteur", as: 'non_referent'
   post "composteurs/:id/new_manual_latlng", to: "composteurs#new_manual_latlng", as: 'new_manual_latlng'
+  post "composteurs/:id/suppr_manual_latlng", to: "composteurs#suppr_manual_latlng", as: 'suppr_manual_latlng'
 
   root to: "composteurs#index"
 

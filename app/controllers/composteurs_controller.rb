@@ -127,14 +127,14 @@ class ComposteursController < ApplicationController
           lat: @composteur.latitude,
           lng: @composteur.longitude,
           infoWindow: render_to_string(partial: "info_window", locals: { compo: @composteur }),
-          image_url: helpers.asset_url('markerpb-public.png')
+          image_url: helpers.asset_url('markerpb-grey.png')
         }]
       unless @composteur.manual_lng.nil? || @composteur.manual_lat.nil?
         @markers.push({
           lat: @composteur.manual_lat,
           lng: @composteur.manual_lng,
           infoWindow: render_to_string(partial: "info_window", locals: { compo: @composteur }),
-          image_url: helpers.asset_url('markerpb-prive.png')
+          image_url: helpers.asset_url('markerpb-bicolor.png')
 
         })
       end
@@ -160,7 +160,19 @@ class ComposteursController < ApplicationController
       redirect_to edit_composteur_path(@composteur)
     else
       render :edit
-      flash[:notice] = "erreur"
+      flash[:notice] = "Erreur : les coordonnées n'ont pas pu être enregistrées."
+    end
+  end
+
+  def suppr_manual_latlng
+    @composteur = Composteur.find(params[:id])
+    @composteur.manual_lat = nil
+    @composteur.manual_lng = nil
+    if @composteur.save
+      redirect_to edit_composteur_path(@composteur)
+    else
+      render :edit
+      flash[:notice] = "Erreur : les coordonnées n'ont pas pu être effacées."
     end
   end
 

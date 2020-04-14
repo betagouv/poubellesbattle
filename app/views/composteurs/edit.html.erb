@@ -9,7 +9,6 @@
     <!-- <div class="back-button-container d-flex">
     </div> -->
   </div>
-  <% if current_user.role == "admin" %>
     <div class="referents-edit-list">
       <h2>liste des référents de ce site</h2>
         <div class="referent-edit-card">
@@ -42,9 +41,32 @@
         </div>
       <% end %>
     </div>
-  <% end %>
+
   <div class="container mt-3 text-center" id="carto">
-    <div id="info"></div>
+    <h5>Géolocalisation du site de compostage</h5>
+    <div class="manual-latlng-or-not">
+      <% if @composteur.manual_lat.nil? || @composteur.manual_lng.nil? %>
+        <div class="manual-left">
+          <p>Ce site de compostage est visible sur la carte à l'adresse indiquée dans la formulaire.</p>
+          <p>Pour modifier l'emplacement du pointeur sur la carte, cliquez directement sur la carte puis sur "utiliser ces coordonnées".</p>
+        </div>
+      <% else %>
+        <div class="manual-left">
+          <p>Ce composteur est affiché sur la carte aux coordonnées manuellement ajoutées.</p>
+          <p>Vous pouvez remplacer celles-ci par de nouvelles coordonnées ou alors :</p>
+          <p><%= link_to "supprimer les coordonnées", suppr_manual_latlng_path(@composteur), method: :post, class: "add-coord-btn mini-red-btn", data: {:confirm => "Vous allez supprimer les coordonnées rentrées manuellement, le site de compostage sera visible à l'adresse indiquée dans le formulaire."} %></p>
+        </div>
+      <% end %>
+      <div id="info">
+        <% if @composteur.manual_lat.nil? || @composteur.manual_lng.nil? %>
+          <div>Cliquez sur la carte pour obtenir de nouvelles coordonnées.</div>
+        <% else %>
+          <div>longitude : <%= @composteur.manual_lng %></div>
+          <div>latitude : <%= @composteur.manual_lat %></div>
+          <div>Cliquez sur la carte pour modifier ces coordonnées.</div>
+        <% end %>
+      </div>
+    </div>
     <div id="geocoder" class="geocoder"></div>
     <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" ></div>
   </div>
