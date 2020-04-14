@@ -128,13 +128,16 @@ class ComposteursController < ApplicationController
           lng: @composteur.longitude,
           infoWindow: render_to_string(partial: "info_window", locals: { compo: @composteur }),
           image_url: helpers.asset_url('markerpb-public.png')
-        }, {
+        }]
+      unless @composteur.manual_lng.nil? || @composteur.manual_lat.nil?
+        @markers.push({
           lat: @composteur.manual_lat,
           lng: @composteur.manual_lng,
           infoWindow: render_to_string(partial: "info_window", locals: { compo: @composteur }),
           image_url: helpers.asset_url('markerpb-prive.png')
 
-        }]
+        })
+      end
       @users = User.where(composteur_id: @composteur)
       if params[:query].present?
         @referents = User.search_by_first_name_and_last_name(params[:query])
