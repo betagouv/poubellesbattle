@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   belongs_to :composteur, optional: true
-  has_many :notifications
+  has_many :notifications, dependent: :destroy
   has_many :donverts
   has_one_attached :photo
 

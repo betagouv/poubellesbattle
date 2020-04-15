@@ -1,8 +1,9 @@
 <div class="admin-box">
   <% @users.each do |user| %>
     <div class="user-card">
+      <%= user.composteur_id ? "#{Composteur.find(user.composteur_id).name}" : "pas de site" %>
       <%= user.email %>
-      <%= user.id %>
+      <%= link_to "Oui!", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: "bouton-valid rouge", method: :delete %>
     </div>
   <% end %>
 </div>
