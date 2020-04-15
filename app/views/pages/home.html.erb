@@ -1,8 +1,0 @@
-<div class="admin-box">
-  <% @users.each do |user| %>
-    <div class="user-card">
-      <%= user.email %>
-      <%= link_to "Destroy", destroy_user_path(user), method: :post, data: { confirm: "You sure?" } %>
-    </div>
-  <% end %>
-</div>
