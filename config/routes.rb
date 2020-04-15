@@ -33,4 +33,5 @@ Rails.application.routes.draw do
   get "bourse_verte/:slug/link", to: "donverts#link", as: "link"
 
   resources :messages, only: [:new, :create]
+  get "pages/home", to: "pages#home", as: "users"
 end
