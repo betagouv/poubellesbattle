@@ -22,4 +22,10 @@ class PagesController < ApplicationController
     return unless current_user.role == "admin"
     @users = User.all.order(id: :asc)
   end
+
+  def destroy_user
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to home_path
+  end
 end
