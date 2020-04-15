@@ -66,7 +66,7 @@ class NotificationsController < ApplicationController
   def destroy
     @notification = Notification.find(params[:id])
     if @notification.notification_type == "demande-référent" || @notification.notification_type == "demande-référent-directe"
-      NotificationMailer.with(notification: notification, state: "refusée").demande_referent_state.deliver_now
+      NotificationMailer.with(notification: @notification, state: "refusée").demande_referent_state.deliver_now
     end
     @notification.destroy
     redirect_back(fallback_location: demandes_path)
