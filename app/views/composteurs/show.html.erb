@@ -353,7 +353,7 @@
             placeholder: "Chercher une personne" %>
             <%= submit_tag "🔍", class: "btn btn-primary" %>
           <% end %>
-          <% if @users_search != nil %>
+          <% if !@users_search.empty? %>
             <% @users_search.each do |user| %>
               <div class="user-list-line">
                 <%= user.first_name %> <%= user.last_name %>

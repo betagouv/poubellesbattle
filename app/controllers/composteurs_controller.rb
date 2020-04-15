@@ -85,7 +85,7 @@ class ComposteursController < ApplicationController
       if params[:query].present?
         @users_search = @future_users.search_by_first_name_and_last_name(params[:query])
       else
-        @users_search = nil
+        @users_search = []
       end
       @message = Message.new
       @notification = Notification.new
