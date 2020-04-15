@@ -345,28 +345,24 @@
     <% if user_signed_in? %>
       <% if current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
         <div class="search-add-user white-bg">
-
-        <%= form_tag composteur_path(@composteur), method: :get do %>
-          <%= text_field_tag :query,
-          params[:query],
-          class: "form_control",
-          placeholder: "Trouver un référent" %>
-          <%= submit_tag "Rechercher", class: "btn btn-primary" %>
-        <% end %>
-        <% if @users_search != nil %>
-          <% @users_search.each do |user| %>
-            <div>
-              <%= user.first_name %> <%= user.last_name %>
-              <%= link_to "ajouter", inscription_par_referent_path(user_id: user.id), method: :post %>
-            </div>
+          <h6>En tant que référent•e, vous pouvez ajouter des adeptes du compostage manuellement à votre site !</h6>
+          <%= form_tag composteur_path(@composteur), method: :get do %>
+            <%= text_field_tag :query,
+            params[:query],
+            class: "form_control",
+            placeholder: "Chercher une personne" %>
+            <%= submit_tag "🔍", class: "btn btn-primary" %>
           <% end %>
-        <% else %>
-          pas de resultat..
-        <% end %>
-
-
-
-
+          <% if @users_search != nil %>
+            <% @users_search.each do |user| %>
+              <div class="user-list-line">
+                <%= user.first_name %> <%= user.last_name %>
+                <%= link_to "➕", inscription_par_referent_path(user_id: user.id), method: :post, class: "add-user-btn" %>
+              </div>
+            <% end %>
+          <% else %>
+            pas de resultat..
+          <% end %>
         </div>
       <% end %>
     <% end %>
