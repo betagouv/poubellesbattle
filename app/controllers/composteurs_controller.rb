@@ -79,7 +79,14 @@ class ComposteursController < ApplicationController
     @reversed_referents = @users.where(role: "référent").order(ok_mail: :asc).order(ok_phone: :asc).sort_by { |user| user.notifications.count }.reverse! # les referents du composteur
     @not_referents = @users.where(role: nil).sort_by { |user| user.notifications.count }.reverse! # les non-referents
 
+    @future_users = User.where(composteur_id: nil)
+
     if user_signed_in?
+      if params[:query].present?
+        @users_search = @future_users.search_by_first_name_and_last_name(params[:query])
+      else
+        @users_search = nil
+      end
       @message = Message.new
       @notification = Notification.new
       @last_anomalie = @composteur.notifications.where(notification_type: "anomalie").last
@@ -187,6 +194,19 @@ class ComposteursController < ApplicationController
       end
     else
       redirect_to root_path
+    end
+  end
+
+  def inscription_par_referent
+    user = User.find(params[:user_id])
+    composteur = Composteur.find(params[:id])
+    user.composteur_id = composteur.id
+    if user.save
+      redirect_to composteur_path
+      flash[:notice] = "Bienvenue dans le composteur #{composteur.name} !"
+    else
+      render :show
+      flash[:notice] = "Oups, une erreur s'est produite.."
     end
   end
 
