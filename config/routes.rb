@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  post "pages/destroy_user/:id", to: "pages#destroy_user", as: 'destroy_user'
 
   resources :composteurs do
     member do
@@ -33,5 +34,5 @@ Rails.application.routes.draw do
   get "bourse_verte/:slug/link", to: "donverts#link", as: "link"
 
   resources :messages, only: [:new, :create]
-  get "pages/home", to: "pages#home", as: "users"
+  get "pages/home", to: "pages#home", as: "home"
 end
