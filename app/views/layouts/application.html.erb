@@ -13,14 +13,23 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="ddf26821-c2a7-4929-89da-73f197268d7b";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+    <script type="text/javascript">
+      var _paq = window._paq || [];
+      /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+      _paq.push(['trackPageView']);
+      _paq.push(['enableLinkTracking']);
+      (function() {
+        var u="//poubellesbattle.fr/";
+        _paq.push(['setTrackerUrl', u+'piwik.php']);
+        _paq.push(['setSiteId', '126']);
+        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+        g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+      })();
+    </script>
   </head>
   <body>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
-    <!-- <div id="beta-gouv-alert" class="alert alert-info" role="alert">
-    ⚠️ Cette application est en cours de développement selon une approche incrémentale des startups d'état <%#= link_to 'beta.gouv.fr', "https://beta.gouv.fr/apropos/" %>
-    🕵🏽 Vous avez des suggestions, des propositions d'améliorations, des questions ? N'hésitez pas à nous le faire savoir : poubelles-battle@beta.gouv.fr.
-    </div> -->
     <%= yield %>
     <%= render 'shared/footer' %>
     <%= javascript_include_tag 'application' %>
