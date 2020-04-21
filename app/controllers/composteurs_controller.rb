@@ -170,6 +170,7 @@ class ComposteursController < ApplicationController
 
   def users_export
     return unless current_user.role == "admin"
+
     require 'csv'
 
     @users = User.all

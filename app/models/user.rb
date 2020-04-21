@@ -21,7 +21,7 @@ class User < ApplicationRecord
   after_create :send_welcome_email
 
   def self.to_csv
-    attributes = %w{id email first_name last_name created_at}
+    attributes = %w{id email first_name last_name}
     CSV.generate(headers: true) do |csv|
       csv << attributes
       all.each do |user|
