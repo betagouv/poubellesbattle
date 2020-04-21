@@ -127,6 +127,18 @@ class ComposteursController < ApplicationController
   def edit
     @composteur = Composteur.find(params[:id])
 
+    require 'rqrcode'
+
+    qrcode = RQRCode::QRCode.new("#{composteur_url(@composteur)}")
+
+    # NOTE: showing with default options specified explicitly : svg as a string.
+    svg_string = qrcode.as_svg(
+      offset: 0,
+      module_size: 6,
+      standalone: false
+    )
+    @svg = svg_string.gsub("fill:#000", "")
+
     if current_user.role == "admin"
       @markers =
         [{
