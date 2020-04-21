@@ -2,14 +2,24 @@
   <div class="composteur-form-box">
     <div class="composteur-form-top">
       <h2> Modifier les détails du composteur</h2>
-      <%= link_to "voir ce site", composteur_path(@composteur), class: "mini-btn mini-yellow-btn" %>
+      <a href="data:image/svg+xml;utf8,
+        <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:ev='http://www.w3.org/2001/xml-events' width='222' height='222' fill='black'><%= @svg.to_s %></svg>"
+        download="QR-<%= @composteur.name %>.svg"
+        class="mini-btn mini-yellow-btn">
+      QR code
+    </a>
+      <%= link_to "voir ce site", composteur_path(@composteur), class: "mini-btn mini-green-btn " %>
     </div>
     <%= render 'form', compo: @composteur %>
 
     <!-- <div class="back-button-container d-flex">
     </div> -->
   </div>
+
     <div class="referents-edit-list">
+
+
+
       <h2>liste des référents de ce site</h2>
         <div class="referent-edit-card">
           <%= form_tag edit_composteur_path(@composteur), method: :get do %>

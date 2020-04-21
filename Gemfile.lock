@@ -57,6 +57,7 @@ GEM
       activesupport (>= 3.0.0)
       uniform_notifier (~> 1.11)
     byebug (11.1.0)
+    chunky_png (1.3.11)
     cloudinary (1.12.0)
       aws_cf_signer
       rest-client
@@ -181,6 +182,10 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
+    rqrcode (1.1.2)
+      chunky_png (~> 1.0)
+      rqrcode_core (~> 0.1)
+    rqrcode_core (0.1.2)
     sassc (2.2.1)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -236,6 +241,7 @@ DEPENDENCIES
   autoprefixer-rails
   bootsnap
   bullet
+  chunky_png (~> 1.3, >= 1.3.11)
   cloudinary (~> 1.12.0)
   devise
   dotenv-rails
@@ -252,6 +258,7 @@ DEPENDENCIES
   puma
   rails (= 5.2.3)
   redis
+  rqrcode
   sassc-rails
   simple_form
   spring

@@ -22,6 +22,8 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+gem 'rqrcode'
+gem 'chunky_png', '~> 1.3', '>= 1.3.11'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
