@@ -168,8 +168,20 @@ class ComposteursController < ApplicationController
     end
   end
 
+  def users_export
+    return unless current_user.role == "admin"
+    require 'csv'
+
+    @users = User.all
+    respond_to do |format|
+      format.html
+      format.csv { send_data @users.to_csv }
+    end
+  end
+
   def new_manual_latlng
     return unless current_user.role == "admin"
+
     man_lng = params[:manual_lng].to_f
     man_lat = params[:manual_lat].to_f
     @composteur = Composteur.find(params[:id])
