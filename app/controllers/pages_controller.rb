@@ -3,6 +3,9 @@ class PagesController < ApplicationController
 
   def stats
     return unless current_user.role == "admin"
-    @users_count = User.count
+    users = User.all
+    @users_count = users.count
+    @users_last_month = 0
+    users.each { |user| user.created_at.month < Date.today.month ? @users_last_month += 1 : @users_last_month }
   end
 end
