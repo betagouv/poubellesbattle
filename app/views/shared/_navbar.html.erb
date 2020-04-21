@@ -22,6 +22,7 @@
             <%= link_to "Ajouter un nouveau composteur", new_composteur_path, class: "dropdown-item" %>
             <%= link_to "Suivre les demandes d'installation", demandes_path, class: "dropdown-item"  %>
             <%= link_to "Annuaire des référents", referents_path, class: "dropdown-item" %>
+            <%= link_to "Telecharger annuaire utilisateurs", "#{users_export_path}.csv", class: "dropdown-item"  %>
             <%= link_to "Liste des annonces de dons verts", donverts_path, class: "dropdown-item" %>
           </div>
         <% else %>

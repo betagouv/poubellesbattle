@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
 
   get "referents", to: "composteurs#annuaire_ref", as: 'referents'
+  get "users_export", to: "composteurs#users_export", as: 'users_export'
   post "composteurs/:id/inscription_par_referent", to: "composteurs#inscription_par_referent", as: 'inscription_par_referent'
   post "composteurs/:id/inscription_composteur", to: "composteurs#inscription_composteur", as: 'inscription'
   post "composteurs/:id/referent_composteur", to: "composteurs#referent_composteur", as: 'referent'
