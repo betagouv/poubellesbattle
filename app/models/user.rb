@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :search_by_first_name_and_last_name,
-    against: [ :first_name, :last_name ],
+    against: [ :first_name, :last_name , :role],
     # associated_against: {
     #   composteur: [ :name ]
     # },
@@ -21,11 +21,23 @@ class User < ApplicationRecord
   after_create :send_welcome_email
 
   def self.to_csv
-    attributes = %w{id email first_name last_name}
+    attributes = %w{id email first_name last_name role}
     CSV.generate(headers: true) do |csv|
       csv << attributes
       all.each do |user|
         csv << user.attributes.values_at(*attributes)
+      end
+    end
+  end
+
+  def self.to_csv_newsletter
+    attributes = %w{id email first_name last_name role}
+    CSV.generate(headers: true) do |csv|
+      csv << attributes
+      all.each do |user|
+        if user.ok_newsletter
+          csv << user.attributes.values_at(*attributes)
+        end
       end
     end
   end

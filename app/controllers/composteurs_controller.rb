@@ -168,17 +168,7 @@ class ComposteursController < ApplicationController
     end
   end
 
-  def users_export
-    return unless current_user.role == "admin"
 
-    require 'csv'
-
-    @users = User.all
-    respond_to do |format|
-      format.html
-      format.csv { send_data @users.to_csv }
-    end
-  end
 
   def new_manual_latlng
     return unless current_user.role == "admin"
@@ -208,19 +198,7 @@ class ComposteursController < ApplicationController
     end
   end
 
-  def annuaire_ref
-    if current_user.role == "admin"
-      @composteurs = Composteur.all
-      @users_referents = User.where(role: "référent").order(last_name: :asc)
-      if params[:query].present?
-        @referents = @users_referents.search_by_first_name_and_last_name(params[:query])
-      else
-        @referents = @users_referents
-      end
-    else
-      redirect_to root_path
-    end
-  end
+
 
   def inscription_par_referent
     user = User.find(params[:user_id])
