@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_14_082600) do
+ActiveRecord::Schema.define(version: 2020_04_22_125011) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(version: 2020_04_14_082600) do
     t.bigint "composteur_id"
     t.boolean "ok_phone"
     t.boolean "ok_mail"
+    t.boolean "ok_newsletter", default: false
     t.index ["composteur_id"], name: "index_users_on_composteur_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

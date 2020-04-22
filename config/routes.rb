@@ -6,9 +6,6 @@ Rails.application.routes.draw do
       post :send_email
     end
   end
-
-  get "referents", to: "composteurs#annuaire_ref", as: 'referents'
-  get "users_export", to: "composteurs#users_export", as: 'users_export'
   post "composteurs/:id/inscription_par_referent", to: "composteurs#inscription_par_referent", as: 'inscription_par_referent'
   post "composteurs/:id/inscription_composteur", to: "composteurs#inscription_composteur", as: 'inscription'
   post "composteurs/:id/referent_composteur", to: "composteurs#referent_composteur", as: 'referent'
@@ -37,4 +34,7 @@ Rails.application.routes.draw do
   resources :messages, only: [:new, :create]
 
   get "stats", to: "pages#stats", as: 'stats'
+  get "annuaire", to: "pages#annuaire", as: 'annuaire'
+  get "users_export", to: "pages#users_export", as: 'users_export'
+  get "users_newsletter", to: "pages#users_newsletter", as: 'users_newsletter'
 end
