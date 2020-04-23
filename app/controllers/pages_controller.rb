@@ -30,6 +30,7 @@ class PagesController < ApplicationController
     @stats = []
     users_count = users.count
     users_last_month = users.created_before(last_month).count
+    users_evol = (((users_count.to_f - users_last_month.to_f)/ users_count.to_f) * 100).round
     composteurs = Composteur.all
     # nombre de nouveau composteur since 01-01-2020
     composteurs_count = composteurs.count
@@ -37,7 +38,7 @@ class PagesController < ApplicationController
     composteurs_last_month = composteurs.created_before(last_month).count
     composteurs_evol = (((composteurs_count.to_f - composteurs_last_month.to_f)/ composteurs_count.to_f) * 100).round
     # # moyenne nombre / site
-    users_per_composteur = users_count / composteurs_count
+    users_per_composteur = users_count.fdiv(composteurs_count).round(2)
     # # nombre d'annonces publiees sur la bourse verte
     donverts = Donvert.all
     donverts_count = donverts.count
@@ -67,7 +68,7 @@ class PagesController < ApplicationController
     # building @stats
     @stats << ["number", "Nombre d'inscrit•e•s", users_count]
     @stats << ["number", "Nombre d'inscrit•e•s le mois dernier", users_last_month]
-    @stats << ["percent large-card", "Progression des inscriptions depuis le mois dernier", (((users_count.to_f - users_last_month.to_f)/ users_count.to_f) * 100).round]
+    @stats << ["percent large-card", "Progression des inscriptions depuis le mois dernier", users_evol]
     @stats << ["number", "Nombre de d'inscrit•e•s par site de compostage", users_per_composteur]
     @stats << ["number", "Nombre de sites de compostage", composteurs_count]
     @stats << ["number", "Nombre de sites le mois dernier", composteurs_last_month]
