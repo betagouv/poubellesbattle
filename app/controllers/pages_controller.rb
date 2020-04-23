@@ -65,7 +65,7 @@ class PagesController < ApplicationController
     # # nombre de messages echanges
     messages_count = notifications.count - anomalies_count - depots_count
 
-    # building @stats
+    ## building @stats
     @stats << ["number", "Nombre d'inscrit•e•s", users_count]
     @stats << ["number", "Nombre d'inscrit•e•s le mois dernier", users_last_month]
     @stats << ["percent large-card", "Progression des inscriptions depuis le mois dernier", users_evol]
