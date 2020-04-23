@@ -2,13 +2,15 @@
 /* Feuille de style intégrée #8 | http://localhost:3000/stats */
 
 .stat-flex-container {
-  width: 90%;
+  width: 85%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .stat-card {
-  width: 280px;
+  width: 40%;
+  min-width: 260px;
   height: 280px;
   background: white;
   box-shadow: 0 0 10px rgba(50, 50, 50, 0.3);

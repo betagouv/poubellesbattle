@@ -1,58 +1,12 @@
 <div class="admin-box">
   <div class="stat-flex-container">
-    <div class="stat-card">
-      <div class="stat-title">
-        Nombre de compost'lovers
+    <% @stats.each do |stat| %>
+      <div class="stat-card <%= stat[0] %>">
+        <div class="stat-title">
+          <%= stat[1] %>
+        </div>
+        <div class="stat-number"><%= stat[0].to_s.include?("percent") ? "+ #{stat[2]} %" : "#{stat[2]}" %></div>
       </div>
-      <div class="stat-number"><%= @users_count %></div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-title">
-        Nombre de compost'lovers avant le mois en cours
-      </div>
-      <div class="stat-number"><%= @users_last_month %></div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-title">
-        Evolution since le mois dernier
-      </div>
-      <div class="stat-number">+ <%= (((@users_count.to_f - @users_last_month.to_f)/ @users_count.to_f) * 100).round %> %</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-title">
-        Nombre de compost'lovers
-      </div>
-      <div class="stat-number"><%= @users_count %></div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-title">
-        Nombre de compost'lovers avant le mois en cours
-      </div>
-      <div class="stat-number"><%= @users_last_month %></div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-title">
-        Evolution since le mois dernier
-      </div>
-      <div class="stat-number">+ <%= (((@users_count.to_f - @users_last_month.to_f)/ @users_count.to_f) * 100).round %> %</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-title">
-        Nombre de compost'lovers
-      </div>
-      <div class="stat-number"><%= @users_count %></div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-title">
-        Nombre de compost'lovers avant le mois en cours
-      </div>
-      <div class="stat-number"><%= @users_last_month %></div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-title">
-        Evolution since le mois dernier
-      </div>
-      <div class="stat-number">+ <%= (((@users_count.to_f - @users_last_month.to_f)/ @users_count.to_f) * 100).round %> %</div>
-    </div>
+    <% end %>
   </div>
 </div>
