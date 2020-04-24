@@ -25,20 +25,62 @@ class PagesController < ApplicationController
   def stats
     # this day but last month
     last_month = Date.today - 1.month
+    last_last_month = Date.today - 2.month
     # nombre d'inscrits sur la plateforme
     users = User.all
     @stats = []
-    users_count = users.count
+    @users_count = users.count
     users_last_month = users.created_before(last_month).count
-    users_evol = (((users_count.to_f - users_last_month.to_f)/ users_count.to_f) * 100).round
+    users_last_last_month = users.created_before(last_last_month).count
+    users_evol = (((@users_count.to_f - users_last_month.to_f)/ @users_count.to_f) * 100).round
+
+    @next_month = I18n.t("date.month_names")[(Date.today + 1.month).month]
+    @this_month_full = I18n.t("date.month_names")[Date.today.month]
+    last_month_full = I18n.t("date.month_names")[(Date.today - 1.month).month]
+    last_last_month_full = I18n.t("date.month_names")[(Date.today - 2.month).month]
+    ## Trying chartjs
+    # Options for all charts
+    @options = {
+      # id: "chart_composteurs",
+      legend: {
+        display: false,
+      },
+      height: 200,
+      width: 900
+    }
+    #users chart
+    @users_stats = {
+      labels: ["#{last_last_month_full}", "#{last_month_full}", "#{@this_month_full}"],
+      datasets: [
+        {
+          backgroundColor: "transparent",
+          borderColor: "red",
+          data: [users_last_last_month, users_last_month, @users_count]
+        }
+      ]
+    }
+    # composteurs chart
     composteurs = Composteur.all
     # nombre de nouveau composteur since 01-01-2020
-    composteurs_count = composteurs.count
+    @composteurs_count = composteurs.count
     # # evolution since premier seed == 53
     composteurs_last_month = composteurs.created_before(last_month).count
-    composteurs_evol = (((composteurs_count.to_f - composteurs_last_month.to_f)/ composteurs_count.to_f) * 100).round
+    composteurs_last_last_month = composteurs.created_before(last_last_month).count
+    composteurs_evol = (((@composteurs_count - composteurs_last_last_month)/ @composteurs_count.to_f) * 100).round
     # # moyenne nombre / site
-    users_per_composteur = users_count.fdiv(composteurs_count).round(2)
+    users_per_composteur = @users_count.fdiv(@composteurs_count).round(2)
+
+    @composteurs_stats = {
+      labels: ["#{last_last_month_full}", "#{last_month_full}", "#{@this_month_full}",],
+      datasets: [
+          {
+            backgroundColor: "transparent",
+            borderColor: "blue",
+            data: [composteurs_last_last_month, composteurs_last_month, @composteurs_count]
+          }
+        ]
+      }
+
     # # nombre d'annonces publiees sur la bourse verte
     donverts = Donvert.all
     donverts_count = donverts.count
@@ -66,11 +108,11 @@ class PagesController < ApplicationController
     messages_count = notifications.count - anomalies_count - depots_count
 
     ## building @stats
-    @stats << ["number", "Nombre d'inscrit•e•s", users_count]
-    @stats << ["number", "Nombre d'inscrit•e•s le mois dernier", users_last_month]
+    # @stats << ["number", "Nombre d'inscrit•e•s", @users_count]
+    # @stats << ["number", "Nombre d'inscrit•e•s le mois dernier", users_last_month]
     @stats << ["percent large-card", "Progression des inscriptions depuis le mois dernier", users_evol]
     @stats << ["number", "Nombre de d'inscrit•e•s par site de compostage", users_per_composteur]
-    @stats << ["number", "Nombre de sites de compostage", composteurs_count]
+    @stats << ["number", "Nombre de sites de compostage", @composteurs_count]
     @stats << ["number", "Nombre de sites le mois dernier", composteurs_last_month]
     @stats << ["number large-card", "Progression du nombre de site de compostage", composteurs_evol]
     @stats << ["number", "Nombre d'annonces publiées sur la Bourse Verte", donverts_count]

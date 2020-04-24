@@ -33,3 +33,20 @@
     height: 30%;
   }
 }
+
+.stat-graph {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  box-shadow: 0 0 5px rgba(20, 20, 20, 0.1);
+  padding: 20px;
+  margin: 20px 0;
+  .stat-graph-title {
+    text-align: center;
+  }
+  .stat-graph-chart {
+    width: 80%;
+  }
+}
