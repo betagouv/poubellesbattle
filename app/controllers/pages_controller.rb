@@ -48,6 +48,12 @@ class PagesController < ApplicationController
       height: 200,
       width: 900
     }
+    @options_doughnut = {
+      # id: "chart_composteurs",
+
+      height: 250,
+      width: 250
+    }
     #users chart
     @users_stats = {
       labels: ["#{last_last_month_full}", "#{last_month_full}", "#{@this_month_full}"],
@@ -81,6 +87,29 @@ class PagesController < ApplicationController
         ]
       }
 
+    notifications = Notification.all
+    # # nombre d'anomalies total
+    anomalies = notifications.where(notification_type: "anomalie")
+    anomalies_count = anomalies.count
+    # anomalies_last_month = anomalies.created_before(last_month).count
+    # anomalies_last_last_month = anomalies.created_before(last_last_month).count
+    # # nombre d'anomalies resolues
+    resolved_anomalies_count = notifications.where(resolved: true).count
+    # # nombre de depots declares (evolution sur les 3 derniers mois ?)
+    depots_count = notifications.where(notification_type: "depot").count
+    # # nombre de messages echanges
+    messages_count = notifications.count - anomalies_count - depots_count
+
+    @notifications_stats = {
+      labels: ["Anomalies résolues", "Dépots signalés", "Messages échangés"],
+      datasets: [
+        {
+          backgroundColor: ["#FFC65A", "#986535", "#4FB571"],
+          borderColor: "transparent",
+          data: [anomalies_count, depots_count, messages_count]
+        }
+      ]
+    }
     # # nombre d'annonces publiees sur la bourse verte
     donverts = Donvert.all
     donverts_count = donverts.count
@@ -97,24 +126,15 @@ class PagesController < ApplicationController
     # # ratio demandes / nouveaux composteurs
     ratio_demande_vs_new = ((composteurs.created_after(last_month).count / demandes_this_month) * 100).round
     # # nombre de notifications total
-    notifications = Notification.all
-    # # nombre d'anomalies total
-    anomalies_count = notifications.where(notification_type: "anomalie").count
-    # # nombre d'anomalies resolues
-    resolved_anomalies_count = notifications.where(resolved: true).count
-    # # nombre de depots declares (evolution sur les 3 derniers mois ?)
-    depots_count = notifications.where(notification_type: "depot").count
-    # # nombre de messages echanges
-    messages_count = notifications.count - anomalies_count - depots_count
 
     ## building @stats
     # @stats << ["number", "Nombre d'inscrit•e•s", @users_count]
     # @stats << ["number", "Nombre d'inscrit•e•s le mois dernier", users_last_month]
-    @stats << ["percent large-card", "Progression des inscriptions depuis le mois dernier", users_evol]
-    @stats << ["number", "Nombre de d'inscrit•e•s par site de compostage", users_per_composteur]
-    @stats << ["number", "Nombre de sites de compostage", @composteurs_count]
-    @stats << ["number", "Nombre de sites le mois dernier", composteurs_last_month]
-    @stats << ["number large-card", "Progression du nombre de site de compostage", composteurs_evol]
+    # @stats << ["percent large-card", "Progression des inscriptions depuis le mois dernier", users_evol]
+    # @stats << ["number", "Nombre de d'inscrit•e•s par site de compostage", users_per_composteur]
+    # @stats << ["number", "Nombre de sites de compostage", @composteurs_count]
+    # @stats << ["number", "Nombre de sites le mois dernier", composteurs_last_month]
+    # @stats << ["number large-card", "Progression du nombre de site de compostage", composteurs_evol]
     @stats << ["number", "Nombre d'annonces publiées sur la Bourse Verte", donverts_count]
     @stats << ["volume", "Volume total de matière échangée", "#{volume_total} L"]
     @stats << ["number", "Nombre total de demandes d'installation", demandes_count]
