@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   require 'csv'
 
   skip_before_action :authenticate_user!
-  before_action :user_admin?
+  before_action :user_admin?, only: :annuaire
   # skip_before_action :user_admin?, only: :stats
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
 
@@ -38,10 +38,13 @@ class PagesController < ApplicationController
     this_month_full = I18n.t("date.month_names")[Date.today.month]
     last_month_full = I18n.t("date.month_names")[(Date.today - 1.month).month]
     last_last_month_full = I18n.t("date.month_names")[(Date.today - 2.month).month]
-    ## Trying chartjs
+
     # Options for all charts
+    green = "#4FB571"
+    yellow = "#FFC65A"
+    brown = "#986535"
+
     @options = {
-      # id: "chart_composteurs",
       scales: {
         yAxes: [{
           id: 'first-y-axis',
@@ -56,7 +59,6 @@ class PagesController < ApplicationController
       width: 660
     }
     @options_line_bar = {
-      # id: "chart_composteurs",
       tooltips: {
         afterBody: "litres"
       },
@@ -67,23 +69,22 @@ class PagesController < ApplicationController
       width: 660
     }
     @options_doughnut = {
-      # id: "chart_composteurs",
-
       height: 250,
       width: 250
     }
-    #users chart
+
+    # users chart
     @users_stats = {
       labels: ["#{last_last_month_full}", "#{last_month_full}", "#{this_month_full}"],
       datasets: [
         {
-          backgroundColor: "#986535",
-          borderColor: "#4FB571",
-          borderWidth: 7,
-          pointBorderColor: "#986535",
-          pointBackgroundColor: "#FFC65A",
-          pointRadius: 7,
-          pointBorderWidth: 4,
+          backgroundColor: yellow,
+          borderColor: green,
+          borderWidth: 10,
+          pointBorderColor: brown,
+          pointBackgroundColor: yellow,
+          pointRadius: 6,
+          pointBorderWidth: 2,
           data: [users_last_last_month, users_last_month, users_count]
         }
       ]
@@ -103,13 +104,13 @@ class PagesController < ApplicationController
       labels: ["#{last_last_month_full}", "#{last_month_full}", "#{this_month_full}",],
       datasets: [
         {
-          backgroundColor: "#986535",
-          borderColor: "#4FB571",
-          borderWidth: 7,
-          pointBorderColor: "#986535",
-          pointBackgroundColor: "#FFC65A",
-          pointRadius: 7,
-          pointBorderWidth: 4,
+          backgroundColor: brown,
+          borderColor: green,
+          borderWidth: 10,
+          pointBorderColor: yellow,
+          pointBackgroundColor: brown,
+          pointRadius: 6,
+          pointBorderWidth: 2,
           data: [composteurs_last_last_month, composteurs_last_month,composteurs_count]
         }
       ]
@@ -119,9 +120,6 @@ class PagesController < ApplicationController
     # # nombre d'anomalies total
     anomalies = notifications.where(notification_type: "anomalie")
     anomalies_count = anomalies.count
-    # anomalies_last_month = anomalies.created_before(last_month).count
-    # anomalies_last_last_month = anomalies.created_before(last_last_month).count
-    # # nombre d'anomalies resolues
     resolved_anomalies_count = notifications.where(resolved: true).count
     # # nombre de depots declares (evolution sur les 3 derniers mois ?)
     depots_count = notifications.where(notification_type: "depot").count
@@ -132,8 +130,8 @@ class PagesController < ApplicationController
       labels: ["Anomalies résolues", "Dépots signalés", "Messages échangés"],
       datasets: [
         {
-          backgroundColor: ["#FFC65A", "#986535", "#4FB571"],
-          borderColor: "transparent",
+          backgroundColor: [yellow, brown, green],
+          borderColor: "white",
           data: [anomalies_count, depots_count, messages_count]
         }
       ]
@@ -149,13 +147,13 @@ class PagesController < ApplicationController
       labels: ["#{last_last_month_full}", "#{last_month_full}", "#{this_month_full}",],
       datasets: [
         {
-          backgroundColor: "#986535",
-          borderColor: "#4FB571",
-          borderWidth: 7,
-          pointBorderColor: "#986535",
-          pointBackgroundColor: "#FFC65A",
-          pointRadius: 7,
-          pointBorderWidth: 4,
+          backgroundColor: green,
+          pointBackgroundColor: green,
+          borderColor: yellow,
+          borderWidth: 10,
+          pointBorderColor: brown,
+          pointRadius: 6,
+          pointBorderWidth: 2,
           data: [demandes_last_last_month, demandes_last_month, demandes_count]
         }
       ]
@@ -177,34 +175,13 @@ class PagesController < ApplicationController
       labels: ["Compost", "Structurant"],
       datasets: [
         {
-          backgroundColor: ["#4FB571", "#986535"],
+          backgroundColor: [green, yellow],
           data: [volume_structurant, volume_compost]
         }
       ]
     }
 
     # # frequentation globale ? matomo api ?
-
-    # ratio_demande_vs_new = ((composteurs.created_after(last_month).count / demandes_this_month) * 100).round
-    # # nombre de notifications total
-
-    ## building @stats
-    # @stats << ["number", "Nombre d'inscrit•e•s", @users_count]
-    # @stats << ["number", "Nombre d'inscrit•e•s le mois dernier", users_last_month]
-    # @stats << ["percent large-card", "Progression des inscriptions depuis le mois dernier", users_evol]
-    # @stats << ["number", "Nombre de d'inscrit•e•s par site de compostage", users_per_composteur]
-    # @stats << ["number", "Nombre de sites de compostage", composteurs_count]
-    # @stats << ["number", "Nombre de sites le mois dernier", composteurs_last_month]
-    # @stats << ["number large-card", "Progression du nombre de site de compostage", composteurs_evol]
-    # @stats << ["number", "Nombre d'annonces publiées sur la Bourse Verte", @donverts_count]
-    # @stats << ["volume", "Volume total de matière échangée", "#{volume_total} L"]
-    # @stats << ["number", "Nombre total de demandes d'installation", demandes_count]
-    # @stats << ["number", "Nombre de demandes d'installation ce mois", demandes_this_month]
-    # @stats << ["percent", "Ratio de demandes transformées en site de compostage", ratio_demande_vs_new]
-    # @stats << ["number", "Nombre d'anomalie signalée sur les sites de compostage", anomalies_count]
-    # @stats << ["number", "Nombre d'anomalies résolues", resolved_anomalies_count]
-    # @stats << ["number", "Nombre de dépôts effectués", depots_count]
-    # @stats << ["number", "Nombre de messages échangés par la communauté Poubelles Battle", messages_count]
   end
 
   def annuaire
