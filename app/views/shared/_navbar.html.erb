@@ -23,6 +23,7 @@
             <%= link_to "Suivre les demandes d'installation", demandes_path, class: "dropdown-item"  %>
             <%= link_to "Annuaire et exports contacts", annuaire_path, class: "dropdown-item" %>
             <%= link_to "Liste des annonces de dons verts", donverts_path, class: "dropdown-item" %>
+            <%= link_to "Poubelles Battle en chiffres", stats_path, class: "dropdown-item" %>
           </div>
         <% else %>
           <div class="dropdown-toggle border-none" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,6 +36,7 @@
             <%= link_to "Conseils et astuces pour composter en co-propriété", 'https://uncomposteurici.gitbook.io/poubellesbattle/', target: "_blank", class: "dropdown-item" %>
             <%= link_to "S'auto-former au compostage", 'https://www.ademe.fr/sites/default/files/assets/documents/guide-pratique-compostage-et-paillage.pdf', target: "_blank", class: "dropdown-item" %>
             <%= link_to "A propos de Poubelles Battle", "https://beta.gouv.fr/startups/poubelles-battle.html", target: "_blank", class: "dropdown-item" %>
+            <%= link_to "Poubelles Battle en chiffres", stats_path, class: "dropdown-item" %>
           </div>
         <% end %>
       <% else %>
@@ -49,6 +51,7 @@
           <%= link_to "Conseils et astuces pour composter en co-propriété", 'https://uncomposteurici.gitbook.io/poubellesbattle/', target: "_blank", class: "dropdown-item" %>
           <%= link_to "S'auto-former au compostage", 'https://www.ademe.fr/sites/default/files/assets/documents/guide-pratique-compostage-et-paillage.pdf', target: "_blank", class: "dropdown-item" %>
           <%= link_to "A propos de Poubelles Battle", "https://beta.gouv.fr/startups/poubelles-battle.html", target: "_blank", class: "dropdown-item" %>
+          <%= link_to "Poubelles Battle en chiffres", stats_path, class: "dropdown-item" %>
         </div>
       <% end %>
     </li>
