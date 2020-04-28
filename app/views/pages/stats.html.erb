@@ -1,8 +1,11 @@
 <div class="admin-box">
   <div class="stat-flex-container">
     <div class="stat-graph">
+      <h2>Poubelles Battle en Chiffres</h2>
+    </div>
+    <div class="stat-graph">
       <div class="stat-graph-title">
-        <h5>Evolution des installations de site de compostage</h5>
+        <h5>Evolution des installations de sites de compostage</h5>
       </div>
       <div class="stat-graph-chart">
         <%= line_chart @composteurs_stats, @options %>
@@ -18,19 +21,36 @@
     </div>
     <div class="stat-graph">
       <div class="stat-graph-title">
+        <h5>Evolution des demandes de sites de compostage</h5>
+      </div>
+      <div class="stat-graph-chart">
+        <%= line_chart @demandes_stats, @options %>
+      </div>
+    </div>
+    <div class="stat-graph">
+      <div class="stat-graph-title">
         <h5>Les échanges autour des sites de compostages</h5>
       </div>
       <div class="stat-graph-chart doughnut">
         <%= doughnut_chart @notifications_stats, @options_doughnut %>
       </div>
     </div>
-    <% @stats.each do |stat| %>
-      <div class="stat-card <%= stat[0] %>">
-        <div class="stat-title">
-          <%= stat[1] %>
-        </div>
-        <div class="stat-number"><%= stat[0].to_s.include?("percent") ? "+ #{stat[2]} %" : "#{stat[2]}" %></div>
+    <div class="stat-graph">
+      <div class="stat-graph-title">
+        <h5>Volume des dons sur la Bourse Verte</h5>
+        <p>Déjà <%= @volume_total.to_i %> litres de dons échangés avec <%= @donverts_count %> annonces.</p>
       </div>
-    <% end %>
+      <div class="stat-graph-chart doughnut">
+        <%= bar_chart @volume_stats, @options_line_bar %>
+      </div>
+    </div>
+    <%# @stats.each do |stat| %>
+      <!-- <div class="stat-card <%#= stat[0] %>">
+        <div class="stat-title">
+          <%#= stat[1] %>
+        </div>
+        <div class="stat-number"><%#= stat[0].to_s.include?("percent") ? "+ #{stat[2]} %" : "#{stat[2]}" %></div>
+      </div> -->
+    <%# end %>
   </div>
 </div>
