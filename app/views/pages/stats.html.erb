@@ -1,13 +1,16 @@
-
-
-
-
 <div class="admin-box">
   <div class="stat-flex-container">
     <div class="stat-graph">
       <div class="stat-graph-title">
+        <h5>Evolution des installations de site de compostage</h5>
+      </div>
+      <div class="stat-graph-chart">
+        <%= line_chart @composteurs_stats, @options %>
+      </div>
+    </div>
+    <div class="stat-graph">
+      <div class="stat-graph-title">
         <h5>Evolution des inscriptions</h5>
-        <p><%= @this_month_full.capitalize %> : <%= @users_count %> - Objectif <%= @next_month.capitalize %> : <%= @users_count * 2 %></p>
       </div>
       <div class="stat-graph-chart">
         <%= line_chart @users_stats, @options %>
@@ -15,11 +18,10 @@
     </div>
     <div class="stat-graph">
       <div class="stat-graph-title">
-        <h5>Evolution des installations de site de compostage</h5>
-        <p><%= @this_month_full.capitalize %> : <%= @composteurs_count %> - Objectif <%= @next_month.capitalize %> : <%= @composteurs_count + 10 %></p>
+        <h5>Les échanges autour des sites de compostages</h5>
       </div>
-      <div class="stat-graph-chart">
-        <%= line_chart @composteurs_stats, @options %>
+      <div class="stat-graph-chart doughnut">
+        <%= doughnut_chart @notifications_stats, @options_doughnut %>
       </div>
     </div>
     <% @stats.each do |stat| %>
