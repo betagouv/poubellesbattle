@@ -1,6 +1,6 @@
-<% content_for :meta_title, "#{DEFAULT_META["meta_product_name"]} | Composteur #{@composteur.name}" %>
-<% content_for :meta_description, "#{@composteur.composteur_type} : #{@composteur.address}" %>
-<% content_for :meta_image, cl_image_path(@composteur.photo.key) if @composteur.photo.attached? %>
+<% content_for :meta_title, "#{DEFAULT_META["meta_product_name"]} | #{@composteur.name}" %>
+<% content_for :meta_description, "Découvrez #{@composteur.name}, le #{@composteur.category} mis à disposition par l'Agglo de Pau à l'adresse : #{@composteur.address}." %>
+<% content_for :meta_image, cl_image_path(@composteur.photo.key, width: 600, crop: :fill) if @composteur.photo.attached? %>
 
 
 <div class="composteur-box">
