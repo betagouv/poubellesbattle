@@ -1,3 +1,8 @@
+<% content_for :meta_title, "#{DEFAULT_META["meta_product_name"]} | Composteur #{@composteur.name}" %>
+<% content_for :meta_description, "#{@composteur.composteur_type} : #{@composteur.address}" %>
+<% content_for :meta_image, cl_image_path(@composteur.photo.key) if @composteur.photo.attached? %>
+
+
 <div class="composteur-box">
   <div id="topReferentAggloCollapse">
     <button class="btn btn-to-referent-collapse" type="button" data-toggle="collapse" data-target="#collapseReferentAgglo" aria-expanded="false" aria-controls="collapseExample">
