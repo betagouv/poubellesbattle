@@ -37,4 +37,5 @@ Rails.application.routes.draw do
   get "annuaire", to: "pages#annuaire", as: 'annuaire'
   get "users_export", to: "pages#users_export", as: 'users_export'
   get "users_newsletter", to: "pages#users_newsletter", as: 'users_newsletter'
+  get 'vieprivee', to: "pages#vieprivee", as: 'vieprivee'
 end

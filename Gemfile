@@ -16,7 +16,7 @@ gem 'cloudinary', '~> 1.12.0'
 gem 'bullet', group: 'development'
 gem 'postmark-rails'
 gem 'turbolinks', '~> 5.2.0'
-gem 'cookies_eu'
+# gem 'cookies_eu'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'

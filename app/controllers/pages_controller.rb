@@ -22,6 +22,8 @@ class PagesController < ApplicationController
     @devise_mapping ||= Devise.mappings[:user]
   end
 
+  def vieprivee; end
+
   def stats
     # this day but last month
     last_month = Date.today - 1.month
