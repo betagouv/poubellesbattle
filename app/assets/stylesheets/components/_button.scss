@@ -16,7 +16,19 @@
     transition: background 0.3s ease;
   }
 }
-
+.button-in-paragraph {
+  color: white;
+  background:  #2f8a51;
+  padding: 5px 15px;
+  border-radius: 15px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+  &:hover {
+    background: #56c37b;
+    color: white;
+    transition: background 0.3s ease;
+  }
+}
 input.bouton-valid {
   border: none;
   padding: 5px 24px;
