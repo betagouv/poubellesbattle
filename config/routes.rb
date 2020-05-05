@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :composteurs do
-    member do
-      post :send_email
-    end
-  end
   post "composteurs/:id/inscription_par_referent", to: "composteurs#inscription_par_referent", as: 'inscription_par_referent'
   post "composteurs/:id/inscription_composteur", to: "composteurs#inscription_composteur", as: 'inscription'
   post "composteurs/:id/referent_composteur", to: "composteurs#referent_composteur", as: 'referent'
@@ -15,6 +10,7 @@ Rails.application.routes.draw do
   post "composteurs/:id/non_referent_composteur", to: "composteurs#non_referent_composteur", as: 'non_referent'
   post "composteurs/:id/new_manual_latlng", to: "composteurs#new_manual_latlng", as: 'new_manual_latlng'
   post "composteurs/:id/suppr_manual_latlng", to: "composteurs#suppr_manual_latlng", as: 'suppr_manual_latlng'
+  resources :composteurs
 
   root to: "composteurs#index"
 

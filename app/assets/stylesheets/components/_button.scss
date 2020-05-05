@@ -29,6 +29,15 @@
     transition: background 0.3s ease;
   }
 }
+.white-btn {
+  background: white;
+  padding: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(20, 30, 40, 0.15);
+  font-size: 13px;
+  margin: 10px 0 0 0;
+  width: 90%;
+}
 input.bouton-valid {
   border: none;
   padding: 5px 24px;

@@ -199,14 +199,13 @@ class ComposteursController < ApplicationController
   end
 
 
-
   def inscription_par_referent
     user = User.find(params[:user_id])
     composteur = Composteur.find(params[:id])
     user.composteur_id = composteur.id
     if user.save
       redirect_to composteur_path
-      flash[:notice] = "Bienvenue dans le composteur #{composteur.name} !"
+      flash[:notice] = "Souhaitez la bienvenue à #{user.first_name} !"
     else
       render :show
       flash[:notice] = "Oups, une erreur s'est produite.."
