@@ -9,7 +9,8 @@
     "jquery": "^3.4.1",
     "mapbox-gl": "^1.8.1",
     "places.js": "^1.18.1",
-    "popper.js": "^1.15.0"
+    "popper.js": "^1.15.0",
+    "stimulus": "^1.1.1"
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"
