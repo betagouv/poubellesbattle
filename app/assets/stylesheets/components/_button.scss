@@ -29,14 +29,20 @@
     transition: background 0.3s ease;
   }
 }
+.small-btn-pb {
+  padding: 0 10px;
+  border-radius: 10px;
+  font-size: 13px;
+  box-shadow: 0 0 10px rgba(20, 30, 40, 0.15);
+  margin: 10px 0 0 0;
+}
 .white-btn {
   background: white;
-  padding: 0;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(20, 30, 40, 0.15);
-  font-size: 13px;
-  margin: 10px 0 0 0;
   width: 90%;
+}
+.width-max {
+  width: max-content;
+  padding: 0 10px;
 }
 input.bouton-valid {
   border: none;

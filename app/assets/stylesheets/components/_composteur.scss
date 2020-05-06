@@ -2,11 +2,11 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  margin: 150px 0 50px 0;
+  margin: 100px 0 50px 0;
 }
 
 .composteur-left {
-  width: 60%;
+  width: 70%;
   height: max-content;
   margin: 20px;
   display: flex;
@@ -17,32 +17,69 @@
   background: white;
   border-radius: 10px;
   padding: 10px;
-  .composteur-name {
-    letter-spacing: 1px;
-    font-size: 55px;
-    font-family:'Bangers', cursive;
-    text-shadow: yellow 1px 1px 2px;
-    color: #502703;
+  .header-composteur {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    .composteur-infos {
+      width: 100%;
+      .composteur-name {
+        letter-spacing: 1px;
+        font-size: 55px;
+        font-family:'Bangers', cursive;
+        text-shadow: $yellow 1px 1px 2px;
+        color: $dark-brown-pb;
+      }
+      .composteur-adress {
+        margin: 10px 0;
+        font-size: 14px;
+        padding: 0;
+      }
+    }
   }
-  .composteur-adress {
-    margin: 10px 0 25px 0;
-  }
-  .actions-list {
+  .inscription-desinscription {
     display:flex;
     flex-wrap: wrap;
+    width: 100%;
+    justify-content: center;
+    margin: 0 0 20px 0;
   }
   .banner-composteur-img-stats {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    width: 90%;
     .composteur-photo {
       max-width: 75%;
+      border-radius: 10px;
       // height: auto;
     }
     .stats {
       display: flex;
-      max-width: 20%;
       flex-direction: column;
       justify-content: space-between;
+      .stats-pb {
+        width: 100%;
+        height: max-content;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-left: 20px;
+        background: $yellow;
+        border: solid 5px $green;
+        border-radius: 10px;
+        color: $dark-brown-pb;
+        h1 {
+          font-size: 40px;
+          padding: 0;
+        }
+        p {
+          font-size: 12px;
+          margin: 0;
+        }
+      }
       .users-count, .composteur-score, .composteur-depot-count {
         height: 25%;
         display: flex;
@@ -59,13 +96,13 @@
           font-size: 50px;
           font-family:'Bangers', cursive;
           letter-spacing: 1px;
-          transform: rotate(-2deg);
+          // transform: rotate(-2deg);
           // text-shadow: yellow 1px 1px 2px;
-          color: yellow;
+          color: $yellow;
           }
           .users-stat-info {
             font-size: 12px;
-            color: yellow;
+            color: white;
           }
         }
         .users-count {
@@ -141,7 +178,7 @@
   justify-content: flex-start;
   flex-wrap: wrap;
   position: relative;
-  top: -50px;
+
 
   .show:hover {
     color: black;
@@ -257,13 +294,16 @@
     }
 
 .les-users {
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-wrap: wrap;
-  margin: 30px 0;
+  margin: 40px 0;
+  padding: 10px 0;
   .user-card {
+    background: white;
     font-size: 15px;
-    margin: 10px 0;
+    padding: 0;
+    margin: 0 5px 20px 0;
     display: flex;
     .user-first-name {
       margin: auto;
@@ -353,17 +393,29 @@
   }
 }
 
-.compost-time-to-go {
-  width: 100%;
-  height: 20px;
-  border-radius: 20px;
-  background: beige;
-  .compost-time-past {
-    background: orange;
-    width: 2%;
-    height: 20px;
+.jauge-to-compost {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  p {
+    position: absolute;
+    z-index: 10;
+    margin: 0;
+  }
+  .compost-time-to-go {
+    width: 100%;
+    height: 30px;
     border-radius: 20px;
-    box-shadow: 0 0 5px #fb9108;
+    background: beige;
+    .compost-time-past {
+      background: orange;
+      width: 30px;
+      height: 30px;
+      border-radius: 30px;
+      box-shadow: 0 0 5px #fb9108;
+    }
   }
 }
 // couleurs des boutons ET des notifications cards dans notification.scss
