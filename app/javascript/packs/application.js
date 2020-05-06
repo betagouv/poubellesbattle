@@ -21,3 +21,5 @@ $(function () {
 // if (document.querySelector('#meal_address')) {
 //   initAutocomplete();
 // }
+
+import "controllers"

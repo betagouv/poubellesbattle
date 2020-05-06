@@ -2,7 +2,6 @@
 <% content_for :meta_description, "Découvrez le composteur #{@composteur.name}, un #{@composteur.category} mis à disposition par l'Agglo de Pau à l'adresse : #{@composteur.address}." %>
 <% content_for :meta_image, cl_image_path(@composteur.photo.key, width: 600, crop: :fill) if @composteur.photo.attached? %>
 
-
 <div class="composteur-box">
   <div id="topReferentAggloCollapse">
     <button class="btn btn-to-referent-collapse" type="button" data-toggle="collapse" data-target="#collapseReferentAgglo" aria-expanded="false" aria-controls="collapseExample">
