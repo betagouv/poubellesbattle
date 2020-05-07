@@ -1,7 +1,7 @@
 
 
 .home-banner {
-  background-color: #408A4E;
+  background-color: $grass-green;
   padding: 50px 0;
   position: relative;
   height: max-content;
@@ -29,7 +29,7 @@
     font-size: 12px;
     color: white;
     max-width: fit-content;
-    background-color: #f2c05f;;
+    background-color: $orange;
     padding: 0 0.9em;
     border-radius: 30px;
     margin-bottom: 20px;
