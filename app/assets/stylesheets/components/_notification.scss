@@ -1,3 +1,6 @@
+.message-board {
+  width: 90%;
+}
 
 .notification-card {
   width: 100%;
@@ -98,7 +101,7 @@ textarea#notification_content {
   justify-content: space-around;
   align-items: center;
   .notification_content {
-    width: 100%;
+    width: 90%;
   }
 }
 
@@ -151,9 +154,7 @@ textarea#notification_content {
   margin-bottom: 20px;
 }
 
-.message-board {
-  width: 70%;
-}
+
 .demande-view {
   width: 60%;
   height: max-content;

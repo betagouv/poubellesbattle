@@ -7,8 +7,12 @@
   padding: 20px;
   margin: 0 0 20px 0;
   border-radius: 10px;
+  #collapseOne #query {
+    width: 75% !important;
+  }
   form {
     display: flex;
+    justify-content: space-between;
   }
   .user-list-line {
     display: flex;
@@ -24,7 +28,9 @@
     }
   }
 }
-
+.card-body form {
+  display: block;
+}
 // scss for don contact form
 .dropdown-form {
   margin: auto;
