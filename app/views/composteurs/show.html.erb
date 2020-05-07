@@ -305,8 +305,8 @@
               </a>
 
               <div id="collapseOne" class="collapse" aria-labelledby="" data-parent="#accordion">
-                <div class="">
-                  <p>En tant que référent•e, vous pouvez ajouter des adeptes du compostage manuellement à votre site !</p>
+                <div class="search-form">
+                  <p>Recherchez des nouveaux adeptes du compostage et ajoutez les à votre site !</p>
                   <%= form_tag composteur_path(@composteur), method: :get do %>
                     <%= text_field_tag :query,
                     params[:query],
@@ -335,7 +335,7 @@
               </a>
               <div id="collapseTwo" class="collapse" aria-labelledby="headingChangeDate" data-parent="#accordion">
                 <div class="card-body">
-                  <p>En tant que référent•e vous pouvez modifier la date de retournement estimée du compost. Cette date sert à calculer le remplissage de la jauge en dessous.</p>
+                  <p>Quelle est la date de retournement estimée pour votre compost. Cette date sert à calculer le remplissage de la jauge à gauche.</p>
                   <%= simple_form_for @composteur do |f| %>
                     <%= f.input :date_retournement, placeholder: "date de retournement :", as: :string, required: false, input_html: {class: "datepicker"} %>
                     <div class="center-form-submit"><%= f.submit "mettre à jour", class: "don-form-btn" %></div>
@@ -351,9 +351,9 @@
               </a>
               <div id="collapseThree" class="collapse" aria-labelledby="headingPhotoComposteur" data-parent="#accordion">
                 <div class="card-body">
-                  <p>En tant que référent•e vous pouvez modifier la modifier la photo de votre site de compostage.</p>
+                  <p>Choisissez une nouvelle photo pour votre site.</p>
                   <%= simple_form_for @composteur do |f| %>
-                    <%= f.input :photo, as: :file %>
+                    <%= f.input :photo, as: :file, label: false %>
                     <div class="center-form-submit"><%= f.submit "mettre à jour", class: "don-form-btn" %></div>
                   <% end %>
                 </div>
@@ -367,7 +367,7 @@
               </a>
               <div id="collapseFour" class="collapse" aria-labelledby="headingEmailtoUsers" data-parent="#accordion">
                 <div class="card-body">
-                  <p>En tant que référent•e vous pouvez écrire des messages à tou•te•s les membres de <%= @composteur.name %>! Les membres recevront votre message par mail.</p>
+                  <p>Le message que vous écrivez ici sera reçu par mail par tou•te•s les membres de <%= @composteur.name %>!</p>
                   <%= simple_form_for @message do |f| %>
                     <%= f.input :sender_email, input_html: { value: "#{current_user.email}", type: "hidden"} %>
                     <%= f.input :sender_full_name, input_html: { value: "#{current_user.first_name} #{current_user.last_name}", type: "hidden"} %>
@@ -386,7 +386,7 @@
               </a>
               <div id="collapseFive" class="collapse" aria-labelledby="headingPhotoComposteur" data-parent="#accordion">
                 <div class="card-body">
-                  <p>En tant que référent•e vous pouvez écrire directement à l'Equipe Poubelles Battle. Votre message arrivera dans notre directement dans notre boîte mail.</p>
+                  <p>Ecrivez-nous tout ce que vous voulez ! Votre message arrivera dans notre directement dans notre boîte mail.</p>
                   <%= simple_form_for @message do |f| %>
                     <%= f.input :sender_email, input_html: { value: "#{current_user.email}", type: "hidden"} %>
                     <%= f.input :sender_full_name, input_html: { value: "#{current_user.first_name} #{current_user.last_name}", type: "hidden"} %>

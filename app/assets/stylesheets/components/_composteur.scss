@@ -289,7 +289,7 @@
   text-align: center;
 }
     .is-referent-bg {
-      background: #fbab55 !important;
+      background: $orange !important;
       color: white !important;
     }
 
@@ -311,7 +311,7 @@
       padding: 1px 6px;
     }
     .round-counter {
-      background: #56c37b;
+      background: $dark-green;
       color: white;
       padding: 6px 12px;
       font-size: 10px;
@@ -408,9 +408,9 @@
     width: 100%;
     height: 30px;
     border-radius: 20px;
-    background: beige;
+    background: antiquewhite;
     .compost-time-past {
-      background: orange;
+      background: $orange;
       width: 30px;
       height: 30px;
       border-radius: 30px;
@@ -548,55 +548,39 @@
 
 
 
-.composteur-adress {
-  font-size: 13px;
-}
+      .composteur-adress {
+        font-size: 13px;
+      }
 
 
-.banner-composteur-img-stats {
-  flex-wrap: wrap;
-  flex-direction: column-reverse;
-  .composteur-photo {
-    max-width: 90%;
-  }
-  .stats {
-    max-width: 100%;
-    flex-direction: row;
-    margin: 10px 0;
-    .users-count .users-stat-number, .composteur-score .users-stat-number, .composteur-depot-count .users-stat-number {
-      font-size: 20px;
-    }
-    .users-count, .composteur-score, .composteur-depot-count {
-      padding: 0;
-      width: 30%;
-      margin: auto;
-      height: 100px;
-    }
-    .users-count .users-stat-info {
-      top: 0px;
-    }
+      .banner-composteur-img-stats {
+        flex-wrap: wrap;
+        flex-direction: column-reverse;
+        .composteur-photo {
+          max-width: 90%;
+        }
+        .stats {
+          max-width: 100%;
+          flex-direction: row;
+          margin: 10px 0;
+          .users-count .users-stat-number, .composteur-score .users-stat-number, .composteur-depot-count .users-stat-number {
+            font-size: 20px;
+          }
+          .users-count, .composteur-score, .composteur-depot-count {
+            padding: 0;
+            width: 30%;
+            margin: auto;
+            height: 100px;
+          }
+          .users-count .users-stat-info {
+            top: 0px;
+          }
 
-    .users-count .users-stat-number {
-      margin: 18px 0 0 0;
-    }
-  }
-}
-
-
-
-
-
-
-
-
-.message-board {
-  width: 90%;
-}
-
-
-
-
-
+          .users-count .users-stat-number {
+            margin: 18px 0 0 0;
+          }
+        }
+      }
     }
   }
   #topReferentAggloCollapse {
