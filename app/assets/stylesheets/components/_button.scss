@@ -18,13 +18,13 @@
 }
 .button-in-paragraph {
   color: white;
-  background:  #2f8a51;
+  background:  $grass-green;
   padding: 5px 15px;
   border-radius: 15px;
   text-decoration: none;
   transition: background 0.3s ease;
   &:hover {
-    background: #56c37b;
+    background: $dark-green;
     color: white;
     transition: background 0.3s ease;
   }

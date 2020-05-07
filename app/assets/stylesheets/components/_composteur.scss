@@ -268,17 +268,13 @@
       width: 85%;
       border-top: solid 1px $dark-brown-pb;
       padding: 10px 0;
-      .is-referent-bg {
-        background: $orange !important;
-        color: white !important;
-        .first-name {
-          font-size: 22px;
-          padding: 1px 10px;
-        }
-        .phone-number {
-          margin: 0;
-          font-size: 14px;
-        }
+      .first-name {
+        font-size: 22px;
+        padding: 1px 10px;
+      }
+      .phone-number {
+        margin: 0;
+        font-size: 14px;
       }
     }
   }
@@ -314,6 +310,10 @@
   }
 }
 
+.is-referent-bg {
+  background: $orange !important;
+  color: white !important;
+}
 
 /* BTNS for mobile view */
   .dropdown-mail-to {
