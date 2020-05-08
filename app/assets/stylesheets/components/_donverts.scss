@@ -27,27 +27,10 @@
            width: 100%;
           }
         }
-      .new-don-btn {
-        padding: 5px 12px;
-        background: #0000ff69;
-        border-radius: 20px;
-        width: max-content;
-        transition: all 0.5s ease;
-        color: white;
-        border: solid 1px white;
-        float: right;
-        margin: 15px 0;
-        &:hover {
-          transition: all 0.5s ease;
-          border: solid 1px #0000ff69;
-          color: #0000ff69;
-          background: white;
-          text-decoration: none;
-        }
-      }
     }
   }
 }
+
 
 @media (max-width: 800px) {
   .new-edit-don {
@@ -106,22 +89,7 @@
       p {
         margin: 0;
       }
-      .new-don-btn {
-        padding: 5px 12px;
-        background: #0000ff69;
-        border-radius: 20px;
-        width: max-content;
-        transition: all 0.5s ease;
-        color: white;
-        border: solid 1px white;
-        &:hover {
-          transition: all 0.5s ease;
-          border: solid 1px #0000ff69;
-          color: #0000ff69;
-          background: white;
-          text-decoration: none;
-        }
-      }
+
       .dons-explaination {
         display: flex;
         flex-direction: column;
@@ -148,7 +116,7 @@
       align-items: center;
       .dropdown-options {
         .dropdown-toggle {
-          background: #b4f9b4;
+          background: $light-green-pb;
           color: black;
           border: none;
         }
@@ -187,20 +155,20 @@
         }
         .don-matiere {
           padding: 2px 4px;
-          background:#6ff46f85;
+          background:$light-green-pb;
         }
         .don-adresse {
           padding: 2px 4px;
-          background: #f98f6685;
+          background: $light-orange-pb;
         }
         .nom-donneur {
           padding: 2px 4px;
-          background: #f9e96685;
+          background: $light-yellow-pb;
           text-transform: uppercase;
         }
         .don-non-pourvu {
           padding: 2px 4px;
-          background: #fb652c;
+          background: $orange;
           color: white;
         }
         .description-don {
@@ -210,23 +178,23 @@
           font-size: 14px;
           overflow-wrap: anywhere;
         }
-        .don-depasse {
-          background: rgba(20, 20, 20, 0.2) !important;
-          color: black !important;
-        }
+        // .don-depasse {
+        //   background: rgba(20, 20, 20, 0.2) !important;
+        //   color: black !important;
+        // }
         a , .don-depasse {
           text-align: center;
           padding: 0 10px;
-          border: solid 1px #f79e9e;
+          border: solid 1px $light-orange-pb;
           color: white;
-          background: #f79e9e;
+          background:$gray-pb;
           border-radius: 15px;
           margin: 0 auto;
           width: max-content;
           transition: all 0.5s ease;
           &:hover {
             background: white;
-            color: #f79e9e;
+            color: $light-orange-pb;
             transition: all 0.5s ease;
             text-decoration: none;
           }
