@@ -1,5 +1,5 @@
 .bouton-valid {
-  color: #1EDD88;
+  color: $green;
   background: white;
   text-decoration: none;
   border: solid 1px !important;
@@ -11,7 +11,7 @@
   transition: background 0.3s ease;
   &:hover {
     color: white;
-    background: #1EDD88;
+    background: $green;
     text-decoration: none;
     transition: background 0.3s ease;
   }
@@ -51,10 +51,10 @@ input.bouton-valid {
 
 .rouge {
   background: white;
-  color: #ff6b6b;
-  border-color: #ff6b6b !important;
+  color: $red-pb;
+  border-color: $red-pb !important;
   &:hover {
-    background: #ff6b6b;
+    background: $red-pb;
   }
 }
 .bleu {
@@ -67,11 +67,11 @@ input.bouton-valid {
 }
 
 .text-rouge {
-  color: #ff6b6b;
+  color: $red-pb;
   background: white;
   border-color: transparent;
   &:hover {
-    background: #ff6b6b;
+    background: $red-pb;
   }
 }
 
@@ -104,19 +104,7 @@ input.bouton-valid {
 
 /* */
 
-.devenir-ref-btn {
-  background: aquamarine;
-  padding: 5px 12px;
-  border-radius: 20px;
-  box-shadow: 0 0 10px rgba(30, 30, 30, 0.5);
-  margin: 20px 0 0 0;
-  a {
-    text-decoration: none;
-    &:hover {
-      color: black;
-    }
-  }
-}
+
 
 // bouton : retirer le role référent à un user
 input.mini-btn {
@@ -125,7 +113,7 @@ input.mini-btn {
 
 .mini-btn {
   padding: 5px 10px;
-  background: #ff6b6b;
+  background: $red-pb;
   font-size: 10px;
   border-radius: 10px;
   margin: 10px;
@@ -134,22 +122,44 @@ input.mini-btn {
 
 }
 .mini-green-btn {
-  background: #56c37b;
+  background: $dark-green;
 }
 .mini-yellow-btn {
-  background: yellow;
+  background: $yellow-pb;
 }
 .mini-red-btn {
-  background: red !important;
-}
-.mini-blue-btn {
-  background: #74f0ea;
+  background: $red-pb !important;
 }
 .mini-banana-btn {
-  background: #fbbe26;
+  background: $yellow;
 }
 
+// don verts
 
+.new-don-btn {
+  padding: 5px 12px;
+  background: $purple-pb;
+  border-radius: 20px;
+  width: max-content;
+  transition: all 0.5s ease;
+  border: solid 1px white;
+  float: right;
+  margin: 15px 0;
+  color: white;
+  a {
+    color: white;
+  }
+  &:hover {
+    transition: all 0.5s ease;
+    border: solid 1px $purple-pb;
+    background: white;
+    text-decoration: none;
+    color: $purple-pb;
+    a {
+      color: $purple-pb;
+    }
+  }
+}
 .edit-don-btn {
   padding: 2px 7px;
   border-radius: 20px;
@@ -162,19 +172,19 @@ input.mini-btn {
   }
 }
 .pourvu-don {
-  background: #6ff46f;
+  background: $green;
   color: white;
 }
-.archive-don {
-  background: white;
-  border: solid 1px #fb652c;
-  a {
-    color: black;
-    &:hover {
-      color: black;
-    }
-  }
-}
+// .archive-don {
+//   background: white;
+//   border: solid 1px #fb652c;
+//   a {
+//     color: black;
+//     &:hover {
+//       color: black;
+//     }
+//   }
+// }
 .email-button {
   font-size: 30px;
 }

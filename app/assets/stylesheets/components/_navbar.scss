@@ -6,7 +6,7 @@
     color: $dark-brown-pb;
     text-decoration: none;
     font-family: 'Bangers', cursive;
-    text-shadow: $yellow 1px 1px 2px;
+    text-shadow: $yellow-pb 1px 1px 2px;
     letter-spacing: 1px;
     transform: rotate(-5deg);
     margin: 0;
@@ -16,7 +16,7 @@
     h1 {
       color: $dark-brown-pb;
       text-decoration: none;
-      text-shadow: $yellow 2px 5px 10px;
+      text-shadow: $yellow-pb 2px 5px 10px;
       transition: all 0.3s ease-in;
     }
   }
