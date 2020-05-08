@@ -1,5 +1,5 @@
 class Notification < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
   # delegate :composteur, to: :user
   validates :content, :notification_type, presence: true
 

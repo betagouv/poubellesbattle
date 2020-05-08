@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   resources :notifications
   post "notifications/:id/resolved", to: "notifications#resolved", as: "resolved"
+  get "anonymous_depot", to: "notifications#anonymous_depot", as: "anonymous_depot"
 
   get "bourse_verte/mes_dons", to: "donverts#mes_dons", as: "mes_dons"
   resources :donverts, path: 'bourse_verte', param: :slug
