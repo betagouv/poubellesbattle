@@ -29,6 +29,8 @@ gem 'chartjs-ror'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
+  gem 'annotate'
+  gem 'rails-erd', '~> 1.6'
 end
 
 group :development, :test do

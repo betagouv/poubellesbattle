@@ -1,3 +1,26 @@
+# == Schema Information
+#
+# Table name: demandes
+#
+#  id                 :bigint           not null, primary key
+#  status             :string
+#  logement_type      :string
+#  inhabitant_type    :string
+#  address            :string
+#  location_found     :boolean
+#  email              :string
+#  first_name         :string
+#  last_name          :string
+#  phone_number       :string
+#  potential_users    :boolean
+#  completed_form     :boolean
+#  planification_date :date
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  slug               :string           not null
+#  potential_address  :string
+#  notes_to_collegues :string
+#
 class Demande < ApplicationRecord
   validates :first_name, :last_name, :email, :phone_number, :address, :logement_type, :inhabitant_type, presence: true
   validates_inclusion_of :potential_users, in: [true, false]

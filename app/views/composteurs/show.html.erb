@@ -127,6 +127,7 @@
         <% end %>
       <% end %>
     <% end %>
+    <%#= link_to "dépot sauvage", anonymous_depot_path(composteur: @composteur.id, type: 'depot direct') %>
   </div>
   <div class="header-composteur">
     <div class="composteur-infos">
@@ -191,7 +192,6 @@
       <% end %>
 
     </div>
-      <!-- <p>Plus que <%#= Time.now - @composteur.installation_date.to_time %> jours avant que le compost soit prêt !</p> -->
     <div class="jauge-to-compost">
       <% if @time_left > 0 %>
         <p><span class="bangers"><%= @time_left %></span> jours avant le prochain retournement !</p>
@@ -235,7 +235,7 @@
         <% end %>
         <div class="message-board">
           <% @notifications.each do |notification| %>
-            <% if notification.notification_type == "welcome" || notification.notification_type == "depot" || notification.notification_type == "anomalie" || notification.notification_type == "message" %>
+            <% if notification.notification_type == "welcome" || notification.notification_type == "depot" || notification.notification_type == "anomalie" || notification.notification_type == "message" || notification.notification_type == "depot direct" %>
               <% if notification.user_id != current_user.id || notification.notification_type == "anomalie" %>
                 <div class="notif-block">
                   <div class="notif-filler"></div>
@@ -252,7 +252,7 @@
                           <% end %>
                         <% end %>
                       <% else %>
-                        <%= notification.user.first_name %>
+                        <%= notification.user.nil? ? "anonyme" : "#{notification.user.first_name}" %>
                       <% end %>
                     </div>
                     <div class="notification-card notification-card-current-user <%= notification.notification_type %>">
@@ -266,7 +266,7 @@
                   <div class="notif-with-name">
                     <div class="notif-username name-left">Moi</div>
                     <div class="notification-card <%= notification.notification_type %>">
-                      <% if notification.notification_type == "depot" %>
+                      <% if notification.notification_type == "depot" || notification.notification_type == "depot direct"%>
                         <div class="notif-content"><p>Je viens de faire un dépot ! 👌 </p></div>
                       <% else %>
                         <div class="notif-content"><p><%= notification.content %></p></div>

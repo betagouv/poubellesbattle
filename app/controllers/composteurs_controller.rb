@@ -91,7 +91,10 @@ class ComposteursController < ApplicationController
       @notification = Notification.new
       @last_anomalie = @composteur.notifications.where(notification_type: "anomalie").last
       @depots_count = @composteur.notifications.where(notification_type: "depot").count
-      @notifications = @composteur.notifications.where(notification_type: "welcome").or(@composteur.notifications.where(notification_type: "depot")).or(@composteur.notifications.where(notification_type: "anomalie")).or(@composteur.notifications.where(notification_type: "message")).includes(:user).order(created_at: :desc).first(100)
+      anonymous_notifications = Notification.where(composteur_id: @composteur.id).includes(:user)
+      non_anonymous_notifications = @composteur.notifications.includes(:user)
+      @notifications = (anonymous_notifications + non_anonymous_notifications).sort.reverse
+      # .where(notification_type: "welcome").or(@composteur.notifications.where(notification_type: "depot")).or(@composteur.notifications.where(notification_type: "depot direct")).or(@composteur.notifications.where(notification_type: "anomalie")).or(@composteur.notifications.where(notification_type: "message")).includes(:user).order(created_at: :desc).first(100)
       @score = 0
       @notifications.each do |notif|
         if notif.notification_type == "depot" || (notif.notification_type == "anomalie" && !notif.resolved )
@@ -138,6 +141,16 @@ class ComposteursController < ApplicationController
       standalone: false
     )
     @svg = svg_string.gsub("fill:#000", "")
+
+    anonymous_depot_code = RQRCode::QRCode.new("#{anonymous_depot_url(composteur: @composteur.id, type: 'depot direct')}")
+
+    # NOTE: showing with default options specified explicitly : svg as a string.
+    svg_depot_string = anonymous_depot_code.as_svg(
+      offset: 0,
+      module_size: 4,
+      standalone: false
+    )
+    @anonymous_depot = svg_depot_string.gsub("fill:#000", "")
 
     if current_user.role == "admin"
       @markers =

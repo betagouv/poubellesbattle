@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :new, :create]
+  skip_before_action :authenticate_user!, only: [:index, :new, :create, :anonymous_depot]
 
   def index
     # @notifications = Notification.where(composteur == composteur_id).last(5)
@@ -46,6 +46,29 @@ class NotificationsController < ApplicationController
         redirect_to composteur_path(@user.composteur_id)
         flash[:notice] = "L'anomalie ne peut pas être vide."
       end
+    end
+  end
+
+  def anonymous_depot
+    if user_signed_in?
+      render :show if current_user.role == "admin"
+    end
+    notification = Notification.new
+    composteur = Composteur.find(params[:composteur])
+    notification.composteur_id = composteur.id
+    notification.notification_type = params[:type]
+    if user_signed_in?
+      notification.user_id = current_user.id
+      notification.content = "#{current_user.first_name} vient de faire un dépot !"
+    else
+      notification.content = "Nouveau dépot masqué 🦸 sur #{composteur.name} !"
+    end
+    if notification.save
+      redirect_to composteur_path(composteur)
+      flash[:notice] = "Dépot enregistré !"
+    else
+      render :show
+      flash[:alert] = "Oups, le dépot n'a pas pu être enregistré.. "
     end
   end
 

@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: messages
+#
+#  id               :bigint           not null, primary key
+#  content          :string
+#  sender_email     :string
+#  sender_full_name :string
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  donvert_id       :bigint
+#  message_type     :string
+#  recipient_id     :bigint
+#
 class Message < ApplicationRecord
   belongs_to :donvert, optional: true
   validates :content, :sender_email, :sender_full_name, :message_type, presence: true
