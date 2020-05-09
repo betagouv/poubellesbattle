@@ -2,7 +2,7 @@
 <p><%= compo.category %></p>
 <p><%= compo.volume %></p>
 <% if compo.public %>
-  <%= link_to "En savoir plus!", composteur_path(compo), class: 'bouton-navbar' %>
+  <%= link_to "En savoir plus!", composteur_path(compo), class: 'btn btn-success text-white small-btn-pb' %>
 <% else %>
   <p>ce composteur est privé</p>
 <% end %>
