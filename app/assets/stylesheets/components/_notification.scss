@@ -25,9 +25,6 @@
 
 .notification-card-current-user {
   align-items: flex-end;
-  .direct {
-    background: #8afab0;
-  }
 }
 
 .notification-card-admin {
@@ -56,6 +53,10 @@
 
 .anomalie {
   background: #f0b7b7;
+}
+
+.notification-card-current-user.direct {
+  background: #8afab0;
 }
 
 .message-form {
