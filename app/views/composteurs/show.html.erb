@@ -192,7 +192,6 @@
       <% end %>
 
     </div>
-      <!-- <p>Plus que <%#= Time.now - @composteur.installation_date.to_time %> jours avant que le compost soit prêt !</p> -->
     <div class="jauge-to-compost">
       <% if @time_left > 0 %>
         <p><span class="bangers"><%= @time_left %></span> jours avant le prochain retournement !</p>
@@ -253,7 +252,7 @@
                           <% end %>
                         <% end %>
                       <% else %>
-                        <%= notification.user.first_name %>
+                        <%= notification.user.nil? ? "anonyme" : "#{notification.user.first_name}" %>
                       <% end %>
                     </div>
                     <div class="notification-card notification-card-current-user <%= notification.notification_type %>">

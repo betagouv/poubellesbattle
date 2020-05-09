@@ -61,7 +61,7 @@ class NotificationsController < ApplicationController
       notification.user_id = current_user.id
       notification.content = "#{current_user.first_name} vient de faire un dépot !"
     else
-      notification.content = "Nouveau #{params[:type]} sur #{composteur.name} !"
+      notification.content = "Nouveau dépot masqué 🦸 sur #{composteur.name} !"
     end
     if notification.save
       redirect_to composteur_path(composteur)
@@ -99,6 +99,6 @@ class NotificationsController < ApplicationController
   private
 
   def notification_params
-    params.require(:notification).permit(:notification_type, :content, :composteur_id)
+    params.require(:notification).permit(:notification_type, :content)
   end
 end
