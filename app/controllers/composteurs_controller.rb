@@ -79,9 +79,8 @@ class ComposteursController < ApplicationController
     @reversed_referents = @users.where(role: "référent").order(ok_mail: :asc).order(ok_phone: :asc).sort_by { |user| user.notifications.count }.reverse! # les referents du composteur
     @not_referents = @users.where(role: nil).sort_by { |user| user.notifications.count }.reverse! # les non-referents
 
-    @future_users = User.where(composteur_id: nil)
-
     if user_signed_in?
+      @future_users = User.where(composteur_id: nil)
       if params[:query].present?
         @users_search = @future_users.search_by_first_name_and_last_name(params[:query])
       else
@@ -97,7 +96,7 @@ class ComposteursController < ApplicationController
       # .where(notification_type: "welcome").or(@composteur.notifications.where(notification_type: "depot")).or(@composteur.notifications.where(notification_type: "depot direct")).or(@composteur.notifications.where(notification_type: "anomalie")).or(@composteur.notifications.where(notification_type: "message")).includes(:user).order(created_at: :desc).first(100)
       @score = 0
       @notifications.each do |notif|
-        if notif.notification_type == "depot" || (notif.notification_type == "anomalie" && !notif.resolved )
+        if notif.notification_type == "depot" || notif.notification_type == "depot direct" || (notif.notification_type == "anomalie" && !notif.resolved )
           @score += 10
         elsif notif.notification_type == "anomalie" && notif.resolved
           @score -= 5
