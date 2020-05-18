@@ -7,6 +7,7 @@
   <p>ce composteur est privé</p>
   <% if compo.users.where(role: "référent").count > 0 %>
     <% if user_signed_in? %>
+      <p>Vous souhaitez nous rejoindre ? Ecrivez nous un petit message ☺️</p>
       <%= simple_form_for @message do |f| %>
         <%= f.input :recipient_id, input_html: { value: "#{compo.users.where(role: "référent").first.id}", type: "hidden"} %>
         <%= f.input :sender_email, input_html: { value: "#{current_user.email}", type: "hidden"} %>
@@ -16,7 +17,7 @@
         <div class="center-form-submit"><%= f.submit "envoyer", class: "don-form-btn" %></div>
       <% end %>
     <% else %>
-      <p>connectez vous pour pouvoir contacter ce site.</p>
+      <p>Connectez vous pour pouvoir contacter ce site.</p>
     <% end %>
   <% else %>
     <p>Ce site n'a pas de référent•e</p>
