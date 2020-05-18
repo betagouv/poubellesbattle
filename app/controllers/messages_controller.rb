@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   skip_before_action :authenticate_user!
+  require 'uri'
 
   def new
     @message = Message.new
@@ -20,7 +21,12 @@ class MessagesController < ApplicationController
       redirect_to composteur_path(current_user.composteur)
     elsif @message.message_type == 'message-to-referent'
       @referent_composteur = User.find(@message.recipient_id.to_i)
-      redirect_to composteur_path(@referent_composteur.composteur)
+      case URI(request.referer).path
+      when '/'
+        redirect_to root_path
+      when '/composteurs/' + @referent_composteur.composteur.id.to_s
+        redirect_to composteur_path(@referent_composteur.composteur)
+      end
     end
   end
 

@@ -40,7 +40,7 @@ class ComposteursController < ApplicationController
 
     @composteurs_all = Composteur.includes([:photo_attachment]).all.order(created_at: :asc)
   # end
-
+    @message = Message.new
     @markers = @composteurs.includes(:photo_attachment).map do |compo|
       if compo.manual_lng.nil? || compo.manual_lat.nil?
         {
