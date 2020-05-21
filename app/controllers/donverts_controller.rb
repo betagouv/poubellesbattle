@@ -45,9 +45,8 @@ class DonvertsController < ApplicationController
 
   def create
     @don = Donvert.new(don_params)
-    if user_signed_in?
-      @don.user_id = current_user.id
-    end
+    @don.user_id = current_user.id if user_signed_in?
+
     if @don.save
       redirect_to donverts_path
     else
@@ -55,8 +54,7 @@ class DonvertsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def pourvu
     @don.pourvu = true
@@ -73,12 +71,12 @@ class DonvertsController < ApplicationController
   end
 
   def update
-    @don.update(don_params)
-    if @don.save
-      redirect_to donverts_path
-    else
-      render :show
-    end
+    # @don.update(don_params)
+    # if @don.save
+    #   redirect_to donverts_path
+    # else
+    #   render :show
+    # end
   end
 
   def destroy

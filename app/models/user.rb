@@ -29,7 +29,7 @@ class User < ApplicationRecord
   has_many :donverts
   has_one_attached :photo
 
-  enum role: [:basic, :referent, :admin]
+  enum role: [:compostophile, :referent, :admin]
 
   include PgSearch::Model
   pg_search_scope :search_by_first_name_and_last_name,

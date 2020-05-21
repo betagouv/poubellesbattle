@@ -1,107 +1,98 @@
-<% if user_signed_in? %>
-  <% if current_user.role == "admin" || current_user.role == "super_admin" %>
-    <div class="admin-box">
-      <h5 class="marg-vert">Annuaire</h5>
-      <div class="annuaire-btns">
-        <%= link_to "Export annuaire complet", "#{users_export_path}.csv", class: "mini-btn mini-yellow-btn" %>
-        <%= link_to "Export contacts newsletter", "#{users_newsletter_path}.csv", class: "mini-btn mini-green-btn"  %>
+<div class="admin-box">
+  <h5 class="marg-vert">Annuaire</h5>
+  <div class="annuaire-btns">
+    <%= link_to "Export annuaire complet", "#{users_export_path}.csv", class: "mini-btn mini-yellow-btn" %>
+    <%= link_to "Export contacts newsletter", "#{users_newsletter_path}.csv", class: "mini-btn mini-green-btn"  %>
+  </div>
+  <%= form_tag annuaire_path, method: :get do %>
+    <%= text_field_tag :query,
+    params[:query],
+    class: "form_control",
+    placeholder: "Trouver un•e composteur•se" %>
+    <%= submit_tag "Rechercher", class: "btn btn-primary" %>
+  <% end %>
+  <div class="annuaire-list">
+    <div class="annuaire-line info-name">
+      <div class="annuaire-info-box">
+        Prénom
       </div>
-      <%= form_tag annuaire_path, method: :get do %>
-        <%= text_field_tag :query,
-        params[:query],
-        class: "form_control",
-        placeholder: "Trouver un•e composteur•se" %>
-        <%= submit_tag "Rechercher", class: "btn btn-primary" %>
-      <% end %>
-      <div class="annuaire-list">
-        <div class="annuaire-line info-name">
-          <div class="annuaire-info-box">
-            Prénom
-          </div>
-          <div class="annuaire-info-box">
-            Nom
-          </div>
-          <div class="annuaire-info-box">
-            Rôle
-          </div>
-          <div class="annuaire-info-box">
-            Site
-          </div>
-          <div class="annuaire-info-box">
-            Mail
-          </div>
-          <div class="annuaire-info-box">
-            Téléphone
-          </div>
-          <div class="annuaire-info-box">
-            Autres actions
-          </div>
-        </div>
-        <% if @users_list.empty? %>
-          <div class="annuaire-line">
-            <div class="annuaire-info-box empty-box">
-              <p>pas de resultats..</p>
-            </div>
-          </div>
-        <% else %>
-          <% @users_list.each do |user| %>
-            <div class="annuaire-line">
-              <div class="annuaire-info-box">
-                <% if user.first_name %>
-                  <%= user.first_name %>
-                <% else %>
-                  info non renseignée
-                <% end %>
-              </div>
-              <div class="annuaire-info-box">
-                <% if user.last_name %>
-                  <%= user.last_name %>
-                <% else %>
-                  info non renseignée
-                <% end %>
-              </div>
-              <div class="annuaire-info-box">
-                <% if user.role %>
-                  <%= user.role %>
-                <% else %>
-                  composteur•se
-                <% end %>
-              </div>
-              <div class="annuaire-info-box">
-                <% if user.composteur_id %>
-                  <%= link_to @composteurs.find(user.composteur_id).name, composteur_path(user.composteur_id) %>
-                <% else %>
-                  info non renseignée
-                <% end %>
-              </div>
-              <div class="annuaire-info-box">
-                <% if user.email %>
-                  <%= mail_to user.email, "écrire un mail" %>
-                <% else %>
-                  info non renseignée
-                <% end %>
-              </div>
-              <div class="annuaire-info-box">
-                <% if user.phone_number %>
-                  <%= user.phone_number %>
-                <% else %>
-                  info non renseignée
-                <% end %>
-              </div>
-              <div class="annuaire-info-box">
-                <% if user.composteur_id %>
-                  <div class="mini-btn"><%= link_to("retirer ce référent", non_referent_path(@composteurs.find(user.composteur_id), referent_id: user), method: :post) %></div>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
+      <div class="annuaire-info-box">
+        Nom
+      </div>
+      <div class="annuaire-info-box">
+        Rôle
+      </div>
+      <div class="annuaire-info-box">
+        Site
+      </div>
+      <div class="annuaire-info-box">
+        Mail
+      </div>
+      <div class="annuaire-info-box">
+        Téléphone
+      </div>
+      <div class="annuaire-info-box">
+        Autres actions
       </div>
     </div>
-  <% end %>
-<% end %>
-
-
-
-
-
+    <% if @users_list.empty? %>
+      <div class="annuaire-line">
+        <div class="annuaire-info-box empty-box">
+          <p>pas de resultats..</p>
+        </div>
+      </div>
+    <% else %>
+      <% @users_list.each do |user| %>
+        <div class="annuaire-line">
+          <div class="annuaire-info-box">
+            <% if user.first_name %>
+              <%= user.first_name %>
+            <% else %>
+              info non renseignée
+            <% end %>
+          </div>
+          <div class="annuaire-info-box">
+            <% if user.last_name %>
+              <%= user.last_name %>
+            <% else %>
+              info non renseignée
+            <% end %>
+          </div>
+          <div class="annuaire-info-box">
+            <% if user.role %>
+              <%= user.role %>
+            <% else %>
+              composteur•se
+            <% end %>
+          </div>
+          <div class="annuaire-info-box">
+            <% if user.composteur_id %>
+              <%= link_to @composteurs.find(user.composteur_id).name, composteur_path(user.composteur_id) %>
+            <% else %>
+              info non renseignée
+            <% end %>
+          </div>
+          <div class="annuaire-info-box">
+            <% if user.email %>
+              <%= mail_to user.email, "écrire un mail" %>
+            <% else %>
+              info non renseignée
+            <% end %>
+          </div>
+          <div class="annuaire-info-box">
+            <% if user.phone_number %>
+              <%= user.phone_number %>
+            <% else %>
+              info non renseignée
+            <% end %>
+          </div>
+          <div class="annuaire-info-box">
+            <% if user.composteur_id %>
+              <div class="mini-btn"><%= link_to("retirer ce référent", non_referent_path(@composteurs.find(user.composteur_id), referent_id: user), method: :post) %></div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

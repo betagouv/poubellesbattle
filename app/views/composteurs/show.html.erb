@@ -10,7 +10,7 @@
 
     <div class="collapse" id="collapseReferentAgglo">
       <div class="card card-body">
-        <% if user_signed_in? == false %>
+        <% unless user_signed_in? %>
           <div class="composteur-registration-form">
             <%= render "devise/registrations/new" %>
           </div>
@@ -18,8 +18,8 @@
         <div class="les-referents white-bg">
           <div class="becoming-or-not-referent">
             <% if user_signed_in? %>
-              <% if current_user.role != "admin" %>
-                <% if current_user.composteur_id == @composteur.id && current_user.role == nil %>
+              <% unless current_user.admin? %>
+                <% if current_user.composteur_id == @composteur.id && current_user.compostophile? %>
                   <div class="dropdown-form-referent">
                     <div class="referent-action-toggle">
                       <% if current_user.notifications.where(notification_type: "demande-référent").count < 1 %>
@@ -28,7 +28,7 @@
                     </div>
                   </div>
                   <!-- link to me désinscrire --->
-                <% elsif current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
+                <% elsif current_user.composteur_id == @composteur.id && current_user.referent? %>
                   <div class="dropdown-form-referent">
                     <div class="referent-action-toggle">
                       <%= link_to("ne plus être référent", non_referent_path(@composteur), method: :post) %>
@@ -46,7 +46,7 @@
               <!-- <div class="star">⭐️</div> -->
                 <!-- <div class="referent-profile"> -->
               <% if user_signed_in? %>
-                <% if current_user.role == "admin" %>
+                <% if current_user.admin? %>
                   <div class="mini-btn"><%= link_to("retirer ce référent", non_referent_path(@composteur, referent_id: referent), method: :post) %></div>
                 <% end %>
               <% end %>
@@ -76,7 +76,7 @@
                 <% end %>
               <% end %>
               <% if user_signed_in? %>
-                <% if current_user.role == "référent" && current_user == referent %>
+                <% if current_user.referent? && current_user == referent %>
                   <%= simple_form_for(@notification) do |f| %>
                     <%= f.input :notification_type, as: :string, input_html: { value: "message-ref", type:"hidden" }%>
                     <%= f.input :content, as: :text, placeholder: "modifier mon message de présentation..." %>
@@ -117,9 +117,9 @@
   <div class="composteur-left">
     <div class="inscription-desinscription">
     <% if user_signed_in? %>
-      <% if current_user.role == "admin" %>
+      <% if current_user.admin? %>
         <%= link_to "modifier", edit_composteur_path(@composteur), class: "btn btn-warning text-white small-btn-pb"%>
-      <% elsif (current_user.role == nil || current_user.role == "référent") && (current_user.composteur_id == nil || current_user.composteur_id == @composteur.id) %>
+      <% elsif (current_user.compostophile? || current_user.referent?) && (current_user.composteur_id == nil || current_user.composteur_id == @composteur.id) %>
         <% if current_user.composteur_id == nil %>
           <%= link_to "m'inscrire sur ce site !", inscription_path(@composteur), method: :post, class: "btn btn-success text-white small-btn-pb" %>
         <% elsif current_user.composteur_id == @composteur.id %>
@@ -209,10 +209,10 @@
       </div>
     </div>
     <% if user_signed_in? %>
-      <% if current_user.composteur_id == @composteur.id || current_user.role == "admin" %>
+      <% if current_user.composteur_id == @composteur.id || current_user.admin? %>
         <h2 class="mt-5">Messagerie</h2>
         <p class="legende">cet espace privé vous permet d'échanger avec les autres membres du site de compostage.</p>
-        <% if current_user.role != "admin" %>
+        <% unless current_user.admin? %>
           <div class="depot-anomalie">
             <%= simple_form_for @notification, html: { class: "depot-form"} do |f| %>
               <%= f.input :notification_type, as: :string, input_html: { value: "depot", type:"hidden" }%>
@@ -245,7 +245,7 @@
                         <% if notification.resolved %>
                           anomalie résolue par votre référent•e préféré•e ! 🤿
                         <% else %>
-                          <% if current_user.role == "référent" %>
+                          <% if current_user.referent? %>
                             <div class="resolving-btn">
                               <%= link_to("#{current_user.first_name}, cliquez ici si l'anomalie est résolue ! 🙂", resolved_path(notification), method: :post) %>
                             </div>
@@ -293,7 +293,7 @@
       </div>
     <% end %>
     <% if user_signed_in? %>
-      <% if current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
+      <% if current_user.composteur_id == @composteur.id && current_user.referent? %>
         <div id="accordion" class="search-add-user white-bg">
           <h5>Actions Référent•e</h5>
 
@@ -411,7 +411,7 @@
           <!-- <div class="star">⭐️</div> -->
             <!-- <div class="referent-profile"> -->
               <% if user_signed_in? %>
-                <% if current_user.role == "admin" %>
+                <% if current_user.admin? %>
                   <div class="mini-btn"><%= link_to("retirer ce référent", non_referent_path(@composteur, referent_id: referent), method: :post) %></div>
                 <% end %>
               <% end %>
@@ -441,7 +441,7 @@
                 <% end %>
               <% end %>
               <% if user_signed_in? %>
-                <% if current_user.role == "référent" && current_user == referent %>
+                <% if current_user.referent? && current_user == referent %>
                   <%= simple_form_for(@notification) do |f| %>
                     <%= f.input :notification_type, as: :string, input_html: { value: "message-ref", type:"hidden" }%>
                     <%= f.input :content, as: :text, placeholder: "modifier mon message de présentation..." %>
@@ -471,15 +471,15 @@
       <% end %>
       <div class="becoming-or-not-referent">
         <% if user_signed_in? %>
-          <% if current_user.role != "admin" %>
-            <% if current_user.composteur_id == @composteur.id && current_user.role == nil %>
+          <% unless current_user.admin? %>
+            <% if current_user.composteur_id == @composteur.id && current_user.compostophile? %>
               <div class="">
                   <% if current_user.notifications.where(notification_type: "demande-référent").count < 1 %>
                     <%= link_to "devenir référent", referent_path(@composteur), method: :post, class: "btn btn-success text-white small-btn-pb" %>
                   <% end %>
               </div>
               <!-- link to me désinscrire --->
-            <% elsif current_user.composteur_id == @composteur.id && current_user.role == "référent" %>
+            <% elsif current_user.composteur_id == @composteur.id && current_user.referent? %>
               <div class="">
                   <%= link_to "ne plus être référent", non_referent_path(@composteur), method: :post, class: "btn btn-warning text-white small-btn-pb" %>
               </div>
