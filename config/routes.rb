@@ -8,12 +8,17 @@ Rails.application.routes.draw do
   post "composteurs/:id/ajout_referent_composteur", to: "composteurs#ajout_referent_composteur", as: 'ajout_referent'
   post "composteurs/:id/desincription_composteur", to: "composteurs#desinscription_composteur", as: 'desinscription'
   post "composteurs/:id/non_referent_composteur", to: "composteurs#non_referent_composteur", as: 'non_referent'
-  post "composteurs/:id/new_manual_latlng", to: "composteurs#new_manual_latlng", as: 'new_manual_latlng'
-  post "composteurs/:id/suppr_manual_latlng", to: "composteurs#suppr_manual_latlng", as: 'suppr_manual_latlng'
-  resources :composteurs
-  scope 'admin' do
-    resources :composteurs, only: :edit
+  namespace :admin do
+    post "composteurs/:id/new_manual_latlng", to: "composteurs#new_manual_latlng"
+    resources :composteurs
+    post "composteurs/:id/suppr_manual_latlng", to: "composteurs#suppr_manual_latlng", as: 'suppr_manual_latlng'
+    resources :demandes
+    resources :donverts
+    resources :notifications
+    resources :messages
   end
+  resources :composteurs, only: [:index, :show, :edit]
+
 
   root to: "composteurs#index"
 

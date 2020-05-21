@@ -54,7 +54,7 @@ const initMapbox = () => {
         +
         `<div>latitude : ${JSON.stringify(e.lngLat["lat"])}</div>`
         +
-        `<a class= "add-coord-btn" rel="nofollow" data-method="post" href="/composteurs/${markers[0]["id"]}/new_manual_latlng?manual_lng=${JSON.stringify(e.lngLat["lng"])}&manual_lat=${JSON.stringify(e.lngLat["lat"])}">Utiliser ces coordonnées</a>`;
+        `<a class= "add-coord-btn" rel="nofollow" data-method="post" href="https://poubellesbattle.fr/admin/composteurs/${markers[0]["id"]}/new_manual_latlng?manual_lng=${JSON.stringify(e.lngLat["lng"])}&manual_lat=${JSON.stringify(e.lngLat["lat"])}">Utiliser ces coordonnées</a>`;
 
         });
     };

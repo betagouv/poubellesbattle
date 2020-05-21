@@ -1,0 +1,91 @@
+<div class="composteur-new-edit">
+  <div class="composteur-form-box">
+    <div class="composteur-form-top">
+      <h2> Modifier les détails du composteur</h2>
+      <a href="data:image/svg+xml;utf8,
+        <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:ev='http://www.w3.org/2001/xml-events' width='222' height='222' fill='black'><%= @svg.to_s %></svg>"
+        download="QR-<%= @composteur.name %>.svg"
+        class="mini-btn mini-yellow-btn">
+          QR code
+      </a>
+      <a href="data:image/svg+xml;utf8,
+        <svg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:ev='http://www.w3.org/2001/xml-events' width='222' height='222' fill='black'><%= @anonymous_depot.to_s %></svg>"
+        download="QR-depot-<%= @composteur.name %>.svg"
+        class="mini-btn mini-yellow-btn">
+          QR Dépot
+      </a>
+      <%= link_to "voir ce site", composteur_path(@composteur), class: "mini-btn mini-green-btn " %>
+    </div>
+    <%= render 'form', compo: @composteur %>
+
+    <!-- <div class="back-button-container d-flex">
+    </div> -->
+  </div>
+
+    <div class="referents-edit-list">
+
+
+
+      <h2>liste des référents de ce site</h2>
+        <div class="referent-edit-card">
+          <%= form_tag edit_composteur_path(@composteur), method: :get do %>
+        <%= text_field_tag :query,
+        params[:query],
+        class: "form_control",
+        placeholder: "Trouver un référent" %>
+        <%= submit_tag "Rechercher", class: "btn btn-primary" %>
+      <% end %>
+        </div>
+        <% if @referents.count < 1 %>
+          <div class="referent-edit-card">Pas de résultat..</div>
+        <% end %>
+      <% @referents.each do |referent| %>
+        <div class="referent-edit-card">
+          <% if referent.first_name %>
+            <%= referent.first_name %>
+          <% end %>
+          <% if referent.last_name %>
+            <%= referent.last_name %>
+          <% end %>
+          <% if referent.composteur_id == @composteur.id && referent.referent? %>
+            <div class="mini-btn"><%= link_to "retirer statut référent", non_referent_path(@composteur, referent_id: referent), method: :post, :data => {:confirm => "Vous allez retirer le status 'référent' de cet utilisateur, êtes-vous certain ? Cet utilisateur restera inscrit au site."} %></div>
+          <% elsif referent.composteur_id == @composteur.id && referent.role != "référent" %>
+            <div class="mini-btn mini-green-btn"><%= link_to "ajouter status référent", ajout_referent_path(@composteur, referent_id: referent), method: :post %></div>
+          <% else %>
+            <div class="mini-btn mini-yellow-btn"><%= link_to "changer pour ce site", ajout_referent_path(@composteur, referent_id: referent), method: :post, :data => {:confirm => "Vous êtes sur le point de désinscrire cet utilisateur d'un autre site pour l'inscrire sur celui-ci, êtes-vous certain ?"} %></div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+  <div class="container mt-3 text-center" id="carto">
+    <h5>Géolocalisation du site de compostage</h5>
+    <div class="manual-latlng-or-not">
+      <% if @composteur.manual_lat.nil? || @composteur.manual_lng.nil? %>
+        <div class="manual-left">
+          <p>Ce site de compostage est visible sur la carte à l'adresse indiquée dans la formulaire.</p>
+          <p>Pour modifier l'emplacement du pointeur sur la carte, cliquez directement sur la carte puis sur "utiliser ces coordonnées".</p>
+        </div>
+      <% else %>
+        <div class="manual-left">
+          <p>Ce composteur est affiché sur la carte aux coordonnées manuellement ajoutées.</p>
+          <p>Vous pouvez remplacer celles-ci par de nouvelles coordonnées ou alors :</p>
+          <p><%= link_to "supprimer les coordonnées", admin_suppr_manual_latlng_path(@composteur), method: :post, class: "add-coord-btn mini-red-btn", data: {:confirm => "Vous allez supprimer les coordonnées rentrées manuellement, le site de compostage sera visible à l'adresse indiquée dans le formulaire."} %></p>
+        </div>
+      <% end %>
+      <div id="info">
+        <% if @composteur.manual_lat.nil? || @composteur.manual_lng.nil? %>
+          <div>Cliquez sur la carte pour obtenir de nouvelles coordonnées.</div>
+        <% else %>
+          <div>longitude : <%= @composteur.manual_lng %></div>
+          <div>latitude : <%= @composteur.manual_lat %></div>
+          <div>Cliquez sur la carte pour modifier ces coordonnées.</div>
+        <% end %>
+      </div>
+    </div>
+    <div id="geocoder" class="geocoder"></div>
+    <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" ></div>
+  </div>
+</div>
+
+
