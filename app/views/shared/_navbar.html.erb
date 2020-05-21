@@ -12,7 +12,7 @@
 
     <li class="dropdown align-self-center d-sm-block mr-3">
       <% if user_signed_in? %>
-        <% if current_user.role == "admin" || current_user.role == "super_admin" %>
+        <% if current_user.admin? %>
           <div class="dropdown-toggle border-none" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Les sites de compostage
           </div>

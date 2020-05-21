@@ -12,9 +12,15 @@ class ApplicationController < ActionController::Base
 
   def user_admin?
     if user_signed_in?
-      unless current_user.role == "admin"
-        redirect_to root_path
-      end
+      redirect_to root_path unless current_user.admin?
+    else
+      redirect_to root_path
+    end
+  end
+
+  def user_referent?
+    if user_signed_in?
+      redirect_to root_path unless current_user.admin? || current_user.referent?
     else
       redirect_to root_path
     end

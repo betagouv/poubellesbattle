@@ -1,5 +1,7 @@
 class ComposteursController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
+  before_action :user_admin?, only: [:new, :create, :destroy]
+  before_action :user_referent?, only: [:edit, :update]
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
 
   def resource_name
@@ -19,27 +21,13 @@ class ComposteursController < ApplicationController
   end
 
   def index
-    # @query = params[:query]
-    # # @query_on_category = params[:category]
+    @composteurs = Composteur.geocoded
+    # OR
+    @composteurs = Composteur.includes(:photo_attachment).geocoded if current_user.admin?
 
-    # # if @query.present?
-    #   @composteurs = Composteur.geocoded.global_search(params[:query])
-    # # elsif @query_on_category.present?
-    # #   categories = @query_on_category.select { |k, v| v == '1' }.keys
-    # #   @meals = Meal.geocoded.select { |m| categories.include?(m.category) }
-    # else
-    if user_signed_in?
-      if current_user.role == "admin"
-        @composteurs = Composteur.includes(:photo_attachment).geocoded
-      else
-        @composteurs = Composteur.geocoded
-      end
-    else
-      @composteurs = Composteur.geocoded
-    end
 
-    @composteurs_all = Composteur.includes([:photo_attachment]).all.order(created_at: :asc)
-  # end
+    @composteurs_all = Composteur.count
+
     @message = Message.new
     @markers = @composteurs.includes(:photo_attachment).map do |compo|
       if compo.manual_lng.nil? || compo.manual_lat.nil?
@@ -75,19 +63,23 @@ class ComposteursController < ApplicationController
     @users = @composteur.users # tous les utilisateurs du site
     # @unsorted_users = @composteur.users.order(role: :asc) # tous les utilisateurs du site
 
-    @referents = @users.where(role: "référent").order(ok_mail: :asc).order(ok_phone: :asc) # les referents du composteur
-    @reversed_referents = @users.where(role: "référent").order(ok_mail: :asc).order(ok_phone: :asc).sort_by { |user| user.notifications.count }.reverse! # les referents du composteur
-    @not_referents = @users.where(role: nil).sort_by { |user| user.notifications.count }.reverse! # les non-referents
+    @referents = @users.referent.order(ok_mail: :asc).order(ok_phone: :asc) # les referents du composteur
+    @reversed_referents = @users.referent.order(ok_mail: :asc).order(ok_phone: :asc).sort_by { |user| user.notifications.count }.reverse! # les referents du composteur
+    @not_referents = @users.compostophile.sort_by { |user| user.notifications.count }.reverse! # les non-referents
 
     if user_signed_in?
-      @future_users = User.where(composteur_id: nil)
-      if params[:query].present?
-        @users_search = @future_users.search_by_first_name_and_last_name(params[:query])
-      else
-        @users_search = []
+      if current_user.referent?
+        @future_users = User.where(composteur_id: nil)
+        if params[:query].present?
+          @users_search = @future_users.search_by_first_name_and_last_name(params[:query])
+        else
+          @users_search = []
+        end
       end
-      @message = Message.new
-      @notification = Notification.new
+      if current_user.composteur == @composteur
+        @message = Message.new
+        @notification = Notification.new
+      end
       @last_anomalie = @composteur.notifications.where(notification_type: "anomalie").last
       @depots_count = @composteur.notifications.where(notification_type: "depot").count
       anonymous_notifications = Notification.where(composteur_id: @composteur.id).includes(:user)
@@ -110,11 +102,7 @@ class ComposteursController < ApplicationController
   end
 
   def new
-    if current_user.role == "admin"
-      @composteur = Composteur.new
-    else
-      redirect_to root_path
-    end
+    @composteur = Composteur.new
   end
 
   def create
@@ -129,29 +117,29 @@ class ComposteursController < ApplicationController
   def edit
     @composteur = Composteur.find(params[:id])
 
-    require 'rqrcode'
+    if current_user.admin?
+      require 'rqrcode'
 
-    qrcode = RQRCode::QRCode.new("#{composteur_url(@composteur)}")
+      qrcode = RQRCode::QRCode.new("#{composteur_url(@composteur)}")
 
-    # NOTE: showing with default options specified explicitly : svg as a string.
-    svg_string = qrcode.as_svg(
-      offset: 0,
-      module_size: 6,
-      standalone: false
-    )
-    @svg = svg_string.gsub("fill:#000", "")
+      # NOTE: showing with default options specified explicitly : svg as a string.
+      svg_string = qrcode.as_svg(
+        offset: 0,
+        module_size: 6,
+        standalone: false
+      )
+      @svg = svg_string.gsub("fill:#000", "")
 
-    anonymous_depot_code = RQRCode::QRCode.new("#{anonymous_depot_url(composteur: @composteur.id, type: 'depot direct')}")
+      anonymous_depot_code = RQRCode::QRCode.new("#{anonymous_depot_url(composteur: @composteur.id, type: 'depot direct')}")
 
-    # NOTE: showing with default options specified explicitly : svg as a string.
-    svg_depot_string = anonymous_depot_code.as_svg(
-      offset: 0,
-      module_size: 4,
-      standalone: false
-    )
-    @anonymous_depot = svg_depot_string.gsub("fill:#000", "")
+      # NOTE: showing with default options specified explicitly : svg as a string.
+      svg_depot_string = anonymous_depot_code.as_svg(
+        offset: 0,
+        module_size: 4,
+        standalone: false
+      )
+      @anonymous_depot = svg_depot_string.gsub("fill:#000", "")
 
-    if current_user.role == "admin"
       @markers =
         [{
           id: @composteur.id,
@@ -173,17 +161,30 @@ class ComposteursController < ApplicationController
       if params[:query].present?
         @referents = User.search_by_first_name_and_last_name(params[:query])
       else
-        @referents = @users.where(role: "référent")
+        @referents = @users.referent
       end
     else
       redirect_to composteur_path(@composteur)
     end
   end
 
+  def update
+    @composteur = Composteur.find(params[:id])
+    if @composteur.update(current_user.admin? ? composteur_params : referent_composteur_params)
+      redirect_to composteur_path(@composteur)
+    else
+      render :edit
+    end
+  end
 
+  def destroy
+    @composteur = Composteur.find(params[:id])
+    @composteur.destroy
+    redirect_to composteurs_path
+  end
 
   def new_manual_latlng
-    return unless current_user.role == "admin"
+    return unless current_user.admin?
 
     man_lng = params[:manual_lng].to_f
     man_lat = params[:manual_lat].to_f
@@ -243,7 +244,7 @@ class ComposteursController < ApplicationController
     # supprimer les messages quand on quitte un composteur ? Mieux, non ?
     @user.notifications.destroy_all
     @user.composteur_id = nil
-    @user.role = nil
+    @user.compostophile!
     if @user.save
       redirect_to composteur_path
       flash[:notice] = "Vous n'êtes plus inscrit à ce composteur, vous pouvez maintenant vous inscrire à un autre !"
@@ -257,7 +258,7 @@ class ComposteursController < ApplicationController
     @user = current_user
     @composteur = Composteur.find(params[:id])
     demande_ref = Notification.new( content: "#{@composteur.id}", user_id: @user.id)
-    if @composteur.users.where(role: "référent").count > 0
+    if @composteur.users.referent.count > 0
       demande_ref.notification_type = "demande-référent-directe" # send directly by email to référent
     else
       demande_ref.notification_type = "demande-référent"
@@ -277,7 +278,7 @@ class ComposteursController < ApplicationController
     @composteur = Composteur.find(params[:id])
     @user = User.find(params[:referent_id])
     @user.composteur_id = @composteur.id
-    @user.role = "référent"
+    @user.referent!
     if @user.save
       redirect_to edit_composteur_path(@composteur)
     else
@@ -288,7 +289,7 @@ class ComposteursController < ApplicationController
   def validation_referent_composteur
     notification = Notification.find(params[:id])
     @user = User.find(notification.user_id)
-    @user.role = "référent"
+    @user.referent!
     @user.save
     NotificationMailer.with(notification: notification, state: "validée").demande_referent_state.deliver_now
     notification.destroy
@@ -296,15 +297,15 @@ class ComposteursController < ApplicationController
   end
 
   def non_referent_composteur
-    if current_user.role == "admin"
+    if current_user.admin?
       @user = User.find(params[:referent_id])
     else
       @user = current_user
     end
     @composteur = Composteur.find(params[:id])
-    @user.role = nil
+    @user.compostophile!
     if @user.save
-      if current_user.role == "admin"
+      if current_user.admin?
         redirect_to edit_composteur_path(@composteur)
         flash[:notice] = "Cet•te utilisateur•ice n'est plus référent•e."
       else
@@ -315,21 +316,6 @@ class ComposteursController < ApplicationController
       render :show
       flash[:notice] = "Oups, une erreur s'est produite.."
     end
-  end
-
-  def update
-    @composteur = Composteur.find(params[:id])
-    if @composteur.update(composteur_params)
-      redirect_to composteur_path(@composteur)
-    else
-      render :edit
-    end
-  end
-
-  def destroy
-    @composteur = Composteur.find(params[:id])
-    @composteur.destroy
-    redirect_to composteurs_path
   end
 
   def send_email
@@ -347,5 +333,9 @@ class ComposteursController < ApplicationController
 
   def composteur_params
     params.require(:composteur).permit(:name, :address, :category, :public, :installation_date, :status, :volume, :residence_name, :commentaire, :participants, :composteur_type, :photo, :date_retournement)
+  end
+
+  def referent_composteur_params
+    params.require(:composteur).permit(:photo, :date_retournement)
   end
 end

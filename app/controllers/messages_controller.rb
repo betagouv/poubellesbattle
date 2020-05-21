@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     if @message.save
-      flash[:notice] = "Votre message à été envoyé"
+      flash[:notice] = "Votre message a été envoyé"
     else
       flash[:alert] = "L'envoi du message n'a pas fonctionné.."
     end

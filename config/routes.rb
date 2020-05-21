@@ -11,12 +11,15 @@ Rails.application.routes.draw do
   post "composteurs/:id/new_manual_latlng", to: "composteurs#new_manual_latlng", as: 'new_manual_latlng'
   post "composteurs/:id/suppr_manual_latlng", to: "composteurs#suppr_manual_latlng", as: 'suppr_manual_latlng'
   resources :composteurs
+  scope 'admin' do
+    resources :composteurs, only: :edit
+  end
 
   root to: "composteurs#index"
 
   resources :demandes, param: :slug
   get "/demandes/suivre/:slug", to: "demandes#suivre", as: 'suivre'
-  post "demandes/:slug/formulaire_toggle", to: "demandes#formulaire_toggle", as: 'formulaire_toggle'
+  post "demandes/:slug/formulaire_toggle", to: "demandes#formulaire_toggle", as:'formulaire_toggle'
 
   resources :notifications
   post "notifications/:id/resolved", to: "notifications#resolved", as: "resolved"

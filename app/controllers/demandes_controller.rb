@@ -1,6 +1,7 @@
 class DemandesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:new, :create, :suivre]
   before_action :set_demande, only: [:show, :suivre, :edit, :update, :formulaire_toggle, :destroy]
+  before_action :user_admin?, only: [:index, :edit, :update, :formulaire_toggle, :destroy]
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
 
   def resource_name
@@ -20,32 +21,16 @@ class DemandesController < ApplicationController
   end
 
   def index
-    if current_user.role == "admin" || current_user.role == "super_admin"
       @notifications = Notification.where(notification_type: "demande-référent")
       @demandes = Demande.all.order(updated_at: :desc)
       @composteurs = Composteur.all
       @users = User.all
-    else
-      redirect_to composteurs_path
-    end
   end
 
-  def show
-    # @demande = Demande.find(params[:id])
-  end
+  def show; end
 
   # page de suivi de demande de composteur (comme une show mais pas pareil)
-  def suivre
-    # if user_signed_in?
-    #   if current_user.email != @demande.email
-    #     redirect_to new_user_registration_path
-    #   end
-    # else
-    #   redirect_to new_user_registration_path
-    # end
-    # @demande = Demande.find(params[:id])
-  end
-
+  def suivre; end
 
   def new
     @demande = Demande.new
@@ -63,13 +48,7 @@ class DemandesController < ApplicationController
     end
   end
 
-  def edit
-    # @demande = Demande.find(params[:id])
-    # if @demande.status == "planifiée" && @demande.planification_date.past?
-    #   @demande.status == "installée"
-    #   @demande.save
-    # end
-  end
+  def edit; end
 
   def update
     if @demande.update(demande_params_admin)
@@ -92,15 +71,7 @@ class DemandesController < ApplicationController
     end
   end
 
-  # def cancel_planification
-    # @demande = Demande.find(params[:id])
-  #   @demande.planification_date = nil
-  #   @demande.save
-  #   redirect_to demandes_path
-  # end
-
   def destroy
-    # @demande = Demande.find(params[:id])
     @demande.destroy
     redirect_to demandes_path
   end

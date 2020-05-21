@@ -1,5 +1,7 @@
 class NotificationsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :new, :create, :anonymous_depot]
+  skip_before_action :authenticate_user!, only: [:anonymous_depot]
+  before_action :user_referent?, only: [:resolved]
+  before_action :user_admin?, only: [:index, :destroy]
 
   def index
     # @notifications = Notification.where(composteur == composteur_id).last(5)
@@ -11,7 +13,7 @@ class NotificationsController < ApplicationController
   end
 
   def show
-    if (current_user.role == "référent" && current_user.composteur_id == Notification.find(params[:id]).content.to_i) || current_user.role == "admin"
+    if (current_user.referent? && current_user.composteur_id == Notification.find(params[:id]).content.to_i) || current_user.admin?
       @notification = Notification.find(params[:id])
       if @notification.notification_type == "demande-référent-directe"
         @composteur = Composteur.find(@notification.content.to_i)
@@ -34,24 +36,24 @@ class NotificationsController < ApplicationController
     @notification.user_id = @user.id
 
     if @notification.save
-      if @user.role == "admin"
+      if @user.admin?
         redirect_to notifications_path
       else
         redirect_to composteur_path(@user.composteur_id)
       end
     else
-      if @user.role == "admin"
-        redirect_to notifications_path
+      if @user.admin?
+        render :index
       else
         redirect_to composteur_path(@user.composteur_id)
-        flash[:notice] = "L'anomalie ne peut pas être vide."
       end
+      flash[:alert] = "Le message n'a pas pu être enregistré."
     end
   end
 
   def anonymous_depot
     if user_signed_in?
-      render :show if current_user.role == "admin"
+      render :show if current_user.admin?
     end
     notification = Notification.new
     composteur = Composteur.find(params[:composteur])
@@ -76,7 +78,7 @@ class NotificationsController < ApplicationController
     notification = Notification.find(params[:id])
     if notification.notification_type == "anomalie"
       notification.resolved = true
-      if  notification.save
+      if notification.save
         redirect_to composteur_path(notification.user.composteur)
         flash[:notice] = "Anomalie résolue !"
       else
