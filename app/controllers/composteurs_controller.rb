@@ -23,8 +23,9 @@ class ComposteursController < ApplicationController
   def index
     @composteurs = Composteur.geocoded
     # OR
-    @composteurs = Composteur.includes(:photo_attachment).geocoded if current_user.admin?
-
+    if user_signed_in?
+      @composteurs = Composteur.includes(:photo_attachment).geocoded if current_user.admin?
+    end
 
     @composteurs_all = Composteur.count
 
