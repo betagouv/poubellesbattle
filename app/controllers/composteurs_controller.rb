@@ -1,7 +1,6 @@
 class ComposteursController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :user_admin?, only: [:new, :create, :destroy]
-  before_action :user_referent?, only: [:edit, :update]
+  before_action :user_referent?, only: [:update, :non_referent_composteur]
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
 
   def resource_name
@@ -103,10 +102,6 @@ class ComposteursController < ApplicationController
     end
   end
 
-  def edit
-    @composteur = Composteur.find(params[:id])
-  end
-
   def update
     @composteur = Composteur.find(params[:id])
     if @composteur.update(current_user.admin? ? composteur_params : referent_composteur_params)
@@ -115,22 +110,6 @@ class ComposteursController < ApplicationController
       render :edit
     end
   end
-
-  # def new_manual_latlng
-  #   raise
-  #   man_lng = params[:manual_lng].to_f
-  #   man_lat = params[:manual_lat].to_f
-  #   @composteur = Composteur.find(params[:id])
-  #   @composteur.manual_lng = man_lng
-  #   @composteur.manual_lat = man_lat
-  #   if @composteur.save
-  #     redirect_to edit_composteur_path(@composteur)
-  #   else
-  #     render :edit
-  #     flash[:notice] = "Erreur : les coordonnées n'ont pas pu être enregistrées."
-  #   end
-  # end
-
 
   def inscription_par_referent
     user = User.find(params[:user_id])
@@ -217,21 +196,12 @@ class ComposteursController < ApplicationController
   end
 
   def non_referent_composteur
-    if current_user.admin?
-      @user = User.find(params[:referent_id])
-    else
-      @user = current_user
-    end
+    @user = current_user
     @composteur = Composteur.find(params[:id])
     @user.compostophile!
     if @user.save
-      if current_user.admin?
-        redirect_to edit_composteur_path(@composteur)
-        flash[:notice] = "Cet•te utilisateur•ice n'est plus référent•e."
-      else
-        redirect_to composteur_path
-        flash[:notice] = "Vous n'êtes plus référent•e•s !"
-      end
+      redirect_to composteur_path
+      flash[:notice] = "Vous n'êtes plus référent•e•s !"
     else
       render :show
       flash[:notice] = "Oups, une erreur s'est produite.."

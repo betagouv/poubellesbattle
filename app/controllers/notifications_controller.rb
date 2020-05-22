@@ -1,19 +1,9 @@
 class NotificationsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:anonymous_depot]
-  before_action :user_referent?, only: [:resolved]
-  before_action :user_admin?, only: [:index, :destroy]
-
-  def index
-    # @notifications = Notification.where(composteur == composteur_id).last(5)
-    # @notifications = Notification.where(User.find(user_id).id == User.where(Composteur.find())
-    @notifications = Notification.where(notification_type: "message-admin")
-    @notification_last = @notifications.last
-    @notification = Notification.new
-
-  end
+  before_action :user_referent?, only: [:show, :resolved, :destroy]
 
   def show
-    if (current_user.referent? && current_user.composteur_id == Notification.find(params[:id]).content.to_i) || current_user.admin?
+    if current_user.composteur_id == Notification.find(params[:id]).content.to_i || current_user.admin?
       @notification = Notification.find(params[:id])
       if @notification.notification_type == "demande-référent-directe"
         @composteur = Composteur.find(@notification.content.to_i)

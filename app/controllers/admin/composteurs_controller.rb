@@ -136,6 +136,19 @@ class Admin::ComposteursController < ApplicationController
     end
   end
 
+  def non_referent_composteur
+    @user = User.find(params[:referent_id])
+    @composteur = Composteur.find(params[:id])
+    @user.compostophile!
+    if @user.save
+      redirect_to edit_admin_composteur_path(@composteur)
+      flash[:notice] = "Cet•te utilisateur•ice n'est plus référent•e."
+    else
+      render :show
+      flash[:notice] = "Oups, une erreur s'est produite.."
+    end
+  end
+
   private
 
   def set_composteur

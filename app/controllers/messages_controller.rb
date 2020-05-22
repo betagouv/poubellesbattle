@@ -1,5 +1,4 @@
 class MessagesController < ApplicationController
-  skip_before_action :authenticate_user!
   require 'uri'
 
   def new
@@ -31,10 +30,6 @@ class MessagesController < ApplicationController
   end
 
   private
-
-  # def set_don
-  #   @don = Donvert.find(params[:don_id])
-  # end
 
   def message_params
     params.require(:message).permit(:recipient_id, :content, :sender_email, :sender_full_name, :message_type, :donvert_id)
