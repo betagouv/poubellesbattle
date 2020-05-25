@@ -1,7 +1,6 @@
 class ComposteursController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
-  before_action :user_admin?, only: [:new, :create, :destroy]
-  before_action :user_referent?, only: [:edit, :update]
+  before_action :user_referent?, only: [:update, :non_referent_composteur]
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
 
   def resource_name
@@ -27,7 +26,8 @@ class ComposteursController < ApplicationController
       @composteurs = Composteur.includes(:photo_attachment).geocoded if current_user.admin?
     end
 
-    @composteurs_all = Composteur.count
+    @composteurs_count = Composteur.count
+    @composteurs_all = Composteur.all
 
     @message = Message.new
     @markers = @composteurs.includes(:photo_attachment).map do |compo|
@@ -77,8 +77,8 @@ class ComposteursController < ApplicationController
           @users_search = []
         end
       end
-      if current_user.composteur == @composteur
         @message = Message.new
+      if current_user.composteur == @composteur
         @notification = Notification.new
       end
       @last_anomalie = @composteur.notifications.where(notification_type: "anomalie").last
@@ -102,73 +102,6 @@ class ComposteursController < ApplicationController
     end
   end
 
-  def new
-    @composteur = Composteur.new
-  end
-
-  def create
-    @composteur = Composteur.create(composteur_params)
-    if @composteur.save
-      redirect_to root_path
-    else
-      render :new
-    end
-  end
-
-  def edit
-    @composteur = Composteur.find(params[:id])
-
-    if current_user.admin?
-      require 'rqrcode'
-
-      qrcode = RQRCode::QRCode.new("#{composteur_url(@composteur)}")
-
-      # NOTE: showing with default options specified explicitly : svg as a string.
-      svg_string = qrcode.as_svg(
-        offset: 0,
-        module_size: 6,
-        standalone: false
-      )
-      @svg = svg_string.gsub("fill:#000", "")
-
-      anonymous_depot_code = RQRCode::QRCode.new("#{anonymous_depot_url(composteur: @composteur.id, type: 'depot direct')}")
-
-      # NOTE: showing with default options specified explicitly : svg as a string.
-      svg_depot_string = anonymous_depot_code.as_svg(
-        offset: 0,
-        module_size: 4,
-        standalone: false
-      )
-      @anonymous_depot = svg_depot_string.gsub("fill:#000", "")
-
-      @markers =
-        [{
-          id: @composteur.id,
-          lat: @composteur.latitude,
-          lng: @composteur.longitude,
-          infoWindow: render_to_string(partial: "info_window", locals: { compo: @composteur }),
-          image_url: helpers.asset_url('markerpb-grey.png')
-        }]
-      unless @composteur.manual_lng.nil? || @composteur.manual_lat.nil?
-        @markers.push({
-          lat: @composteur.manual_lat,
-          lng: @composteur.manual_lng,
-          infoWindow: render_to_string(partial: "info_window", locals: { compo: @composteur }),
-          image_url: helpers.asset_url('markerpb-bicolor.png')
-
-        })
-      end
-      @users = User.where(composteur_id: @composteur)
-      if params[:query].present?
-        @referents = User.search_by_first_name_and_last_name(params[:query])
-      else
-        @referents = @users.referent
-      end
-    else
-      redirect_to composteur_path(@composteur)
-    end
-  end
-
   def update
     @composteur = Composteur.find(params[:id])
     if @composteur.update(current_user.admin? ? composteur_params : referent_composteur_params)
@@ -177,41 +110,6 @@ class ComposteursController < ApplicationController
       render :edit
     end
   end
-
-  def destroy
-    @composteur = Composteur.find(params[:id])
-    @composteur.destroy
-    redirect_to composteurs_path
-  end
-
-  def new_manual_latlng
-    return unless current_user.admin?
-
-    man_lng = params[:manual_lng].to_f
-    man_lat = params[:manual_lat].to_f
-    @composteur = Composteur.find(params[:id])
-    @composteur.manual_lng = man_lng
-    @composteur.manual_lat = man_lat
-    if @composteur.save
-      redirect_to edit_composteur_path(@composteur)
-    else
-      render :edit
-      flash[:notice] = "Erreur : les coordonnées n'ont pas pu être enregistrées."
-    end
-  end
-
-  def suppr_manual_latlng
-    @composteur = Composteur.find(params[:id])
-    @composteur.manual_lat = nil
-    @composteur.manual_lng = nil
-    if @composteur.save
-      redirect_to edit_composteur_path(@composteur)
-    else
-      render :edit
-      flash[:notice] = "Erreur : les coordonnées n'ont pas pu être effacées."
-    end
-  end
-
 
   def inscription_par_referent
     user = User.find(params[:user_id])
@@ -275,18 +173,6 @@ class ComposteursController < ApplicationController
     end
   end
 
-  def ajout_referent_composteur
-    @composteur = Composteur.find(params[:id])
-    @user = User.find(params[:referent_id])
-    @user.composteur_id = @composteur.id
-    @user.referent!
-    if @user.save
-      redirect_to edit_composteur_path(@composteur)
-    else
-      render :edit
-    end
-  end
-
   def validation_referent_composteur
     notification = Notification.find(params[:id])
     @user = User.find(notification.user_id)
@@ -298,21 +184,12 @@ class ComposteursController < ApplicationController
   end
 
   def non_referent_composteur
-    if current_user.admin?
-      @user = User.find(params[:referent_id])
-    else
-      @user = current_user
-    end
+    @user = current_user
     @composteur = Composteur.find(params[:id])
     @user.compostophile!
     if @user.save
-      if current_user.admin?
-        redirect_to edit_composteur_path(@composteur)
-        flash[:notice] = "Cet•te utilisateur•ice n'est plus référent•e."
-      else
-        redirect_to composteur_path
-        flash[:notice] = "Vous n'êtes plus référent•e•s !"
-      end
+      redirect_to composteur_path
+      flash[:notice] = "Vous n'êtes plus référent•e•s !"
     else
       render :show
       flash[:notice] = "Oups, une erreur s'est produite.."
@@ -331,10 +208,6 @@ class ComposteursController < ApplicationController
   end
 
   private
-
-  def composteur_params
-    params.require(:composteur).permit(:name, :address, :category, :public, :installation_date, :status, :volume, :residence_name, :commentaire, :participants, :composteur_type, :photo, :date_retournement)
-  end
 
   def referent_composteur_params
     params.require(:composteur).permit(:photo, :date_retournement)

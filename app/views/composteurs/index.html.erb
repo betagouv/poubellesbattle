@@ -1,72 +1,30 @@
-<% if user_signed_in? %>
-  <% if current_user.admin? %>
-    <div class="admin-box">
-      <div class="whitebg-admin">
-        <h4 class="marg-vert">Tous les composteurs</h4>
-        <div class="admin-list">
-          <div class="container mt-3 text-center" id="carto">
-            <div id="geocoder" class="geocoder"></div>
-            <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" ></div>
-          </div>
-          <% @composteurs_all.each do |composteur| %>
-            <div class="composteur-container">
-              <div class="buttons-demande">
-                <%= link_to "✏️", edit_composteur_path(composteur), class: "button-demande" %>
-                <%= link_to "👁", composteur_path(composteur), class: "button-demande" %>
-                <%#= mail_to composteur.email, "✉️", subject: "Votre demande de composteur.", class: "button-demande" %>
-                <%= link_to "🗑", composteur_path(composteur), method: :delete, data: {confirm: "Vous êtes sur le point de suprimer un composteur. Etes-vous certain ?"}, class: "button-demande" %>
-              </div>
-                <div class="composteur-card">
-                  <% if composteur.photo.attached? %>
-                    <%= cl_image_tag composteur.photo.key, height: 200, width: 260, crop: :fill %>
-                  <% else %>
-                    <%= image_tag 'PB_logo.png' %>
-                  <% end %>
-                  <h5><%= composteur.name %></h5>
-                  <p><%= composteur.address %></p>
-                </div>
-              </div>
-          <% end %>
-        </div>
-      </div>
+<%= render 'home-banner' %>
 
-    </div>
-  <% else %>
-    <%= render 'home-banner' %>
+<div class="container mt-3 text-center" id="carto">
+  <div id="geocoder" class="geocoder"></div>
+  <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" ></div>
+</div>
 
-    <div class="container mt-3 text-center" id="carto">
-      <div id="geocoder" class="geocoder"></div>
-      <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" ></div>
-    </div>
-  <% end %>
-<% else %>
-  <%= render 'home-banner' %>
-
-  <div class="container mt-3 text-center" id="carto">
-      <div id="geocoder" class="geocoder"></div>
-      <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" ></div>
-  </div>
-<% end %>
 <div class="section-grey py-5">
   <h5>Vous n'avez pas trouvé de composteurs près de chez vous ?</h5>
   <p class="my-4">Faites une <%= link_to "demande", new_demande_path, class: "button-in-paragraph"  %> pour l'installation d'un nouveau site de compostage !</p>
 </div>
+
 <div id="newsletter" class="news-section">
   <link href="//cdn-images.mailchimp.com/embedcode/horizontal-slim-10_7.css" rel="stylesheet" type="text/css">
   <style type="text/css">
     #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; width:100%;}
   </style>
   <div id="mc_embed_signup">
-  <h4>Pour être tenu au courant des évolutions de Poubelles Battle, inscrivez vous à la newsletter !</h4>
-  <form action="https://agglo-pau.us20.list-manage.com/subscribe/post?u=b1fc347f3e5c5729237f2dab7&amp;id=940663c959" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <h4>Pour être tenu au courant des évolutions de Poubelles Battle, inscrivez vous à la newsletter !</h4>
+    <form action="https://agglo-pau.us20.list-manage.com/subscribe/post?u=b1fc347f3e5c5729237f2dab7&amp;id=940663c959" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
       <div id="mc_embed_signup_scroll">
-
-    <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="votre email..." required>
-      <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-      <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b1fc347f3e5c5729237f2dab7_940663c959" tabindex="-1" value=""></div>
-      <div class="clear newsletter"><input type="submit" value="Inscription" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+        <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="votre email..." required>
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_b1fc347f3e5c5729237f2dab7_940663c959" tabindex="-1" value=""></div>
+        <div class="clear newsletter"><input type="submit" value="Inscription" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
       </div>
-  </form>
+    </form>
   </div>
 </div>
 

@@ -118,7 +118,7 @@
     <div class="inscription-desinscription">
     <% if user_signed_in? %>
       <% if current_user.admin? %>
-        <%= link_to "modifier", edit_composteur_path(@composteur), class: "btn btn-warning text-white small-btn-pb"%>
+        <%= link_to "modifier", edit_admin_composteur_path(@composteur), class: "btn btn-warning text-white small-btn-pb"%>
       <% elsif (current_user.compostophile? || current_user.referent?) && (current_user.composteur_id == nil || current_user.composteur_id == @composteur.id) %>
         <% if current_user.composteur_id == nil %>
           <%= link_to "m'inscrire sur ce site !", inscription_path(@composteur), method: :post, class: "btn btn-success text-white small-btn-pb" %>

@@ -3,7 +3,7 @@
     <div class="demande-compo-vue">
       <h2>Récapitulatif de la demande en cours</h2>
       <p class="legende">cette demande a été validée car le formulaire était complet.</p>
-      <div class="mini-btn"><%= link_to "modifier", formulaire_toggle_path(@demande), method: :post %></div>
+      <div class="mini-btn"><%= link_to "modifier", admin_formulaire_toggle_path(@demande), method: :post %></div>
       <% if @demande.photo.attached? %>
         <%= cl_image_tag @demande.photo.key, height: 200, width: 260, crop: :fill %>
         <p class="legende">photo du lieu envisagé</p>
@@ -52,19 +52,19 @@
       <h2>A propos de la demande</h2>
       <% if @demande.status == "planifiée" && @demande.planification_date.past? %>
         <p>L'installation de ce site était prévue le <%= @demande.planification_date %>, voulez-vous l'archiver ?</p>
-        <%= simple_form_for(@demande) do |f| %>
+        <%= simple_form_for [:admin, @demande] do |f| %>
           <%= f.input :status, label: 'Statut', input_html: { value: "archivée", type:"hidden" } %>
           <%= f.submit "Archiver cette demande", class: "bouton-valid bleu" %>
         <% end %>
         <p>Si vous ne l'avez pas déjà fait, vous pouvez maintenant ajouter le site de compostage sur Poubelles Battle !</p>
-        <%= link_to "Ajouter", new_composteur_path, class: "bouton-valid" %>
+        <%= link_to "Ajouter", new_admin_composteur_path, class: "bouton-valid" %>
       <% elsif @demande.status == "planifiée" %>
         <p>On dirait que tout est bon !</p>
         <p>Installation prévue le <%= @demande.planification_date.strftime("%d/%m/%Y") %></p>
         <p>Vous pouvez à présent ajouter le composteur sur Poubelles Battle !</p>
-        <%= link_to "Ajouter", new_composteur_path, class: "bouton-valid" %>
+        <%= link_to "Ajouter", new_admin_composteur_path, class: "bouton-valid" %>
       <% elsif @demande.status == "validée" && @demande.location_found %>
-        <%= simple_form_for(@demande) do |f| %>
+        <%= simple_form_for [:admin, @demande] do |f| %>
           <p>Adresse pour l'installation</p>
           <%= f.input :potential_address, label: "Adresse possible", as: :string, required: true %>
           <p>Date d'installation </p>
@@ -73,7 +73,7 @@
           <%= f.submit "Enregistrer la date", class: "bouton-valid", data: {confirm: "Avez-vous bien ajouté une date et une adresse ?"} %>
         <% end %>
       <% elsif @demande.status == "validée" %>
-        <%= simple_form_for(@demande) do |f| %>
+        <%= simple_form_for [:admin, @demande] do |f| %>
           <%= f.input :location_found, label: "un lieu a été trouvé pour l'installation !", input_html: { value: true, type:"hidden" } %>
           <%= f.submit "Oui", class: "bouton-valid" %>
         <% end %>
@@ -89,7 +89,7 @@
     <div class="demande-compo-vue">
       <h2>Demande pour un nouveau site de compostage</h2>
       <p class="legende">cette demande n'a pas encore été validée.</p>
-      <%= simple_form_for(@demande) do |f| %>
+      <%= simple_form_for [:admin, @demande] do |f| %>
         <div class="formline-between mt-2">
           <%= f.input :first_name, placeholder: 'Prénom' %>
           <%= f.input :last_name, placeholder: 'Nom' %>
@@ -131,7 +131,7 @@
         </div>
       <% end %>
         <div class="submit-formline-center">
-          <%= simple_form_for(@demande) do |f| %>
+          <%= simple_form_for [:admin, @demande] do |f| %>
             <%= f.input :status, as: :string, input_html: { value: "refusée", type:"hidden" } %>
             <%= f.submit "Refuser la demande", class: "bouton-valid rouge" %>
           <% end %>

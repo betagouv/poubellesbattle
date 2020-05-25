@@ -4,7 +4,7 @@
     <%= link_to "Export annuaire complet", "#{admin_users_export_path}.csv", class: "mini-btn mini-yellow-btn" %>
     <%= link_to "Export contacts newsletter", "#{admin_users_newsletter_path}.csv", class: "mini-btn mini-green-btn"  %>
   </div>
-  <%= form_tag annuaire_path, method: :get do %>
+  <%= form_tag admin_annuaire_path, method: :get do %>
     <%= text_field_tag :query,
     params[:query],
     class: "form_control",
@@ -88,8 +88,11 @@
           </div>
           <div class="annuaire-info-box">
             <% if user.composteur_id %>
-              <div class="mini-btn"><%= link_to("retirer ce référent", non_referent_path(@composteurs.find(user.composteur_id), referent_id: user), method: :post) %></div>
+              <div class="mini-btn"><%= link_to("retirer ce référent", admin_non_referent_path(@composteurs.find(user.composteur_id), referent_id: user), method: :post) %></div>
             <% end %>
+          </div>
+          <div class="annuaire-info-box">
+              <div class="mini-btn"><%= link_to "Supprimer", admin_destroy_user_path(user), method: :delete, data: { confirm: "Etes-vous sûr de vouloir supprimer ce compte ? Cette action est irréversible." } %></div>
           </div>
         </div>
       <% end %>

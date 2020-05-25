@@ -1,0 +1,29 @@
+<h5>Composteur <%= compo.name %></h5>
+<p><%= compo.category %></p>
+<p><%= compo.volume %></p>
+<% if compo.public %>
+  <%= link_to "En savoir plus!", composteur_path(compo), class: 'btn btn-success text-white small-btn-pb' %>
+<% else %>
+  <p>ce composteur est privé</p>
+  <% if compo.users.referent.count > 0 %>
+    <% if user_signed_in? %>
+      <% if current_user.admin? %>
+        Retrouvez les infos sur la.le référent.e de ce site dans l'<%= link_to "annuaire", admin_annuaire_path + "?utf8=✓&query=#{compo.users.referent.first.email}&commit=Rechercher"  %>
+      <% else %>
+        <p>Vous souhaitez nous rejoindre ? Ecrivez nous un petit message ☺️</p>
+        <%= simple_form_for @message do |f| %>
+          <%= f.input :recipient_id, input_html: { value: "#{compo.users.referent.first.id}", type: "hidden"} %>
+          <%= f.input :sender_email, input_html: { value: "#{current_user.email}", type: "hidden"} %>
+          <%= f.input :sender_full_name, input_html: { value: "#{current_user.first_name} #{current_user.last_name}", type: "hidden"} %>
+          <%= f.input :message_type, input_html: { value: "message-to-referent", type: "hidden"} %>
+          <%= f.input :content, as: :text, placeholder: "Votre message..." %>
+          <div class="center-form-submit"><%= f.submit "envoyer", class: "don-form-btn" %></div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>Connectez vous pour pouvoir contacter ce site.</p>
+    <% end %>
+  <% else %>
+    <p>Ce site n'a pas de référent•e</p>
+  <% end %>
+<% end %>
