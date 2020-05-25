@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   post "composteurs/:id/inscription_composteur", to: "composteurs#inscription_composteur", as: 'inscription'
   post "composteurs/:id/referent_composteur", to: "composteurs#referent_composteur", as: 'referent'
   post "composteurs/:id/validation_referent_composteur", to: "composteurs#validation_referent_composteur", as: 'validation_referent'
-  post "composteurs/:id/ajout_referent_composteur", to: "composteurs#ajout_referent_composteur", as: 'ajout_referent'
   post "composteurs/:id/desincription_composteur", to: "composteurs#desinscription_composteur", as: 'desinscription'
   post "composteurs/:id/non_referent_composteur", to: "composteurs#non_referent_composteur", as: 'non_referent'
 
@@ -35,6 +34,7 @@ Rails.application.routes.draw do
     resources :composteurs, only: [:index, :new, :create, :edit, :update, :destroy]
     post "composteurs/:id/new_manual_latlng", to: "composteurs#new_manual_latlng"
     post "composteurs/:id/suppr_manual_latlng", to: "composteurs#suppr_manual_latlng", as: 'suppr_manual_latlng'
+    post "composteurs/:id/ajout_referent_composteur", to: "composteurs#ajout_referent_composteur", as: 'ajout_referent'
     post "composteurs/:id/non_referent_composteur", to: "composteurs#non_referent_composteur", as: 'non_referent'
     resources :demandes, only: [:index, :edit, :update, :destroy], param: :slug
     post "demandes/:slug/formulaire_toggle", to: "demandes#formulaire_toggle", as:'formulaire_toggle'

@@ -28,7 +28,7 @@
 
       <h2>liste des référents de ce site</h2>
         <div class="referent-edit-card">
-          <%= form_tag edit_composteur_path(@composteur), method: :get do %>
+          <%= form_tag edit_admin_composteur_path(@composteur), method: :get do %>
         <%= text_field_tag :query,
         params[:query],
         class: "form_control",
@@ -48,11 +48,11 @@
             <%= referent.last_name %>
           <% end %>
           <% if referent.composteur_id == @composteur.id && referent.referent? %>
-            <div class="mini-btn"><%= link_to "retirer statut référent", non_referent_path(@composteur, referent_id: referent), method: :post, :data => {:confirm => "Vous allez retirer le status 'référent' de cet utilisateur, êtes-vous certain ? Cet utilisateur restera inscrit au site."} %></div>
+            <div class="mini-btn"><%= link_to "retirer statut référent", admin_non_referent_path(@composteur, referent_id: referent), method: :post, :data => {:confirm => "Vous allez retirer son status 'référent' à #{referent.first_name}, êtes-vous certain•e ? #{referent.first_name} restera inscrit•e au site."} %></div>
           <% elsif referent.composteur_id == @composteur.id && referent.role != "référent" %>
-            <div class="mini-btn mini-green-btn"><%= link_to "ajouter status référent", ajout_referent_path(@composteur, referent_id: referent), method: :post %></div>
+            <div class="mini-btn mini-green-btn"><%= link_to "ajouter status référent", admin_ajout_referent_path(@composteur, referent_id: referent), method: :post %></div>
           <% else %>
-            <div class="mini-btn mini-yellow-btn"><%= link_to "changer pour ce site", ajout_referent_path(@composteur, referent_id: referent), method: :post, :data => {:confirm => "Vous êtes sur le point de désinscrire cet utilisateur d'un autre site pour l'inscrire sur celui-ci, êtes-vous certain ?"} %></div>
+            <div class="mini-btn mini-yellow-btn"><%= link_to "changer pour ce site", admin_ajout_referent_path(@composteur, referent_id: referent), method: :post, :data => {:confirm => "Vous êtes sur le point de désinscrire #{referent.first_name} d'un autre site pour l'inscrire sur celui-ci, êtes-vous certain•e ?"} %></div>
           <% end %>
         </div>
       <% end %>

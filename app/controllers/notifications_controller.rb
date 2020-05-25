@@ -84,7 +84,7 @@ class NotificationsController < ApplicationController
       NotificationMailer.with(notification: @notification, state: "refusée").demande_referent_state.deliver_now
     end
     @notification.destroy
-    redirect_back(fallback_location: demandes_path)
+    redirect_to composteur_path(@notification.composteur || @notification.user.composteur)
     flash[:notice] = "Notification supprimée"
   end
 

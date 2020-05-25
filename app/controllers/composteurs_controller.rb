@@ -173,18 +173,6 @@ class ComposteursController < ApplicationController
     end
   end
 
-  def ajout_referent_composteur
-    @composteur = Composteur.find(params[:id])
-    @user = User.find(params[:referent_id])
-    @user.composteur_id = @composteur.id
-    @user.referent!
-    if @user.save
-      redirect_to edit_composteur_path(@composteur)
-    else
-      render :edit
-    end
-  end
-
   def validation_referent_composteur
     notification = Notification.find(params[:id])
     @user = User.find(notification.user_id)

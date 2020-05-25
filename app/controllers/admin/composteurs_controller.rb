@@ -53,7 +53,7 @@ class Admin::ComposteursController < ApplicationController
     require 'rqrcode'
 
     qrcode = RQRCode::QRCode.new("#{composteur_url(@composteur)}")
-
+    # @message = Message.new
     # NOTE: showing with default options specified explicitly : svg as a string.
     svg_string = qrcode.as_svg(
       offset: 0,
@@ -136,6 +136,17 @@ class Admin::ComposteursController < ApplicationController
     end
   end
 
+  def ajout_referent_composteur
+    @composteur = Composteur.find(params[:id])
+    @user = User.find(params[:referent_id])
+    @user.composteur_id = @composteur.id
+    @user.referent!
+    if @user.save
+      redirect_to edit_admin_composteur_path(@composteur)
+    else
+      render :edit
+    end
+  end
   def non_referent_composteur
     @user = User.find(params[:referent_id])
     @composteur = Composteur.find(params[:id])
