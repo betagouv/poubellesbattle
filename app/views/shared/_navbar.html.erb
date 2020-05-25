@@ -18,7 +18,7 @@
           </div>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
             <%= link_to "Cartographie des composteurs", admin_composteurs_path(anchor: "carto"), class: "dropdown-item" %>
-            <%= link_to "Contacter tous les sites de compostages", notifications_path, class: "dropdown-item" %>
+            <%= link_to "Contacter tous les sites de compostages", admin_notifications_path, class: "dropdown-item" %>
             <%= link_to "Ajouter un nouveau composteur", new_admin_composteur_path, class: "dropdown-item" %>
             <%= link_to "Suivre les demandes d'installation", admin_demandes_path, class: "dropdown-item"  %>
             <%= link_to "Annuaire et exports contacts", admin_annuaire_path, class: "dropdown-item" %>

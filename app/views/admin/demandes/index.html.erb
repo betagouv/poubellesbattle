@@ -7,7 +7,7 @@
           <div class="buttons-demande">
             <%= link_to "✏️", edit_admin_demande_path(demande), class: "button-demande" %>
             <%= mail_to demande.email, "✉️", subject: "Votre demande de composteur.", class: "button-demande" %>
-            <%= link_to "🗑", admin_demande_path(demande), method: :delete, data: {confirm: "Vous êtes sur le point de suprimer une demande de composteur. Etes-vous certain ?"}, class: "button-demande" %>
+            <%= link_to "🗑", admin_demande_path(demande), method: :delete, data: {confirm: "Vous êtes sur le point de supprimer une demande de composteur. Etes-vous certain ?"}, class: "button-demande" %>
           </div>
           <% if demande.status == "reçue" || demande.status == "refusée" %>
             <div class="status non-validee"></div>

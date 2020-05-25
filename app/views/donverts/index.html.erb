@@ -16,6 +16,13 @@
     <% @dons.each do |don| %>
       <div class="don-card <%= don.date_fin_dispo.past? || don.pourvu ? "don-past" : '' %>">
         <% if user_signed_in? %>
+          <% if current_user.admin?  %>
+            <div class="donvert-admin-line">
+              <div class="destroy-btn">
+                <%= link_to "❌", admin_donvert_path(don), method: :delete, data: {confirm: "Vous êtes sur le point de supprimer ce message. Etes-vous certain•e ?"}%>
+              </div>
+            </div>
+          <% end %>
           <% if current_user.id == don.user_id %>
             <div class="dropdown dropdown-options">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownOptions-<%= don.id%>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

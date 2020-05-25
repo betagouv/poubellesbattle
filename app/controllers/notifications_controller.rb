@@ -31,7 +31,6 @@ class NotificationsController < ApplicationController
       redirect_to composteur_path(@user.composteur_id)
     end
     flash[:alert] = "Le message n'a pas pu être enregistré."
-    end
   end
 
   def anonymous_depot
