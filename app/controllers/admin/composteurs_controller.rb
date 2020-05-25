@@ -43,7 +43,7 @@ class Admin::ComposteursController < ApplicationController
   def create
     @composteur = Composteur.create(composteur_params)
     if @composteur.save
-      redirect_to root_path
+      redirect_to admin_composteurs_path(@composteur)
     else
       render :new
     end
@@ -107,7 +107,7 @@ class Admin::ComposteursController < ApplicationController
 
   def destroy
     @composteur.destroy
-    redirect_to composteurs_path
+    redirect_to admin_composteurs_path
   end
 
   def new_manual_latlng

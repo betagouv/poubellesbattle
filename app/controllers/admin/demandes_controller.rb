@@ -51,7 +51,7 @@ class Admin::DemandesController < ApplicationController
 
   def destroy
     @demande.destroy
-    redirect_to admin_demandes_path
+    redirect_to admin_demandes_path, notice: "La demande de #{@demande.first_name} a bien été supprimée."
   end
 
   private

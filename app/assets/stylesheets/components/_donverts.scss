@@ -114,6 +114,22 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
+      position: relative;
+      .donvert-admin-line {
+        display: flex;
+        justify-content: end;
+        width: 100%;
+        padding: 8px 0 0 0;
+        opacity: 0;
+        position: absolute;
+        transition: all .3s ease;
+      }
+      &:hover {
+        .donvert-admin-line {
+          opacity: 1;
+          transition: all .5s ease;
+        }
+      }
       .dropdown-options {
         .dropdown-toggle {
           background: $light-green-pb;

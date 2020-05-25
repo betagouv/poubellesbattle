@@ -13,20 +13,20 @@ class Admin::NotificationsController < ApplicationController
     @notification.user_id = @user.id
 
     if @notification.save
-      redirect_to notifications_path
+      redirect_to admin_notifications_path
     else
       render :index
-      flash[:alert] = "Le message n'a pas pu être enregistré."
+      flash[:alert] = "Le message n'a pas pu être posté."
     end
   end
 
   def destroy
-    @notification = Notification.find(params[:id])
-    if @notification.notification_type == "demande-référent" || @notification.notification_type == "demande-référent-directe"
-      NotificationMailer.with(notification: @notification, state: "refusée").demande_referent_state.deliver_now
+    notification = Notification.find(params[:id])
+    if notification.notification_type == "demande-référent" || notification.notification_type == "demande-référent-directe"
+      NotificationMailer.with(notification: notification, state: "refusée").demande_referent_state.deliver_now
     end
-    @notification.destroy
-    redirect_back(fallback_location: demandes_path)
+    notification.destroy
+    redirect_to composteur_path(notification.composteur || notification.user.composteur)
     flash[:notice] = "Notification supprimée"
   end
 

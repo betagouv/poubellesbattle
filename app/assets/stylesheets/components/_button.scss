@@ -1,3 +1,12 @@
+.destroy-btn {
+  margin: 0 5px;
+  border: solid 1px red;
+  padding: 2px 4px;
+  border-radius: 10px;
+  font-size: 10px;
+  width: max-content;
+}
+
 .bouton-valid {
   color: $green;
   background: white;
