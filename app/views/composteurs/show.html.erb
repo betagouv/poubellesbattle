@@ -254,6 +254,11 @@
                       <% else %>
                         <%= notification.user.nil? ? "anonyme 🦸" : "#{notification.user.first_name}" %>
                       <% end %>
+                      <div class="notification-admin-line">
+                        <div class="destroy-btn">
+                          <%= link_to "❌", admin_notification_path(notification), method: :delete, data: {confirm: "Vous êtes sur le point de supprimer ce message. Etes-vous certain•e ?"} if current_user.admin? %>
+                        </div>
+                      </div>
                     </div>
                     <div class="notification-card notification-card-current-user <%= notification.notification_type %>">
                       <div class="notif-content"><p><%= notification.content %></p></div>

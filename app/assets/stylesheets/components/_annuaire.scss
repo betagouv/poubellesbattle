@@ -27,9 +27,10 @@
       padding: 0 10px;
       margin: 0 10px;
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: left;
-      text-align: left;
+      justify-content: center;
+      text-align: center;
     }
 
     .empty-box {

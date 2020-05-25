@@ -26,18 +26,11 @@ class NotificationsController < ApplicationController
     @notification.user_id = @user.id
 
     if @notification.save
-      if @user.admin?
-        redirect_to notifications_path
-      else
-        redirect_to composteur_path(@user.composteur_id)
-      end
+      redirect_to composteur_path(@user.composteur_id)
     else
-      if @user.admin?
-        render :index
-      else
-        redirect_to composteur_path(@user.composteur_id)
-      end
-      flash[:alert] = "Le message n'a pas pu être enregistré."
+      redirect_to composteur_path(@user.composteur_id)
+    end
+    flash[:alert] = "Le message n'a pas pu être enregistré."
     end
   end
 
