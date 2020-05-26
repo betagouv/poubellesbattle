@@ -19,7 +19,7 @@
           <% if current_user.admin?  %>
             <div class="donvert-admin-line">
               <div class="destroy-btn">
-                <%= link_to "❌", admin_donvert_path(don), method: :delete, data: {confirm: "Vous êtes sur le point de supprimer ce message. Etes-vous certain•e ?"}%>
+                <%= link_to "❌", admin_donvert_path(don), method: :delete, data: {confirm: "Vous êtes sur le point de supprimer cette offre de don. Etes-vous certain•e ?"}%>
               </div>
             </div>
           <% end %>
