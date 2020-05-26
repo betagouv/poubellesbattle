@@ -33,8 +33,15 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:first_name, :last_name, :phone_number, :role, :composteur_id, :photo, :ok_phone, :ok_mail, :ok_newsletter])
   end
 
-  # def after_sign_in_path_for(resource)
-  #   # return the path based on resource
-  #   redirect_to admin_composteurs_path if resource.admin?
-  # end
+  def after_sign_in_path_for(resource)
+    # return the path based on resource
+    case resource.role
+    when "admin"
+      admin_composteurs_path
+    when "referent"
+      composteur_path(resource.composteur)
+    else
+      resource.composteur.nil? ? root_path : composteur_path(resource.composteur)
+    end
+  end
 end
