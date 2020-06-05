@@ -11,6 +11,18 @@
       <li><a href="">Mentions légales</a></li>
       <li><%= mail_to "contact@poubellesbattle.fr", "Contactez-nous !" %></li>
       <li><a href="https://poubellesbattle.fr/vieprivee">Vie privée</a></li>
+      <% unless @composteurs.nil? %>
+
+          <div class="dropdown-toggle border-none" id="dropdownCompoList" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Tous les sites
+          </div>
+
+          <div class="dropdown-menu dropdown-menu-top" aria-labelledby="dropdownCompoList">
+            <% @composteurs.each do |compo_link| %>
+              <%= link_to compo_link.name, composteur_path(compo_link), class: "dropdown-item compo-footer" if compo_link.public == true  %>
+            <% end %>
+          </div>
+      <% end %>
     </ul>
 
     <ul class="footer__links">
