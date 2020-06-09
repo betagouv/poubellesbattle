@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
   get 'stats', to: 'pages#stats', as: 'stats'
   get 'vieprivee', to: 'pages#vieprivee', as: 'vieprivee'
+  get 'to_compost', to: 'pages#to_compost', as: 'composter_ou_non'
 
   # ADMINS ROUTES
   namespace :admin do
