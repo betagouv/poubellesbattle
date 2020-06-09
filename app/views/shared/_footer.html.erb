@@ -19,7 +19,7 @@
 
           <div class="dropdown-menu dropdown-menu-top" aria-labelledby="dropdownCompoList">
             <% @composteurs.each do |compo_link| %>
-              <%= link_to compo_link.name, composteur_path(compo_link), class: "dropdown-item compo-footer" if compo_link.public == true  %>
+              <%= link_to compo_link.name.downcase.capitalize, composteur_path(compo_link), class: "dropdown-item compo-footer" if compo_link.public == true  %>
             <% end %>
           </div>
       <% end %>
