@@ -3,6 +3,8 @@ class PagesController < ApplicationController
 
   def vieprivee; end
 
+  def to_compost; end
+
   def stats
     # this day but last month
     last_month = Date.today - 1.month
