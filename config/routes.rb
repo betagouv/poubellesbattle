@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  match '(*any)', to: redirect(subdomain: ''), via: :all, constraints: {subdomain: 'www'}
 
   resources :composteurs, only: [:index, :show, :update]
   root to: "composteurs#index"
