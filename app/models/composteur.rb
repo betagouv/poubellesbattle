@@ -29,7 +29,9 @@ class Composteur < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
-
+  validates :name, :address, presence: true, uniqueness: true, format: { with: /\d*.{5,}/ }
+  validates :category, inclusion: { in: ["composteur bas d'immeuble", "composteur de quartier"] }
+  validates :public, inclusion: { in: [true, false], message: "Merci de cocher une des deux cases"}
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
   has_many :users
