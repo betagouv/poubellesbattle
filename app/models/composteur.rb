@@ -25,11 +25,9 @@
 class Composteur < ApplicationRecord
   include PgSearch::Model
   pg_search_scope :search_by_name_and_address,
-    against: [ :name, :address ],
-    using: {
-      tsearch: { prefix: true }
-    }
-  validates :name, :address, presence: true, uniqueness: true, format: { with: /\d*.{5,}/ }
+                  against: [:name, :address], using: { tsearch: { prefix: true } }
+  validates :name, presence: true, length: { in: 2..25 }
+  validates :address, length: { minimum: 5 }, presence: true, uniqueness: true
   validates :category, inclusion: { in: ["composteur bas d'immeuble", "composteur de quartier"] }
   validates :public, inclusion: { in: [true, false], message: "Merci de cocher une des deux cases"}
   geocoded_by :address

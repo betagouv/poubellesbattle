@@ -22,7 +22,17 @@
 #  archived          :boolean          default(FALSE)
 #
 class Donvert < ApplicationRecord
-  validates :donateur_type, :title, :type_matiere_orga, :description, :date_fin_dispo, :donneur_email, :donneur_tel, :donneur_name, :donneur_address, presence: true
+  validates :title, presence: true, length: { minimum: 5 }
+  validates :description, presence: true, length: { within: 10..350 }
+  validates :donateur_type, presence: true, inclusion: { in: ["site de compostage", "entreprise du paysage", "association", "établissement scolaire", "particulier", "autre"] }
+  validates :type_matiere_orga, presence: true, inclusion: { in: ["compost", "structurant", "outils", "graines", "plantes", "autre"] }
+  validates :donneur_name, presence: true, length: { in: 2..25 }
+  validates :donneur_address, length: { minimum: 5 }, presence: true
+  validates :donneur_email, presence: true, format: { with: /\A[^@\s]+@[^@^.\s]+\.\w+\z/ }
+  validates :donneur_tel, presence: true, format: { with: /\A(0|\+33)[^0^8^9](\d{8})\z/ }
+
+  validate :date_fin_dispo_cannot_be_in_the_past
+
   has_one_attached :photo
   belongs_to :user, optional: true
   has_many :messages
@@ -34,6 +44,12 @@ class Donvert < ApplicationRecord
 
   def to_param
     slug
+  end
+
+  def date_fin_dispo_cannot_be_in_the_past
+    if date_fin_dispo.present? && date_fin_dispo < Date.today
+      errors.add(:date_fin_dispo, "can't be in the past")
+    end
   end
 
   private

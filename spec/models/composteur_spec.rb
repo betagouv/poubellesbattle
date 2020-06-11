@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Composteur, type: :model do
-  subject { Composteur.new(name: "Hédas", address: "2 rue du hédas, Pau", category: "composteur de quartier") }
+  subject { Composteur.new(name: "Hédas", address: "2 rue du hédas, Pau", category: "composteur de quartier", public: true) }
 
   before { subject.save }
 
@@ -15,11 +15,20 @@ RSpec.describe Composteur, type: :model do
     expect(subject).to_not be_valid
   end
 
+  it 'should only accept a name with more than 1 char' do
+    subject.name = "j"
+    expect(subject).to_not be_valid
+  end
+
   it 'should have an address' do
     subject.address = nil
     expect(subject).to_not be_valid
   end
 
+  it 'should have an address with at least 5 chars' do
+    subject.address = "Pau"
+    expect(subject).to_not be_valid
+  end
   it 'should have a category' do
     subject.category = nil
     expect(subject).to_not be_valid
@@ -27,6 +36,11 @@ RSpec.describe Composteur, type: :model do
 
   it 'should accept only two types of category' do
     subject.category = "composteur de résidence privée"
+    expect(subject).to_not be_valid
+  end
+
+  it 'should be public or not public but not nil' do
+    subject.public = nil
     expect(subject).to_not be_valid
   end
 end
