@@ -8,9 +8,6 @@ RSpec.describe Donvert, type: :model do
                         date_fin_dispo: Date.today + 3.weeks) }
   before { subject.save }
 
-  it 'should be a valid subject' do
-    is_expected.to be_valid
-  end
 
   it 'should have a title' do
     subject.title = nil
@@ -89,6 +86,19 @@ RSpec.describe Donvert, type: :model do
     expect { subject.instance_eval { send_confirmation_don_email } }.to change { ActionMailer::Base.deliveries.count }.by(1)
     expect(ActionMailer::Base.deliveries.last.subject).to eq("Votre don est en ligne !")
     expect(ActionMailer::Base.deliveries.last.to.first).to eq(subject.donneur_email)
+  end
 
+  describe 'with or without a user attached' do
+    let(:new_user) { User.create!(email: "azerty@mail.com", password: "123456", first_name: "johny", last_name: "oh") }
+
+    it 'should be valid without a user attached to a donvert' do
+      is_expected.to be_valid
+    end
+
+    it 'should be valid with a user attached to a donvert' do
+      subject.user = new_user
+      is_expected.to be_valid
+      expect(subject.user.id).to eq(new_user.id)
+    end
   end
 end
