@@ -22,7 +22,9 @@
 #  notes_to_collegues :string
 #
 class Demande < ApplicationRecord
-  validates :first_name, :last_name, :email, :phone_number, :address, :logement_type, :inhabitant_type, presence: true
+  validates :first_name, :last_name, :address, :logement_type, :inhabitant_type, presence: true
+  validates :phone_number, presence: true, format: { with: /\A(0|\+33)[^0^8^9](\d{8})\z/ }
+  validates :email, presence: true, format: { with: /\A[^@\s]+@[^@^.\s]+\.\w+\z/ }
   validates_inclusion_of :potential_users, in: [true, false]
   has_one_attached :photo
 

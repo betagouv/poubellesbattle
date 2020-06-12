@@ -14,7 +14,9 @@
 #
 class Message < ApplicationRecord
   belongs_to :donvert, optional: true
-  validates :content, :sender_email, :sender_full_name, :message_type, presence: true
+  validates :content, :sender_full_name, presence: true, length: { minimum: 4 }
+  validates :sender_email, presence: true, format: { with: /\A[^@\s]+@[^@^.\s]+\.\w+\z/ }
+  validates :message_type, inclusion: { in: ['interet-donvert', 'message-membres', 'message-agglo', 'message-to-referent'] }, presence: true
 
   # rajouter ici le after create send email to that dude
   after_create :send_interest_don_email, if: :message_type_is_interet_donvert?

@@ -14,7 +14,8 @@ class Notification < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :composteur, optional: true
 
-  validates :content, :notification_type, presence: true
+  validates :content, presence: true
+  validates :notification_type, inclusion: { in: ['demande-référent', 'demande-référent-directe', 'depot', 'depot direct', 'anomalie', 'message'] }, presence: true
 
   after_save :send_demande_referent_directe_email, if: :demande_directe?
 
