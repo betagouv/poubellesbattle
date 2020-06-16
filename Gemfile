@@ -22,7 +22,7 @@ gem 'rqrcode'
 gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
-gem 'webpacker'
+gem 'webpacker', '~> 5.x'
 
 group :development do
   gem 'annotate'
