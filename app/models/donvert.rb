@@ -31,7 +31,7 @@ class Donvert < ApplicationRecord
   validates :donneur_email, presence: true, format: { with: /\A[^@\s]+@[^@^.\s]+\.\w+\z/ }
   validates :donneur_tel, presence: true, format: { with: /\A(0|\+33)[^0^8^9](\d{8})\z/ }
 
-  validate :date_fin_dispo_cannot_be_in_the_past
+  validate :date_fin_dispo_cannot_be_in_the_past, on: :create
 
   has_one_attached :photo
   belongs_to :user, optional: true
