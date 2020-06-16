@@ -10,7 +10,7 @@ gem 'pg', '~> 0.21'
 gem 'pg_search', '~> 2.3.0'
 gem 'postmark-rails'
 gem 'puma'
-gem 'rails', '5.2.3'
+gem 'rails', '5.2.4'
 gem 'redis'
 gem 'turbolinks', '~> 5.2.0'
 

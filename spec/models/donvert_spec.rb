@@ -69,9 +69,17 @@ RSpec.describe Donvert, type: :model do
     is_expected.to_not be_valid
   end
 
-  it 'should have a date_fin_dispo in the future' do
-    subject.date_fin_dispo = Date.today - 2.weeks
-    is_expected.to_not be_valid
+  describe 'donvert from the past' do
+    let(:past_don) { Donvert.new(title: 'compost', description: "c'est du compost c'est le mien 123456",
+                        donateur_type: "particulier", type_matiere_orga: 'compost',
+                        donneur_name: 'jp', donneur_address: "4 rue du hédas, Pau",
+                        donneur_email: 'okok@email.com', donneur_tel: '0123456789',
+                        date_fin_dispo: Date.today - 3.weeks)
+                    }
+      before { past_don.save }
+    it 'should not be valid with a date_fin_dispo in the past ON CREATE' do
+      expect(past_don).to_not be_valid
+    end
   end
 
   it 'should have a slug' do
