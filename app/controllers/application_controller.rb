@@ -32,8 +32,10 @@ class ApplicationController < ActionController::Base
   protected
 
   def ensure_domain
-    if request.env['HTTP_HOST'] != 'poubellesbattle.fr' && Rails.env.production?
-      redirect_to "https://poubellesbattle.fr", :status => 301
+    if Rails.env.production?
+      if request.env['HTTP_HOST'] != 'poubellesbattle.fr'
+        redirect_to "https://poubellesbattle.fr", status: 301
+      end
     end
   end
 
