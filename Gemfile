@@ -33,15 +33,15 @@ group :development do
 end
 
 group :development, :test do
+  gem 'capybara'
   gem 'dotenv-rails'
+  gem 'factory_bot_rails'
+  gem 'faker'
   gem 'listen', '~> 3.0.5'
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 4.0.0'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'factory_bot_rails'
-  gem 'faker'
-  gem 'capybara'
-  gem 'rails-controller-testing'
 end

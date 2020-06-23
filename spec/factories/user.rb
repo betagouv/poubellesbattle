@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    email { "test-#{rand(1..300)}@example.com" }
+    email { "#{rand(1..300)}-#{rand(1..300)}@example.com" }
     password { "123456" }
     password_confirmation { "123456" }
     first_name { Faker::Name.first_name }
