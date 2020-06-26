@@ -1,7 +1,6 @@
 require 'open-uri'
 require 'csv'
 require 'faker'
-Dir[Rails.root.join('spec/support/factory_bot.rb')]
 
 Notification.destroy_all
 Message.destroy_all
