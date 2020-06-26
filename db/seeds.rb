@@ -9,8 +9,6 @@ User.destroy_all
 Composteur.destroy_all
 Donvert.destroy_all
 
-# csv_options = { col_sep: ';', force_quotes: true, quote_char: '"' }
-# filepath    = 'db/compo.csv'
 
 admin = User.create(
   email: "admin@mail.com",
@@ -68,6 +66,9 @@ Notification.create(
     end
   end
 end
+# csv_options = { col_sep: ';', force_quotes: true, quote_char: '"' }
+# filepath    = 'db/compo.csv'
+
 # CSV.foreach(filepath, csv_options) do |row|
 #   compo = Composteur.create(
 #     name: row[2],
