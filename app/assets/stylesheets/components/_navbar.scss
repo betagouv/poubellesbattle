@@ -60,9 +60,11 @@ a:hover {
   position: fixed;
   z-index: 100;
   top: 0px;
-  background: white;
-  box-shadow: 0 0 10px gray;
+  background: $pau-blue;
+  // box-shadow: 0 0 10px $pau-light-blue;
+  color: white;
   h1 {
+    color: white;
     font-family: $pau-display;
   }
   .nav-space-btw {
