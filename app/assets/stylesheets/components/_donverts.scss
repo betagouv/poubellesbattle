@@ -68,10 +68,11 @@
   justify-content: center;
   align-items: center;
   margin: auto;
+  min-height: calc(100vh - 160px - 100px);
   .don-cards {
     display: flex;
     flex-wrap: wrap;
-    margin: 140px 0;
+    margin: 140px 0 50px 0;
     background: white;
     border-radius: 5px;
     padding: 20px;

@@ -115,6 +115,16 @@
   </div>
 
   <div class="composteur-left">
+    <div class="header-composteur">
+      <div class="composteur-infos">
+        <h1 class="composteur-name"><%= @composteur.name %></h1>
+        <p class="composteur-adress"><%= @composteur.category %> : <%= @composteur.address %></p>
+      </div>
+      <!-- <div class="points-pb">
+        <h1 class="bangers">25</h1>
+        <p>dépots par semaine en moyenne</p>
+      </div> -->
+    </div>
     <div class="inscription-desinscription">
     <% if user_signed_in? %>
       <% if current_user.admin? %>
@@ -128,17 +138,7 @@
       <% end %>
     <% end %>
     <%#= link_to "dépot sauvage", anonymous_depot_path(composteur: @composteur.id, type: 'depot direct') %>
-  </div>
-  <div class="header-composteur">
-    <div class="composteur-infos">
-      <h1 class="composteur-name"><%= @composteur.name %></h1>
-      <p class="composteur-adress"><%= @composteur.category %> : <%= @composteur.address %></p>
     </div>
-    <!-- <div class="points-pb">
-      <h1 class="bangers">25</h1>
-      <p>dépots par semaine en moyenne</p>
-    </div> -->
-  </div>
    <!--  <p class="composteur-type"></p> -->
     <%# if @last_anomalie %>
       <!-- <p>Déjà <%#= distance_of_time_in_words(Time.now, @last_anomalie.created_at) %> depuis la dernière anomalie !</p> -->

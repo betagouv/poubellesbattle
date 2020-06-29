@@ -22,12 +22,20 @@
       margin-bottom: 30px;
       .composteur-infos {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         .composteur-name {
-          letter-spacing: 1px;
-          font-size: 55px;
-          font-family:'Bangers', cursive;
-          text-shadow: $pau-orange 1px 1px 2px;
-          color: $dark-brown-pb;
+          // letter-spacing: 1px;
+          font-size: 35px;
+          // text-shadow: $yellow-pb 1px 1px 2px;
+          color: white;
+          background: $pau-pink;
+          padding: 5px 20px;
+          width: max-content;
+          h1 {
+            margin: 0;
+          }
         }
         .composteur-adress {
           margin: 10px 0;
