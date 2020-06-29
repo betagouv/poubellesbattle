@@ -1,6 +1,6 @@
 <div class="navbar-poub-bat">
   <%= link_to root_path, class: "home-link" do %>
-    <img class="logo" src="<%= image_path('PB_logo.png') %>"/>
+    <!-- <img class="logo" src="<%#= image_path('PB_logo.png') %>"/> -->
     <div class="poubelles-title">
       <h1>Compost en ville</h1>
     </div>
@@ -9,7 +9,7 @@
   <div class="all-the-buttons">
     <%#= link_to "Bourse Verte", donverts_path, class: "bouton-navbar" %>
 
-    <li class="dropdown align-self-center d-sm-block mr-3">
+    <li class="dropdown align-self-center d-sm-block nav-space-btw">
       <% if user_signed_in? %>
         <% if current_user.admin? %>
           <div class="dropdown-toggle border-none" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -54,7 +54,7 @@
       <% if user_signed_in? %>
         <% if current_user.admin? %>
         <% else %>
-          <li class="dropdown align-self-center d-sm-block mr-3">
+          <li class="dropdown align-self-center d-sm-block nav-space-btw">
             <div class="dropdown-toggle border-none" id="dropdownMenuApropos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 A propos
               </div>
@@ -66,7 +66,7 @@
             </li>
         <% end %>
         <% else %>
-        <li class="dropdown align-self-center d-sm-block mr-3">
+        <li class="dropdown align-self-center d-sm-block nav-space-btw">
           <div class="dropdown-toggle border-none" id="dropdownMenuApropos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             A propos
           </div>
@@ -77,7 +77,7 @@
           </div>
         </li>
       <% end %>
-    <li class="dropdown align-self-center d-sm-block mr-3">
+    <li class="dropdown align-self-center d-sm-block nav-space-btw">
       <div class="dropdown-toggle border-none" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Mon espace
       </div>
@@ -101,17 +101,17 @@
         <% end %>
       </div>
     </li>
-    <% if user_signed_in? %>
-      <% if current_user.photo.attached? %>
-        <%= link_to edit_user_registration_path(current_user) do  %>
-          <%= cl_image_tag current_user.photo.key, height: 100, width: 100, crop: :fill, class: "avatar" %>
-        <% end %>
-      <% else %>
-        <%= link_to edit_user_registration_path(current_user) do  %>
-          <%= image_tag "PB_logo.png", alt: "default avatar", class: "avatar" %>
-        <% end %>
-      <% end %>
-    <% end %>
+    <%# if user_signed_in? %>
+      <%# if current_user.photo.attached? %>
+        <%#= link_to edit_user_registration_path(current_user) do  %>
+          <%#= cl_image_tag current_user.photo.key, height: 100, width: 100, crop: :fill, class: "avatar" %>
+        <%# end %>
+      <%# else %>
+        <%#= link_to edit_user_registration_path(current_user) do  %>
+          <%#= image_tag "PB_logo.png", alt: "default avatar", class: "avatar" %>
+        <%# end %>
+      <%# end %>
+    <%# end %>
   </div>
 </div>
 

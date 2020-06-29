@@ -70,9 +70,26 @@ color: white !important;
   cursor: pointer;
 }
 
+@media (max-width: 1000px) {
+  #carto {
+    #map {
+      width: 700px;
+      .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
+        margin: 0;
+        position: relative;
+      }
+    }
+    #geocoder {
+      width: 80%;
+      .mapboxgl-ctrl-geocoder {
+        font-size: 16px;
+      }
+    }
+  }
+}
 @media (max-width: 600px) {
   #carto {
-    padding: 135px 0 0 0;
+    padding: 0 0 0 0;
     #map {
       width: 300px;
       .mapboxgl-ctrl-geocoder.mapboxgl-ctrl {
@@ -82,6 +99,9 @@ color: white !important;
     }
     #geocoder {
       width: 80%;
+      .mapboxgl-ctrl-geocoder {
+        font-size: 16px;
+      }
     }
   }
 }

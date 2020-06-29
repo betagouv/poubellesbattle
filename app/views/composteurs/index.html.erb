@@ -5,7 +5,7 @@
   <div id="map" data-markers="<%= @markers.to_json %>" data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>" ></div>
 </div>
 
-<div class="section-grey py-5">
+<div class="section-grey-demande py-5">
   <h5>Vous n'avez pas trouvé de composteurs près de chez vous ?</h5>
   <p class="my-4">Faites une <%= link_to "demande", new_demande_path, class: "button-in-paragraph"  %> pour l'installation d'un nouveau site de compostage !</p>
 </div>

@@ -25,6 +25,13 @@
   }
 }
 
+  .section-grey-demande {
+    padding: 30px 20px;
+    text-align: center;
+    h5 {
+      font-size: 18px;
+    }
+  }
 
 @media (max-width: 820px) {
   .section-grey {
@@ -45,8 +52,20 @@
   }
 }
 
-
-
+@media (max-width: 1000px) {
+  .section-grey {
+    margin-bottom: -75px;
+  }
+}
+@media (max-width: 600px) {
+  .section-grey {
+    margin-bottom: 55px;
+  }
+  .how-to-paragraphs p {
+    margin: 20px 0;
+    width: 90%;
+  }
+}
 
 // dont' know what this is ↓
 

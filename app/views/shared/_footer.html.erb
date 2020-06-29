@@ -1,16 +1,15 @@
 <div class="footer">
-  <div class="footer__logo">
-    <img src="<%= image_path('PB_logo.png') %>">
-  </div>
+  <!-- <div class="footer__logo">
+    <img src="<%#= image_path('PB_logo.png') %>">
+  </div> -->
 
   <div class="text-bloc">
     <ul class="footer__links">
-      <li><h2>Poubelles battle</h2></li>
-      <li><a href="https://beta.gouv.fr/startups/poubelles-battle.html">Qui sommes-nous ?</a></li>
-      <li><a href="https://beta.gouv.fr/apropos/">Les start-ups d’état</a></li>
+      <li><h2>Compost en Ville</h2></li>
       <li><a href="">Mentions légales</a></li>
       <li><%= mail_to "contact@poubellesbattle.fr", "Contactez-nous !" %></li>
-      <li><a href="https://poubellesbattle.fr/vieprivee">Vie privée</a></li>
+      <li><%= link_to "Vie privée", vieprivee_path %></li>
+      <li><a href="https://www.pau.fr/">L'agglomération de Pau</a></li>
       <% unless @composteurs.nil? %>
 
           <div class="dropdown-toggle border-none compo-footer-dropdown" id="dropdownCompoList" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -32,9 +31,10 @@
     </ul>
 
     <ul class="footer__links">
-      <li><h2>En collaboration avec</h2></li>
-      <li><a href="https://www.pau.fr/">L'agglomération de Pau</a></li>
-      <li><a href="https://beta.gouv.fr/">Beta.gouv</a></li>
+      <li><h2>Une itération de Poubelles Battle</h2></li>
+      <li><a href="https://beta.gouv.fr/startups/poubelles-battle.html">Qui est Poubelles Battle ?</a></li>
+      <li><a href="https://beta.gouv.fr/">Beta.gouv, c'est quoi ?</a></li>
+      <li><a href="https://beta.gouv.fr/apropos/">Que sont les start-ups d’état ?</a></li>
     </ul>
   </div>
 </div>

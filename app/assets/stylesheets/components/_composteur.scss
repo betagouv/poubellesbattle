@@ -26,7 +26,7 @@
           letter-spacing: 1px;
           font-size: 55px;
           font-family:'Bangers', cursive;
-          text-shadow: $yellow 1px 1px 2px;
+          text-shadow: $pau-orange 1px 1px 2px;
           color: $dark-brown-pb;
         }
         .composteur-adress {
@@ -55,16 +55,16 @@
       .stats {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: center;
         .stats-pb {
-          width: 100%;
+          width: max-content;
           height: max-content;
           padding: 10px;
           display: flex;
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          background: $yellow;
+          background: $yellow-pb;
           border: solid 5px $green;
           border-radius: 10px;
           color: $dark-brown-pb;
@@ -475,38 +475,6 @@
   display: none;
 }
 
-@media (max-width: 600px) {
-  .composteur-box {
-    margin: 150px 0 50px 0 !important;
-    .depot-anomalie {
-      justify-content: center;
-      flex-wrap: wrap;
-      .depot-form {
-        font-size: 14px;
-        margin: 5px;
-      }
-
-      .anomalie-form {
-        font-size: 14px;
-        margin: 5px;
-        width: 90%;
-      }
-    }
-
-/* application-0b158dc183dd2e904f79d1f8ee736e25e856300020eb3994d22393360abe6fa1.css | http://localhost:3000/assets/application-0b158dc183dd2e904f79d1f8ee736e25e856300020eb3994d22393360abe6fa1.css */
-
-.message-form-flex {
-  /* display: flex; */
-  display: block;
-}
-
-.message-form {
-  /* padding: 0 45px; */
-  padding: 0;
-}
-
-  }
-}
 
 
 @media (max-width: 1000px) {
@@ -518,7 +486,7 @@
     }
     .composteur-left {
       width: 90%;
-      margin: 20px 0;
+      margin: 0 0;
       .dropdown-form-referent {
         margin: 0;
       }
@@ -535,6 +503,12 @@
         flex-direction: column-reverse;
         .composteur-photo {
           max-width: 90%;
+        }
+        .stats {
+          flex-wrap: wrap;
+          .stats-pb {
+            margin: 10px;
+          }
         }
         .stats {
           max-width: 100%;
@@ -581,6 +555,46 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .composteur-box {
+    margin: 120px 0 50px 0 !important;
+    .depot-anomalie {
+      justify-content: center;
+      flex-wrap: wrap;
+      .depot-form {
+        font-size: 14px;
+        margin: 5px;
+      }
+
+      .anomalie-form {
+        font-size: 14px;
+        margin: 5px;
+        width: 90%;
+      }
+    }
+    #topReferentAggloCollapse .btn-to-referent-collapse {
+      background: white;
+      box-shadow: 0 0 10px rgba(20, 20, 20, 0.2);
+      margin-bottom: 0 !important;
+      font-size: 13px;
+    }
+    .message-form-flex {
+      display: block;
+    }
+    .message-form {
+      padding: 0;
+    }
+    .referent-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      h5 {
+        width: max-content;
+      }
     }
   }
 }

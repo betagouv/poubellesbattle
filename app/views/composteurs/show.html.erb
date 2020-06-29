@@ -158,20 +158,22 @@
           <p class="users-stat-info"><%= "adepte".pluralize(@users.count) %> du compostage</p>
           <% end %>
         </div>
-        <div class="stats-pb" data-toggle="tooltip" data-html="true" data-placement="left" title="
-            <strong>Points Poubelles Battle</strong>
-            <p>Les points PB sont là pour encourager les dépots autant que les échanges entre les membres du site de compostage.</p>
-            <p>+10 points par dépot et anomalie résolue</p>
-            <p>-5 points par anomalie non résolue</p>
-            <p>+2 points par messages</p>
-            ">
-          <h1 class="bangers"><%= @score %></h1>
-          <p class="users-stat-info"><%= "point".pluralize(@score) %> PB</p>
-        </div>
-        <div class="stats-pb">
-          <h1 class="bangers"><%= @depots_count %></h1>
-          <p class="users-stat-info"><%= "dépot".pluralize(@depots_count) %></p>
-        </div>
+        <% if user_signed_in? %>
+          <div class="stats-pb" data-toggle="tooltip" data-html="true" data-placement="left" title="
+              <strong>Points Poubelles Battle</strong>
+              <p>Les points PB sont là pour encourager les dépots autant que les échanges entre les membres du site de compostage.</p>
+              <p>+10 points par dépot et anomalie résolue</p>
+              <p>-5 points par anomalie non résolue</p>
+              <p>+2 points par messages</p>
+              ">
+            <h1 class="bangers"><%= @score %></h1>
+            <p class="users-stat-info"><%= "point".pluralize(@score) %> PB</p>
+          </div>
+          <div class="stats-pb">
+            <h1 class="bangers"><%= @depots_count %></h1>
+            <p class="users-stat-info"><%= "dépot".pluralize(@depots_count) %></p>
+          </div>
+        <% end %>
       </div>
     </div>
     <div class="les-users">

@@ -1,19 +1,40 @@
 // Import Google fonts
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
 
-// Define fonts for body and headers
-$body-font: "Open Sans", "Helvetica", "sans-serif";
-$headers-font: "Raleway", "Helvetica", "sans-serif";
 
-// To use a font file (.woff) uncomment following lines
-// @font-face {
-//   font-family: "Font Name";
-//   src: font-url('FontFile.eot');
-//   src: font-url('FontFile.eot?#iefix') format('embedded-opentype'),
-//        font-url('FontFile.woff') format('woff'),
-//        font-url('FontFile.ttf') format('truetype')
-// }
-// $my-font: "Font Name";
+// Pau fonts
+@font-face {
+  font-family: "AvenirNextRegular";
+  src: font-url('AvenirNextLTPro-Regular.woff') format('woff'),
+}
+@font-face {
+  font-family: "AvenirNextItalic";
+  src: font-url('AvenirNextLTPro-It.woff') format('woff'),
+}
+@font-face {
+  font-family: "AvenirNextDemi";
+  src: font-url('AvenirNextLTPro-Demi.woff') format('woff'),
+}
+@font-face {
+  font-family: "AvenirNextBold";
+  src: font-url('AvenirNextLTPro-Bold.woff') format('woff'),
+}
+@font-face {
+  font-family: "PauDisplay";
+  src: font-url('Pau-Display.woff') format('woff'),
+}
+
+$avenir-reg: "AvenirNextRegular";
+$avenir-it: "AvenirNextItalic";
+$avenir-demi: "AvenirNextDemi";
+$avenir-bold: "AvenirNextBold";
+$pau-display: "PauDisplay";
+
+// Define fonts for body and headers
+$body-font: "AvenirNextRegular", "Helvetica", "sans-serif";
+$headers-font: "AvenirNextDemi", "Helvetica", "sans-serif";
+
+
 .bangers {
   font-family: 'Bangers', cursive;
 }

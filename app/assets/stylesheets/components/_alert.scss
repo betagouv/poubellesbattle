@@ -6,3 +6,9 @@
   width: max-content;
 }
 
+@media (max-width: 600px) {
+  .alert {
+    bottom: 72%;
+    right: 0px;
+  }
+}

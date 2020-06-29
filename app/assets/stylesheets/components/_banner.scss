@@ -1,7 +1,7 @@
 
 
 .home-banner {
-  background-color: $grass-green;
+  background-color: $pau-blue;
   padding: 50px 0;
   position: relative;
   height: max-content;
@@ -12,7 +12,6 @@
   align-items: center;
   width: 100%;
   h1 {
-    // font-size: 32px;
     color: white;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
     font-weight: bold;
@@ -29,7 +28,7 @@
     font-size: 12px;
     color: white;
     max-width: fit-content;
-    background-color: $orange;
+    background-color: $pau-orange;
     padding: 0 0.9em;
     border-radius: 30px;
     margin-bottom: 20px;
@@ -87,7 +86,10 @@
 // MEDIA QUERIES
 @media (max-width: 600px) {
   .home-banner {
-    margin-top: 120px;
+    margin-top: 100px;
+    h1 {
+      font-size: 25px;
+    }
     p {
       width: 90vw;
     }
