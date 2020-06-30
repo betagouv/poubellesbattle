@@ -8,7 +8,7 @@
 }
 
 .bouton-valid {
-  color: $pau-green;
+  color: $pau-orange;
   background: white;
   text-decoration: none;
   border: solid 1px !important;
@@ -40,18 +40,16 @@
 }
 .cta-compost {
   margin: 50px 0;
+  color: white;
+  background: $pau-orange;
+  &:hover {
+    background: white;
+    color: $pau-orange;
+  }
 }
 @media (min-width: 600px) {
   .button-in-paragraph.cta-compost {
-    background: transparent;
-    color: transparent;
     margin: 0;
-    cursor: default;
-    &:hover {
-      color: transparent;
-      background: transparent;
-      cursor: default;
-    }
   }
 }
 .small-btn-pb {
