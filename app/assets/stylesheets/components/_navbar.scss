@@ -16,7 +16,7 @@
     h1 {
       // color: $pau-light-blue;
       text-decoration: none;
-      text-shadow: $yellow-pb 2px 5px 10px;
+      // text-shadow: $yellow-pb 2px 5px 10px;
       transition: all 0.8s ease;
     }
   }
@@ -66,6 +66,11 @@ a:hover {
   h1 {
     color: white;
     font-family: $pau-display;
+  }
+  .admin-navbar-name {
+    h5 {
+      margin: 0;
+    }
   }
   .nav-space-btw {
     margin: 0 10px;

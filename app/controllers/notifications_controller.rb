@@ -26,11 +26,11 @@ class NotificationsController < ApplicationController
     @notification.user_id = @user.id
 
     if @notification.save
-      redirect_to composteur_path(@user.composteur_id)
+      redirect_to composteur_path(@user.composteur_id, anchor: 'messagerie-board')
     else
       redirect_to composteur_path(@user.composteur_id)
+      flash[:alert] = "Le message n'a pas pu être enregistré."
     end
-    flash[:alert] = "Le message n'a pas pu être enregistré."
   end
 
   def anonymous_depot

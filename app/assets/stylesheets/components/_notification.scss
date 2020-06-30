@@ -190,3 +190,9 @@ textarea#notification_content {
     }
   }
 }
+
+@media (max-width: 1024px) {
+  .notif-block .notification-admin-line {
+    opacity: 1;
+  }
+}
