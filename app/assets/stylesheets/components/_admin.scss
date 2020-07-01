@@ -1,12 +1,14 @@
 .admin-box {
   width: 100%;
-  min-height: calc(100vh - 160px - 120px);
+  min-height: calc(100vh - 160px - 100px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 120px;
+  margin-top: 100px;
+  padding-bottom: 50px;
 }
+
 .vie-privee-box {
   margin: 120px auto 50px;
 }
@@ -21,8 +23,6 @@
   border-radius: 5px;
   .marg-vert {
     position: relative;
-    top: 40px;
-    margin: 10px 0 !important;
   }
 }
 

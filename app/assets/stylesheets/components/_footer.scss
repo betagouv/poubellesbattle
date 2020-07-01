@@ -1,9 +1,11 @@
 .footer {
-  background: #6B7272;
-  color: white;
+  background: #6B727220;
+  color: #6B7272;
   padding: 50px;
-  margin: 65px 0 0 0;
-  // width: 100vw;
+  margin: 0 0 0 0;
+  bottom: 0;
+  position: relative;
+  width: 100vw;
   .compo-footer-dropdown {
     font-size: 12px;
     font-weight: lighter;
@@ -66,7 +68,7 @@
 }
 
 .footer__links a {
-  color: white;
+  color: #6B7272;
   text-decoration: none;
   font-family: $body-font;
   font-size: 12px;
@@ -88,7 +90,7 @@
 
 @media (max-width: 600px) {
   .footer {
-    margin: 90px 0 0 0;
+    // margin: 90px 0 0 0;
   }
   .text-bloc {
     flex-direction: column;

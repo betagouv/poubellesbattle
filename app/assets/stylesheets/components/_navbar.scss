@@ -2,22 +2,22 @@
   display: flex;
   h1 {
     font-size: 30px;
-    padding-left: 6px;
-    color: $dark-brown-pb;
+    // padding-left: 6px;
+    color: $pau-blue;
     text-decoration: none;
-    font-family: 'Bangers', cursive;
-    text-shadow: $yellow-pb 1px 1px 2px;
-    letter-spacing: 1px;
-    transform: rotate(-5deg);
+    font-family: $pau-display;
+    // text-shadow: $yellow-pb 1px 1px 2px;
+    // letter-spacing: 1px;
+    // transform: rotate(-5deg);
     margin: 0;
-    transition: all 0.4s ease-out;
+    transition: all 0.5s ease;
   }
   &:hover {
     h1 {
-      color: $dark-brown-pb;
+      // color: $pau-light-blue;
       text-decoration: none;
-      text-shadow: $yellow-pb 2px 5px 10px;
-      transition: all 0.3s ease-in;
+      // text-shadow: $yellow-pb 2px 5px 10px;
+      transition: all 0.8s ease;
     }
   }
 }
@@ -30,6 +30,7 @@ a:hover {
 .home-link {
   display: flex;
   align-items: center;
+  height: 100%;
 }
 
 .logo {
@@ -59,13 +60,26 @@ a:hover {
   position: fixed;
   z-index: 100;
   top: 0px;
-  background: white;
-  box-shadow: 0 0 10px gray;
+  background: $pau-blue;
+  // box-shadow: 0 0 10px $pau-light-blue;
+  color: white;
+  h1 {
+    color: white;
+    font-family: $pau-display;
+  }
+  .admin-navbar-name {
+    h5 {
+      margin: 0;
+    }
+  }
+  .nav-space-btw {
+    margin: 0 10px;
+  }
 }
 
 .all-the-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .dropdown {
@@ -83,11 +97,19 @@ a:hover {
 }
 
 // MEDIA QUERIES
+@media (max-width: 1000px) {
+  .navbar-poub-bat {
+    width: 100vw;
+  }
+}
 @media (max-width: 600px) {
   .navbar-poub-bat {
-    height: 120px;
+    height: 100px;
     padding: 0 20px 20px 20px;
     flex-direction: column;
+    h1 {
+      font-size: 27px;
+    }
   }
   .dropdown-menu.dropdown-menu-right.show {
     width: 320px;

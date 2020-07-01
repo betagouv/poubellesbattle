@@ -115,6 +115,16 @@
   </div>
 
   <div class="composteur-left">
+    <div class="header-composteur">
+      <div class="composteur-infos">
+        <h1 class="composteur-name"><%= @composteur.name %></h1>
+        <p class="composteur-adress"><%= @composteur.category %> : <%= @composteur.address %></p>
+      </div>
+      <!-- <div class="points-pb">
+        <h1 class="bangers">25</h1>
+        <p>dépots par semaine en moyenne</p>
+      </div> -->
+    </div>
     <div class="inscription-desinscription">
     <% if user_signed_in? %>
       <% if current_user.admin? %>
@@ -128,17 +138,7 @@
       <% end %>
     <% end %>
     <%#= link_to "dépot sauvage", anonymous_depot_path(composteur: @composteur.id, type: 'depot direct') %>
-  </div>
-  <div class="header-composteur">
-    <div class="composteur-infos">
-      <h1 class="composteur-name"><%= @composteur.name %></h1>
-      <p class="composteur-adress"><%= @composteur.category %> : <%= @composteur.address %></p>
     </div>
-    <!-- <div class="points-pb">
-      <h1 class="bangers">25</h1>
-      <p>dépots par semaine en moyenne</p>
-    </div> -->
-  </div>
    <!--  <p class="composteur-type"></p> -->
     <%# if @last_anomalie %>
       <!-- <p>Déjà <%#= distance_of_time_in_words(Time.now, @last_anomalie.created_at) %> depuis la dernière anomalie !</p> -->
@@ -158,20 +158,22 @@
           <p class="users-stat-info"><%= "adepte".pluralize(@users.count) %> du compostage</p>
           <% end %>
         </div>
-        <div class="stats-pb" data-toggle="tooltip" data-html="true" data-placement="left" title="
-            <strong>Points Poubelles Battle</strong>
-            <p>Les points PB sont là pour encourager les dépots autant que les échanges entre les membres du site de compostage.</p>
-            <p>+10 points par dépot et anomalie résolue</p>
-            <p>-5 points par anomalie non résolue</p>
-            <p>+2 points par messages</p>
-            ">
-          <h1 class="bangers"><%= @score %></h1>
-          <p class="users-stat-info"><%= "point".pluralize(@score) %> PB</p>
-        </div>
-        <div class="stats-pb">
-          <h1 class="bangers"><%= @depots_count %></h1>
-          <p class="users-stat-info"><%= "dépot".pluralize(@depots_count) %></p>
-        </div>
+        <% if user_signed_in? %>
+          <div class="stats-pb" data-toggle="tooltip" data-html="true" data-placement="left" title="
+              <strong>Points Poubelles Battle</strong>
+              <p>Les points PB sont là pour encourager les dépots autant que les échanges entre les membres du site de compostage.</p>
+              <p>+10 points par dépot et anomalie résolue</p>
+              <p>-5 points par anomalie non résolue</p>
+              <p>+2 points par messages</p>
+              ">
+            <h1 class="bangers"><%= @score %></h1>
+            <p class="users-stat-info"><%= "point".pluralize(@score) %> PB</p>
+          </div>
+          <div class="stats-pb">
+            <h1 class="bangers"><%= @depots_count %></h1>
+            <p class="users-stat-info"><%= "dépot".pluralize(@depots_count) %></p>
+          </div>
+        <% end %>
       </div>
     </div>
     <div class="les-users">
@@ -210,8 +212,8 @@
     </div>
     <% if user_signed_in? %>
       <% if current_user.composteur_id == @composteur.id || current_user.admin? %>
-        <h2 class="mt-5">Messagerie</h2>
-        <p class="legende">cet espace privé vous permet d'échanger avec les autres membres du site de compostage.</p>
+        <h2 id="messagerie-board">Messagerie</h2>
+        <p class="messagerie-board-info">cet espace privé vous permet d'échanger avec les autres membres du site de compostage.</p>
         <% unless current_user.admin? %>
           <div class="depot-anomalie">
             <%= simple_form_for @notification, html: { class: "depot-form"} do |f| %>

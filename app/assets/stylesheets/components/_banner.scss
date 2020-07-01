@@ -1,8 +1,8 @@
 
 
 .home-banner {
-  background-color: $grass-green;
-  padding: 50px 0;
+  background-color: white;
+  padding: 50px;
   position: relative;
   height: max-content;
   margin-top: 65px;
@@ -12,14 +12,13 @@
   align-items: center;
   width: 100%;
   h1 {
-    // font-size: 32px;
-    color: white;
+    color: $pau-dark-blue;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
     font-weight: bold;
   }
   p {
     font-size: 18px;
-    color: white;
+    color: $pau-dark-blue;
     width: 400px;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
     padding-top: 18px;
@@ -29,10 +28,11 @@
     font-size: 12px;
     color: white;
     max-width: fit-content;
-    background-color: $orange;
+    background-color: $yellow-pb;
     padding: 0 0.9em;
-    border-radius: 30px;
+    // border-radius: 30px;
     margin-bottom: 20px;
+    text-shadow: 0 0 5px gray;
   }
 
   #mc_embed_signup_scroll {
@@ -87,9 +87,12 @@
 // MEDIA QUERIES
 @media (max-width: 600px) {
   .home-banner {
-    margin-top: 120px;
+    margin-top: 100px;
+    h1 {
+      font-size: 25px;
+    }
     p {
-      width: 90vw;
+      width: 85vw;
     }
   }
 }

@@ -8,8 +8,8 @@
 }
 
 .bouton-valid {
-  color: $green;
-  background: white;
+  color: white;
+  background: $pau-orange;
   text-decoration: none;
   border: solid 1px !important;
   margin: 0 20px;
@@ -20,22 +20,37 @@
   transition: background 0.3s ease;
   &:hover {
     color: white;
-    background: $green;
+    background: $pau-green;
     text-decoration: none;
     transition: background 0.3s ease;
   }
 }
 .button-in-paragraph {
   color: white;
-  background:  $grass-green;
+  background: $pau-blue;
   padding: 5px 15px;
   border-radius: 15px;
   text-decoration: none;
   transition: background 0.3s ease;
   &:hover {
-    background: $dark-green;
+    background: $pau-light-blue;
     color: white;
     transition: background 0.3s ease;
+  }
+}
+.cta-compost {
+  margin: 50px 0;
+  color: white;
+  background: $pau-orange;
+  font-weight: bold;
+  &:hover {
+    background: white;
+    color: $pau-orange;
+  }
+}
+@media (min-width: 600px) {
+  .button-in-paragraph.cta-compost {
+    margin: 0;
   }
 }
 .small-btn-pb {
@@ -60,27 +75,27 @@ input.bouton-valid {
 
 .rouge {
   background: white;
-  color: $red-pb;
-  border-color: $red-pb !important;
+  color: $pau-red;
+  border-color: $pau-red !important;
   &:hover {
-    background: $red-pb;
+    background: $pau-red;
   }
 }
 .bleu {
   background: white;
-  color: blue;
-  border-color: blue !important;
+  color: $pau-blue;
+  border-color: $pau-blue !important;
   &:hover {
-    background: blue;
+    background: $pau-blue;
   }
 }
 
 .text-rouge {
-  color: $red-pb;
+  color: $pau-red;
   background: white;
   border-color: transparent;
   &:hover {
-    background: $red-pb;
+    background: $pau-red;
   }
 }
 
@@ -122,22 +137,27 @@ input.mini-btn {
 
 .mini-btn {
   padding: 5px 10px;
-  background: $red-pb;
+  background: $pau-red;
   font-size: 10px;
   border-radius: 10px;
   margin: 10px;
   box-shadow: 0 0 5px rgba(20, 20, 20, 0.2);
   width: max-content;
-
+  a {
+    color: white;
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
 .mini-green-btn {
-  background: $dark-green;
+  background: $pau-green;
 }
 .mini-yellow-btn {
   background: $yellow-pb;
 }
 .mini-red-btn {
-  background: $red-pb !important;
+  background: $pau-red !important;
 }
 .mini-banana-btn {
   background: $yellow;
@@ -181,7 +201,7 @@ input.mini-btn {
   }
 }
 .pourvu-don {
-  background: $green;
+  background: $pau-green;
   color: white;
 }
 // .archive-don {

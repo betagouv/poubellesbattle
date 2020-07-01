@@ -142,7 +142,15 @@
 }
 
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
+  .demande-compo-form {
+    padding: 15px;
+    margin: 45px 15px 5px 15px;
+    .demande-form-line {
+      top: 25px;
+    }
+  }
+
   #new_demande {
     font-size: 14px;
     .formline-between .form-group {

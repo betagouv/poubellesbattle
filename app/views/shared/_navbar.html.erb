@@ -1,25 +1,30 @@
 <div class="navbar-poub-bat">
   <%= link_to root_path, class: "home-link" do %>
-    <img class="logo" src="<%= image_path('PB_logo.png') %>"/>
+    <!-- <img class="logo" src="<%#= image_path('PB_logo.png') %>"/> -->
     <div class="poubelles-title">
-      <h1>Poubelles</h1>
-      <h1>Battle</h1>
+      <h1>COMPOST EN VILLE</h1>
     </div>
   <% end %>
-
+  <% if user_signed_in? %>
+    <% if current_user.admin? %>
+    <div class="admin-navbar-name">
+      <h5>espace admin</h5>
+    </div>
+    <% end %>
+  <% end %>
   <div class="all-the-buttons">
     <%#= link_to "Bourse Verte", donverts_path, class: "bouton-navbar" %>
 
-    <li class="dropdown align-self-center d-sm-block mr-3">
+    <li class="dropdown align-self-center d-sm-block nav-space-btw">
       <% if user_signed_in? %>
         <% if current_user.admin? %>
           <div class="dropdown-toggle border-none" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Les sites de compostage
+            Mes actions
           </div>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <%= link_to "Cartographie des composteurs", admin_composteurs_path(anchor: "carto"), class: "dropdown-item" %>
-            <%= link_to "Contacter tous les sites de compostages", admin_notifications_path, class: "dropdown-item" %>
             <%= link_to "Ajouter un nouveau composteur", new_admin_composteur_path, class: "dropdown-item" %>
+            <%= link_to "Voir tous les sites de compostage", admin_composteurs_path(anchor: "composter"), class: "dropdown-item" %>
+            <%= link_to "Contacter tous les sites", admin_notifications_path, class: "dropdown-item" %>
             <%= link_to "Suivre les demandes d'installation", admin_demandes_path, class: "dropdown-item"  %>
             <%= link_to "Annuaire et exports contacts", admin_annuaire_path, class: "dropdown-item" %>
             <%= link_to "Liste des annonces de dons verts", donverts_path, class: "dropdown-item" %>
@@ -30,7 +35,7 @@
             Je veux composter
           </div>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-            <%= link_to "Trouver un composteur près de chez moi", root_path(anchor: "carto"), class: "dropdown-item" %>
+            <%= link_to "Trouver un composteur près de chez moi", root_path(anchor: "composter"), class: "dropdown-item" %>
             <%= link_to "Demander l'installation d'un composteur collectif", new_demande_path, class: "dropdown-item" %>
             <%= link_to "Trouver du compost, du structurant, des outils", donverts_path, class: "dropdown-item" %>
             <%= link_to "Qu'est-ce que je peux mettre au compost ?", composter_ou_non_path, class: "dropdown-item" %>
@@ -43,7 +48,7 @@
           Je veux composter
         </div>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-          <%= link_to "Trouver un composteur près de chez moi", root_path(anchor: "carto"), class: "dropdown-item" %>
+          <%= link_to "Trouver un composteur près de chez moi", root_path(anchor: "composter"), class: "dropdown-item" %>
           <%= link_to "Demander l'installation d'un composteur collectif", new_demande_path, class: "dropdown-item" %>
           <%= link_to "Trouver du compost, du structurant, des outils", donverts_path, class: "dropdown-item" %>
           <%= link_to "Qu'est-ce que je peux mettre au compost ?", composter_ou_non_path, class: "dropdown-item" %>
@@ -55,7 +60,7 @@
       <% if user_signed_in? %>
         <% if current_user.admin? %>
         <% else %>
-          <li class="dropdown align-self-center d-sm-block mr-3">
+          <li class="dropdown align-self-center d-sm-block nav-space-btw">
             <div class="dropdown-toggle border-none" id="dropdownMenuApropos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 A propos
               </div>
@@ -67,7 +72,7 @@
             </li>
         <% end %>
         <% else %>
-        <li class="dropdown align-self-center d-sm-block mr-3">
+        <li class="dropdown align-self-center d-sm-block nav-space-btw">
           <div class="dropdown-toggle border-none" id="dropdownMenuApropos" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             A propos
           </div>
@@ -78,7 +83,7 @@
           </div>
         </li>
       <% end %>
-    <li class="dropdown align-self-center d-sm-block mr-3">
+    <li class="dropdown align-self-center d-sm-block nav-space-btw">
       <div class="dropdown-toggle border-none" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Mon espace
       </div>
@@ -89,7 +94,9 @@
           <% end %>
           <% if Demande.find_by(email: current_user.email) != nil %>
             <% demande = Demande.find_by(email: current_user.email) %>
-            <%= link_to "Ma demande", suivre_path(demande), class: "dropdown-item" %>
+            <% if demande.status != 'archivée' %>
+              <%= link_to "Ma demande", suivre_path(demande), class: "dropdown-item" %>
+            <% end %>
           <% end %>
           <% if current_user.donverts != [] %>
             <%= link_to "Historique de mes dons", mes_dons_path, class: "dropdown-item"  %>
@@ -102,17 +109,17 @@
         <% end %>
       </div>
     </li>
-    <% if user_signed_in? %>
-      <% if current_user.photo.attached? %>
-        <%= link_to edit_user_registration_path(current_user) do  %>
-          <%= cl_image_tag current_user.photo.key, height: 100, width: 100, crop: :fill, class: "avatar" %>
-        <% end %>
-      <% else %>
-        <%= link_to edit_user_registration_path(current_user) do  %>
-          <%= image_tag "PB_logo.png", alt: "default avatar", class: "avatar" %>
-        <% end %>
-      <% end %>
-    <% end %>
+    <%# if user_signed_in? %>
+      <%# if current_user.photo.attached? %>
+        <%#= link_to edit_user_registration_path(current_user) do  %>
+          <%#= cl_image_tag current_user.photo.key, height: 100, width: 100, crop: :fill, class: "avatar" %>
+        <%# end %>
+      <%# else %>
+        <%#= link_to edit_user_registration_path(current_user) do  %>
+          <%#= image_tag "PB_logo.png", alt: "default avatar", class: "avatar" %>
+        <%# end %>
+      <%# end %>
+    <%# end %>
   </div>
 </div>
 

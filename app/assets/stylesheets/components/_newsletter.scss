@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   #mc_embed_signup {
-    background: $grass-green !important;
+    background: $pau-dark-blue !important;
     color: white;
     text-align: center;
     margin: 0 auto;
@@ -38,6 +38,19 @@
     #mc-embedded-subscribe-form {
       display: flex;
       justify-content: center;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .news-section #mc_embed_signup {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 30px;
+    h4 {
+      margin-bottom: 15px;
+      font-size: 20px;
     }
   }
 }
