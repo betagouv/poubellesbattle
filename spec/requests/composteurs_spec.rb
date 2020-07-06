@@ -80,6 +80,57 @@ RSpec.describe "Composteurs", type: :request do
       expect(composteur_count_after).to eq(composteur_count_before + 1)
     end
   end
+  describe "GET admin/composteurs/:id/edit" do
+    it "redirects to root_path if not admin" do
+
+    end
+    it "renders show prefilled with composteur values when logged as admin" do
+      sign_in create(:user, role: 2)
+      get edit_admin_composteur_path(Composteur.last)
+
+      expect(response).to have_http_status(200)
+      expect(response).to render_template(:edit)
+      expect(response.body).to include("value=\"#{Composteur.last.address}\"")
+    end
+  end
+  describe "PATCH admin/composteurs/:id" do
+    it "redirects to root_path if not admin" do
+      sign_in create(:user)
+      patch admin_composteur_path(Composteur.last)
+
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to(root_path)
+    end
+    it "updates composteur and redirects to composteur_path" do
+      sign_in create(:user, role: 2)
+      previous_address = Composteur.last.address
+      compost_hash = attributes_for(:composteur, id: Composteur.last.id)
+      patch admin_composteur_path(Composteur.last, params: { composteur: compost_hash} )
+
+      expect(Composteur.last.address).to_not eq(previous_address)
+      expect(response).to have_http_status(302)
+      expect(response).to redirect_to(composteur_path(Composteur.last))
+    end
+  end
+  describe "DESTROY admin/composteurs/:id" do
+    it "redirects to sign_up if not logged and root_path if user not admin" do
+      count_before = Composteur.count
+      delete admin_composteur_path(Composteur.last)
+      expect(response).to redirect_to(new_user_session_path)
+      sign_in create(:user)
+      delete admin_composteur_path(Composteur.last)
+      expect(response).to redirect_to(root_path)
+      expect(Composteur.count).to eq(count_before)
+    end
+    it "destroy composteur if user admin" do
+      count_before = Composteur.count
+      sign_in create(:user, role: 2)
+      delete admin_composteur_path(Composteur.last)
+
+      expect(response).to redirect_to(admin_composteurs_path)
+      expect(Composteur.count).to eq(count_before - 1)
+    end
+  end
   User.destroy_all
   Composteur.destroy_all
 end
