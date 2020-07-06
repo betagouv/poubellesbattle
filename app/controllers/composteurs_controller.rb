@@ -180,7 +180,11 @@ class ComposteursController < ApplicationController
     @user.save
     NotificationMailer.with(notification: notification, state: "validée").demande_referent_state.deliver_now
     notification.destroy
-    redirect_to demandes_path
+    if current_user.admin?
+      redirect_to demandes_path
+    else
+      redirect_to composteur_path(@user.composteur_id)
+    end
   end
 
   def non_referent_composteur

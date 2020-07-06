@@ -126,9 +126,154 @@ RSpec.describe "Composteurs", type: :request do
       count_before = Composteur.count
       sign_in create(:user, role: 2)
       delete admin_composteur_path(Composteur.last)
-
       expect(response).to redirect_to(admin_composteurs_path)
       expect(Composteur.count).to eq(count_before - 1)
+    end
+  end
+  describe "Other non admin methods" do
+    it "should redirect_to sign_up if not logged-in for all 6 non_admin non_crud methods" do
+      post inscription_par_referent_path(Composteur.last)
+      expect(response).to redirect_to(new_user_session_path)
+      post inscription_path(Composteur.last)
+      expect(response).to redirect_to(new_user_session_path)
+      post referent_path(Composteur.last)
+      expect(response).to redirect_to(new_user_session_path)
+      post validation_referent_path(Composteur.last)
+      expect(response).to redirect_to(new_user_session_path)
+      post desinscription_path(Composteur.last)
+      expect(response).to redirect_to(new_user_session_path)
+      post non_referent_path(Composteur.last)
+      expect(response).to redirect_to(new_user_session_path)
+    end
+    describe "inscription_par_referent" do
+      it "add a new user and redirects to composteur_path" do
+        dude = create(:user)
+        sign_in create(:user, role: 1, composteur_id: Composteur.last.id)
+        compo_user_before = Composteur.last.users.count
+        post inscription_par_referent_path(Composteur.last, params: { user_id: dude.id })
+        expect(response).to redirect_to(composteur_path(Composteur.last))
+        expect(Composteur.last.users.count).to eq(compo_user_before + 1)
+      end
+    end
+    describe "inscription_composteur" do
+      it "add the logged user and redirects to composteur_path" do
+        sign_in create(:user)
+        compo_user_before = Composteur.last.users.count
+        post inscription_path(Composteur.last)
+        expect(response).to redirect_to(composteur_path(Composteur.last))
+        expect(Composteur.last.users.count).to eq(compo_user_before + 1)
+      end
+    end
+    describe "referent_composteur" do
+      it "on a site with no referent it creates a notification for admins and redirects to composteur_path" do
+        sign_in create(:user)
+        notifications_before = Notification.count
+        post referent_path(Composteur.last)
+        expect(response).to redirect_to(composteur_path(Composteur.last))
+        expect(Notification.count).to eq(notifications_before + 1)
+        expect(Notification.last.notification_type).to eq("demande-référent")
+        expect(Notification.last.user_id).to eq(User.last.id)
+      end
+      it "on a site with at least one referent it creates a notification by email to first referent and redirects to composteur_path" do
+        referent = create(:user, role: 1, composteur_id: Composteur.last.id)
+        sign_in create(:user)
+        notifications_before = Notification.count
+        post referent_path(Composteur.last)
+        expect(response).to redirect_to(composteur_path(Composteur.last))
+        expect(Notification.count).to eq(notifications_before + 1)
+        expect(Notification.last.notification_type).to eq("demande-référent-directe")
+        expect(Notification.last.user_id).to eq(User.last.id)
+      end
+    end
+    describe "validation_referent" do
+      it "changes the role of a user as referent then redirect_to composteur" do
+        john_doe = create(:user, composteur_id: Composteur.last.id)
+        referent = create(:user, composteur_id: Composteur.last.id, role: 1)
+        notification_ref = create(:notification, content: Composteur.last.id, notification_type: "demande-référent-directe", user_id: john_doe.id)
+        notif_count = Notification.count
+        sign_in create(:user, composteur_id: Composteur.last.id, role: 1)
+        # this should actually be done differently, as i'm passing a notification to the method and not a composteur....
+        post validation_referent_path(notification_ref)
+        expect(response).to redirect_to(composteur_path(User.last.composteur_id))
+        expect(Notification.count).to eq(notif_count - 1)
+      end
+    end
+    describe "non_referent_composteur" do
+      it "removes referent status from user" do
+        sign_in create(:user, role: 1, composteur_id: Composteur.last)
+        post non_referent_path(Composteur.last)
+        expect(response).to redirect_to(composteur_path(Composteur.last))
+        expect(User.last.referent?).to be false
+        expect(User.last.compostophile?).to be true
+      end
+    end
+    describe "desinscription_composteur" do
+      it "removes all notifications, referent status, composteur_id and redirect_to composteur_path" do
+        sign_in create(:user, role: 1, composteur_id: Composteur.last)
+        depot = create(:notification, user_id: User.last)
+        depot2 = create(:notification, user_id: User.last)
+        depot3 = create(:notification, user_id: User.last)
+        notifications_count = User.last.notifications.count
+        post desinscription_path(Composteur.last)
+        expect(User.last.referent?).to be false
+        expect(User.last.composteur_id).to be nil
+        expect(User.last.notifications).to be_empty
+        expect(response).to redirect_to composteur_path(Composteur.last)
+      end
+    end
+  end
+  describe "Four Admin Methods" do
+    it "redirects to root_path if user not admin" do
+      sign_in create(:user)
+      post admin_new_manual_latlng_path(Composteur.last)
+      expect(response).to redirect_to(root_path)
+      post admin_suppr_manual_latlng_path(Composteur.last)
+      expect(response).to redirect_to(root_path)
+      post admin_ajout_referent_path(Composteur.last)
+      expect(response).to redirect_to(root_path)
+      post admin_non_referent_path(Composteur.last)
+      expect(response).to redirect_to(root_path)
+    end
+    describe "admin_new_manual_latlng" do
+      it "adds new lat and lng to the composteur, redirect_to composteur_path" do
+        sign_in create(:user, role: 2)
+        expect(Composteur.last.manual_lat).to be nil
+        post admin_new_manual_latlng_path(Composteur.last, params: { manual_lng: -0.3739579, manual_lat: 43.3044277 })
+        expect(Composteur.last.manual_lat).to eq(43.3044277)
+        expect(response).to redirect_to(edit_admin_composteur_path(Composteur.last))
+      end
+    end
+    describe "admin_suppr_manual_latlng" do
+      it "adds new lat and lng to the composteur, redirect_to composteur_path" do
+        create(:composteur, manual_lng: -0.3739579, manual_lat: 43.3044277 )
+        sign_in create(:user, role: 2)
+        expect(Composteur.last.manual_lng).to eq(-0.3739579)
+        post admin_suppr_manual_latlng_path(Composteur.last)
+        expect(Composteur.last.manual_lat).to be nil
+        expect(response).to redirect_to(edit_admin_composteur_path(Composteur.last))
+      end
+    end
+    describe "admin_ajout_referent_composteur" do
+      it "adds referent status from user" do
+        joe = create(:user, composteur_id: Composteur.last.id)
+        expect(joe.referent?).to be false
+        sign_in create(:user, role: 2)
+        post admin_ajout_referent_path(Composteur.last, params: { referent_id: joe.id })
+        expect(response).to redirect_to(edit_admin_composteur_path(Composteur.last))
+        expect(User.last(2).first.referent?).to be true
+        expect(User.last(2).first.compostophile?).to be false
+      end
+    end
+    describe "admin_non_referent_composteur" do
+      it "removes referent status from user" do
+        joe = create(:user, role: 1, composteur_id: Composteur.last.id)
+        expect(joe.referent?).to be true
+        sign_in create(:user, role: 2)
+        post admin_non_referent_path(Composteur.last, params: { referent_id: joe.id })
+        expect(response).to redirect_to(edit_admin_composteur_path(Composteur.last))
+        expect(User.last(2).first.referent?).to be false
+        expect(User.last(2).first.compostophile?).to be true
+      end
     end
   end
   User.destroy_all
