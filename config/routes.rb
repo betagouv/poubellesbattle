@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   namespace :admin do
     delete "users/:id", to: "users#destroy", as: 'destroy_user'
     resources :composteurs, only: [:index, :new, :create, :edit, :update, :destroy]
-    post "composteurs/:id/new_manual_latlng", to: "composteurs#new_manual_latlng"
+    post "composteurs/:id/new_manual_latlng", to: "composteurs#new_manual_latlng", as: 'new_manual_latlng'
     post "composteurs/:id/suppr_manual_latlng", to: "composteurs#suppr_manual_latlng", as: 'suppr_manual_latlng'
     post "composteurs/:id/ajout_referent_composteur", to: "composteurs#ajout_referent_composteur", as: 'ajout_referent'
     post "composteurs/:id/non_referent_composteur", to: "composteurs#non_referent_composteur", as: 'non_referent'
