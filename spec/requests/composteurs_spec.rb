@@ -112,7 +112,7 @@ RSpec.describe "Composteurs", type: :request do
       expect(response).to redirect_to(composteur_path(Composteur.last))
     end
   end
-  describe "DESTROY admin/composteurs/:id" do
+  describe "DELETE admin/composteurs/:id" do
     it "redirects to sign_up if not logged and root_path if user not admin" do
       count_before = Composteur.count
       delete admin_composteur_path(Composteur.last)
