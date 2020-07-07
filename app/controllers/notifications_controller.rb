@@ -58,7 +58,7 @@ class NotificationsController < ApplicationController
 
   def resolved
     notification = Notification.find(params[:id])
-    if notification.notification_type == "anomalie"
+    if notification.notification_type == "anomalie" && current_user.composteur == notification.user.composteur
       notification.resolved = true
       if notification.save
         redirect_to composteur_path(notification.user.composteur)
@@ -72,12 +72,12 @@ class NotificationsController < ApplicationController
 
   def destroy
     @notification = Notification.find(params[:id])
-    if @notification.notification_type == "demande-référent" || @notification.notification_type == "demande-référent-directe"
+    if @notification.notification_type == "demande-référent-directe"
       NotificationMailer.with(notification: @notification, state: "refusée").demande_referent_state.deliver_now
+      @notification.destroy
+      flash[:notice] = "Notification supprimée"
     end
-    @notification.destroy
     redirect_to composteur_path(@notification.composteur || @notification.user.composteur)
-    flash[:notice] = "Notification supprimée"
   end
 
   private
