@@ -19,21 +19,21 @@ RSpec.describe "Composteurs", type: :request do
 
   describe "GET /composteurs/id" do
     it "returns composteur view with sign_up form if not logged" do
-      get composteur_path(Composteur.last.id)
+      get composteur_path(Composteur.last.slug)
 
       expect(response).to have_http_status(200)
       expect(response.body).to include("<h3>S'inscrire sur Poubelles Battle</h3>")
     end
     it "returns composteur view with messagerie if logged in and on user's composteur" do
       sign_in create(:user, composteur_id: Composteur.last.id)
-      get composteur_path(Composteur.last.id)
+      get composteur_path(Composteur.last.slug)
 
       expect(response).to have_http_status(200)
       expect(response.body).to include("Messagerie")
     end
     it "returns composteur view with reduce access : no messagerie if logged in and not on user's composteur" do
       sign_in create(:user, composteur_id: Composteur.first.id)
-      get composteur_path(Composteur.last.id)
+      get composteur_path(Composteur.last.slug)
 
       expect(response).to have_http_status(200)
       expect(response.body).to_not include("Messagerie")
@@ -76,7 +76,7 @@ RSpec.describe "Composteurs", type: :request do
       composteur_count_after = Composteur.count
 
       expect(response).to have_http_status(302)
-      expect(response).to redirect_to(admin_composteurs_path(Composteur.last.id))
+      expect(response).to redirect_to(admin_composteurs_path(Composteur.last))
       expect(composteur_count_after).to eq(composteur_count_before + 1)
     end
   end
