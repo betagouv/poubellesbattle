@@ -67,7 +67,7 @@ RSpec.describe "Notifications", type: :request do
 
         delete admin_notification_path(Notification.last)
         expect(Notification.count).to eq(notifications_count_before - 1)
-        expect(response).to redirect_to(composteur_path(User.last.composteur_id))
+        expect(response).to redirect_to(composteur_path(Composteur.last))
 
         # if notification is a 'message-admin' redirects to admin_notifications_path
         create(:notification, notification_type: "message-admin")
@@ -104,14 +104,13 @@ RSpec.describe "Notifications", type: :request do
         post notifications_path, params: { notification: notification_hash }
         expect(Notification.count).to eq(notifications_count_before + 1)
         expect(response).to redirect_to(composteur_path(Composteur.last))
-        expect(response).to redirect_to(composteur_path(User.last.composteur_id))
       end
     end
     describe "GET /anonymous_depot" do
       it "creates a new dépot notification and redirects to composteur_path" do
         notifications_count_before = Notification.count
         create(:composteur)
-        get anonymous_depot_path, params: { composteur: Composteur.last.id, type: "depot" }
+        get anonymous_depot_path, params: { slug: Composteur.last.slug, type: "depot" }
         expect(Notification.count).to eq(notifications_count_before + 1)
         expect(response).to redirect_to(composteur_path(Composteur.last))
         expect(response).to have_http_status(302)
@@ -120,7 +119,7 @@ RSpec.describe "Notifications", type: :request do
         expect(response.body).to include("<form class=\"simple_form new_user\"")
         # same but with user signed_in
         sign_in create(:user, composteur_id: Composteur.last.id)
-        get anonymous_depot_path, params: { composteur: Composteur.last.id, type: "depot" }
+        get anonymous_depot_path, params: { slug: Composteur.last.slug, type: "depot" }
         expect(Notification.count).to eq(notifications_count_before + 2)
         expect(response).to redirect_to(composteur_path(Composteur.last))
         expect(response).to have_http_status(302)
