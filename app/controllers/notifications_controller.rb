@@ -26,9 +26,9 @@ class NotificationsController < ApplicationController
     @notification.user_id = @user.id
 
     if @notification.save
-      redirect_to composteur_path(@user.composteur_id)
+      redirect_to composteur_path(@user.composteur)
     else
-      redirect_to composteur_path(@user.composteur_id)
+      redirect_to composteur_path(@user.composteur)
     end
     flash[:alert] = "Le message n'a pas pu être enregistré."
   end
@@ -38,7 +38,7 @@ class NotificationsController < ApplicationController
       render :show if current_user.admin?
     end
     notification = Notification.new
-    composteur = Composteur.find(params[:composteur])
+    composteur = Composteur.find_by slug: params[:slug]
     notification.composteur_id = composteur.id
     notification.notification_type = params[:type]
     if user_signed_in?
@@ -48,7 +48,7 @@ class NotificationsController < ApplicationController
       notification.content = "Nouveau dépot masqué 🦸 sur #{composteur.name} !"
     end
     if notification.save
-      redirect_to composteur_path(composteur)
+      redirect_to composteur_path(composteur.slug)
       flash[:notice] = "Dépot enregistré !"
     else
       render :show
