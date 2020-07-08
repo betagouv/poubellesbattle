@@ -1,6 +1,6 @@
 class DonvertsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :new, :create]
-  before_action :set_don, only: [:show, :link, :edit, :pourvu, :archive, :update, :destroy]
+  before_action :set_don, only: [:show, :link, :pourvu, :archive]
 
   def index
     @message = Message.new
