@@ -1,4 +1,4 @@
-<% content_for :meta_title, "#{@composteur.name} | #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_title, "Composteur #{@composteur.name} | #{DEFAULT_META["meta_product_name"]}" %>
 <% content_for :meta_description, "Découvrez le composteur #{@composteur.name}, un #{@composteur.category} mis à disposition par l'Agglo de Pau à l'adresse : #{@composteur.address}." %>
 <% content_for :meta_image, cl_image_path(@composteur.photo.key, width: 600, crop: :fill) if @composteur.photo.attached? %>
 
@@ -131,7 +131,7 @@
   </div>
   <div class="header-composteur">
     <div class="composteur-infos">
-      <h1 class="composteur-name"><%= @composteur.name %></h1>
+      <h1 class="composteur-name">Composteur <%= @composteur.name %></h1>
       <p class="composteur-adress"><%= @composteur.category %> : <%= @composteur.address %></p>
     </div>
     <!-- <div class="points-pb">
