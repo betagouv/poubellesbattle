@@ -20,10 +20,7 @@ class DonvertsController < ApplicationController
   end
 
   def show
-    if @don.user_id != nil && @don.user_id != current_user.id
-      redirect_to donverts_path
-      flash[:alert] = "Ce don est déjà associé à un autre compte."
-    end
+    redirect_to donverts_path unless @don.user_id == current_user.id
   end
 
   def link
@@ -34,7 +31,7 @@ class DonvertsController < ApplicationController
         flash[:notice] = "Ce don est relié à votre compte !"
       end
     else
-      redirect_to donvert_path(@don)
+      redirect_to donverts_path
       flash[:alert] = "Mauvais mot de passe."
     end
   end
@@ -54,9 +51,8 @@ class DonvertsController < ApplicationController
     end
   end
 
-  def edit; end
-
   def pourvu
+    redirect_to donverts_path and return unless current_user.id == @don.user_id
     @don.pourvu = true
     @don.save
     redirect_to donverts_path
@@ -64,19 +60,11 @@ class DonvertsController < ApplicationController
   end
 
   def archive
+    redirect_to donverts_path and return unless current_user.id == @don.user_id
     @don.archived = true
     @don.save
     redirect_to donverts_path
     flash[:notice] = "Votre don est archivé. Il n'apparaîtra plus dans la Bourse Verte."
-  end
-
-  def update
-    # @don.update(don_params)
-    # if @don.save
-    #   redirect_to donverts_path
-    # else
-    #   render :show
-    # end
   end
 
   def destroy
