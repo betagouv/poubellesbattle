@@ -58,7 +58,7 @@ class ComposteursController < ApplicationController
   end
 
   def show
-    @composteur = Composteur.find(params[:id])
+    @composteur = Composteur.find_by slug: params[:slug]
     @composteur.date_retournement ? @time_left = (@composteur.date_retournement - Date.today).round : @time_left = 300
     # users du composteur = les referents + les utilisateurs non referents
     @users = @composteur.users # tous les utilisateurs du site
@@ -103,7 +103,7 @@ class ComposteursController < ApplicationController
   end
 
   def update
-    @composteur = Composteur.find(params[:id])
+    @composteur = Composteur.find_by slug: params[:slug]
     if @composteur.update(current_user.admin? ? composteur_params : referent_composteur_params)
       redirect_to composteur_path(@composteur)
     else
@@ -113,7 +113,7 @@ class ComposteursController < ApplicationController
 
   def inscription_par_referent
     user = User.find(params[:user_id])
-    composteur = Composteur.find(params[:id])
+    composteur = Composteur.find_by slug: params[:slug]
     user.composteur_id = composteur.id
     if user.save
       redirect_to composteur_path
@@ -126,7 +126,7 @@ class ComposteursController < ApplicationController
 
   def inscription_composteur
     @user = current_user
-    @composteur = Composteur.find(params[:id])
+    @composteur = Composteur.find_by slug: params[:slug]
     @user.composteur_id = @composteur.id
     if @user.save
       redirect_to composteur_path
@@ -139,7 +139,7 @@ class ComposteursController < ApplicationController
 
   def desinscription_composteur
     @user = current_user
-    @composteur = Composteur.find(params[:id])
+    @composteur = Composteur.find_by slug: params[:slug]
     # supprimer les messages quand on quitte un composteur
     @user.notifications.destroy_all
     @user.composteur_id = nil
@@ -155,7 +155,7 @@ class ComposteursController < ApplicationController
 
   def referent_composteur
     @user = current_user
-    @composteur = Composteur.find(params[:id])
+    @composteur = Composteur.find_by slug: params[:slug]
     demande_ref = Notification.new( content: "#{@composteur.id}", user_id: @user.id)
     if @composteur.users.referent.count > 0
       demande_ref.notification_type = "demande-référent-directe" # send directly by email to référent
@@ -174,7 +174,7 @@ class ComposteursController < ApplicationController
   end
 
   def validation_referent_composteur
-    notification = Notification.find(params[:id])
+    notification = Notification.find(params[:slug])
     @user = User.find(notification.user_id)
     @user.referent!
     @user.save
@@ -189,7 +189,7 @@ class ComposteursController < ApplicationController
 
   def non_referent_composteur
     @user = current_user
-    @composteur = Composteur.find(params[:id])
+    @composteur = Composteur.find_by slug: params[:slug]
     @user.compostophile!
     if @user.save
       redirect_to composteur_path
@@ -201,7 +201,7 @@ class ComposteursController < ApplicationController
   end
 
   def send_email
-    @composteur = Composteur.find(params[:id])
+    @composteur = Composteur.find_by slug: params[:slug]
       if !@composteur.referent_email.nil?
         # ContactReferentMailer.send_request(@composteur).deliver_now
         flash[:notice] = "Demande envoyée"

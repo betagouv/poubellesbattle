@@ -62,7 +62,7 @@ class Admin::ComposteursController < ApplicationController
     )
     @svg = svg_string.gsub("fill:#000", "")
 
-    anonymous_depot_code = RQRCode::QRCode.new("#{anonymous_depot_url(composteur: @composteur.id, type: 'depot direct')}")
+    anonymous_depot_code = RQRCode::QRCode.new("#{anonymous_depot_url(slug: @composteur.slug, type: 'depot direct')}")
 
     # NOTE: showing with default options specified explicitly : svg as a string.
     svg_depot_string = anonymous_depot_code.as_svg(
@@ -113,7 +113,7 @@ class Admin::ComposteursController < ApplicationController
   def new_manual_latlng
     man_lng = params[:manual_lng].to_f
     man_lat = params[:manual_lat].to_f
-    @composteur = Composteur.find(params[:id])
+    @composteur = Composteur.find_by slug: params[:slug]
     @composteur.manual_lng = man_lng
     @composteur.manual_lat = man_lat
     if @composteur.save
@@ -125,7 +125,7 @@ class Admin::ComposteursController < ApplicationController
   end
 
   def suppr_manual_latlng
-    @composteur = Composteur.find(params[:id])
+    @composteur = Composteur.find_by slug: params[:slug]
     @composteur.manual_lat = nil
     @composteur.manual_lng = nil
     if @composteur.save
@@ -137,7 +137,7 @@ class Admin::ComposteursController < ApplicationController
   end
 
   def ajout_referent_composteur
-    @composteur = Composteur.find(params[:id])
+    @composteur = Composteur.find_by slug: params[:slug]
     @user = User.find(params[:referent_id])
     @user.composteur_id = @composteur.id
     @user.referent!
@@ -150,7 +150,7 @@ class Admin::ComposteursController < ApplicationController
 
   def non_referent_composteur
     @user = User.find(params[:referent_id])
-    @composteur = Composteur.find(params[:id])
+    @composteur = Composteur.find_by slug: params[:slug]
     @user.compostophile!
     if @user.save
       redirect_to edit_admin_composteur_path(@composteur)
@@ -164,7 +164,7 @@ class Admin::ComposteursController < ApplicationController
   private
 
   def set_composteur
-    @composteur = Composteur.find(params[:id])
+    @composteur = Composteur.find_by slug: params[:slug]
   end
 
   def composteur_params
