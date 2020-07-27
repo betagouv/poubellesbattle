@@ -6,10 +6,12 @@ class DonvertsController < ApplicationController
     @message = Message.new
     @dons_count = Donvert.all.count
     @dons = Donvert.all.where(archived: false).order(pourvu: :asc).order(date_fin_dispo: :desc).includes([:photo_attachment])
-    @dons.each do |don|
-      if don.date_fin_dispo.past?
-        don.archived = true
-        don.save!
+    if @dons.count > 0
+      @dons.each do |don|
+        if don.date_fin_dispo.past?
+          don.archived = true
+          don.save!
+        end
       end
     end
   end
