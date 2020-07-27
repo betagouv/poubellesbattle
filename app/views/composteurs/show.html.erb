@@ -202,8 +202,8 @@
       <% end %>
       <div class="compost-time-to-go">
         <div class="compost-time-past" style="
-          <% if @time_left %>
-              <%= "width: #{100 - (3 * @time_left/10)}%;" %>
+          <% if @time_left <= 300 %>
+              <%= "width: #{100 - (@time_left/3)}%;" %>
           <% end %> ">
         </div>
       </div>
