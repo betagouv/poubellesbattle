@@ -204,6 +204,8 @@
         <div class="compost-time-past" style="
           <% if @time_left <= 300 && @time_left >= 0 %>
               <%= "width: #{100 - (@time_left/3)}%;" %>
+          <% elsif @time_left < 0 %>
+              <%= "width: 100%;" %>
           <% end %> ">
         </div>
       </div>
