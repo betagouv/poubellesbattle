@@ -132,7 +132,7 @@
   <div class="header-composteur">
     <div class="composteur-infos">
       <h1 class="composteur-name">Composteur <%= @composteur.name %></h1>
-      <p class="composteur-adress"><%= @composteur.category %> : <%= @composteur.address %></p>
+      <h2 class="composteur-adress"><%= @composteur.category %> : <%= @composteur.address %></h2>
     </div>
     <!-- <div class="points-pb">
       <h1 class="bangers">25</h1>
@@ -507,28 +507,33 @@
 </div>
 <script type="application/ld+json">
 {
-  "@context" : "http://schema.org",
-  "@type" : "LocalBusiness",
+  "@context": "https://schema.org",
+  "@type": "RecyclingCenter",
   "name" : "<%= @composteur.name %>",
-  "@type": "OpeningHoursSpecification",
-  "dayOfWeek": [
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday"
-  ],
-  "closes": "23:59:00",
-  "opens": "00:00:00",
   "image" : "<%= cl_image_path(@composteur.photo.key, width: 600, crop: :fill) if @composteur.photo.attached? %>",
-  "address" : {
-    "@type" : "PostalAddress",
+  "@id": "",
+  "url": "<%= request.original_url%>",
+  "telephone": "",
+  "address": {
+    "@type": "PostalAddress",
     "streetAddress" : "<%= @composteur.address.partition(",")[0] %>",
     "addressLocality" : "<%= @composteur.address.partition(",")[2].strip %>",
-    "addressCountry" : "France"
+    "postalCode": "64000",
+    "addressCountry": "FR"
   },
-  "url" : "<%= root_url %>"
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
+    "opens": "00:00",
+    "closes": "23:59"
+  }
 }
 </script>
