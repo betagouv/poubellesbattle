@@ -38,7 +38,7 @@ class NotificationsController < ApplicationController
       render :show if current_user.admin?
     end
     notification = Notification.new
-    composteur = Composteur.find(params[:composteur])
+    composteur = Composteur.find_by slug: params[:slug]
     notification.composteur_id = composteur.id
     notification.notification_type = params[:type]
     if user_signed_in?

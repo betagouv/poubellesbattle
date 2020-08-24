@@ -69,7 +69,7 @@ Rails.application.configure do
 
   config.action_mailer.postmark_settings   = { api_token: ENV['POSTMARK_API_TOKEN'] }
 
-  config.action_mailer.default_url_options = { host: "https://poubellesbattle.fr" }
+  config.action_mailer.default_url_options = { host: "https://pau.poubellesbattle.fr" }
 
   config.action_mailer.perform_caching = false
 
