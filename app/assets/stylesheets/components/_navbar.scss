@@ -61,8 +61,10 @@ a:hover {
   z-index: 100;
   top: 0px;
   background: $pau-blue;
-  // box-shadow: 0 0 10px $pau-light-blue;
   color: white;
+  .navbar-poub-bat-left {
+    display: flex;
+  }
   h1 {
     color: white;
     font-family: $pau-display;
