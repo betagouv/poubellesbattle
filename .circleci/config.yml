@@ -42,7 +42,6 @@ jobs:
       - *webpacker_precompile
   test:
     <<: *defaults
-    parallelism: 3
     steps:
       - checkout
       - *bundle_install
