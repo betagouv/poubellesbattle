@@ -1,10 +1,14 @@
 <div class="navbar-poub-bat">
-  <%= link_to root_path, class: "home-link" do %>
+  <div class="navbar-poub-bat-left">
+  <%= link_to 'https://www.pau.fr', target: '_blank' do %>
     <img class="logo" src="<%= image_path('agglopau.png') %>"/>
+  <% end %>
+  <%= link_to root_path, class: "home-link" do %>
     <div class="poubelles-title">
-      <h1>COMPOST EN VILLE</h1>
+      <h1>Défi Compost</h1>
     </div>
   <% end %>
+  </div>
   <% if user_signed_in? %>
     <% if current_user.admin? %>
     <div class="admin-navbar-name">
@@ -52,6 +56,7 @@
           <%= link_to "Demander l'installation d'un composteur collectif", new_demande_path, class: "dropdown-item" %>
           <%= link_to "Trouver du compost, du structurant, des outils", donverts_path, class: "dropdown-item" %>
           <%= link_to "Qu'est-ce que je peux mettre au compost ?", composter_ou_non_path, class: "dropdown-item" %>
+          <%= link_to "Que faire de mes déchets non compostables ?", 'https://www.pau.fr/categorie/collecte-des-dechets', target: "_blank", class: "dropdown-item" %>
           <%= link_to "Conseils et astuces pour composter en co-propriété", 'https://uncomposteurici.gitbook.io/poubellesbattle/', target: "_blank", class: "dropdown-item" %>
           <%= link_to "S'auto-former au compostage", 'https://www.ademe.fr/sites/default/files/assets/documents/guide-pratique-compostage-et-paillage.pdf', target: "_blank", class: "dropdown-item" %>
         </div>
@@ -109,17 +114,6 @@
         <% end %>
       </div>
     </li>
-    <%# if user_signed_in? %>
-      <%# if current_user.photo.attached? %>
-        <%#= link_to edit_user_registration_path(current_user) do  %>
-          <%#= cl_image_tag current_user.photo.key, height: 100, width: 100, crop: :fill, class: "avatar" %>
-        <%# end %>
-      <%# else %>
-        <%#= link_to edit_user_registration_path(current_user) do  %>
-          <%#= image_tag "PB_logo.png", alt: "default avatar", class: "avatar" %>
-        <%# end %>
-      <%# end %>
-    <%# end %>
   </div>
 </div>
 
