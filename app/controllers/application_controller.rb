@@ -4,8 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  before_action :ensure_domain
-
+  # before_action :ensure_domain
 
   def default_url_options
     { host: ENV["DOMAIN"] || "localhost:3000" }
