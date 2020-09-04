@@ -238,7 +238,7 @@ RSpec.describe "Composteurs", type: :request do
       it "adds new lat and lng to the composteur, redirect_to composteur_path" do
         sign_in create(:user, role: 2)
         expect(Composteur.last.manual_lat).to be nil
-        post admin_new_manual_latlng_path(Composteur.last, params: { manual_lng: -0.3739579, manual_lat: 43.3044277 })
+        post admin_new_manual_latlng_path(Composteur.last, params: { manual_lng: -0.3739579, manual_lat: 43.3044277, current_compo: Composteur.last.id })
         expect(Composteur.last.manual_lat).to eq(43.3044277)
         expect(response).to redirect_to(edit_admin_composteur_path(Composteur.last))
       end
