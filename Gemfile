@@ -12,8 +12,8 @@ gem 'postmark-rails'
 gem 'puma'
 gem 'rails', '5.2.4.3'
 gem 'redis'
-gem 'turbolinks', '~> 5.2.0'
 gem "skylight"
+gem 'turbolinks', '~> 5.2.0'
 
 gem 'autoprefixer-rails'
 gem 'chartjs-ror'

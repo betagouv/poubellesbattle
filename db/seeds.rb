@@ -48,8 +48,8 @@ Notification.create(
     if user.save
       puts "#{user.first_name} created"
 
-      Notification.create(
-        notification_type: "welcome",
+      Notification.create!(
+        notification_type: "message",
         content: "Salut, je suis #{user.first_name} ! C'est parti pour le compost !",
         user_id: user.id
       )
