@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  match '(*any)', to: redirect(subdomain: ''), via: :all, constraints: {subdomain: 'www'} if Rails.env.production?
+  # match '(*any)', to: redirect(subdomain: ''), via: :all, constraints: {subdomain: 'www'} if Rails.env.production?
 
   resources :composteurs, only: [:index, :show, :update], param: :slug
   root to: "composteurs#index"
