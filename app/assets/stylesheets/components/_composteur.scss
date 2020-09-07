@@ -1,3 +1,15 @@
+// @function days_until_compo($number) {
+//   @if $number <= 100 or $number >= 0 {
+//     @return (100% - $number%);
+//   }
+//   @else {
+//     @return 100%;
+//   }
+// }
+
+
+
+
 .composteur-box {
   width: 100%;
   display: flex;

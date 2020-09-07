@@ -60,6 +60,7 @@ class ComposteursController < ApplicationController
   def show
     @composteur = Composteur.find_by slug: params[:slug]
     @composteur.date_retournement ? @time_left = (@composteur.date_retournement - Date.today).round : @time_left = 300
+    @days_past_percent = @time_left * 100 / 300
     # users du composteur = les referents + les utilisateurs non referents
     @users = @composteur.users # tous les utilisateurs du site
     # @unsorted_users = @composteur.users.order(role: :asc) # tous les utilisateurs du site
