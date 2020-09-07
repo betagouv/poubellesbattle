@@ -13,10 +13,10 @@ unless Rails.env.test?
     policy.object_src  :none
     policy.style_src   :self, :unsafe_inline, 'fonts.googleapis.com', '*.bootstrapcdn.com', '*.mapbox.com', '*.mailchimp.com', '*.crisp.chat', 'crisp.chat'
     if Rails.env.development?
-      policy.script_src  :self, 'localhost:3000', 'stats.data.gouv.fr', '*.crisp.chat', 'crisp.chat', '*.mapbox.com', 'https://client.crisp.chat/', 'https://stats.data.gouv.fr/piwik.js'
+      policy.script_src  :self, 'localhost:3000', 'stats.data.gouv.fr', '*.crisp.chat', 'crisp.chat', '*.mapbox.com', 'https://client.crisp.chat/l.js', 'https://stats.data.gouv.fr/piwik.js'
       policy.connect_src :self, :https, 'http://localhost:3035', 'ws://localhost:3035', 'ws://localhost:3000', 'wss://*.crisp.chat', '*.crisp.chat', 'https://*.tiles.mapbox.com', 'https://api.mapbox.com', 'https://events.mapbox.com'
     else
-      policy.script_src  :self, 'stats.data.gouv.fr', '*.crisp.chat', 'crisp.chat', '*.mapbox.com', 'https://client.crisp.chat/', 'https://stats.data.gouv.fr/piwik.js'
+      policy.script_src  :self, 'stats.data.gouv.fr', '*.crisp.chat', 'crisp.chat', '*.mapbox.com', 'https://client.crisp.chat/l.js', 'https://stats.data.gouv.fr/piwik.js'
       policy.connect_src :self, 'wss://*.crisp.chat', '*.crisp.chat', 'https://*.tiles.mapbox.com', 'https://api.mapbox.com', 'https://events.mapbox.com'
     end
     # Specify URI for violation reports
