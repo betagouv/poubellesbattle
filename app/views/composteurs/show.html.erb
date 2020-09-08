@@ -193,16 +193,16 @@
 
     </div>
     <div class="jauge-to-compost">
-      <% if @time_left > 0 %>
-        <p><span class="bangers"><%= @time_left %></span> jours avant le prochain retournement !</p>
-      <% elsif @time_left == 0 %>
+      <% if @time_past > 0 %>
+        <p><span class="bangers"><%= @time_past %></span> jours avant le prochain retournement !</p>
+      <% elsif @time_past == 0 %>
         <p>On dirait que la date du retournement du compost est arrivée !</p>
       <% else %>
         <p>Est-ce que la date de retournement est passée ?</p>
       <% end %>
       <div class="compost-time-to-go">
-        <div class="compost-time-past" style="width: <%= @days_past_percent %>%">
-        </div>
+        <div class="compost-time-past"></div>
+        <%= horizontal_bar_chart @days_until_chart, @options_bar %>
       </div>
     </div>
     <% if user_signed_in? %>
