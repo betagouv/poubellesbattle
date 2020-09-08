@@ -6,12 +6,12 @@
 unless Rails.env.test?
 
   Rails.application.config.content_security_policy do |policy|
-    policy.default_src :self, :data, :blob, 'fonts.gstatic.com', '*.crisp.chat', 'crisp.chat', '*.crisp.help', 'https://*.tiles.mapbox.com', 'https://api.mapbox.com', 'https://events.mapbox.com'
+    policy.default_src :self, :data, :blob, 'fonts.gstatic.com', '*.crisp.chat', 'crisp.chat', '*.crisp.help', 'https://*.tiles.mapbox.com', 'https://api.mapbox.com', 'https://events.mapbox.com', 'https://compostable-ou-non.now.sh/'
     policy.font_src    :self, :data, 'fonts.gstatic.com', '*.bootstrapcdn.com', '*.crisp.chat', 'crisp.chat'
     policy.img_src     :self, :data, :blob, '*.cloudinary.com', '*.openstreetmap.org', 'stats.data.gouv.fr', '*.crisp.chat', 'crisp.chat'
     policy.worker_src  :self, :blob
     policy.object_src  :none
-    policy.style_src   :self, :unsafe_inline, 'fonts.googleapis.com', '*.bootstrapcdn.com', '*.mapbox.com', '*.mailchimp.com', '*.crisp.chat', 'crisp.chat'
+    policy.style_src   :self, 'fonts.googleapis.com', '*.bootstrapcdn.com', '*.mapbox.com', '*.mailchimp.com', '*.crisp.chat', 'crisp.chat'
     if Rails.env.development?
       policy.script_src  :self, 'localhost:3000', 'stats.data.gouv.fr', '*.crisp.chat', 'crisp.chat', '*.mapbox.com', 'https://client.crisp.chat/l.js', 'https://stats.data.gouv.fr/piwik.js'
       policy.connect_src :self, :https, 'http://localhost:3035', 'ws://localhost:3035', 'ws://localhost:3000', 'wss://*.crisp.chat', '*.crisp.chat', 'https://*.tiles.mapbox.com', 'https://api.mapbox.com', 'https://events.mapbox.com'
@@ -26,7 +26,7 @@ unless Rails.env.test?
 end
 
 # If you are using UJS then enable automatic nonce generation
-# Rails.application.config.content_security_policy_nonce_generator = -> request { SecureRandom.base64(16) }
+Rails.application.config.content_security_policy_nonce_generator = -> request { SecureRandom.base64(16) }
 
 # Report CSP violations to a specified URI
 # For further information see the following documentation:

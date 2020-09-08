@@ -176,12 +176,16 @@
         height: 30px;
         border-radius: 20px;
         background: antiquewhite;
+        display: flex;
+        align-items: center;
+        position: relative;
         .compost-time-past {
           background: $orange;
           width: 30px;
           height: 30px;
           border-radius: 30px;
-          box-shadow: 0 0 5px $orange;
+          position: absolute;
+          // box-shadow: 0 0 5px $orange;
         }
       }
     }
