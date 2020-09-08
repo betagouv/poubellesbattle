@@ -8,6 +8,7 @@ require 'rspec/rails'
 require 'devise'
 require 'faker'
 require 'capybara/rspec'
+require 'uri'
 # Add additional requires below this line. Rails is not loaded until this point!
 # require 'support/controller_macros.rb'
 # require 'support/factory_bot.rb'
