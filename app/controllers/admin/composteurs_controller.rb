@@ -148,6 +148,7 @@ class Admin::ComposteursController < ApplicationController
       render :edit
     end
   end
+
   def non_referent_composteur
     @user = User.find(params[:referent_id])
     @composteur = Composteur.find_by slug: params[:slug]
