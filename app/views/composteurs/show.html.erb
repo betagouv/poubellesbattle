@@ -207,8 +207,8 @@
     </div>
     <% if user_signed_in? %>
       <% if current_user.composteur_id == @composteur.id || current_user.admin? %>
-        <h2 class="mt-5">Messagerie</h2>
-        <p class="legende">cet espace privé vous permet d'échanger avec les autres membres du site de compostage.</p>
+        <h2 id="messagerie-board">Messagerie</h2>
+        <p class="messagerie-board-info">cet espace privé vous permet d'échanger avec les autres membres du site de compostage.</p>
         <% unless current_user.admin? %>
           <div class="depot-anomalie">
             <%= simple_form_for @notification, html: { class: "depot-form"} do |f| %>

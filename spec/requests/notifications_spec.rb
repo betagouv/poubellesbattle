@@ -103,7 +103,7 @@ RSpec.describe "Notifications", type: :request do
         # gets the user_id of current_user
         post notifications_path, params: { notification: notification_hash }
         expect(Notification.count).to eq(notifications_count_before + 1)
-        expect(response).to redirect_to(composteur_path(Composteur.last))
+        expect(response).to redirect_to(composteur_path(Composteur.last, anchor: 'messagerie-board'))
       end
     end
     describe "GET /anonymous_depot" do

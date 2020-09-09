@@ -11,6 +11,7 @@ class Admin::NotificationsController < ApplicationController
     @notification = Notification.create(notification_params)
     @user = current_user
     @notification.user_id = @user.id
+    @notification.notification_type = 'message-admin'
 
     if @notification.save
       redirect_to admin_notifications_path
