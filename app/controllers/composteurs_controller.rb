@@ -174,13 +174,17 @@ class ComposteursController < ApplicationController
   end
 
   def validation_referent_composteur
-    notification = Notification.find_by slug: params[:slug]
+    notification = Notification.find(params[:slug])
     @user = User.find(notification.user_id)
     @user.referent!
     @user.save
     NotificationMailer.with(notification: notification, state: "validée").demande_referent_state.deliver_now
     notification.destroy
-    redirect_to demandes_path
+    if current_user.admin?
+      redirect_to demandes_path
+    else
+      redirect_to composteur_path(@user.composteur_id)
+    end
   end
 
   def non_referent_composteur
