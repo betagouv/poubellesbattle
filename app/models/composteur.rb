@@ -30,15 +30,13 @@ class Composteur < ApplicationRecord
   validates :address, length: { minimum: 5 }, presence: true, uniqueness: true
   validates :category, inclusion: { in: ["composteur bas d'immeuble", "composteur de quartier"] }
   validates :public, inclusion: { in: [true, false], message: "Merci de cocher une des deux cases"}
-
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
   has_many :users
   has_many :notifications, through: :users
   has_many :donverts, through: :users
   has_one_attached :photo
-
-  geocoded_by :address
-  after_validation :geocode, if: :will_save_change_to_address?
-  after_validation :set_slug, on: :create
+  before_create :set_slug
 
   def to_param
     slug

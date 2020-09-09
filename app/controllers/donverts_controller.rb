@@ -45,7 +45,7 @@ class DonvertsController < ApplicationController
   def create
     @don = Donvert.new(don_params)
     @don.user_id = current_user.id if user_signed_in?
-
+    @don.date_fin_dispo = Date.today + 3.weeks if @don.date_fin_dispo == nil
     if @don.save
       redirect_to donverts_path
     else
