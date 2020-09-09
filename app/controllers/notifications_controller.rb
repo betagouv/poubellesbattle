@@ -26,7 +26,7 @@ class NotificationsController < ApplicationController
     @notification.user_id = @user.id
 
     if @notification.save
-      redirect_to composteur_path(@user.composteur)
+      redirect_to composteur_path(@user.composteur, anchor: 'messagerie-board')
     else
       redirect_to composteur_path(@user.composteur)
     end
