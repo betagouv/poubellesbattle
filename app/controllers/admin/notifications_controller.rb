@@ -23,11 +23,15 @@ class Admin::NotificationsController < ApplicationController
 
   def destroy
     notification = Notification.find(params[:id])
-    if notification.notification_type == "demande-référent" || notification.notification_type == "demande-référent-directe"
-      NotificationMailer.with(notification: notification, state: "refusée").demande_referent_state.deliver_now
-    end
     notification.destroy
-    redirect_to composteur_path(notification.composteur || notification.user.composteur)
+    if notification.notification_type == "demande-référent"
+      NotificationMailer.with(notification: notification, state: "refusée").demande_referent_state.deliver_now
+      redirect_to admin_demandes_path
+    elsif notification.notification_type == "message-admin"
+      redirect_to admin_notifications_path
+    else
+      redirect_to composteur_path(notification.composteur || notification.user.composteur)
+    end
     flash[:notice] = "Notification supprimée"
   end
 

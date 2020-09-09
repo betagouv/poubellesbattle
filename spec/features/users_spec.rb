@@ -1,6 +1,27 @@
 require 'rails_helper'
 
-RSpec.describe "Composteurs", type: :feature do
+RSpec.describe "Users", type: :feature do
+  describe "creating new account + destroy this account" do
+    it "creates a new user and destroys a new user" do
+      visit '/users/sign_up'
+      within '#new_user' do
+        fill_in 'Email', with: "user.email@mail.com"
+        fill_in 'user_password', with: '123456'
+        fill_in 'user_password_confirmation', with: '123456'
+        fill_in 'user_first_name', with: 'Jean Pierre'
+        fill_in 'user_last_name', with: 'Patrick'
+      end
+      click_button "S'inscrire"
+      expect(page).to have_text('Bienvenue, vous êtes connecté.')
+
+      click_link "Modifier mon profil"
+      expect(page).to have_selector('h2', text: 'Jean Pierre Patrick')
+      expect(page).to have_selector('form', id: 'edit_user')
+
+      click_link 'Oui, cloturez mon compte !'
+      expect(page).to have_text('Votre compte a été supprimé avec succès. Nous espérons vous revoir bientôt.')
+    end
+  end
   describe "GET /root_path -- testing redirects after login" do
     before {
             first_composteur = create(:composteur)

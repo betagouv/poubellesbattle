@@ -26,9 +26,9 @@ class NotificationsController < ApplicationController
     @notification.user_id = @user.id
 
     if @notification.save
-      redirect_to composteur_path(@user.composteur_id, anchor: 'messagerie-board')
+      redirect_to composteur_path(@user.composteur, anchor: 'messagerie-board')
     else
-      redirect_to composteur_path(@user.composteur_id)
+      redirect_to composteur_path(@user.composteur)
       flash[:alert] = "Le message n'a pas pu être enregistré."
     end
   end
@@ -58,7 +58,7 @@ class NotificationsController < ApplicationController
 
   def resolved
     notification = Notification.find(params[:id])
-    if notification.notification_type == "anomalie"
+    if notification.notification_type == "anomalie" && current_user.composteur == notification.user.composteur
       notification.resolved = true
       if notification.save
         redirect_to composteur_path(notification.user.composteur)
