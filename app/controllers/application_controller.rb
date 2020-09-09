@@ -6,7 +6,6 @@ class ApplicationController < ActionController::Base
 
   # before_action :ensure_domain
 
-
   def default_url_options
     { host: ENV["DOMAIN"] || "localhost:3000" }
   end

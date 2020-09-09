@@ -1,21 +1,19 @@
 <div class="footer">
-  <!-- <div class="footer__logo">
-    <img src="<%#= image_path('PB_logo.png') %>">
-  </div> -->
+  <div class="footer__logo">
+    <img src="<%= image_path('agglopau-nb.png') %>">
+  </div>
 
   <div class="text-bloc">
     <ul class="footer__links">
-      <li><h2>Compost en Ville</h2></li>
+      <li><h2>Défi Compost</h2></li>
       <li><a href="">Mentions légales</a></li>
       <li><%= mail_to "contact@poubellesbattle.fr", "Contactez-nous !" %></li>
       <li><%= link_to "Vie privée", vieprivee_path %></li>
       <li><a href="https://www.pau.fr/">L'agglomération de Pau</a></li>
       <% unless @composteurs.nil? %>
-
           <div class="dropdown-toggle border-none compo-footer-dropdown" id="dropdownCompoList" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Sites de compostages de quartier
           </div>
-
           <div class="dropdown-menu dropdown-menu-top" aria-labelledby="dropdownCompoList">
             <% @composteurs.each do |compo_link| %>
               <%= link_to compo_link.name.downcase.capitalize, composteur_path(compo_link), class: "dropdown-item compo-footer" if compo_link.public == true  %>

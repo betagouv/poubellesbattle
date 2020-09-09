@@ -22,14 +22,14 @@ Rails.application.routes.draw do
   resources :messages, only: [:new, :create]
 
   get "bourse_verte/mes_dons", to: "donverts#mes_dons", as: "mes_dons"
-  resources :donverts, path: 'bourse_verte', param: :slug
+  resources :donverts, path: 'bourse_verte', only: [:index, :show, :new, :create], param: :slug
   post "bourse_verte/:slug/pourvu", to: "donverts#pourvu", as: "pourvu"
   post "bourse_verte/:slug/archive", to: "donverts#archive", as: "archive"
   get "bourse_verte/:slug/link", to: "donverts#link", as: "link"
 
   get 'stats', to: 'pages#stats', as: 'stats'
   get 'vieprivee', to: 'pages#vieprivee', as: 'vieprivee'
-  get 'to_compost', to: 'pages#to_compost', as: 'composter_ou_non'
+  get 'ca-se-composte', to: 'pages#to_compost', as: 'composter_ou_non'
 
   # ADMINS ROUTES
   namespace :admin do

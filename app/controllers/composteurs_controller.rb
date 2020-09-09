@@ -60,6 +60,44 @@ class ComposteursController < ApplicationController
   def show
     @composteur = Composteur.find_by slug: params[:slug]
     @composteur.date_retournement ? @time_left = (@composteur.date_retournement - Date.today).round : @time_left = 300
+    @time_past = 300 - @time_left
+
+    light_yellow = "#f7e6d0"
+    yellow = "#FBAB55"
+    white = "#FFFFFF"
+
+    @options_bar = {
+      maintainAspectRatio: false,
+      scales: {
+        xAxes: [{
+          display: false,
+          ticks: { min: 0, max: 300, stepSize: 300, beginAtZero: true, display: false }
+        }]
+      },
+      layout: {
+        padding: 0
+      },
+      legend: {
+        display: false
+      },
+      tooltips: {
+        enabled: false
+      },
+      height: 60,
+      width: 660
+    }
+    @days_until_chart = {
+      # labels: ["Déjà #{@time_left} jours"],
+      datasets: [
+        {
+          backgroundColor: yellow,
+          borderColor: yellow,
+          # borderRadius: 20,
+          borderWidth: 20,
+          data: [@time_left]
+        }
+      ]
+    }
     # users du composteur = les referents + les utilisateurs non referents
     @users = @composteur.users # tous les utilisateurs du site
     # @unsorted_users = @composteur.users.order(role: :asc) # tous les utilisateurs du site
