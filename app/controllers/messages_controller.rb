@@ -24,8 +24,9 @@ class MessagesController < ApplicationController
         case URI(request.referer).path
         when '/'
           redirect_to root_path
-        when '/composteurs/' + @referent_composteur.composteur.id.to_s
+        when '/composteurs/' + @referent_composteur.composteur.slug.to_s
           redirect_to composteur_path(@referent_composteur.composteur)
+          flash[:notice] = "Message envoyé !"
         end
       end
     end

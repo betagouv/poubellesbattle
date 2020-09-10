@@ -1,4 +1,4 @@
-.alert {
+.alert, .notice {
   position: fixed;
   bottom: 16px;
   right: 95px;
@@ -6,9 +6,10 @@
   width: max-content;
 }
 
-@media (max-width: 600px) {
-  .alert {
-    bottom: 72%;
+@media (max-width: 1000px) {
+  .alert, .notice {
+    bottom: 72px;
     right: 0px;
+    width: 90%;
   }
 }

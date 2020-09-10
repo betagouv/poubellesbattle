@@ -14,16 +14,16 @@
           <div class="composteur-registration-form">
             <%= render "devise/registrations/new" %>
           </div>
-        <% end %>
+        <% else %>
         <div class="les-referents white-bg">
           <div class="becoming-or-not-referent">
-            <% if user_signed_in? %>
+            <%# if user_signed_in? %>
               <% unless current_user.admin? %>
                 <% if current_user.composteur_id == @composteur.id && current_user.compostophile? %>
                   <div class="dropdown-form-referent">
                     <div class="referent-action-toggle">
                       <% if current_user.notifications.where(notification_type: "demande-référent").count < 1 %>
-                        <%= link_to("devenir référent", referent_path(@composteur), method: :post) %>
+                        <%= link_to("devenir référent•e", referent_path(@composteur), method: :post) %>
                       <% end %>
                     </div>
                   </div>
@@ -31,12 +31,12 @@
                 <% elsif current_user.composteur_id == @composteur.id && current_user.referent? %>
                   <div class="dropdown-form-referent">
                     <div class="referent-action-toggle">
-                      <%= link_to("ne plus être référent", non_referent_path(@composteur), method: :post) %>
+                      <%= link_to("ne plus être référent•e", non_referent_path(@composteur), method: :post) %>
                     </div>
                   </div>
                 <% end %>
               <% end %>
-            <% end %>
+            <%# end %>
           </div>
           <h3><%= inclusive_pluralize(@referents.count, 'Référent•e', '•s') %></h3>
           <%= link_to "C'est quoi être référent•e ?", "https://uncomposteurici.gitbook.io/poubellesbattle/convaincre-son-assemblee-generale-de-copropriete-dinstaller-un-composteur-en-pied-dimmeuble/le-role-de-referent-e-composteur", class: "ref-quoi" %>
@@ -59,7 +59,7 @@
                 <% if referent.ok_mail == true %>
                   <div class="dropdown dropdown-form-referent dropdown-mail-to">
                     <button class="btn referent-mail-to-toggle" type="button" id="dropdownContact-<%= referent.id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Me contacter
+                      Contactez moi !
                     </button>
                     <div class="dropdown-menu referent-composteur-action" aria-labelledby="dropdownContact-<%= referent.id %>">
                       <p><%= referent.first_name %> recevra votre message par mail.</p>
@@ -89,8 +89,12 @@
                   <% end %>
                 <% else %>
                   <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
-                    <div class="notification-card <%= @messages_notifications.notification_type %>">
+                    <div class="notification-card message-ref">
                       <p>"<%= referent.notifications.where(notification_type: "message-ref").last.content %>"</p>
+                    </div>
+                  <% else %>
+                    <div class="notification-card message-ref">
+                      <p><%= referent.first_name %> n'a pas encore écrit de message de présentation</p>
                     </div>
                   <% end %>
                 <% end %>
@@ -110,6 +114,7 @@
             <div class="message-content"><%= @messages_admin.content %></div>
           <% end %>
         </div>
+        <% end %>
       </div>
     </div>
   </div>
@@ -147,31 +152,33 @@
       <% if @composteur.photo.attached? %>
         <%= cl_image_tag @composteur.photo.key, width: 600, height: 450, crop: :fill, class: "composteur-photo" %>
       <% else %>
-        <%= image_tag 'PB_logo.png', class: "composteur-photo" %>
+        <%= image_tag 'PB_logo2.png', class: "composteur-photo" %>
       <% end %>
       <div class="stats">
         <div class="stats-pb">
           <% if @users.count == 0 %>
             <p class="users_stat_info">Personne n'est inscrit sur ce site de compostage pour l'instant...</p>
           <% elsif @users.count > 0 %>
-          <h1 class="bangers"><%= @users.count %></h1>
+          <p class="bangers stat-number"><%= @users.count %></p>
           <p class="users-stat-info"><%= "adepte".pluralize(@users.count) %> du compostage</p>
           <% end %>
         </div>
-        <div class="stats-pb" data-toggle="tooltip" data-html="true" data-placement="left" title="
-            <strong>Points Poubelles Battle</strong>
-            <p>Les points PB sont là pour encourager les dépots autant que les échanges entre les membres du site de compostage.</p>
-            <p>+10 points par dépot et anomalie résolue</p>
-            <p>-5 points par anomalie non résolue</p>
-            <p>+2 points par messages</p>
-            ">
-          <h1 class="bangers"><%= @score %></h1>
-          <p class="users-stat-info"><%= "point".pluralize(@score) %> PB</p>
-        </div>
-        <div class="stats-pb">
-          <h1 class="bangers"><%= @depots_count %></h1>
-          <p class="users-stat-info"><%= "dépot".pluralize(@depots_count) %></p>
-        </div>
+        <% if user_signed_in? %>
+          <div class="stats-pb" data-toggle="tooltip" data-html="true" data-placement="left" title="
+              <strong>Points Poubelles Battle</strong>
+              <p>Les points PB sont là pour encourager les dépots autant que les échanges entre les membres du site de compostage.</p>
+              <p>+10 points par dépot et anomalie résolue</p>
+              <p>-5 points par anomalie non résolue</p>
+              <p>+2 points par messages</p>
+              ">
+            <p class="bangers stat-number"><%= @score %></p>
+            <p class="users-stat-info"><%= "point".pluralize(@score) %> PB</p>
+          </div>
+          <div class="stats-pb">
+            <p class="bangers stat-number"><%= @depots_count %></p>
+            <p class="users-stat-info"><%= "dépot".pluralize(@depots_count) %></p>
+          </div>
+        <% end %>
       </div>
     </div>
     <div class="les-users">
@@ -251,11 +258,13 @@
                       <% else %>
                         <%= notification.user.nil? ? "anonyme 🦸" : "#{notification.user.first_name}" %>
                       <% end %>
-                      <div class="notification-admin-line">
-                        <div class="destroy-btn">
-                          <%= link_to "❌", admin_notification_path(notification), method: :delete, data: {confirm: "Vous êtes sur le point de supprimer ce message. Etes-vous certain•e ?"} if current_user.admin? %>
+                      <% if current_user.admin? %>
+                        <div class="notification-admin-line">
+                          <div class="destroy-btn">
+                            <%= link_to "❌", admin_notification_path(notification), method: :delete, data: {confirm: "Vous êtes sur le point de supprimer ce message. Etes-vous certain•e ?"} if current_user.admin? %>
+                          </div>
                         </div>
-                      </div>
+                      <% end %>
                     </div>
                     <div class="notification-card notification-card-current-user <%= notification.notification_type %>">
                       <div class="notif-content"><p><%= notification.content %></p></div>
@@ -426,7 +435,7 @@
                 <% if referent.ok_mail == true %>
                   <div class="dropdown dropdown-form-referent dropdown-mail-to">
                     <button class="btn referent-mail-to-toggle" type="button" id="dropdownContact-<%= referent.id %>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      Me contacter
+                      Contactez moi !
                     </button>
                     <div class="dropdown-menu referent-composteur-action" aria-labelledby="dropdownContact-<%= referent.id %>">
                       <p><%= referent.first_name %> recevra votre message par mail.</p>
@@ -444,20 +453,24 @@
               <% end %>
               <% if user_signed_in? %>
                 <% if current_user.referent? && current_user == referent %>
+                  <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
+                    <div class="notification-card message-ref">
+                      <p>"<%= referent.notifications.where(notification_type: "message-ref").last.content %>"</p>
+                    </div>
+                  <% end %>
                   <%= simple_form_for(@notification) do |f| %>
                     <%= f.input :notification_type, as: :string, input_html: { value: "message-ref", type:"hidden" }%>
                     <%= f.input :content, as: :text, placeholder: "modifier mon message de présentation..." %>
                     <%= f.submit "Enregistrer", class: "message-form-ref" %>
                   <% end %>
-                  <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
-                    <div class="notification-card <%= @messages_notifications.notification_type %>">
-                      <p>"<%= referent.notifications.where(notification_type: "message-ref").last.content %>"</p>
-                    </div>
-                  <% end %>
                 <% else %>
                   <% if @messages_notifications != nil && referent.notifications.where(notification_type: "message-ref") != [] %>
-                    <div class="notification-card <%= @messages_notifications.notification_type %>">
+                    <div class="notification-card message-ref">
                       <p>"<%= referent.notifications.where(notification_type: "message-ref").last.content %>"</p>
+                    </div>
+                  <% else %>
+                    <div class="notification-card message-ref">
+                      <p><%= referent.first_name %> n'a pas encore écrit de message de présentation</p>
                     </div>
                   <% end %>
                 <% end %>
