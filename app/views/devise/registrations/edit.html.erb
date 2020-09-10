@@ -1,9 +1,9 @@
 <div class="edit-user-view">
   <div class="edit-user-left">
     <% if current_user.photo.attached? %>
-      <%= cl_image_tag current_user.photo.key, height: 300, width: 300, crop: :fill, class: "avatar-large" %>
+      <%= cl_image_tag current_user.photo.key, alt: "Votre photo de profil", height: 300, width: 300, crop: :fill, class: "avatar-large" %>
     <% else %>
-      <%= image_tag "PB_logo.png", alt: "default avatar", class: "avatar-large" %>
+      <%= image_tag "PB_logo2.png", alt: "default avatar", class: "avatar-large" %>
     <% end %>
     <% if current_user.first_name && current_user.last_name %>
       <h2><%= current_user.first_name %> <%= current_user.last_name %></h2>

@@ -16,9 +16,9 @@
           </div>
             <div class="composteur-card">
               <% if composteur.photo.attached? %>
-                <%= cl_image_tag composteur.photo.key, height: 200, width: 260, crop: :fill %>
+                <%= cl_image_tag composteur.photo.key, alt: "Photo du site de compostage #{composteur.name}", height: 200, width: 260, crop: :fill %>
               <% else %>
-                <%= image_tag 'PB_logo.png' %>
+                <%= image_tag 'PB_logo2.png', alt: "Photo non fournie du site de compostage #{composteur.name}" %>
               <% end %>
               <h5><%= composteur.name %></h5>
               <p><%= composteur.address %></p>
