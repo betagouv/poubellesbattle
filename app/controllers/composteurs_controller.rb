@@ -184,7 +184,7 @@ class ComposteursController < ApplicationController
     @user.compostophile!
     if @user.save
       redirect_to composteur_path
-      flash[:notice] = "Vous n'êtes plus inscrit à ce composteur, vous pouvez maintenant vous inscrire à un autre !"
+      flash[:notice] = "Vous n'êtes plus inscrit•e à ce composteur, vous pouvez maintenant vous inscrire à un autre !"
     else
       render :show
       flash[:notice] = "Oups, une erreur s'est produite.."
@@ -236,17 +236,6 @@ class ComposteursController < ApplicationController
       render :show
       flash[:notice] = "Oups, une erreur s'est produite.."
     end
-  end
-
-  def send_email
-    @composteur = Composteur.find_by slug: params[:slug]
-      if !@composteur.referent_email.nil?
-        # ContactReferentMailer.send_request(@composteur).deliver_now
-        flash[:notice] = "Demande envoyée"
-      else
-        flash[:notice] = "Votre demande n'a pu aboutir, le référent n'a pas renseigné d'adresse mail"
-      end
-    redirect_to root_path
   end
 
   private

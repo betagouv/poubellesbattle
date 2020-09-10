@@ -33,9 +33,9 @@
     </div>
     <div class="don-card <%= @don.date_fin_dispo.past? ? "don-past" : '' %>">
       <% if @don.photo.attached? %>
-        <%= cl_image_tag @don.photo.key, height: 143, width: 235, crop: :fill %>
+        <%= cl_image_tag @don.photo.key, alt: "Photo du don de #{@don.donneur_name} - #{@don.type_matiere_orga} - #{@don.description}", height: 143, width: 235, crop: :fill %>
       <% else %>
-        <%= image_tag 'PB_logo.png' %>
+        <%= image_tag 'PB_logo2.png', alt: "Photo non fournie par #{@don.donneur_name} - #{@don.type_matiere_orga} - #{@don.description}" %>
       <% end %>
       <h5><%= @don.title %></h5>
       <div class="don-infos">

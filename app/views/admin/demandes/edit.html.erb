@@ -5,10 +5,10 @@
       <p class="legende">cette demande a été validée car le formulaire était complet.</p>
       <div class="mini-btn"><%= link_to "modifier", admin_formulaire_toggle_path(@demande), method: :post %></div>
       <% if @demande.photo.attached? %>
-        <%= cl_image_tag @demande.photo.key, height: 200, width: 260, crop: :fill %>
+        <%= cl_image_tag @demande.photo.key, alt: "Photo du site envisagé par #{@demande.first_name}", height: 200, width: 260, crop: :fill %>
         <p class="legende">photo du lieu envisagé</p>
       <% else %>
-        <%= image_tag 'PB_logo.png' %>
+        <%= image_tag 'PB_logo2.png', alt: "Photo non fournie du site envisagé par #{@demande.first_name}" %>
       <% end %>
       <div class="demande-info">
         <%= @demande.first_name %> <%= @demande.last_name %>
@@ -100,7 +100,7 @@
         </div>
         <%= f.input :address, placeholder: 'Adresse' %>
         <% if @demande.photo.attached? %>
-          <%= cl_image_tag @demande.photo.key, height: 200, width: 260, crop: :fill %>
+          <%= cl_image_tag @demande.photo.key, alt: "Photo du site envisagé par #{@demande.first_name}", height: 200, width: 260, crop: :fill %>
           <p>photo du lieu envisagé par la personne.</p>
         <% else %>
           <%= f.input :photo, label: "Aucune photo n'a été soumise dans ce formulaire, voulez-vous en inclure une ?", as: :file %>
