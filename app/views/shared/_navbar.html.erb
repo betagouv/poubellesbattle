@@ -1,6 +1,6 @@
 <div class="navbar-poub-bat">
   <div class="navbar-poub-bat-left">
-  <%= link_to 'https://www.pau.fr', target: '_blank' do %>
+  <%= link_to 'https://www.pau.fr', rel:"noopener", target: '_blank' do %>
     <img class="logo" alt="logo agglomération de Pau" src="<%= image_path('agglopau.png') %>"/>
   <% end %>
   <%= link_to root_path, class: "home-link" do %>
@@ -43,9 +43,9 @@
             <%= link_to "Demander l'installation d'un composteur collectif", new_demande_path, class: "dropdown-item" %>
             <%= link_to "Trouver du compost, du structurant, des outils", donverts_path, class: "dropdown-item" %>
             <%= link_to "Qu'est-ce que je peux mettre au compost ?", composter_ou_non_path, class: "dropdown-item" %>
-            <%= link_to "Que faire de mes déchets non compostables ?", 'Lien vers autre déchet Pau : https://www.pau.fr/rechercher/dechet?_source=user', target: "_blank", class: "dropdown-item" %>
-            <%= link_to "Conseils et astuces pour composter en co-propriété", 'https://uncomposteurici.gitbook.io/poubellesbattle/', target: "_blank", class: "dropdown-item" %>
-            <%= link_to "S'auto-former au compostage", 'https://www.ademe.fr/sites/default/files/assets/documents/guide-pratique-compostage-et-paillage.pdf', target: "_blank", class: "dropdown-item" %>
+            <%= link_to "Que faire de mes déchets non compostables ?", 'Lien vers autre déchet Pau : https://www.pau.fr/rechercher/dechet?_source=user', rel:"noopener", target: "_blank", class: "dropdown-item" %>
+            <%= link_to "Conseils et astuces pour composter en co-propriété", 'https://uncomposteurici.gitbook.io/poubellesbattle/', rel:"noopener", target: "_blank", class: "dropdown-item" %>
+            <%= link_to "S'auto-former au compostage", 'https://www.ademe.fr/sites/default/files/assets/documents/guide-pratique-compostage-et-paillage.pdf', rel:"noopener", target: "_blank", class: "dropdown-item" %>
           </div>
         <% end %>
       <% else %>
@@ -57,9 +57,9 @@
           <%= link_to "Demander l'installation d'un composteur collectif", new_demande_path, class: "dropdown-item" %>
           <%= link_to "Trouver du compost, du structurant, des outils", donverts_path, class: "dropdown-item" %>
           <%= link_to "Qu'est-ce que je peux mettre au compost ?", composter_ou_non_path, class: "dropdown-item" %>
-          <%= link_to "Que faire de mes déchets non compostables ?", 'Lien vers autre déchet Pau : https://www.pau.fr/rechercher/dechet?_source=user', target: "_blank", class: "dropdown-item" %>
-          <%= link_to "Conseils et astuces pour composter en co-propriété", 'https://uncomposteurici.gitbook.io/poubellesbattle/', target: "_blank", class: "dropdown-item" %>
-          <%= link_to "S'auto-former au compostage", 'https://www.ademe.fr/sites/default/files/assets/documents/guide-pratique-compostage-et-paillage.pdf', target: "_blank", class: "dropdown-item" %>
+          <%= link_to "Que faire de mes déchets non compostables ?", 'Lien vers autre déchet Pau : https://www.pau.fr/rechercher/dechet?_source=user', rel:"noopener", target: "_blank", class: "dropdown-item" %>
+          <%= link_to "Conseils et astuces pour composter en co-propriété", 'https://uncomposteurici.gitbook.io/poubellesbattle/', rel:"noopener", target: "_blank", class: "dropdown-item" %>
+          <%= link_to "S'auto-former au compostage", 'https://www.ademe.fr/sites/default/files/assets/documents/guide-pratique-compostage-et-paillage.pdf', rel:"noopener", target: "_blank", class: "dropdown-item" %>
         </div>
       <% end %>
     </li>
@@ -72,7 +72,7 @@
               </div>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuApropos">
                 <%= link_to "S'inscrire à la newsletter", root_path(anchor:"newsletter"), class: "dropdown-item" %>
-                <%= link_to "A propos de Poubelles Battle", "https://beta.gouv.fr/startups/poubelles-battle.html", target: "_blank", class: "dropdown-item" %>
+                <%= link_to "A propos de Poubelles Battle", "https://beta.gouv.fr/startups/poubelles-battle.html", rel:"noopener", target: "_blank", class: "dropdown-item" %>
                 <%= link_to "Poubelles Battle en chiffres", stats_path, class: "dropdown-item" %>
               </div>
             </li>
@@ -84,7 +84,7 @@
           </div>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuApropos">
             <%= link_to "S'inscrire à la newsletter", root_path(anchor:"newsletter"), class: "dropdown-item" %>
-            <%= link_to "A propos de Poubelles Battle", "https://beta.gouv.fr/startups/poubelles-battle.html", target: "_blank", class: "dropdown-item" %>
+            <%= link_to "A propos de Poubelles Battle", "https://beta.gouv.fr/startups/poubelles-battle.html", rel:"noopener", target: "_blank", class: "dropdown-item" %>
             <%= link_to "Poubelles Battle en chiffres", stats_path, class: "dropdown-item" %>
           </div>
         </li>
