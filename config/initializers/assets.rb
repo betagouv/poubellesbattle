@@ -12,3 +12,12 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
+
+# This will affect assets served from /app/assets
+Rails.application.config.static_cache_control = "public, max-age=#{3.months.to_i}"
+
+# This will affect assets in /public, e.g. webpacker assets.
+Rails.application.config.public_file_server.headers = {
+  'Cache-Control' => "public, max-age=#{3.months.to_i}",
+  'Expires' => 3.months.from_now.to_formatted_s(:rfc822)
+}

@@ -4,7 +4,7 @@ const initPiwik = () => {
   _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking']);
   (function() {
-    const u="//stats.data.gouv.fr/";
+    const u="https://stats.data.gouv.fr/";
     _paq.push(['setTrackerUrl', u+'piwik.php']);
     _paq.push(['setSiteId', '126']);
     const d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
