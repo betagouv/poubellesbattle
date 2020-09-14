@@ -8,7 +8,7 @@ unless Rails.env.test?
   Rails.application.config.content_security_policy do |policy|
     policy.default_src :self
     policy.font_src    :self, :data, 'fonts.gstatic.com', 'bootstrapcdn.com', 'maxcdn.bootstrapcdn.com', 'crisp.chat', 'client.crisp.chat'
-    policy.img_src     :self, :data, :blob, 'cloudinary.com', 'openstreetmap.org', 'stats.data.gouv.fr', 'crisp.chat', 'https://image.crisp.chat/', 'https://client.crisp.chat/'
+    policy.img_src     :self, :data, :blob, 'cloudinary.com', 'openstreetmap.org', 'stats.data.gouv.fr', 'crisp.chat', 'https://image.crisp.chat/', 'https://client.crisp.chat/', 'res.cloudinary.com'
     policy.worker_src  :self, :blob
     policy.object_src  :none
     policy.frame_src   'https://compostable-ou-non.now.sh/'

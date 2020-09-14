@@ -60,9 +60,10 @@ const initMapbox = () => {
         });
     };
     };
-    setTimeout(() => {  document.querySelector("a[href='https://www.mapbox.com/about/maps/']").rel = 'noopener'; }, 2000);
-    setTimeout(() => {  document.querySelector("a[href='http://www.openstreetmap.org/about/']").rel = 'noopener'; }, 2000);
-
+    const mapboxLink = document.querySelector("a[href='https://www.mapbox.com/about/maps/']")
+    const openstreetLink = document.querySelector("a[href='http://www.openstreetmap.org/about/']")
+    if (mapboxLink) {setTimeout(() => {  mapboxLink.rel = 'noopener'; }, 2000);}
+    if (openstreetLink) {setTimeout(() => {  openstreetLink.rel = 'noopener'; }, 2000);}
 };
 
 export { initMapbox };
