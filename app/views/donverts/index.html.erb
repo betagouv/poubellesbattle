@@ -31,12 +31,12 @@
               <div class="dropdown-menu don-options-size-padd" aria-labelledby="dropdownOptions-<%= don.id%>">
                 <% if !don.pourvu %>
                   <div class="dropdown-item">
-                    <%= link_to "Mon don est pourvu", pourvu_path(don), method: :post, data: { confirm: "Une fois le don pourvu, vous ne pourrez plus revenir en arrière."} %>
+                    <%= link_to "Mon don est pourvu", pourvu_path(don), method: :post, data: {confirm: "Une fois le don pourvu, vous ne pourrez plus revenir en arrière.", title:'Don pourvu ?', commit: 'Oui!', cancel: 'annuler'} %>
                   </div>
                 <% end %>
                 <% if !don.archived %>
                   <div class="dropdown-item">
-                    <%= link_to "Archiver mon don", archive_path(don), method: :post, data: { confirm: "Une fois le don archivé, votre don ne sera plus visible dans la liste et vous ne pourrez plus revenir en arrière."} %>
+                    <%= link_to "Archiver mon don", archive_path(don), method: :post, data: {confirm: "Une fois le don archivé, votre don ne sera plus visible dans la liste et vous ne pourrez plus revenir en arrière.", title:'Archiver ce don ?', commit: 'Oui!', cancel: 'annuler'} %>
                   </div>
                 <% end %>
               </div>
