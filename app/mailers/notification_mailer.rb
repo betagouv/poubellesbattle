@@ -8,6 +8,15 @@ class NotificationMailer < ApplicationMailer
     mail(to: @referent.email, subject: "Une nouvelle personne aimerait devenir référent•e avec vous !")
   end
 
+  def signaler_contenu
+    @notification = params[:notification]
+    @contenu_signale = Notification.find(@notification.content.to_i)
+    @composteur = Composteur.find(@notification.composteur_id)
+    @user = User.find(@notification.user_id)
+
+    mail(to: 'contact@poubellesbattle.fr', subject: 'Nouveau contenu signalé...')
+  end
+
   def demande_referent_state
     @notification = params[:notification]
     @state = params[:state]

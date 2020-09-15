@@ -22,13 +22,17 @@ class NotificationsController < ApplicationController
 
   def create
     @notification = Notification.create(notification_params)
-    @user = current_user
-    @notification.user_id = @user.id
+    @notification.user = current_user
+    @notification.composteur = current_user.composteur if @notification.notification_type == 'signaler-contenu'
 
     if @notification.save
-      redirect_to composteur_path(@user.composteur, anchor: 'messagerie-board')
+      redirect_to composteur_path(current_user.composteur, anchor: 'messagerie-board')
+      if @notification.notification_type == 'signaler-contenu'
+        flash[:notice] = 'Signalement pris en compte'
+        NotificationMailer.with(notification: @notification).signaler_contenu.deliver_now
+      end
     else
-      redirect_to composteur_path(@user.composteur)
+      redirect_to composteur_path(current_user.composteur)
       flash[:alert] = "Le message n'a pas pu être enregistré."
     end
   end

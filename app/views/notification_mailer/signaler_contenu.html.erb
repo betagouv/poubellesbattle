@@ -1,0 +1,11 @@
+<h5>Nouveau contenu signalé :</h5>
+<p>Sur la messagerie du site de compostage <%= @composteur.name %></p>
+<p>_______</p>
+<p>contenu du message :</p>
+<p><%= @contenu_signale.content %></p>
+<p></p>
+<p>écrit par : <%= @contenu_signale.user.first_name + ' ' + @contenu_signale.user.last_name %> <%= @contenu_signale.created_at.strftime("le %d/%m/%Y") %></p>
+<p>_______</p>
+<p>En tant qu'administrateur•ice, vous avez la possibilité d'aller vérifier ce contenu dans son contexte <%= link_to 'ici', composteur_url(@composteur, anchor: "messagerie-board") %>.
+Sur cette page vous aurez la possibilité de supprimer le contenu si celui-ci vous semble offensant.</p>
+<p>Vous pouvez aussi, contacter <%= @contenu_signale.user.first_name + ' ' + @contenu_signale.user.last_name %> par mail à cette adresse : <%= mail_to '@contenu_signale.user.email', @contenu_signale.user.email %>.</p>
