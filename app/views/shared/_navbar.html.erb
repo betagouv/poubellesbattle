@@ -96,7 +96,7 @@
       <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton2">
         <% if user_signed_in? %>
           <% if current_user.composteur_id != nil %>
-            <%= link_to "Mon Composteur", composteur_path(current_user.composteur_id), class: "dropdown-item"  %>
+            <%= link_to "Mon Composteur", composteur_path(current_user.composteur), class: "dropdown-item"  %>
           <% end %>
           <% if Demande.find_by(email: current_user.email) != nil %>
             <% demande = Demande.find_by(email: current_user.email) %>
