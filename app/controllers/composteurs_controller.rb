@@ -114,6 +114,7 @@ class ComposteursController < ApplicationController
         @message = Message.new
       if current_user.composteur == @composteur
         @notification = Notification.new
+        @signaler_contenu = Notification.new
       end
       @last_anomalie = @composteur.notifications.where(notification_type: "anomalie").last
       @depots_count = @composteur.notifications.where(notification_type: "depot").count

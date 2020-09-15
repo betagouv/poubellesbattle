@@ -268,7 +268,18 @@
                     </div>
                     <div class="notification-card notification-card-current-user <%= notification.notification_type %>">
                       <div class="notif-content"><p><%= notification.content %></p></div>
-                      <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
+                      <div class="notif-subtexts">
+                        <% unless current_user.admin? %>
+                          <div class="notif-signaler-contenu">
+                            <%= simple_form_for(@signaler_contenu) do |f| %>
+                              <%= f.input :content, input_html: { value: notification.id, type: 'hidden'} %>
+                              <%= f.input :notification_type, input_html: { value: 'signaler-contenu', type: 'hidden'} %>
+                              <%= f.submit 'signaler ce contenu', data: {confirm: "Vous êtes sur le point de signaler le contenu de ce message à l'équipe administrative de ce site. Voulez-vous confirmer ?"} %>
+                            <% end %>
+                          </div>
+                        <% end %>
+                        <div class="notif-since">Il y a <%= distance_of_time_in_words(Time.now, notification.created_at) %></div>
+                      </div>
                     </div>
                   </div>
                 </div>
