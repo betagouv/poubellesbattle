@@ -13,7 +13,7 @@ import { initMapbox } from '../plugins/init_mapbox';
 import { initCrisp } from '../plugins/init_crisp';
 import { initPiwik } from '../plugins/init_piwik';
 // import { initAutocomplete } from '../plugins/init_autocomplete';
-
+import 'data-confirm-modal'
 
 initMapbox();
 initCrisp();

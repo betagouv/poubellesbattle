@@ -67,7 +67,7 @@
     <% end %>
 
     <p class="mt-4">Tu es venu•e nous dire que tu t'en vas ?</p>
-    <%= link_to "Oui, cloturez mon compte !", registration_path(resource_name), data: { confirm: "Are you sure?" }, class: "bouton-valid rouge", method: :delete %>
+    <%= link_to "Oui, cloturez mon compte !", registration_path(resource_name), data: { confirm: "Mais est-ce que tu vas continuer à composter ?" , title:'Supprimer mon compte', commit: 'Oui!', cancel: 'annuler'}, class: "bouton-valid rouge", method: :delete %>
   </div>
   <%# if user.photo.attached? %>
       <%#= user.photo.key, height: 300, width: 400, crop: :fill %>
