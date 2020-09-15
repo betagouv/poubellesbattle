@@ -70,7 +70,7 @@
           <p>Date d'installation </p>
           <%= f.input :status, as: :string, input_html: { value: "planifiée", type:"hidden" }%>
           <%= f.input :planification_date, as: :string, input_html: { class: "datepicker" }, label: "Installation", required: true %>
-          <%= f.submit "Enregistrer la date", class: "bouton-valid", data: {confirm: "Avez-vous bien ajouté une date et une adresse ?"} %>
+          <%= f.submit "Enregistrer la date", class: "bouton-valid", data: {confirm: "Avez-vous bien ajouté une date et une adresse ?", title:'Date & Adresse', commit: 'Oui!', cancel: 'annuler'} %>
         <% end %>
       <% elsif @demande.status == "validée" %>
         <%= simple_form_for [:admin, @demande] do |f| %>
