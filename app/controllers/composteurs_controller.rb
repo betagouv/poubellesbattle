@@ -21,16 +21,12 @@ class ComposteursController < ApplicationController
 
   def index
     @composteurs = Composteur.geocoded
-    # OR
-    if user_signed_in?
-      @composteurs = Composteur.includes(:photo_attachment).geocoded if current_user.admin?
-    end
 
-    @composteurs_count = Composteur.count
     @composteurs_all = Composteur.all
+    @composteurs_count = @composteurs_all.count
 
     @message = Message.new
-    @markers = @composteurs.includes(:photo_attachment).map do |compo|
+    @markers = @composteurs.map do |compo|
       if compo.manual_lng.nil? || compo.manual_lat.nil?
         {
           lat: compo.latitude,
@@ -115,9 +111,10 @@ class ComposteursController < ApplicationController
           @users_search = []
         end
       end
-        @message = Message.new
+      @message = Message.new
       if current_user.composteur == @composteur
         @notification = Notification.new
+        @signaler_contenu = Notification.new
       end
       @last_anomalie = @composteur.notifications.where(notification_type: "anomalie").last
       @depots_count = @composteur.notifications.where(notification_type: "depot").count
