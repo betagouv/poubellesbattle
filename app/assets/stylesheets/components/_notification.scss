@@ -12,13 +12,14 @@
   justify-content: space-between;
   align-items: flex-start;
   text-align: right;
+  .notif-since {
+    font-size: 10px;
+    font-style: italic;
+  }
   .notif-subtexts{
     display: flex;
     font-size: 10px;
     align-items: center;
-    .notif-since {
-      font-style: italic;
-    }
     .notif-signaler-contenu {
       .form-group.string.required {
         margin: 0;

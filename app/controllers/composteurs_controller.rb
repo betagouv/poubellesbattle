@@ -120,7 +120,7 @@ class ComposteursController < ApplicationController
       @depots_count = @composteur.notifications.where(notification_type: "depot").count
       anonymous_notifications = Notification.where(composteur_id: @composteur.id).includes(:user)
       non_anonymous_notifications = @composteur.notifications.includes(:user)
-      @notifications = (anonymous_notifications + non_anonymous_notifications).sort.reverse
+      @notifications = (anonymous_notifications + non_anonymous_notifications).uniq.sort.reverse
       # .where(notification_type: "welcome").or(@composteur.notifications.where(notification_type: "depot")).or(@composteur.notifications.where(notification_type: "depot direct")).or(@composteur.notifications.where(notification_type: "anomalie")).or(@composteur.notifications.where(notification_type: "message")).includes(:user).order(created_at: :desc).first(100)
       @score = 0
       @notifications.each do |notif|

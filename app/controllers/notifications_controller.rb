@@ -23,7 +23,7 @@ class NotificationsController < ApplicationController
   def create
     @notification = Notification.create(notification_params)
     @notification.user = current_user
-    @notification.composteur = current_user.composteur if @notification.notification_type == 'signaler-contenu'
+    @notification.composteur = current_user.composteur if current_user.composteur != nil
 
     if @notification.save
       redirect_to composteur_path(current_user.composteur, anchor: 'messagerie-board')
