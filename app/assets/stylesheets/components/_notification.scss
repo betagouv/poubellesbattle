@@ -14,9 +14,10 @@
   text-align: right;
   .notif-subtexts{
     display: flex;
-    font-size: 10px;
     align-items: center;
+    font-size: 10px;
     .notif-since {
+      font-size: 10px;
       font-style: italic;
     }
     .notif-signaler-contenu {
