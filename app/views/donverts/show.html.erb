@@ -11,13 +11,13 @@
             <p>Ce don est pourvu, vous ne pouvez plus le modifier.</p>
             <p>Vous avez la possibilité d'archiver ce don afin qu'il ne soit plus visible des autres utlisateurs.</p>
             <div class="new-don-btn">
-              <%= link_to "Archiver mon don !", archive_path(@don), method: :post, data: { confirm: "Une fois le don archivé, votre don ne sera plus visible dans la liste et vous ne pourrez plus revenir en arrière."} %>
+              <%= link_to "Archiver mon don !", archive_path(@don), method: :post, data: {confirm: "Une fois le don archivé, votre don ne sera plus visible dans la liste et vous ne pourrez plus revenir en arrière.", title:'Archiver ce don ?', commit: 'Oui!', cancel: 'annuler'} %>
             </div>
           </div>
         <% else %>
           <h2>Aperçu de mon don</h2>
           <div class="new-don-btn">
-            <%= link_to "Mon don est pourvu !", pourvu_path(@don), method: :post, data: { confirm: "Une fois le don pourvu, vous ne pourrez plus revenir en arrière."} %>
+            <%= link_to "Mon don est pourvu !", pourvu_path(@don), method: :post, data: {confirm: "Une fois le don pourvu, vous ne pourrez plus revenir en arrière.", title:'Don pourvu ?', commit: 'Oui!', cancel: 'annuler'} %>
           </div>
         <% end %>
       <% elsif @don.user_id == nil %>

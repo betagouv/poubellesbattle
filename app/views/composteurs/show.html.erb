@@ -261,7 +261,7 @@
                       <% if current_user.admin? %>
                         <div class="notification-admin-line">
                           <div class="destroy-btn">
-                            <%= link_to "❌", admin_notification_path(notification), method: :delete, data: {confirm: "Vous êtes sur le point de supprimer ce message. Etes-vous certain•e ?"} if current_user.admin? %>
+                            <%= link_to "❌", admin_notification_path(notification), method: :delete, data: {confirm: "Vous êtes sur le point de supprimer ce message. Etes-vous certain•e ?", title:'supprimer ce message ?', commit: 'Oui!', cancel: 'annuler'} %>
                           </div>
                         </div>
                       <% end %>
@@ -274,7 +274,7 @@
                             <%= simple_form_for(@signaler_contenu) do |f| %>
                               <%= f.input :content, input_html: { value: notification.id, type: 'hidden'} %>
                               <%= f.input :notification_type, input_html: { value: 'signaler-contenu', type: 'hidden'} %>
-                              <%= f.submit 'signaler ce contenu', data: {confirm: "Vous êtes sur le point de signaler le contenu de ce message à l'équipe administrative de ce site. Voulez-vous confirmer ?"} %>
+                              <%= f.submit 'signaler ce contenu', data: {confirm: "Vous êtes sur le point de signaler le contenu de ce message à l'équipe administrative de ce site. Voulez-vous confirmer ?", title:'Signaler un contenu', commit: 'Oui!', cancel: 'annuler'} %>
                             <% end %>
                           </div>
                         <% end %>

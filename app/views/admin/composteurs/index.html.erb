@@ -12,7 +12,7 @@
             <%= link_to "✏️", edit_admin_composteur_path(composteur), class: "button-demande" %>
             <%= link_to "👁", composteur_path(composteur), class: "button-demande" %>
             <%#= mail_to composteur.email, "✉️", subject: "Votre demande de composteur.", class: "button-demande" %>
-            <%= link_to "🗑", admin_composteur_path(composteur), method: :delete, data: {confirm: "Vous êtes sur le point de suprimer un composteur. Etes-vous certain ?"}, class: "button-demande" %>
+            <%= link_to "🗑", admin_composteur_path(composteur), method: :delete, data: {confirm: "Vous êtes sur le point de suprimer un composteur. Etes-vous certain ?", title:'supprimer ce composteur ?', commit: 'Oui!', cancel: 'annuler'}, class: "button-demande" %>
           </div>
             <div class="composteur-card">
               <% if composteur.photo.attached? %>
