@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   ruby: circleci/ruby@0.1.2
+  coverage-reporter: codacy/coverage-reporter@11.3.1
 
 defaults: &defaults
   working_directory: ~/tps
@@ -63,6 +64,9 @@ jobs:
             eval $COMMAND
       - store_artifacts:
           path: coverage
+      - coverage-reporter/send_report:
+          coverage-reports: 'report.xml,coverage.info'
+          project-token: $CODACY_PROJECT_TOKEN
 workflows:
   version: 2
   build_and_test:
