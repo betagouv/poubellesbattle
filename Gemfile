@@ -22,6 +22,7 @@ gem 'font-awesome-sass', '~> 5.6.1'
 gem 'rqrcode'
 gem 'sassc-rails'
 gem 'simple_form'
+gem 'simplecov', require: false, group: :test
 gem 'uglifier'
 gem 'webpacker', '~> 5.x'
 

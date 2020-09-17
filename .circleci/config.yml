@@ -40,7 +40,6 @@ jobs:
       - *yarn_install
       - *webpacker_precompile
   test:
-    parallelism: 3
     <<: *defaults
     steps:
       - checkout
@@ -62,6 +61,8 @@ jobs:
             COMMAND="bundle exec rspec"
             echo $COMMAND
             eval $COMMAND
+      - store_artifacts:
+          path: coverage
 workflows:
   version: 2
   build_and_test:
