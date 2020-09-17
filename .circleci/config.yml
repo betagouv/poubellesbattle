@@ -63,10 +63,8 @@ jobs:
             COMMAND="bundle exec rspec"
             echo $COMMAND
             eval $COMMAND
-      - store_artifacts:
-          path: coverage
       - coverage-reporter/send_report:
-          coverage-reports: coverage/.resultset.json,coverage/.last_run.json
+          coverage-reports: .resultset.json
           project-token: $CODACY_PROJECT_TOKEN
 workflows:
   version: 2
