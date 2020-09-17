@@ -9,6 +9,7 @@ defaults: &defaults
   docker:
     - image: circleci/ruby:2.6.3-stretch-node
     - image: circleci/postgres:11.5
+    - image: circleci/openjdk:8-jdk
       environment:
         POSTGRES_USER: tps_test
         POSTGRES_PASSWORD: tps_test
@@ -43,8 +44,6 @@ jobs:
       - *webpacker_precompile
   test:
     <<: *defaults
-    docker:
-      - image: circleci/openjdk:8-jdk
     steps:
       - checkout
       - *bundle_install
