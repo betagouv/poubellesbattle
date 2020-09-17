@@ -8,8 +8,8 @@ defaults: &defaults
   working_directory: ~/tps
   docker:
     - image: circleci/ruby:2.6.3-stretch-node
-    - image: circleci/postgres:11.5
     - image: circleci/openjdk:8-jdk
+    - image: circleci/postgres:11.5
       environment:
         POSTGRES_USER: tps_test
         POSTGRES_PASSWORD: tps_test
