@@ -5,9 +5,9 @@
 
   <div class="text-bloc">
     <ul class="footer__links">
-      <li><h2>Défi Compost</h2></li>
-      <li><a href="">Mentions légales</a></li>
-      <li><%= mail_to "contact@poubellesbattle.fr", "Contactez-nous !" %></li>
+      <li><h2>Voisins de Compost</h2></li>
+      <li><a href="https://www.pau.fr/infos-legales" target="_blank">Mentions légales</a></li>
+      <li><%= mail_to "voisinsdecompost@agglo-pau.fr", "Contactez-nous !" %></li>
       <li><%= link_to "Vie privée", vieprivee_path %></li>
       <li><a href="https://www.pau.fr/">L'agglomération de Pau</a></li>
       <% unless @composteurs.nil? %>
@@ -24,15 +24,16 @@
 
     <ul class="footer__links">
       <li><h2>Aidez-nous à améliorer cet outil</h2></li>
-      <li><a href="https://github.com/betagouv/poubellesbattle">Contribuer sur Github</a></li>
-      <li><a href="https://github.com/betagouv/poubellesbattle">Envoyer une suggestion</a></li>
+      <li><a href="https://github.com/paultursuru/poubellesbattle-pau" target="_blank">Contribuer sur Github</a></li>
+      <li><a href="https://github.com/paultursuru/poubellesbattle-pau" target="_blank">Envoyer une suggestion</a></li>
     </ul>
 
     <ul class="footer__links">
       <li><h2>Une itération de Poubelles Battle</h2></li>
-      <li><a href="https://beta.gouv.fr/startups/poubelles-battle.html">Qui est Poubelles Battle ?</a></li>
-      <li><a href="https://beta.gouv.fr/">Beta.gouv, c'est quoi ?</a></li>
-      <li><a href="https://beta.gouv.fr/apropos/">Que sont les start-ups d’état ?</a></li>
+      <li><a href="https://beta.gouv.fr/startups/poubelles-battle.html" target="_blank">Qui est Poubelles Battle ?</a></li>
+      <li><a href="https://github.com/betagouv/poubellesbattle" target="_blank">Envoyer une suggestion pour Poubelles Battle</a></li>
+      <li><a href="https://beta.gouv.fr/" target="_blank">Beta.gouv, c'est quoi ?</a></li>
+      <li><a href="https://beta.gouv.fr/apropos/" target="_blank">Que sont les start-ups d’état ?</a></li>
     </ul>
   </div>
 </div>

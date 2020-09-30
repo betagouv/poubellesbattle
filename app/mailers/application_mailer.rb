@@ -1,5 +1,5 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'contact@poubellesbattle.fr'
+  default from: 'voisinsdecompost@agglo-pau.fr'
 
   layout 'mailer'
 end

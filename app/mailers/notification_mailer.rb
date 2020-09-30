@@ -13,7 +13,7 @@ class NotificationMailer < ApplicationMailer
     @contenu_signale = Notification.find(@notification.content.to_i)
     @composteur = Composteur.find(@notification.composteur_id)
 
-    mail(to: 'contact@poubellesbattle.fr', subject: 'Nouveau contenu signalé...')
+    mail(to: 'voisinsdecompost@agglo-pau.fr', subject: 'Nouveau contenu signalé...')
   end
 
   def signaler_contenu_to_user
