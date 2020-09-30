@@ -1,4 +1,4 @@
-<h5><%= @user.first_name.capitalize %>, bienvenue sur la plateforme Poubelles Battle !</h5>
+<h5><%= @user.first_name.capitalize %>, bienvenue sur la plateforme Voisins de Compost !</h5>
 <p>
   Votre inscription en tant qu’adepte du compostage a bien été enregistrée.
   Vous pouvez dès à présent vous inscrire à un site de compostage <%= link_to "proche de chez vous", root_url(anchor: "carto"), target: "_blank" %>.
@@ -14,7 +14,7 @@
   Merci pour votre implication <%= @user.first_name %>,
 </p>
 <p>
-  L’équipe Poubelles Battle.
+  L’équipe des Voisins de Compost.
 </p>
 
 <%= link_to "* La liste des déchets compostables est consultable ici ", 'https://www.ademe.fr/sites/default/files/assets/documents/guide-pratique-compostage-et-paillage.pdf', target: "_blank" %>
