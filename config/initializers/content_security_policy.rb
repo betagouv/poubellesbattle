@@ -11,7 +11,7 @@ unless Rails.env.test?
     policy.img_src     :self, :data, :blob, 'cloudinary.com', 'openstreetmap.org', 'stats.data.gouv.fr', 'crisp.chat', 'https://image.crisp.chat/', 'https://client.crisp.chat/', 'res.cloudinary.com'
     policy.worker_src  :self, :blob
     policy.object_src  :none
-    policy.frame_src   'https://compostable-ou-non.now.sh/'
+    policy.frame_src   'https://compostable-ou-non.now.sh/', 'https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut'
     policy.style_src   :self, :unsafe_inline, 'fonts.googleapis.com', 'maxcdn.bootstrapcdn.com/', 'bootstrapcdn.com', 'mapbox.com', 'mailchimp.com','cdn-images.mailchimp.com', 'crisp.chat', 'client.crisp.chat'
     if Rails.env.development?
       policy.script_src  :self, 'http://localhost:3000', 'stats.data.gouv.fr', 'mapbox.com', 'crisp.chat', 'client.crisp.chat', 'https://stats.data.gouv.fr/piwik.js', 'https://settings.crisp.chat', 'https://client.crisp.chat/'

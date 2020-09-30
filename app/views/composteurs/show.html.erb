@@ -165,14 +165,14 @@
         </div>
         <% if user_signed_in? %>
           <div class="stats-pb" data-toggle="tooltip" data-html="true" data-placement="left" title="
-              <strong>Points Poubelles Battle</strong>
-              <p>Les points PB sont là pour encourager les dépots autant que les échanges entre les membres du site de compostage.</p>
+              <strong>Points Voisins de Compost</strong>
+              <p>Ces points sont là pour encourager les dépots autant que les échanges entre les membres du site de compostage.</p>
               <p>+10 points par dépot et anomalie résolue</p>
               <p>-5 points par anomalie non résolue</p>
               <p>+2 points par messages</p>
               ">
             <p class="bangers stat-number"><%= @score %></p>
-            <p class="users-stat-info"><%= "point".pluralize(@score) %> PB</p>
+            <p class="users-stat-info"><%= "point".pluralize(@score) %> points</p>
           </div>
           <div class="stats-pb">
             <p class="bangers stat-number"><%= @depots_count %></p>
@@ -403,7 +403,7 @@
             <div class="action-card">
               <a class="btn small-btn-pb white-btn" data-toggle="collapse" data-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
                   <p class="mb-0">
-                    Contacter Poubelles Battle
+                    Contacter Voisins de Compost
                   </p>
               </a>
               <div id="collapseFive" class="collapse" aria-labelledby="headingPhotoComposteur" data-parent="#accordion">

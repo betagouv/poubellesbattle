@@ -56,12 +56,12 @@
           <%= f.input :status, label: 'Statut', input_html: { value: "archivée", type:"hidden" } %>
           <%= f.submit "Archiver cette demande", class: "bouton-valid bleu" %>
         <% end %>
-        <p>Si vous ne l'avez pas déjà fait, vous pouvez maintenant ajouter le site de compostage sur Poubelles Battle !</p>
+        <p>Si vous ne l'avez pas déjà fait, vous pouvez maintenant ajouter le site de compostage sur Voisins de Compost!</p>
         <%= link_to "Ajouter", new_admin_composteur_path, class: "bouton-valid" %>
       <% elsif @demande.status == "planifiée" %>
         <p>On dirait que tout est bon !</p>
         <p>Installation prévue le <%= @demande.planification_date.strftime("%d/%m/%Y") %></p>
-        <p>Vous pouvez à présent ajouter le composteur sur Poubelles Battle !</p>
+        <p>Vous pouvez à présent ajouter le composteur sur Voisins de Compost !</p>
         <%= link_to "Ajouter", new_admin_composteur_path, class: "bouton-valid" %>
       <% elsif @demande.status == "validée" && @demande.location_found %>
         <%= simple_form_for [:admin, @demande] do |f| %>
