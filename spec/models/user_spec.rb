@@ -13,7 +13,7 @@ RSpec.describe User, type: :model do
   end
   it 'sends welcome email' do
     expect { @user.instance_eval { send_welcome_email } }.to change { ActionMailer::Base.deliveries.count }.by(1)
-    expect(ActionMailer::Base.deliveries.last.subject).to eq('Bienvenue sur Voisins de Compost')
+    expect(ActionMailer::Base.deliveries.last.subject).to eq('Bienvenue sur Voisins de Compost !')
     expect(ActionMailer::Base.deliveries.last.to.first).to eq(@user.email)
   end
 end
