@@ -9,39 +9,50 @@ User.destroy_all
 Composteur.destroy_all
 Donvert.destroy_all
 
-
 admin = User.create(
   email: "admin@mail.com",
-  password: "123456",
-  role: "admin",
-  first_name: "admin",
-  last_name: "admin"
+  password: "#{SecureRandom.base64(16)}"
 )
 
 Notification.create(
   notification_type: "message-admin",
-  content: "Bonjour, Une livraison de broyat pour les sites de compostage collectifs ou de quartier est prévue Mardi 30 juin. Si vous en avez besoin, merci de m'écrire à e.morello@agglo-pau.fr",
+  content: "Bonjour, Une livraison de broyat pour les sites de compostage collectifs ou de quartier est prévue #{Date.today + 15.days}. Si vous en avez besoin, merci de m'écrire à contact@poubelles-battle.fr",
   user_id: admin.id
 )
 
 100.times do
   compo = Composteur.create(
     name: "#{rand(1..1000)}-#{Faker::Name.last_name}",
-    address: "#{rand(1..100)} rue du #{["hédas", "14 juillet", "Capitaine Guynemer", "Colonel Gloxin", "8 mai 1945"].sample}, Pau",
+    address: "#{rand(1..100)} #{[ "Avenue Daumesnil",
+                                  "Rue de Vaugirard",
+                                  "Rue des Pyrénées",
+                                  "Boulevard Saint-Germain",
+                                  "Rue de Charenton",
+                                  "Rue de Rivoli",
+                                  "Boulevard Ney",
+                                  "Boulevard Voltaire",
+                                  "Rue La Fayette",
+                                  "Rue de l'Université",
+                                  "Rue de Tolbiac",
+                                  "Boulevard Malesherbes",
+                                  "Boulevard Sérurier",
+                                  "Rue Réaumur",
+                                  "Boulevard Masséna",
+                                  "Rue d'Alésia"].sample}, Paris",
     category: ["composteur de quartier", "composteur bas d'immeuble"].sample,
     public: [true, true, false].sample
-    )
+  )
 
   puts "#{compo.name} created"
 
-  5.times do
+  10.times do
     user = User.new(
       email: "#{rand(1..300)}-#{rand(1..300)}@example.com",
-      password: "123456",
+      password: "#{SecureRandom.base64(6)}",
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
       role: [0, 0, 1].sample
-      )
+    )
 
     user.composteur_id = compo.id
 
@@ -56,6 +67,11 @@ Notification.create(
       puts "welcome notification created"
 
       if user.referent?
+        user.phone_number = "06#{rand(00000000..99999999)}"
+        user.ok_phone = true
+        user.ok_mail = true
+        user.save!
+
         Notification.create(
           notification_type: "message-ref",
           content: "Bonjour ! Je suis #{user.first_name} !",
