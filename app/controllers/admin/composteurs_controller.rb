@@ -57,7 +57,7 @@ class Admin::ComposteursController < ApplicationController
     # NOTE: showing with default options specified explicitly : svg as a string.
     svg_string = qrcode.as_svg(
       offset: 0,
-      module_size: 6,
+      module_size: 6, # TODO : check if size is ok
       standalone: false
     )
     @svg = svg_string.gsub("fill:#000", "")
@@ -67,7 +67,7 @@ class Admin::ComposteursController < ApplicationController
     # NOTE: showing with default options specified explicitly : svg as a string.
     svg_depot_string = anonymous_depot_code.as_svg(
       offset: 0,
-      module_size: 4,
+      module_size: 4, # TODO : check if size is ok
       standalone: false
     )
     @anonymous_depot = svg_depot_string.gsub("fill:#000", "")

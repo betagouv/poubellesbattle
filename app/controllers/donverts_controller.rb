@@ -66,7 +66,7 @@ class DonvertsController < ApplicationController
     @don.archived = true
     @don.save
     redirect_to donverts_path
-    flash[:notice] = "Votre don est archivé. Il n'apparaîtra plus dans la Bourse Verte."
+    flash[:notice] = "Votre don est archivé. Il n'apparaîtra plus dans la Bourse verte."
   end
 
   def destroy

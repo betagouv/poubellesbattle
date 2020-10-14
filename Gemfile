@@ -25,7 +25,6 @@ gem 'simple_form'
 gem 'simplecov', require: false, group: :test
 gem 'uglifier'
 gem 'webpacker', '~> 5.x'
-gem 'whenever', require: false
 
 group :development do
   gem 'annotate'
