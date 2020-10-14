@@ -24,7 +24,7 @@ gem 'sassc-rails'
 gem 'simple_form'
 gem 'simplecov', require: false, group: :test
 gem 'uglifier'
-gem 'webpacker', '~> 5.x'
+gem 'webpacker', '5.1.1'
 
 group :development do
   gem 'annotate'
