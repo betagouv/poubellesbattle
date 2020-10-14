@@ -11,7 +11,8 @@ Donvert.destroy_all
 
 admin = User.create(
   email: "admin@mail.com",
-  password: "#{SecureRandom.base64(16)}"
+  password: SecureRandom.base64(16).to_s,
+  role: 2
 )
 
 Notification.create(
@@ -20,9 +21,10 @@ Notification.create(
   user_id: admin.id
 )
 
+i = 1
 100.times do
   compo = Composteur.create(
-    name: "#{rand(1..1000)}-#{Faker::Name.last_name}",
+    name: "#{i}-#{Faker::Name.last_name}",
     address: "#{rand(1..100)} #{[ "Avenue Daumesnil",
                                   "Rue de Vaugirard",
                                   "Rue des Pyrénées",
@@ -38,17 +40,27 @@ Notification.create(
                                   "Boulevard Sérurier",
                                   "Rue Réaumur",
                                   "Boulevard Masséna",
-                                  "Rue d'Alésia"].sample}, Paris",
+                                  "Rue d'Alésia",
+                                  "Boulevard de Magenta",
+                                  "Boulevard Diderot",
+                                  "Avenue Jean-Jaurès",
+                                  "Rue Championnet",
+                                  "Rue d'Aubervilliers",
+                                  "Rue du Faubourg-Saint-Antoine",
+                                  "Rue Saint-Dominique",
+                                  "Rue Manin",
+                                  "Avenue Parmentier",
+                                  "Port d'Auteuil"].sample}, Paris",
     category: ["composteur de quartier", "composteur bas d'immeuble"].sample,
     public: [true, true, false].sample
   )
 
-  puts "#{compo.name} created"
+  # puts "#{compo.name} created"
 
   10.times do
     user = User.new(
       email: "#{rand(1..300)}-#{rand(1..300)}@example.com",
-      password: "#{SecureRandom.base64(6)}",
+      password: SecureRandom.base64(6).to_s,
       first_name: Faker::Name.first_name,
       last_name: Faker::Name.last_name,
       role: [0, 0, 1].sample
@@ -56,31 +68,49 @@ Notification.create(
 
     user.composteur_id = compo.id
 
-    if user.save
-      puts "#{user.first_name} created"
+    next unless user.save
 
+    Notification.create!(
+      notification_type: "message",
+      content: "Salut, je suis #{user.first_name} ! C'est parti pour le compost !",
+      user_id: user.id
+    )
+    if user.id.odd?
       Notification.create!(
-        notification_type: "message",
-        content: "Salut, je suis #{user.first_name} ! C'est parti pour le compost !",
+        notification_type: "depot",
+        content: "#{user.first_name} vient de faire un dépot !",
         user_id: user.id
       )
-      puts "welcome notification created"
-
-      if user.referent?
-        user.phone_number = "06#{rand(00000000..99999999)}"
-        user.ok_phone = true
-        user.ok_mail = true
-        user.save!
-
-        Notification.create(
-          notification_type: "message-ref",
-          content: "Bonjour ! Je suis #{user.first_name} !",
+      if user.first_name.length.odd?
+        Notification.create!(
+          notification_type: "depot",
+          content: "#{user.first_name} vient de faire un dépot !",
           user_id: user.id
         )
-        puts "ref message created"
       end
+    else
+      Notification.create!(
+        notification_type: "anomalie",
+        content: "manque de structurant",
+        user_id: user.id
+      )
     end
+
+    next unless user.referent?
+
+    user.phone_number = "06#{rand(00000000..99999999)}"
+    user.ok_phone = [true, true, false].sample
+    user.ok_mail = [true, true, false].sample
+    user.save!
+
+    Notification.create(
+      notification_type: "message-ref",
+      content: "Bonjour ! Je suis #{user.first_name} !",
+      user_id: user.id
+    )
   end
+  puts i.to_s
+  i += 1
 end
 # csv_options = { col_sep: ';', force_quotes: true, quote_char: '"' }
 # filepath    = 'db/compo.csv'
