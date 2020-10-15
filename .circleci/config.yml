@@ -7,7 +7,7 @@ orbs:
 defaults: &defaults
   working_directory: ~/tps
   docker:
-    - image: circleci/ruby:2.6.3-stretch-node
+    - image: cimg/ruby:2.6.5-node
     - image: circleci/node:10.17
     - image: circleci/postgres:11.5
       environment:
@@ -38,6 +38,8 @@ jobs:
     <<: *defaults
     steps:
       - checkout
+      - run: ruby --2.6.5
+      - run: node --10.17
       - *bundle_install
       - ruby/bundle-install
       - *yarn_install
