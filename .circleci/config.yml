@@ -1,14 +1,13 @@
 version: 2.1
 orbs:
   # node: circleci/node@4.1.0
-  ruby: circleci/ruby@0.1.2
+  ruby: circleci/ruby@1.1.1
   # coverage-reporter: codacy/coverage-reporter@11.3.1
 
 defaults: &defaults
   working_directory: ~/tps
   docker:
-    - image: circleci/ruby:2.6.3-stretch-node
-    - image: circleci/node:10.17
+    - image: cimg/ruby:2.6.5-node
     - image: circleci/postgres:11.5
       environment:
         POSTGRES_USER: tps_test
@@ -38,9 +37,10 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - *bundle_install
-      - ruby/bundle-install
-      - *yarn_install
+      - ruby/install-deps
+      - node/install-packages:
+        cache-key: yarn.lock
+        pkg-manager: yarn
       - *webpacker_precompile
   test:
     <<: *defaults
