@@ -7,7 +7,8 @@ orbs:
 defaults: &defaults
   working_directory: ~/tps
   docker:
-    - image: cimg/ruby:2.6.5-node
+    - image: circleci/ruby:2.6.3-stretch-node
+    - image: circleci/node:10.17
     - image: circleci/postgres:11.5
       environment:
         POSTGRES_USER: tps_test
@@ -38,7 +39,7 @@ jobs:
     steps:
       - checkout
       - *bundle_install
-      - ruby/install-deps
+      - ruby/bundle-install
       - *yarn_install
       - *webpacker_precompile
   test:
