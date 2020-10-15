@@ -1,14 +1,14 @@
 version: 2.1
 orbs:
-  node: circleci/node@4.1.0
+  # node: circleci/node@4.1.0
   ruby: circleci/ruby@0.1.2
   # coverage-reporter: codacy/coverage-reporter@11.3.1
 
 defaults: &defaults
   working_directory: ~/tps
   docker:
-    - image: circleci/node:10.17
     - image: circleci/ruby:2.6.3-stretch-node
+    - image: circleci/node:10.17
     - image: circleci/postgres:11.5
       environment:
         POSTGRES_USER: tps_test
