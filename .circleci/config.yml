@@ -37,10 +37,9 @@ jobs:
     <<: *defaults
     steps:
       - checkout
-      - ruby/install-deps
-      - node/install-packages:
-        cache-key: yarn.lock
-        pkg-manager: yarn
+      - *bundle_install
+      - ruby/bundle-install
+      - *yarn_install
       - *webpacker_precompile
   test:
     <<: *defaults
