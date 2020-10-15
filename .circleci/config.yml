@@ -38,7 +38,7 @@ jobs:
     steps:
       - checkout
       - *bundle_install
-      - ruby/bundle-install
+      - ruby/install-deps
       - *yarn_install
       - *webpacker_precompile
   test:
