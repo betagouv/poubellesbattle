@@ -10,11 +10,6 @@
 
     <div class="collapse" id="collapseReferentAgglo">
       <div class="card card-body">
-        <% unless user_signed_in? %>
-          <div class="composteur-registration-form">
-            <%= render "devise/registrations/new" %>
-          </div>
-        <% end %>
         <div class="les-referents white-bg">
           <div class="becoming-or-not-referent">
             <% if user_signed_in? %>
@@ -300,11 +295,6 @@
 
 
   <div class="composteur-right">
-    <% if user_signed_in? == false %>
-      <div class="composteur-registration-form">
-        <%= render "devise/registrations/new" %>
-      </div>
-    <% end %>
     <% if user_signed_in? %>
       <% if current_user.composteur_id == @composteur.id && current_user.referent? %>
         <div id="accordion" class="search-add-user white-bg">
