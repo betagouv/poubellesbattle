@@ -102,11 +102,13 @@
   justify-content: space-between;
   margin-bottom: 30px;
 }
-
+.section-grey.compost-section {
+min-height: max-content;
+}
 // MEDIA QUERIES
 @media (min-width: 1024px) {
   .compost-section {
-    height: 50vh;
+    min-height: max-content;
   }
 }
 @media (max-width: 1024px) {
