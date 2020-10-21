@@ -11,9 +11,11 @@ RSpec.describe User, type: :model do
     @user.password = 'abc'
     expect(@user).to_not be_valid
   end
-  it 'sends welcome email' do
-    expect { @user.instance_eval { send_welcome_email } }.to change { ActionMailer::Base.deliveries.count }.by(1)
-    expect(ActionMailer::Base.deliveries.last.subject).to eq('Bienvenue sur Poubelles Battle')
-    expect(ActionMailer::Base.deliveries.last.to.first).to eq(@user.email)
-  end
+
+  # removed mailers for DEMO version
+  # it 'sends welcome email' do
+  #   expect { @user.instance_eval { send_welcome_email } }.to change { ActionMailer::Base.deliveries.count }.by(1)
+  #   expect(ActionMailer::Base.deliveries.last.subject).to eq('Bienvenue sur Poubelles Battle')
+  #   expect(ActionMailer::Base.deliveries.last.to.first).to eq(@user.email)
+  # end
 end

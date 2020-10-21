@@ -21,6 +21,7 @@ RSpec.describe "Demandes", type: :request do
         sign_in create(:user)
         get admin_demandes_path
         expect(response).to redirect_to(root_path)
+        expect(response).to have_http_status(302)
         get edit_admin_demande_path(Demande.last)
         expect(response).to redirect_to(root_path)
         patch admin_demande_path(Demande.last)
@@ -41,7 +42,8 @@ RSpec.describe "Demandes", type: :request do
       it "returns a page with infos on the demande and a sign_up form if not logged" do
         get suivre_path(Demande.last)
         expect(response.body).to include("<p>Elle est en cours de traitement par nos agents.</p>")
-        expect(response.body).to include("<form class=\"simple_form new_user\"")
+        # no more sign-up in DEMO
+        # expect(response.body).to include("<form class=\"simple_form new_user\"")
       end
       it "shows more info if user is logged with same email" do
         sign_in create(:user, first_name: Demande.last.first_name, email: Demande.last.email)

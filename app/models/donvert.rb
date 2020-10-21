@@ -40,7 +40,7 @@ class Donvert < ApplicationRecord
   before_create :set_slug
   before_create :set_codeword
 
-  after_create :send_confirmation_don_email
+  # after_create :send_confirmation_don_email
 
   def to_param
     slug

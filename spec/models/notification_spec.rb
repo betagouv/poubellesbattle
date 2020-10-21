@@ -36,13 +36,14 @@ RSpec.describe Notification, type: :model do
     is_expected.to be_valid
   end
 
-  describe 'when demande-référent-directe' do
-    it 'should send an email on demande to become a référent' do
-      subject.content = new_site.id
-      subject.user_id = new_user_1.id
-      subject.notification_type = 'demande-référent-directe'
-      expect { subject.instance_eval { send_demande_referent_directe_email } }.to change {ActionMailer::Base.deliveries.count}.by(1)
-      expect(ActionMailer::Base.deliveries.last.to.first).to eq(new_referent.email)
-    end
-  end
+  # removed mailers for DEMO version
+  # describe 'when demande-référent-directe' do
+  #   it 'should send an email on demande to become a référent' do
+  #     subject.content = new_site.id
+  #     subject.user_id = new_user_1.id
+  #     subject.notification_type = 'demande-référent-directe'
+  #     expect { subject.instance_eval { send_demande_referent_directe_email } }.to change {ActionMailer::Base.deliveries.count}.by(1)
+  #     expect(ActionMailer::Base.deliveries.last.to.first).to eq(new_referent.email)
+  #   end
+  # end
 end

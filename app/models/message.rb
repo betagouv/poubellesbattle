@@ -19,10 +19,10 @@ class Message < ApplicationRecord
   validates :message_type, inclusion: { in: ['interet-donvert', 'message-membres', 'message-agglo', 'message-to-referent'] }, presence: true
 
   # rajouter ici le after create send email to that dude
-  after_create :send_interest_don_email, if: :message_type_is_interet_donvert?
-  after_create :send_message_to_members_email, if: :message_type_is_message_membres?
-  after_create :send_message_to_agglo_email, if: :message_type_is_message_agglo?
-  after_create :send_message_to_referent_email, if: :message_type_is_message_to_referent?
+  # after_create :send_interest_don_email, if: :message_type_is_interet_donvert?
+  # after_create :send_message_to_members_email, if: :message_type_is_message_membres?
+  # after_create :send_message_to_agglo_email, if: :message_type_is_message_agglo?
+  # after_create :send_message_to_referent_email, if: :message_type_is_message_to_referent?
 
   private
 
