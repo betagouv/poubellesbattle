@@ -16,7 +16,7 @@ import { initPiwik } from '../plugins/init_piwik';
 import 'data-confirm-modal'
 
 initMapbox();
-initCrisp();
+// initCrisp();
 initPiwik();
 
 $(function () {
