@@ -1,117 +1,104 @@
-# require 'open-uri'
-# require 'csv'
-# require 'faker'
 
-# Notification.destroy_all
-# Message.destroy_all
-# Donvert.destroy_all
-# User.destroy_all
-# Composteur.destroy_all
-# Donvert.destroy_all
+require 'open-uri'
+require 'csv'
+require 'faker'
 
-# admin = User.create(
-#   email: "admin@mail.com",
-#   password: SecureRandom.base64(16).to_s,
-#   role: 2
-# )
+Notification.destroy_all
+Message.destroy_all
+Donvert.destroy_all
+User.destroy_all
+Composteur.destroy_all
+Donvert.destroy_all
 
-# Notification.create(
-#   notification_type: "message-admin",
-#   content: "Bonjour, Une livraison de broyat pour les sites de compostage collectifs ou de quartier est prévue #{Date.today + 15.days}. Si vous en avez besoin, merci de m'écrire à contact@poubelles-battle.fr",
-#   user_id: admin.id
-# )
+admin = User.create(
+  email: "admin@mail.com",
+  password: SecureRandom.base64(16).to_s,
+  role: 2
+)
 
-# i = 1
-# 100.times do
-#   compo = Composteur.create(
-#     name: "#{i}-#{Faker::Name.last_name}",
-#     address: "#{rand(1..100)} #{[ "Avenue Daumesnil",
-#                                   "Rue de Vaugirard",
-#                                   "Rue des Pyrénées",
-#                                   "Boulevard Saint-Germain",
-#                                   "Rue de Charenton",
-#                                   "Rue de Rivoli",
-#                                   "Boulevard Ney",
-#                                   "Boulevard Voltaire",
-#                                   "Rue La Fayette",
-#                                   "Rue de l'Université",
-#                                   "Rue de Tolbiac",
-#                                   "Boulevard Malesherbes",
-#                                   "Boulevard Sérurier",
-#                                   "Rue Réaumur",
-#                                   "Boulevard Masséna",
-#                                   "Rue d'Alésia",
-#                                   "Boulevard de Magenta",
-#                                   "Boulevard Diderot",
-#                                   "Avenue Jean-Jaurès",
-#                                   "Rue Championnet",
-#                                   "Rue d'Aubervilliers",
-#                                   "Rue du Faubourg-Saint-Antoine",
-#                                   "Rue Saint-Dominique",
-#                                   "Rue Manin",
-#                                   "Avenue Parmentier",
-#                                   "Port d'Auteuil"].sample}, Paris",
-#     category: ["composteur de quartier", "composteur bas d'immeuble"].sample,
-#     public: [true, true, false].sample
-#   )
+Notification.create(
+  notification_type: "message-admin",
+  content: "Bonjour, Une livraison de broyat pour les sites de compostage collectifs ou de quartier est prévue #{Date.today + 15.days}. Si vous en avez besoin, merci de m'écrire à contact@poubelles-battle.fr",
+  user_id: admin.id
+)
 
-#   # puts "#{compo.name} created"
+i = 1
+100.times do
+  compo = Composteur.create(
+    name: "#{rand(1..1000)}-#{Faker::Name.last_name}",
+    address: "#{rand(1..100)} #{[ "rue du hédas",
+                                  "rue du 14 juillet",
+                                  "rue du Capitaine Guynemer",
+                                  "rue du Colonel Gloxin",
+                                  "rue du 8 mai 1945",
+                                  "rue castetnau",
+                                  "boulevard de la paix",
+                                  "avenue du béarn",
+                                  "avenue du loup"
+                                ].sample}, Pau",
+    category: ["composteur de quartier", "composteur bas d'immeuble"].sample,
+    public: [true, true, false].sample
+    )
 
-#   10.times do
-#     user = User.new(
-#       email: "#{rand(1..300)}-#{rand(1..300)}@example.com",
-#       password: SecureRandom.base64(6).to_s,
-#       first_name: Faker::Name.first_name,
-#       last_name: Faker::Name.last_name,
-#       role: [0, 0, 1].sample
-#     )
+  # puts "#{compo.name} created"
 
-#     user.composteur_id = compo.id
+  10.times do
+    user = User.new(
+      email: "#{rand(1..300)}-#{rand(1..300)}@example.com",
+      password: SecureRandom.base64(6).to_s,
+      first_name: Faker::Name.first_name,
+      last_name: Faker::Name.last_name,
+      role: [0, 0, 1].sample
+    )
 
-#     next unless user.save
+    user.composteur_id = compo.id
 
-#     Notification.create!(
-#       notification_type: "message",
-#       content: "Salut, je suis #{user.first_name} ! C'est parti pour le compost !",
-#       user_id: user.id
-#     )
-#     if user.id.odd?
-#       Notification.create!(
-#         notification_type: "depot",
-#         content: "#{user.first_name} vient de faire un dépot !",
-#         user_id: user.id
-#       )
-#       if user.first_name.length.odd?
-#         Notification.create!(
-#           notification_type: "depot",
-#           content: "#{user.first_name} vient de faire un dépot !",
-#           user_id: user.id
-#         )
-#       end
-#     else
-#       Notification.create!(
-#         notification_type: "anomalie",
-#         content: "manque de structurant",
-#         user_id: user.id
-#       )
-#     end
+    next unless user.save
 
-#     next unless user.referent?
+    Notification.create!(
+      notification_type: "message",
+      content: "Salut, je suis #{user.first_name} ! C'est parti pour le compost !",
+      user_id: user.id
+    )
+    if user.id.odd?
+      Notification.create!(
+        notification_type: "depot",
+        content: "#{user.first_name} vient de faire un dépot !",
+        user_id: user.id
+      )
+      if user.first_name.length.odd?
+        Notification.create!(
+          notification_type: "depot",
+          content: "#{user.first_name} vient de faire un dépot !",
+          user_id: user.id
+        )
+      end
+    else
+      Notification.create!(
+        notification_type: "anomalie",
+        content: "manque de structurant",
+        user_id: user.id
+      )
+    end
 
-#     user.phone_number = "06#{rand(00000000..99999999)}"
-#     user.ok_phone = [true, true, false].sample
-#     user.ok_mail = [true, true, false].sample
-#     user.save!
+    next unless user.referent?
 
-#     Notification.create(
-#       notification_type: "message-ref",
-#       content: "Bonjour ! Je suis #{user.first_name} !",
-#       user_id: user.id
-#     )
-#   end
-#   puts i.to_s
-#   i += 1
-# end
+    user.phone_number = "06#{rand(00000000..99999999)}"
+    user.ok_phone = [true, true, false].sample
+    user.ok_mail = [true, true, false].sample
+    user.save!
+
+    Notification.create(
+      notification_type: "message-ref",
+      content: "Bonjour ! Je suis #{user.first_name} !",
+      user_id: user.id
+    )
+  end
+  puts i.to_s
+  i += 1
+end
+
+
 # # csv_options = { col_sep: ';', force_quotes: true, quote_char: '"' }
 # # filepath    = 'db/compo.csv'
 
