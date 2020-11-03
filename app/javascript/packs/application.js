@@ -11,13 +11,13 @@ import 'mapbox-gl/src/css/mapbox-gl.css'; // <-- you need to uncomment the style
 import '@mapbox/mapbox-gl-geocoder/lib/mapbox-gl-geocoder.css';
 import { initMapbox } from '../plugins/init_mapbox';
 // import { initCrisp } from '../plugins/init_crisp';
-import { initPiwik } from '../plugins/init_piwik';
+// import { initPiwik } from '../plugins/init_piwik';
 // import { initAutocomplete } from '../plugins/init_autocomplete';
 import 'data-confirm-modal'
 
 initMapbox();
 // initCrisp();
-initPiwik();
+// initPiwik();
 
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
