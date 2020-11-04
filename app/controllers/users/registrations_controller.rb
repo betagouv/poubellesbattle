@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  invisible_captcha only: [:create, :update], on_spam: :your_spam_callback_method
+  invisible_captcha only: :create, on_spam: :your_spam_callback_method
 
   # POST /resource
   def create
