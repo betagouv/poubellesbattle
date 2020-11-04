@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  # devise_for :users
+  devise_for :users, controllers: { registrations: "users/registrations" }
 
   match '(*any)', to: redirect(subdomain: ''), via: :all, constraints: {subdomain: 'www'} if Rails.env.production?
 
