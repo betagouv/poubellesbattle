@@ -1,23 +1,17 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
-  helper_method :resource_name, :resource, :devise_mapping, :resource_class
-  prepend_before_action :check_captcha, only: [:create] # Change this to be any actions you want to protect.
+  invisible_captcha only: [:create, :update], on_spam: :your_spam_callback_method
 
-  def resource_name
-    :user
+  # POST /resource
+  def create
+    super
   end
 
-  def resource
-    @resource ||= User.new
-  end
+  private
 
-  def resource_class
-    User
-  end
-
-  def devise_mapping
-    @devise_mapping ||= Devise.mappings[:user]
+  def your_spam_callback_method
+    redirect_to root_path
   end
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
@@ -27,10 +21,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # POST /resource
-  def create
-    super
-  end
 
   # GET /resource/edit
   # def edit
@@ -77,13 +67,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
-  private
-    def check_captcha
-      unless verify_recaptcha
-        self.resource = resource_class.new sign_up_params
-        resource.validate # Look for any other validation errors besides reCAPTCHA
-        set_minimum_password_length
-        respond_with_navigational(resource) { render :new }
-      end
-    end
 end
