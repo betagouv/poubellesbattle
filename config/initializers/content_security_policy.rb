@@ -7,9 +7,8 @@ unless Rails.env.test?
 
   Rails.application.config.content_security_policy do |policy|
     policy.default_src :self
-    # policy.default_src :self, :data, :blob, 'fonts.gstatic.com', '*.crisp.chat', 'crisp.chat', '*.crisp.help', 'https://*.tiles.mapbox.com', 'https://api.mapbox.com', 'https://events.mapbox.com', 'https://compostable-ou-non.now.sh/'
-    policy.font_src    :self, :data, 'fonts.gstatic.com', '*.bootstrapcdn.com', '*.crisp.chat', 'crisp.chat'
-    policy.img_src     :self, :data, :blob, '*.cloudinary.com', '*.openstreetmap.org', 'stats.data.gouv.fr', '*.crisp.chat', 'crisp.chat'
+    policy.font_src    :self, :data, 'fonts.gstatic.com', 'bootstrapcdn.com', 'maxcdn.bootstrapcdn.com', 'crisp.chat', 'client.crisp.chat'
+    policy.img_src     :self, :data, :blob, 'cloudinary.com', 'openstreetmap.org', 'stats.data.gouv.fr', 'crisp.chat', 'https://image.crisp.chat/', 'https://client.crisp.chat/', 'res.cloudinary.com'
     policy.worker_src  :self, :blob
     policy.object_src  :none
     policy.frame_src   'https://compostable-ou-non.now.sh/', 'https://www.google.com/recaptcha/api2/anchor?ar=1&k=6Lfo494ZAAAAAHaP_12mgK1Pk2VuE7BNGp9NPkga&co=aHR0cDovL2xvY2FsaG9zdDozMDAw&hl=en&v=4lbq4vBYAu25DMtzZ7GGbfAF&size=normal&cb=4k88bmbch2v7'
