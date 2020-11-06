@@ -43,7 +43,13 @@ class NotificationsController < ApplicationController
       render :show if current_user.admin?
     end
     notification = Notification.new
-    composteur = Composteur.find_by slug: params[:slug]
+    # checking if params in the qr-code is ID or Slug..
+    # TODO : change qr code to only show ID because slug will change..
+    if params[:slug].to_i.to_s.length != params[:slug].length
+      composteur = Composteur.find_by slug: params[:slug]
+    else
+      composteur = Composteur.find(params[:slug].to_i)
+    end
     notification.composteur_id = composteur.id
     notification.notification_type = params[:type]
     if user_signed_in?

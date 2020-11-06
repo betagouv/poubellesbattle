@@ -52,7 +52,7 @@ class Admin::ComposteursController < ApplicationController
   def edit
     require 'rqrcode'
 
-    qrcode = RQRCode::QRCode.new("#{composteur_url(@composteur)}")
+    qrcode = RQRCode::QRCode.new("#{composteur_url(@composteur.id)}")
     # @message = Message.new
     # NOTE: showing with default options specified explicitly : svg as a string.
     svg_string = qrcode.as_svg(
@@ -62,7 +62,7 @@ class Admin::ComposteursController < ApplicationController
     )
     @svg = svg_string.gsub("fill:#000", "")
 
-    anonymous_depot_code = RQRCode::QRCode.new("#{anonymous_depot_url(slug: @composteur.slug, type: 'depot direct')}")
+    anonymous_depot_code = RQRCode::QRCode.new("#{anonymous_depot_url(slug: @composteur.id, type: 'depot direct')}")
 
     # NOTE: showing with default options specified explicitly : svg as a string.
     svg_depot_string = anonymous_depot_code.as_svg(
