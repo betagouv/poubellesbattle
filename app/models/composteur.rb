@@ -36,7 +36,7 @@ class Composteur < ApplicationRecord
   has_many :notifications, through: :users
   has_many :donverts, through: :users
   has_one_attached :photo
-  before_create :set_slug
+  before_save :set_slug
 
   def to_param
     slug

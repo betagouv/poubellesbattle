@@ -54,7 +54,11 @@ class ComposteursController < ApplicationController
   end
 
   def show
-    @composteur = Composteur.find_by slug: params[:slug]
+    if params[:slug].to_i.to_s.length != params[:slug].length
+      @composteur = Composteur.find_by slug: params[:slug]
+    else
+      redirect_to composteur_path(Composteur.find(params[:slug]).slug) and return
+    end
     @composteur.date_retournement ? @time_left = (@composteur.date_retournement - Date.today).round : @time_left = 300
     @time_past = 300 - @time_left
 
