@@ -1,5 +1,6 @@
 class DemandesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:new, :create, :suivre]
+  invisible_captcha only: :create, on_spam: :your_spam_callback_method
   before_action :set_demande, only: [:show, :suivre, :edit, :update, :formulaire_toggle, :destroy]
   before_action :user_admin?, only: [:index, :edit, :update, :formulaire_toggle, :destroy]
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
@@ -47,5 +48,9 @@ class DemandesController < ApplicationController
 
   def demande_params
     params.require(:demande).permit(:first_name, :last_name, :logement_type, :inhabitant_type, :potential_users, :address, :phone_number, :email, :photo)
+  end
+
+  def your_spam_callback_method
+    redirect_to root_path
   end
 end
