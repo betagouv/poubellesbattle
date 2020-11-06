@@ -5,6 +5,7 @@ gem 'bootsnap', require: false
 gem 'cloudinary', '~> 1.12.0'
 gem 'devise'
 gem 'geocoder'
+gem 'invisible_captcha'
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
 gem 'pg_search', '~> 2.3.0'

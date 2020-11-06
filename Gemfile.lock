@@ -112,6 +112,8 @@ GEM
       domain_name (~> 0.5)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
+    invisible_captcha (1.1.0)
+      rails (>= 4.2)
     jbuilder (2.10.1)
       activesupport (>= 5.0.0)
     json (2.3.1)
@@ -316,6 +318,7 @@ DEPENDENCIES
   faker
   font-awesome-sass (~> 5.6.1)
   geocoder
+  invisible_captcha
   jbuilder (~> 2.0)
   letter_opener
   listen (~> 3.0.5)
