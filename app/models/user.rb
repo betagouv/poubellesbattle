@@ -28,6 +28,7 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
   has_many :donverts
   has_one_attached :photo
+  validates :first_name, :last_name, presence: true
 
   enum role: [:compostophile, :referent, :admin]
 
@@ -41,7 +42,7 @@ class User < ApplicationRecord
       tsearch: { prefix: true }
     }
 
-  # after_create :send_welcome_email
+  after_create :send_welcome_email
 
   def self.to_csv
     attributes = %w{id email first_name last_name role}

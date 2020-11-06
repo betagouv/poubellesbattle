@@ -28,6 +28,7 @@
                   collection: [[true, "oui ! 🥳"], [false, "non..😕"]],
                   label_method: :last,
                   value_method: :first %>
+      <%= invisible_captcha %>
       <div class="submit-formline-center">
         <%= f.submit "Envoyer ma demande !", class: "bouton-valid" %>
       </div>
