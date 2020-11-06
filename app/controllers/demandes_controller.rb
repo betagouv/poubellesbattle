@@ -1,6 +1,6 @@
 class DemandesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:new, :create, :suivre]
-  invisible_captcha only: :create, on_spam: :your_spam_callback_method
+  invisible_captcha only: :create, on_spam: :your_spam_callback_method unless Rails.env.test?
   before_action :set_demande, only: [:show, :suivre, :edit, :update, :formulaire_toggle, :destroy]
   before_action :user_admin?, only: [:index, :edit, :update, :formulaire_toggle, :destroy]
   helper_method :resource_name, :resource, :devise_mapping, :resource_class
