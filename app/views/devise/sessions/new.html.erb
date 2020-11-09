@@ -1,7 +1,12 @@
 <div class="admin-box">
   <div class="new-user-form">
     <h2>Connexion</h2>
-
+    <div class="alert alert-warning alert-sign-in">
+      <p>Si vous êtes habitant•e de Pau et son agglomération, rendez-vous sur : </p>
+      <%= link_to "https://voisinsdecompost.agglo-pau.fr/users/sign_in" do %>
+      <%= image_tag "voisins.png", alt: "voisins de compost", class: "voisins-sign-in" %>
+      <% end %>
+    </div>
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="form-inputs">
         <%= f.input :email, placeholder: "email",
