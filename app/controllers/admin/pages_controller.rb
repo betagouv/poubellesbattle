@@ -21,7 +21,7 @@ class Admin::PagesController < ApplicationController
 
   def annuaire
     @composteurs = Composteur.all
-    @users = User.all
+    @users = User.all.order(created_at: :desc)
     if params[:query].present?
       @users_list = @users.search_by_first_name_and_last_name(params[:query])
     else
