@@ -21,6 +21,44 @@
     }
   }
 }
+#logo-voisins-de-compost {
+  background-image: url('voisins-desktop.png');
+  width:  295px;
+  height: 39px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: 17px;
+}
+
+@media (max-width: 1024px) {
+  #logo-voisins-de-compost {
+    background-image: url('voisins-mobile.png');
+    height: 39px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    width: 110px;
+  }
+  .navbar-poub-bat .home-link {
+    width: 110px;
+    height: 39px;
+  }
+}
+@media (max-width: 760px) {
+  #logo-voisins-de-compost {
+    background-image: url('voisins-mobile.png');
+    height: 39px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+    width: 110px;
+    top: 14px;
+  }
+  .navbar-poub-bat .navbar-poub-bat-left {
+    padding-top: 10px;
+  }
+}
 
 
 a:hover {
