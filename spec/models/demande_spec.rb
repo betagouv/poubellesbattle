@@ -67,29 +67,30 @@ RSpec.describe Demande, type: :model do
     is_expected.to_not be_valid
   end
 
-  it 'sends an email after create' do
-    # instance_eval is here because i'm calling a private method
-    expect { subject.instance_eval { send_new_demande_email } }.to change { ActionMailer::Base.deliveries.count }.by(1)
-    # checking the first to in the last email generated
-    expect(ActionMailer::Base.deliveries.last.to.first).to eq(subject.email)
-    # checking the subject of the last email generated
-    expect(ActionMailer::Base.deliveries.last.subject).to eq('Votre demande de site de compostage')
-  end
+  # removed mailers for DEMO version
+  # it 'sends an email after create' do
+  #   # instance_eval is here because i'm calling a private method
+  #   expect { subject.instance_eval { send_new_demande_email } }.to change { ActionMailer::Base.deliveries.count }.by(1)
+  #   # checking the first to in the last email generated
+  #   expect(ActionMailer::Base.deliveries.last.to.first).to eq(subject.email)
+  #   # checking the subject of the last email generated
+  #   expect(ActionMailer::Base.deliveries.last.subject).to eq('Votre demande de site de compostage')
+  # end
 
-  it 'sends a refusal email if demande status is refusee' do
-    subject.status = 'refusée'
-    subject.save
-    expect { subject.instance_eval { send_refus_demande_email } }.to change { ActionMailer::Base.deliveries.count }.by(1)
-    expect(ActionMailer::Base.deliveries.last.subject).to eq('Refus de votre demande de site de compostage')
-  end
+  # it 'sends a refusal email if demande status is refusee' do
+  #   subject.status = 'refusée'
+  #   subject.save
+  #   expect { subject.instance_eval { send_refus_demande_email } }.to change { ActionMailer::Base.deliveries.count }.by(1)
+  #   expect(ActionMailer::Base.deliveries.last.subject).to eq('Refus de votre demande de site de compostage')
+  # end
 
-  it 'sends a planification email if demande is planifiée and planification_date is not nil' do
-    subject.status = 'planifiée'
-    subject.planification_date = Date.today + 3.weeks
-    subject.save
-    expect { subject.instance_eval { send_planification_demande_email} }.to change { ActionMailer::Base.deliveries.count }.by(1)
-    expect(ActionMailer::Base.deliveries.last.subject).to eq("Planification de l'installation du nouveau site de compostage")
-    #checks if the date is actualy readable in the email
-    expect(ActionMailer::Base.deliveries.last.body).to be_include((Date.today + 3.weeks).strftime("%d/%m"))
-  end
+  # it 'sends a planification email if demande is planifiée and planification_date is not nil' do
+  #   subject.status = 'planifiée'
+  #   subject.planification_date = Date.today + 3.weeks
+  #   subject.save
+  #   expect { subject.instance_eval { send_planification_demande_email} }.to change { ActionMailer::Base.deliveries.count }.by(1)
+  #   expect(ActionMailer::Base.deliveries.last.subject).to eq("Planification de l'installation du nouveau site de compostage")
+  #   #checks if the date is actualy readable in the email
+  #   expect(ActionMailer::Base.deliveries.last.body).to be_include((Date.today + 3.weeks).strftime("%d/%m"))
+  # end
 end

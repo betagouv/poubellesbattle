@@ -94,25 +94,13 @@
           <% if current_user.donverts != [] %>
             <%= link_to "Historique de mes dons", mes_dons_path, class: "dropdown-item"  %>
           <% end %>
-          <%= link_to "Modifier mon profil", edit_user_registration_path(current_user), class: "dropdown-item"  %>
           <%= link_to "Me deconnecter", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
         <% else %>
           <%= link_to "Se connecter", new_user_session_path, class: "dropdown-item" %>
-          <%= link_to "S'inscrire", new_user_registration_path, class: "dropdown-item" %>
+          <%#= link_to "S'inscrire", new_user_registration_path, class: "dropdown-item" %>
         <% end %>
       </div>
     </li>
-    <% if user_signed_in? %>
-      <% if current_user.photo.attached? %>
-        <%= link_to edit_user_registration_path(current_user) do  %>
-          <%= cl_image_tag current_user.photo.key, height: 100, width: 100, crop: :fill, class: "avatar" %>
-        <% end %>
-      <% else %>
-        <%= link_to edit_user_registration_path(current_user) do  %>
-          <%= image_tag "PB_logo.png", alt: "default avatar", class: "avatar" %>
-        <% end %>
-      <% end %>
-    <% end %>
   </div>
 </div>
 

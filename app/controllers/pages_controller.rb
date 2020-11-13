@@ -6,10 +6,38 @@ class PagesController < ApplicationController
   def to_compost; end
 
   def stats
+    require 'json'
+    require 'open-uri'
+    today = Date.today.strftime("%Y-%m-%d")
+    two_month_ago = (Date.today - 2.months).strftime("%Y-%m-%d")
+    three_month_ago = (Date.today - 3.months).strftime("%Y-%m-%d")
+    url = "https://stats.data.gouv.fr/index.php?module=API&method=VisitsSummary.get&idSite=126&period=day&date=2020-04-16,#{today}&format=JSON&token_auth=#{ENV['DATAGOUV_TOKEN']}"
+    visits_today_serialized = open(url).read
+    visits_today = JSON.parse(visits_today_serialized)
+    today_counter = 0
+    visits_today.values.each do |day|
+      today_counter += day["nb_visits"].to_i unless day.empty?
+    end
+    # @today_count = visits_today["nb_visits"]
+    url = "https://stats.data.gouv.fr/index.php?module=API&method=VisitsSummary.get&idSite=126&period=day&date=2020-04-16,#{two_month_ago}&format=JSON&token_auth=#{ENV['DATAGOUV_TOKEN']}"
+    visits_two_month_ago_serialized = open(url).read
+    visits_two_month_ago = JSON.parse(visits_two_month_ago_serialized)
+    two_counter = 0
+    visits_two_month_ago.values.each do |day|
+      two_counter += day["nb_visits"].to_i unless day.empty?
+    end
+
+    url = "https://stats.data.gouv.fr/index.php?module=API&method=VisitsSummary.get&idSite=126&period=day&date=2020-04-16,#{three_month_ago}&format=JSON&token_auth=#{ENV['DATAGOUV_TOKEN']}"
+    visits_three_month_ago_serialized = open(url).read
+    visits_three_month_ago = JSON.parse(visits_three_month_ago_serialized)
+    three_counter = 0
+    visits_three_month_ago.values.each do |day|
+      three_counter += day["nb_visits"].to_i unless day.empty?
+    end
     # this day but last month
+    # nombre d'inscrits sur la plateforme
     last_month = Date.today - 1.month
     last_last_month = Date.today - 2.month
-    # nombre d'inscrits sur la plateforme
     users = User.all
     @stats = []
     users_count = users.count
@@ -32,7 +60,21 @@ class PagesController < ApplicationController
         yAxes: [{
           id: 'first-y-axis',
           type: 'linear',
-          ticks: { stepSize: 5 }
+          ticks: { stepSize: 50 }
+        }]
+      },
+      legend: {
+        display: false
+      },
+      height: 200,
+      width: 660
+    }
+    @options_visits = {
+      scales: {
+        yAxes: [{
+          id: 'first-y-axis',
+          type: 'linear',
+          ticks: { stepSize: 100 }
         }]
       },
       legend: {
@@ -54,6 +96,23 @@ class PagesController < ApplicationController
     @options_doughnut = {
       height: 250,
       width: 250
+    }
+
+    # visits chart
+    @visits_stats = {
+      labels: ["#{three_month_ago}", "#{two_month_ago}", "#{today}"],
+      datasets: [
+        {
+          backgroundColor: yellow,
+          borderColor: green,
+          borderWidth: 10,
+          pointBorderColor: brown,
+          pointBackgroundColor: yellow,
+          pointRadius: 6,
+          pointBorderWidth: 2,
+          data: [three_counter, two_counter, today_counter]
+        }
+      ]
     }
 
     # users chart
@@ -163,7 +222,5 @@ class PagesController < ApplicationController
         }
       ]
     }
-
-    # # frequentation globale ? matomo api ?
   end
 end

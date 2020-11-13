@@ -133,8 +133,8 @@ class ComposteursController < ApplicationController
         end
       end
       @messages_notifications = @composteur.notifications.where(notification_type: "message-ref").last
-      @messages_admin = Notification.where(notification_type: "message-admin").last
     end
+      @messages_admin = Notification.where(notification_type: "message-admin").last
   end
 
   def update

@@ -10,11 +10,6 @@
 
     <div class="collapse" id="collapseReferentAgglo">
       <div class="card card-body">
-        <% unless user_signed_in? %>
-          <div class="composteur-registration-form">
-            <%= render "devise/registrations/new" %>
-          </div>
-        <% end %>
         <div class="les-referents white-bg">
           <div class="becoming-or-not-referent">
             <% if user_signed_in? %>
@@ -149,7 +144,7 @@
       <% else %>
         <%= image_tag 'PB_logo.png', class: "composteur-photo" %>
       <% end %>
-      <div class="stats">
+      <div class="stats <%= 'justify-content-center' unless user_signed_in? %>">
         <div class="stats-pb">
           <% if @users.count == 0 %>
             <p class="users_stat_info">Personne n'est inscrit sur ce site de compostage pour l'instant...</p>
@@ -158,20 +153,22 @@
           <p class="users-stat-info"><%= "adepte".pluralize(@users.count) %> du compostage</p>
           <% end %>
         </div>
-        <div class="stats-pb" data-toggle="tooltip" data-html="true" data-placement="left" title="
-            <strong>Points Poubelles Battle</strong>
-            <p>Les points PB sont là pour encourager les dépots autant que les échanges entre les membres du site de compostage.</p>
-            <p>+10 points par dépot et anomalie résolue</p>
-            <p>-5 points par anomalie non résolue</p>
-            <p>+2 points par messages</p>
-            ">
-          <h1 class="bangers"><%= @score %></h1>
-          <p class="users-stat-info"><%= "point".pluralize(@score) %> PB</p>
-        </div>
-        <div class="stats-pb">
-          <h1 class="bangers"><%= @depots_count %></h1>
-          <p class="users-stat-info"><%= "dépot".pluralize(@depots_count) %></p>
-        </div>
+        <% if user_signed_in? %>
+          <div class="stats-pb" data-toggle="tooltip" data-html="true" data-placement="left" title="
+              <strong>Points Poubelles Battle</strong>
+              <p>Les points PB sont là pour encourager les dépots autant que les échanges entre les membres du site de compostage.</p>
+              <p>+10 points par dépot et anomalie résolue</p>
+              <p>-5 points par anomalie non résolue</p>
+              <p>+2 points par messages</p>
+              ">
+            <h1 class="bangers"><%= @score %></h1>
+            <p class="users-stat-info"><%= "point".pluralize(@score) %> PB</p>
+          </div>
+          <div class="stats-pb">
+            <h1 class="bangers"><%= @depots_count %></h1>
+            <p class="users-stat-info"><%= "dépot".pluralize(@depots_count) %></p>
+          </div>
+        <% end %>
       </div>
     </div>
     <div class="les-users">
@@ -300,11 +297,6 @@
 
 
   <div class="composteur-right">
-    <% if user_signed_in? == false %>
-      <div class="composteur-registration-form">
-        <%= render "devise/registrations/new" %>
-      </div>
-    <% end %>
     <% if user_signed_in? %>
       <% if current_user.composteur_id == @composteur.id && current_user.referent? %>
         <div id="accordion" class="search-add-user white-bg">
@@ -470,6 +462,8 @@
                     </div>
                   </div>
                 <% end %>
+              <% else %>
+                <p class="text-center mt-2">Connectez vous pour pouvoir contacter <%= referent.first_name %></p>
               <% end %>
               <% if user_signed_in? %>
                 <% if current_user.referent? && current_user == referent %>

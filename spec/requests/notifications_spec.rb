@@ -116,7 +116,9 @@ RSpec.describe "Notifications", type: :request do
         expect(response).to have_http_status(302)
         follow_redirect!
         expect(response.body).to include("#{Composteur.last.name}")
-        expect(response.body).to include("<form class=\"simple_form new_user\"")
+        # there are no sign-up in DEMO
+        # expect(response.body).to include("<form class=\"simple_form new_user\"")
+
         # same but with user signed_in
         sign_in create(:user, composteur_id: Composteur.last.id)
         get anonymous_depot_path, params: { slug: Composteur.last.slug, type: "depot" }

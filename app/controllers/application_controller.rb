@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  before_action :ensure_domain
+  # before_action :ensure_domain
 
   def default_url_options
     { host: ENV["DOMAIN"] || "localhost:3000" }
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def user_admin?
     if user_signed_in?
-      redirect_to root_path and return unless current_user.admin?
+      redirect_to root_path unless current_user.admin?
     else
       redirect_to root_path
     end
@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
 
   def user_referent?
     if user_signed_in?
-      redirect_to root_path and return unless current_user.admin? || current_user.referent?
+      redirect_to root_path unless current_user.admin? || current_user.referent?
     else
       redirect_to root_path
     end
@@ -30,13 +30,13 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def ensure_domain
-    if Rails.env.production?
-      if request.env['HTTP_HOST'] != 'poubellesbattle.fr'
-        redirect_to "https://poubellesbattle.fr", status: 301
-      end
-    end
-  end
+  # def ensure_domain
+  #   if Rails.env.production?
+  #     if request.env['HTTP_HOST'] != 'poubellesbattle.fr'
+  #       redirect_to "https://poubellesbattle.fr", status: 301
+  #     end
+  #   end
+  # end
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:first_name, :last_name])

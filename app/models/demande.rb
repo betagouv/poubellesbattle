@@ -29,9 +29,9 @@ class Demande < ApplicationRecord
   has_one_attached :photo
 
   before_create :set_slug
-  after_create :send_new_demande_email
-  after_update :send_refus_demande_email, if: :demande_refusee?
-  after_update :send_planification_demande_email, if: :demande_planifiee?
+  # after_create :send_new_demande_email
+  # after_update :send_refus_demande_email, if: :demande_refusee?
+  # after_update :send_planification_demande_email, if: :demande_planifiee?
 
   def to_param
     slug

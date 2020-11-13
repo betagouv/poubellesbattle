@@ -22,7 +22,8 @@ RSpec.describe "Composteurs", type: :request do
       get composteur_path(Composteur.last.slug)
 
       expect(response).to have_http_status(200)
-      expect(response.body).to include("<h3>S'inscrire sur Poubelles Battle</h3>")
+      # no more sign-up in DEMO
+      # expect(response.body).to include("<h3>S'inscrire sur Poubelles Battle</h3>")
     end
     it "returns composteur view with messagerie if logged in and on user's composteur" do
       sign_in create(:user, composteur_id: Composteur.last.id)

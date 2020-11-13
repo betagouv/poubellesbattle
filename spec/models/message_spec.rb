@@ -45,49 +45,50 @@ RSpec.describe Message, type: :model do
     is_expected.to_not be_valid
   end
 
-  it 'should generate a valid email interet-donvert to donneur_email' do
-    expect { subject.instance_eval { send_interest_don_email } }.to change { ActionMailer::Base.deliveries.count }.by(1)
-    expect(ActionMailer::Base.deliveries.last.subject).to eq("Votre proposition de don attire l'attention !")
-    expect(ActionMailer::Base.deliveries.last.to.first).to eq(new_don.donneur_email)
-  end
+  # removed mailers for DEMO version
+  # it 'should generate a valid email interet-donvert to donneur_email' do
+  #   expect { subject.instance_eval { send_interest_don_email } }.to change { ActionMailer::Base.deliveries.count }.by(1)
+  #   expect(ActionMailer::Base.deliveries.last.subject).to eq("Votre proposition de don attire l'attention !")
+  #   expect(ActionMailer::Base.deliveries.last.to.first).to eq(new_don.donneur_email)
+  # end
 
-  it 'should should display the right infos' do
-    expect(ActionMailer::Base.deliveries.last.body).to be_include(subject.sender_email)
-    # same line but different
-    # expect(ActionMailer::Base.deliveries.last.body).to include {subject.sender_email}
-    expect(ActionMailer::Base.deliveries.last.body).to be_include(subject.content)
-  end
+  # it 'should should display the right infos' do
+  #   expect(ActionMailer::Base.deliveries.last.body).to be_include(subject.sender_email)
+  #   # same line but different
+  #   # expect(ActionMailer::Base.deliveries.last.body).to include {subject.sender_email}
+  #   expect(ActionMailer::Base.deliveries.last.body).to be_include(subject.content)
+  # end
 
-  describe 'with a message-membres' do
-    before { subject.message_type = "message-membres" }
-    before { subject.save }
+  # describe 'with a message-membres' do
+  #   before { subject.message_type = "message-membres" }
+  #   before { subject.save }
 
-    it 'should generate a valid email message_to_members to members of this site' do
-      expect { subject.instance_eval { send_message_to_members_email } }.to change { ActionMailer::Base.deliveries.count }.by(1)
-      expect(ActionMailer::Base.deliveries.last.subject).to eq("Message de #{new_referent.first_name.capitalize} pour les membres de #{new_referent.composteur.name}")
-      expect(ActionMailer::Base.deliveries.last.bcc.count).to eq(new_site.users.count)
-    end
-  end
+  #   it 'should generate a valid email message_to_members to members of this site' do
+  #     expect { subject.instance_eval { send_message_to_members_email } }.to change { ActionMailer::Base.deliveries.count }.by(1)
+  #     expect(ActionMailer::Base.deliveries.last.subject).to eq("Message de #{new_referent.first_name.capitalize} pour les membres de #{new_referent.composteur.name}")
+  #     expect(ActionMailer::Base.deliveries.last.bcc.count).to eq(new_site.users.count)
+  #   end
+  # end
 
-  describe 'with a message-agglo' do
-    before { subject.message_type = "message-agglo" }
-    before { subject.save }
+  # describe 'with a message-agglo' do
+  #   before { subject.message_type = "message-agglo" }
+  #   before { subject.save }
 
-    it 'should generate a valid email message_to_agglo to agglo email' do
-      expect { subject.instance_eval { send_message_to_agglo_email } }.to change { ActionMailer::Base.deliveries.count }.by(1)
-      expect(ActionMailer::Base.deliveries.last.subject).to eq("Message de #{new_referent.first_name.capitalize} - référent•e du site #{new_referent.composteur.name}")
-    end
-  end
+  #   it 'should generate a valid email message_to_agglo to agglo email' do
+  #     expect { subject.instance_eval { send_message_to_agglo_email } }.to change { ActionMailer::Base.deliveries.count }.by(1)
+  #     expect(ActionMailer::Base.deliveries.last.subject).to eq("Message de #{new_referent.first_name.capitalize} - référent•e du site #{new_referent.composteur.name}")
+  #   end
+  # end
 
-  describe 'with a message-to-referent' do
-    before { subject.recipient_id = new_referent.id }
-    before { subject.message_type = "message-to-referent" }
-    before { subject.save }
+  # describe 'with a message-to-referent' do
+  #   before { subject.recipient_id = new_referent.id }
+  #   before { subject.message_type = "message-to-referent" }
+  #   before { subject.save }
 
-    it 'should generate a valid email message_to_referent to referent of this site' do
-      expect { subject.instance_eval { send_message_to_referent_email } }.to change { ActionMailer::Base.deliveries.count }.by(1)
-      expect(ActionMailer::Base.deliveries.last.subject).to eq("#{new_referent.first_name} : #{subject.sender_full_name} vient de vous écrire.")
-      expect(ActionMailer::Base.deliveries.last.to.first).to eq(new_referent.email)
-    end
-  end
+  #   it 'should generate a valid email message_to_referent to referent of this site' do
+  #     expect { subject.instance_eval { send_message_to_referent_email } }.to change { ActionMailer::Base.deliveries.count }.by(1)
+  #     expect(ActionMailer::Base.deliveries.last.subject).to eq("#{new_referent.first_name} : #{subject.sender_full_name} vient de vous écrire.")
+  #     expect(ActionMailer::Base.deliveries.last.to.first).to eq(new_referent.email)
+  #   end
+  # end
 end

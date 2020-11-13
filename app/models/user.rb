@@ -22,8 +22,8 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise :database_authenticatable,
+         :rememberable, :validatable
   belongs_to :composteur, optional: true
   has_many :notifications, dependent: :destroy
   has_many :donverts
@@ -41,7 +41,7 @@ class User < ApplicationRecord
       tsearch: { prefix: true }
     }
 
-  after_create :send_welcome_email
+  # after_create :send_welcome_email
 
   def self.to_csv
     attributes = %w{id email first_name last_name role}
@@ -65,9 +65,9 @@ class User < ApplicationRecord
     end
   end
 
-  private
+  # private
 
-  def send_welcome_email
-    UserMailer.with(user: self).welcome.deliver_now
-  end
+  # def send_welcome_email
+  #   UserMailer.with(user: self).welcome.deliver_now
+  # end
 end

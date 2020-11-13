@@ -90,11 +90,12 @@ RSpec.describe Donvert, type: :model do
     expect(subject.codeword).to_not be_nil
   end
 
-  it 'should send confirmation don email' do
-    expect { subject.instance_eval { send_confirmation_don_email } }.to change { ActionMailer::Base.deliveries.count }.by(1)
-    expect(ActionMailer::Base.deliveries.last.subject).to eq("Votre don est en ligne !")
-    expect(ActionMailer::Base.deliveries.last.to.first).to eq(subject.donneur_email)
-  end
+  # removed mailers for DEMO version
+  # it 'should send confirmation don email' do
+  #   expect { subject.instance_eval { send_confirmation_don_email } }.to change { ActionMailer::Base.deliveries.count }.by(1)
+  #   expect(ActionMailer::Base.deliveries.last.subject).to eq("Votre don est en ligne !")
+  #   expect(ActionMailer::Base.deliveries.last.to.first).to eq(subject.donneur_email)
+  # end
 
   describe 'with or without a user attached' do
     let(:new_user) { User.create!(email: "azerty@mail.com", password: "123456", first_name: "johny", last_name: "oh") }

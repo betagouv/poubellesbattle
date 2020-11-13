@@ -67,7 +67,7 @@
           </div>
           <div class="annuaire-info-box">
             <% if user.composteur_id %>
-              <%= link_to @composteurs.find(user.composteur_id).name, composteur_path(user.composteur) %>
+              <%= link_to user.composteur.name, composteur_path(user.composteur) %>
             <% else %>
               info non renseignée
             <% end %>

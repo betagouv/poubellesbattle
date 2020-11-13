@@ -5,6 +5,14 @@
     </div>
     <div class="stat-graph">
       <div class="stat-graph-title">
+        <h5>Visites cumulées</h5>
+      </div>
+      <div class="stat-graph-chart">
+        <%= line_chart @visits_stats, @options_visits %>
+      </div>
+    </div>
+    <div class="stat-graph">
+      <div class="stat-graph-title">
         <h5>Evolution des installations de sites de compostage</h5>
       </div>
       <div class="stat-graph-chart">

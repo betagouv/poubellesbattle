@@ -1,3 +1,15 @@
+<div class="alert alert-demo alert-info alert-dismissible fade show m-1" role="alert">
+  <h5>Ce site est une démo</h5>
+  <p>Si vous êtes habitant•e de Pau et son agglomération, rendez-vous sur votre version : </p>
+  <%= link_to "https://voisinsdecompost.agglo-pau.fr/" do %>
+    <%= image_tag "voisins.png", alt: "voisins de compost", class: "voisins-sign-in" %>
+  <% end %>
+  <p>Vous pensez que votre ville pourrait être intéréssée ? Retrouvez nous sur :</p>
+  <%= link_to "le Territoires Store de l'ANCT", "https://territoires.store/" %>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 <% if notice %>
   <div class="alert alert-info alert-dismissible fade show m-1" role="alert">
     <%= notice %>
