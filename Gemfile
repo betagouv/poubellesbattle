@@ -28,11 +28,12 @@ gem 'uglifier'
 gem 'webpacker', '5.1.1'
 
 # deploy locally
-gem 'capistrano', '~> 3.1.0'
-    gem 'capistrano-bundler', '~> 1.1.2'
-    gem 'capistrano-rails', '~> 1.1.1'
-    # Add this if you're using rvm
-    gem 'capistrano-rvm', github: "capistrano/rvm"
+gem 'capistrano', '~> 3.4'
+gem 'capistrano-bundler', '~> 1.1.2'
+gem 'capistrano-rails', '~> 1.6', '>= 1.6.1'
+# Add this if you're using rvm
+# gem 'capistrano-rvm'
+gem 'capistrano-rbenv'
 
 group :development do
   gem 'annotate'
