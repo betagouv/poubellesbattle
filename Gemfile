@@ -32,8 +32,9 @@ gem 'capistrano', '~> 3.4'
 gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rails', '~> 1.6', '>= 1.6.1'
 # Add this if you're using rvm
-# gem 'capistrano-rvm'
-gem 'capistrano-rbenv'
+gem 'capistrano-rvm'
+# gem 'capistrano-passenger'
+# gem 'capistrano-rbenv'
 
 group :development do
   gem 'annotate'

@@ -4,9 +4,9 @@
 # server in each group is considered to be the first
 # unless any hosts have the primary property set.
 # Don't declare `role :all`, it's a meta role
-role :app, %w{deploy@example.com}
-role :web, %w{deploy@example.com}
-role :db,  %w{deploy@example.com}
+role :app, %w{plahana-xa@dpacs.agglo-pau.fr:8912}
+role :web, %w{plahana-xa@dpacs.agglo-pau.fr:8912}
+role :db,  %w{plahana-xa@dpacs.agglo-pau.fr:8912}
 
 # Extended Server Syntax
 # ======================
@@ -18,8 +18,13 @@ role :db,  %w{deploy@example.com}
 
 set :stage, :production
 # Replace 127.0.0.1 with your server's IP address!
-ask(:password, nil)
-server '192.168.99.8', user: 'plahana-xa', roles: %w{web app}, ssh_options: { user: 'plahana-xa', password: fetch(:password)}
+# ask(:password, nil)
+server 'dpacs.agglo-pau.fr', user: 'plahana-xa', roles: %w{web app}, port: 8912, ssh_options: {
+#     user: 'user_name', # overrides user setting above
+      keys: %w(plahana-xa),
+      forward_agent: true
+#     auth_methods: %w(publickey)
+    }
 
 # you can set custom ssh options
 # it's possible to pass any option but you need to keep in mind that net/ssh understand limited list of options
