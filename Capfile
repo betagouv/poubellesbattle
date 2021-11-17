@@ -13,15 +13,15 @@ require "capistrano/scm/git"
 install_plugin Capistrano::SCM::Git
 
 # If you are using rvm add these lines:
-# require 'capistrano/rvm'
+require 'capistrano/rvm'
 
-# set :rvm_type, :user
-# set :rvm_ruby_version, '2.7.2'
+set :rvm_type, :user
+set :rvm_ruby_version, '2.7.2'
 
-require 'capistrano/rbenv'
+# require 'capistrano/rbenv'
 
-set :rbenv_type, :user # or :system, depends on your rbenv setup
-set :rbenv_ruby, '2.7.2'
+# set :rbenv_type, :user # or :system, depends on your rbenv setup
+# set :rbenv_ruby, '2.7.2'
 
 # Includes tasks from other gems included in your Gemfile
 #

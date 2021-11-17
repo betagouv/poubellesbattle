@@ -6,7 +6,7 @@ set :repo_url, 'git@github.com:paultursuru/poubellesbattle-pau.git'
 
 set :deploy_to, '/home/plahana-xa/poubellesbattle-pau'
 
-set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.yml config/credentials.yml.enc config/secrets.yml}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
 
 # Default branch is :master
@@ -49,7 +49,18 @@ namespace :deploy do
 
   after :publishing, 'deploy:restart'
   after :finishing, 'deploy:cleanup'
+
 end
+
+
+# namespace :debug do
+#   desc 'Print ENV variables'
+#   task :env do
+#     on roles(:app), in: :sequence, wait: 5 do
+#       execute :printenv
+#     end
+#   end
+# end
 
 # namespace :deploy do
 
