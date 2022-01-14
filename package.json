@@ -9,7 +9,7 @@
     "flatpickr": "^4.6.3",
     "jquery": "^3.5.0",
     "mapbox-gl": "^1.8.1",
-    "node-forge": "^0.10.0",
+    "node-forge": "^1.0.0",
     "places.js": "^1.18.1",
     "popper.js": "^1.15.0",
     "stimulus": "^1.1.1",
